@@ -83,6 +83,7 @@
                     <finalName>mCal-${project.version}</finalName>
                     <archive>
                         <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <mainClass>launcher.Main</mainClass>
                         </manifest>
                     </archive>
