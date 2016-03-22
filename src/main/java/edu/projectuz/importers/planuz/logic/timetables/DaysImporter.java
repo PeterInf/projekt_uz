@@ -1,7 +1,9 @@
 package edu.projectuz.importers.planuz.logic.timetables;
 
 import edu.projectuz.importers.planuz.logic.HtmlComponentName;
+import edu.projectuz.importers.planuz.model.calendars.DaysList;
 import edu.projectuz.importers.planuz.model.timetables.Day;
+import edu.projectuz.importers.planuz.model.timetables.GroupTimetable;
 import edu.projectuz.importers.planuz.model.timetables.TimetableEvent;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -11,16 +13,29 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * This class is used to import {@link DaysList} object.
+ * It is used by {@link GroupsImporter}
+ */
 public class DaysImporter {
 
     private String url;
     private Document htmlContent;
     private ArrayList<Day> daysList = new ArrayList<>();
 
+    /**
+     * Class constructor which simply sets a value of url variable.
+     * @param url - stores information about url address of
+     *            HTML content with every {@link Day} of particular {@link GroupTimetable}.
+     */
     public DaysImporter(String url) {
         this.url = url;
     }
 
+    /**
+     * Main function of this class.
+     * @return Returns a list of {@link Day} objects from particular {@link GroupTimetable}.
+     */
     public ArrayList<Day> importDays() {
         importHtmlContent();
         importTable();
@@ -41,7 +56,7 @@ public class DaysImporter {
         } else {
             Element table = htmlContent.select(HtmlComponentName.TABLE).get(getTableIndex());
             Elements rows = table.select(HtmlComponentName.ROW);
-            rows.remove(Index.ROW_WITH_HEADERS);
+            rows.remove(TimetableComponentIndex.ROW_WITH_HEADERS);
             importDaysListFromRows(rows);
         }
     }
@@ -64,7 +79,7 @@ public class DaysImporter {
 
         daysList.add(day);
         if(!daysList.isEmpty()) {
-            daysList.remove(Index.NULL_ELEMENT);
+            daysList.remove(TimetableComponentIndex.NULL_ELEMENT);
         }
 
         if(daysList.isEmpty()) {
@@ -74,14 +89,15 @@ public class DaysImporter {
 
     private TimetableEvent convertRowIntoEvent(Element row) {
         Elements columns = row.select(HtmlComponentName.COLUMN);
-        String subgroup = columns.get(0).text();
-        String startTime = columns.get(1).text();
-        String endTime = columns.get(2).text();
-        String className = columns.get(3).text();
-        String classType = columns.get(4).text();
-        String teacherName = columns.get(5).text();
-        String room = columns.get(6).text();
-        String days = columns.get(7).text();
+
+        String subgroup = columns.get(TimetableComponentIndex.SUBGROUP).text();
+        String startTime = columns.get(TimetableComponentIndex.START_TIME).text();
+        String endTime = columns.get(TimetableComponentIndex.END_TIME).text();
+        String className = columns.get(TimetableComponentIndex.CLASS_NAME).text();
+        String classType = columns.get(TimetableComponentIndex.CLASS_TYPE).text();
+        String teacherName = columns.get(TimetableComponentIndex.TEACHER_NAME).text();
+        String room = columns.get(TimetableComponentIndex.ROOM).text();
+        String days = columns.get(TimetableComponentIndex.DAYS).text();
 
         return new TimetableEvent(subgroup, startTime, endTime, className,
                 classType, teacherName, room, days);
