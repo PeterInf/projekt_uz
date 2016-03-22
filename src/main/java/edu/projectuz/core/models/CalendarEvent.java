@@ -77,7 +77,8 @@ public class CalendarEvent {
                 startDate +
                 endDate +
                 description +
-                tag;
+                tag +
+                timeZone.getID();
     }
 
     @Override
