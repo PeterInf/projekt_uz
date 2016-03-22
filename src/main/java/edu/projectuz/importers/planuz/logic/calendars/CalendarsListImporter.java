@@ -28,7 +28,7 @@ import java.util.ArrayList;
  * or even get information about one day like this:
  * <br>
  * new CalendarsListImporter().importCalendars().getCalendarByName("D").
- * getDaysListByType("D - Studia stacjonarne").getDayByDate("24-02-2016")
+ * getDaysListByType("D - Studia stacjonarne").getDayByDate("24-02-2016");
  * <br>
  * At the first level of this hierarchy there's
  * {@link CalendarsList}
@@ -42,7 +42,6 @@ public class CalendarsListImporter {
     /**
      * This is a main function of this class.
      * It is used to import every single planUz calendar.
-     *
      * @return Returns instance of {@link CalendarsList} class.
      */
     public CalendarsList importCalendars() {
@@ -64,18 +63,18 @@ public class CalendarsListImporter {
 
     private String getCalendarsDescription() {
         return htmlContent.select(HtmlComponentName.HEADER).
-                get(Index.TITLE_HEADER).text();
+                get(CalendarComponentIndex.TITLE_HEADER).text();
     }
 
     private Elements getCalendarsTableRows() {
         Element table = htmlContent.select(HtmlComponentName.TABLE).
-                get(Index.CALENDARS_TABLE);
+                get(CalendarComponentIndex.CALENDARS_TABLE);
         return table.select(HtmlComponentName.ROW);
     }
 
     private ArrayList<Calendar> convertRowsIntoCalendarsList(Elements calendarsTableRows) {
         ArrayList<Calendar> calendarsList = new ArrayList<>();
-        for(int rowIndex = Index.FIRST_ROW_WITH_CALENDARS; rowIndex < calendarsTableRows.size(); rowIndex++) {
+        for(int rowIndex = CalendarComponentIndex.FIRST_ROW_WITH_CALENDARS; rowIndex < calendarsTableRows.size(); rowIndex++) {
             Element row = calendarsTableRows.get(rowIndex);
             Calendar calendar = convertRowIntoCalendar(row);
             calendarsList.add(calendar);
@@ -85,9 +84,9 @@ public class CalendarsListImporter {
 
     private Calendar convertRowIntoCalendar(Element row) {
         Elements columns = row.select(HtmlComponentName.COLUMN);
-        String name = columns.get(Index.NAME_COLUMN).text();
-        String description = columns.get(Index.DESCRIPTION_COLUMN).text();
-        String calendarUrl = columns.get(Index.NAME_COLUMN).
+        String name = columns.get(CalendarComponentIndex.NAME_COLUMN).text();
+        String description = columns.get(CalendarComponentIndex.DESCRIPTION_COLUMN).text();
+        String calendarUrl = columns.get(CalendarComponentIndex.NAME_COLUMN).
                 select(HtmlComponentName.ADDRESS).attr(HtmlComponentName.URL);
         return new SingleCalendarImporter(name, description, calendarUrl).importCalendar();
     }
