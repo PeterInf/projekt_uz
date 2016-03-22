@@ -11,6 +11,22 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
+/**
+ * This is a main class for importing planUz timetables.
+ * It returns {@link DepartmentsList} object. It's structure
+ * is very similar to structure of planUz website.
+ * <br>
+ * You can use this structure to access every single element of
+ * a timetable you want starting with main function of this class
+ * {@link #importTimetables()}.
+ * <br>
+ * For example:
+ * <br>
+ * new TimetablesImporter().importTimetables().
+ * getDepartmentByName("Wydział Prawa i Administracji").getMajorByName("Administracja").
+ * getGroupTimetableByName("11ADM-SP (Administracja stacjonarne-dzienne pierwszego stopnia z tyt. licencjata)").
+ * getDayByName("Poniedziałek"));
+ */
 public class TimetablesImporter {
 
     private Document htmlContent;
@@ -18,6 +34,10 @@ public class TimetablesImporter {
 
     private DepartmentsList departmentsList = new DepartmentsList();
 
+    /**
+     * Main function of this class. It allows you to import every planUz timetable.
+     * @return Returns {@link DepartmentsList} which is a root of planUz hierarchy.
+     */
     public DepartmentsList importTimetables() {
         importHtmlContent();
         return getDepartmentsList();
@@ -54,7 +74,7 @@ public class TimetablesImporter {
     }
 
     private String getDepartmentName(Element department) {
-        String departmentName = department.childNodes().get(Index.NAME_NODE).toString();
+        String departmentName = department.childNodes().get(TimetableComponentIndex.NAME_NODE).toString();
         return getNameWithoutSpaceAtTheEnd(departmentName);
     }
 
