@@ -122,6 +122,13 @@
                             <directory>src/main/webapp</directory>
                             <targetPath>WEB-INF/resources</targetPath>
                         </resource>
+                        <resource>
+                            <directory>src/main/resources</directory>
+                            <includes>
+                                <include>**/*.xml</include>
+                            </includes>
+                            <targetPath>WEB-INF/classes</targetPath>
+                        </resource>
                     </webResources>
                 </configuration>
             </plugin>
