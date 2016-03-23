@@ -3,7 +3,7 @@ package edu.projectuz.importers.planuz.logic.timetables;
 import edu.projectuz.importers.planuz.logic.HtmlComponentName;
 import edu.projectuz.importers.planuz.model.timetables.Department;
 import edu.projectuz.importers.planuz.model.timetables.DepartmentsList;
-import edu.projectuz.importers.planuz.model.timetables.Major;
+import edu.projectuz.importers.planuz.model.timetables.StudyBranch;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,7 +23,7 @@ import java.io.IOException;
  * For example:
  * <br>
  * new TimetablesImporter().importTimetables().
- * getDepartmentByName("Wydział Prawa i Administracji").getMajorByName("Administracja").
+ * getDepartmentByName("Wydział Prawa i Administracji").getStudyBranchByName("Administracja").
  * getGroupTimetableByName("11ADM-SP (Administracja stacjonarne-dzienne pierwszego stopnia z tyt. licencjata)").
  * getDayByName("Poniedziałek"));
  */
@@ -66,9 +66,9 @@ public class TimetablesImporter {
         String departmentName = getDepartmentName(departmentElement);
         Department department = new Department(departmentName);
 
-        Elements majorElements = departmentElement.select(HtmlComponentName.ADDRESS);
-        for (Element majorElement : majorElements) {
-            department.addMajor(getMajor(majorElement));
+        Elements studyBranchElements = departmentElement.select(HtmlComponentName.ADDRESS);
+        for (Element studyBranchElement : studyBranchElements) {
+            department.addStudyBranch(getStudyBranch(studyBranchElement));
         }
         return department;
     }
@@ -90,14 +90,14 @@ public class TimetablesImporter {
                 departmentName.length() - NUMBER_OF_CHARACTERS_TO_DELETE);
     }
 
-    private Major getMajor(Element majorElement) {
-        String majorName = majorElement.text();
-        String majorUrl = majorElement.attr(HtmlComponentName.URL);
-        Major major = new Major(majorName);
+    private StudyBranch getStudyBranch(Element studyBranchElement) {
+        String studyBranchName = studyBranchElement.text();
+        String studyBranchUrl = studyBranchElement.attr(HtmlComponentName.URL);
+        StudyBranch studyBranch = new StudyBranch(studyBranchName);
 
-        GroupsImporter groupsImporter = new GroupsImporter(majorUrl);
-        major.setGroupTimetablesList(groupsImporter.importGroups());
-        return major;
+        GroupsImporter groupsImporter = new GroupsImporter(studyBranchUrl);
+        studyBranch.setGroupTimetablesList(groupsImporter.importGroups());
+        return studyBranch;
     }
 
 }

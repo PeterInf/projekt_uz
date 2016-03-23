@@ -2,7 +2,7 @@ package edu.projectuz.importers.planuz.logic.timetables;
 
 import edu.projectuz.importers.planuz.logic.HtmlComponentName;
 import edu.projectuz.importers.planuz.model.timetables.GroupTimetable;
-import edu.projectuz.importers.planuz.model.timetables.Major;
+import edu.projectuz.importers.planuz.model.timetables.StudyBranch;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * This class is used for importing timetables of every group from one {@link Major}.
+ * This class is used for importing timetables of every group from one {@link StudyBranch}.
  * It is used by {@link TimetablesImporter}
  */
 public class GroupsImporter {
@@ -25,7 +25,7 @@ public class GroupsImporter {
     /**
      * Class constructor which simply sets a value of url variable.
      * @param url - stores information about url address of
-     *            HTML content with every group of particular {@link Major}
+     *            HTML content with every group of particular {@link StudyBranch}
      */
     public GroupsImporter(String url) {
         this.url = url;
@@ -34,7 +34,7 @@ public class GroupsImporter {
     /**
      * Main function of this class. It imports
      * @return Returns a list of {@link GroupTimetable} objects that
-     * stores information about every group from particular {@link Major}
+     * stores information about every group from particular {@link StudyBranch}
      */
     public ArrayList<GroupTimetable> importGroups() {
         importHtmlContent();
