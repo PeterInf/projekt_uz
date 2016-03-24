@@ -37,7 +37,7 @@ public class CSVImporter {
     public ArrayList<CalendarEvent> convertCsvToObject() throws IOException {
         String[] header = {"TITLE", "START", "END", "DESCRIPTION", "TAG", "TIMEZONE"};
         CSVFormat format = CSVFormat.DEFAULT.withDelimiter(',').withHeader(header).withSkipHeaderRecord(true);
-        ArrayList<CalendarEvent> listOfEvents = new ArrayList<CalendarEvent>();
+        ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
 
         CSVParser parser;
         try {
@@ -56,6 +56,7 @@ public class CSVImporter {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            //noinspection ThrowFromFinallyBlock
             fileReader.close();
         }
         return null;
@@ -80,7 +81,6 @@ public class CSVImporter {
      * This function converts a date from String ("Country/City" or "GMT Sign TwoDigitHours : Minutes") to TimeZone type.
      */
     private TimeZone convertStringToTimeZone(String timeZoneInString) {
-        TimeZone timeZone = TimeZone.getTimeZone(timeZoneInString);
-        return timeZone;
+        return TimeZone.getTimeZone(timeZoneInString);
     }
 }
