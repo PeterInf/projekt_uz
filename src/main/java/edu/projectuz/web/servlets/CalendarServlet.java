@@ -20,4 +20,8 @@ public class CalendarServlet extends HttpServlet {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(calendarJsp);
         dispatcher.forward(req, resp);
     }
+
+    int testCount(int a, int b){
+        return a + b;
+    }
 }
