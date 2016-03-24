@@ -20,7 +20,8 @@ public class CalendarServlet extends HttpServlet {
     private final Logger logger = LogManager.getLogger(CalendarServlet.class);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.debug("Get Calendar Servlet");
+        logger.debug("Start Calendar Servlet");
+
         String calendarJsp = "/views/calendarView.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(calendarJsp);
         dispatcher.forward(req, resp);
