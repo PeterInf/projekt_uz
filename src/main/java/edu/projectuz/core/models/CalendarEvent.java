@@ -14,12 +14,13 @@ public class CalendarEvent {
 
     public CalendarEvent() {}
 
-    public CalendarEvent(String title, Date startDate, Date endDate, String description, String tag) {
+    public CalendarEvent(String title, Date startDate, Date endDate, String description, String tag, TimeZone timeZone) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
         this.description = description;
         this.tag = tag;
+        this.timeZone = timeZone;
     }
 
     public Date getStartDate() {
