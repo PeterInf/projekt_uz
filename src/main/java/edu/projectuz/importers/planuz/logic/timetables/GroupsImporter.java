@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * This class is used for importing timetables of every group from one {@link StudyBranch}.
  * It is used by {@link TimetablesImporter}
  */
-public class GroupsImporter {
+class GroupsImporter {
 
     private String url;
 
@@ -27,7 +27,7 @@ public class GroupsImporter {
      * @param url - stores information about url address of
      *            HTML content with every group of particular {@link StudyBranch}
      */
-    public GroupsImporter(String url) {
+    GroupsImporter(String url) {
         this.url = url;
     }
 
@@ -36,7 +36,7 @@ public class GroupsImporter {
      * @return Returns a list of {@link GroupTimetable} objects that
      * stores information about every group from particular {@link StudyBranch}
      */
-    public ArrayList<GroupTimetable> importGroups() {
+    ArrayList<GroupTimetable> importGroups() {
         importHtmlContent();
         importTable();
         return groupTimetablesList;

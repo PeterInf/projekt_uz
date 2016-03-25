@@ -30,9 +30,16 @@ import java.io.IOException;
 public class TimetablesImporter {
 
     private Document htmlContent;
-    private String timetablesUrl = "http://plan.uz.zgora.pl/grupy_lista_kierunkow.php";
+    private String timetablesUrl;
 
     private DepartmentsList departmentsList = new DepartmentsList();
+
+    /**
+     * Class constructor that sets default url to planUz timetables.
+     */
+    public TimetablesImporter() {
+        timetablesUrl = "http://plan.uz.zgora.pl/grupy_lista_kierunkow.php";
+    }
 
     /**
      * Main function of this class. It allows you to import every planUz timetable.

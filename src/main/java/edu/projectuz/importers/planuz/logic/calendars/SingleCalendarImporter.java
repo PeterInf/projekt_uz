@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * This class imports single {@link Calendar} from planUz calendars list.
  * It is a part of {@link CalendarsListImporter}.
  */
-public class SingleCalendarImporter {
+class SingleCalendarImporter {
 
     private Document htmlContent;
 
@@ -35,7 +35,7 @@ public class SingleCalendarImporter {
      * @param description Description of importing calendar for example "Studia stacjonarne".
      * @param url Url address of importing calendar. It links to HTML content of calendar.
       */
-    public SingleCalendarImporter(String name, String description, String url) {
+    SingleCalendarImporter(String name, String description, String url) {
         this.name = name;
         this.description = description;
         this.url = url;
@@ -45,7 +45,7 @@ public class SingleCalendarImporter {
      * This is a main function of this class which is used to import calendar from planUz.
      * @return Returns a {@link Calendar} object that can be added to {@link CalendarsList}.
      */
-    public Calendar importCalendar() {
+    Calendar importCalendar() {
         Calendar calendar = new Calendar(name, description);
         importContent();
         calendar.setDaysLists(daysLists);

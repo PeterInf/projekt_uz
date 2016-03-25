@@ -5,11 +5,11 @@ package edu.projectuz.importers.planuz.logic.timetables;
  * that are using when it comes to importing Timetables.
  * Using this descriptive names instead of numbers improves readability of the code.
  */
-public class TimetableComponentIndex {
+class TimetableComponentIndex {
     /**
      * Names of indexes with their values.
      */
-    public static final int NAME_NODE = 0,
+    static final int NAME_NODE = 0,
                             GROUPS_TABLE = 1,
                             ROW_WITH_HEADERS = 0,
                             NULL_ELEMENT = 0,
