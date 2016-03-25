@@ -20,6 +20,11 @@ public class CSVImporter {
 
     private BufferedReader fileReader;
 
+    /**
+     * Constructor sets the class member variables.
+     *
+     * @param filePath - the source file path.
+     */
     public CSVImporter(String filePath) {
         try {
             this.fileReader = new BufferedReader(new FileReader(filePath));
@@ -33,6 +38,7 @@ public class CSVImporter {
      * It is used to import all data from .csv file.
      *
      * @return Returned list of events.
+     * @throws IOException on input error.
      */
     public ArrayList<CalendarEvent> convertCsvToObject() throws IOException {
         String[] header = {"TITLE", "START", "END", "DESCRIPTION", "TAG", "TIMEZONE"};
@@ -64,6 +70,8 @@ public class CSVImporter {
 
     /**
      * This function converts a date from String ("yyyy/MM/dd hh:mm") to Date type.
+     *
+     * @return Returned the date of the start or end of the event.
      */
     private Date convertStringToDate(String dateInString) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd hh:mm");
@@ -79,6 +87,8 @@ public class CSVImporter {
 
     /**
      * This function converts a date from String ("Country/City" or "GMT Sign TwoDigitHours : Minutes") to TimeZone type.
+     *
+     * @return Returned the time zone of the event.
      */
     private TimeZone convertStringToTimeZone(String timeZoneInString) {
         return TimeZone.getTimeZone(timeZoneInString);
