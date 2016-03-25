@@ -9,17 +9,31 @@ import java.util.TimeZone;
 
 import static junit.framework.TestCase.assertEquals;
 
-
+/**
+ * It's a test class for class {@link CSVImporter}.
+ */
 public class CSVImporterTest {
 
     private CSVImporter csvImporter;
 
+    /**
+     * This method sets the member variables.
+     *
+     * @throws Exception on input error.
+     */
     @Before
     public void setUp() throws Exception {
         String filePath = "D:/Programy/IntelliJ IDEA/Projekty/webapp/src/main/java/edu/projectuz/importers/csv/resourcestmp/filetest.csv";
         this.csvImporter = new CSVImporter(filePath);
     }
 
+    /**
+     * This test method compare the data received after used main method from {@link CSVImporter},
+     * the data from the file.
+     * The result should be positive.
+     *
+     * @throws Exception on input error.
+     */
     @SuppressWarnings("deprecation")
     @Test
     public void testConvertCsvToObjectTrue() throws Exception {
@@ -27,6 +41,13 @@ public class CSVImporterTest {
                 csvImporter.convertCsvToObject().get(0));
     }
 
+    /**
+     * This test method compare the data received after used main method from {@link CSVImporter},
+     * the data from the file.
+     * The result should be negative.
+     *
+     * @throws Exception on input error.
+     */
     @SuppressWarnings("deprecation")
     @Test
     public void testConvertCsvToObjectFalse() throws Exception {
