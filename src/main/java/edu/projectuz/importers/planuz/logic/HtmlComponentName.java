@@ -18,6 +18,5 @@ public class HtmlComponentName {
                                 ADDRESS = "a",
                                 URL = "abs:href",
                                 BOLD_TEXT = "b",
-                                LIST = "ul",
-                                LIST_ITEM = "li";
+                                LIST = "ul";
 }

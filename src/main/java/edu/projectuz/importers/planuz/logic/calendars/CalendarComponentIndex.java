@@ -5,11 +5,11 @@ package edu.projectuz.importers.planuz.logic.calendars;
  * that are using when it comes to importing Calendars.
  * Using this descriptive names instead of numbers improves readability of the code.
  */
-public class CalendarComponentIndex {
+class CalendarComponentIndex {
     /**
      * Names of indexes with their values.
      */
-    public final static int TITLE_HEADER = 0,
+    final static int TITLE_HEADER = 0,
                             CALENDARS_TABLE = 1,
                             FIRST_ROW_WITH_CALENDARS = 1,
                             NAME_COLUMN = 0,

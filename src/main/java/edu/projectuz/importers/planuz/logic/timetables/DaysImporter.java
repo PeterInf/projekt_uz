@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * This class is used to import {@link DaysList} object.
  * It is used by {@link GroupsImporter}
  */
-public class DaysImporter {
+class DaysImporter {
 
     private String url;
     private Document htmlContent;
@@ -28,7 +28,7 @@ public class DaysImporter {
      * @param url - stores information about url address of
      *            HTML content with every {@link Day} of particular {@link GroupTimetable}.
      */
-    public DaysImporter(String url) {
+    DaysImporter(String url) {
         this.url = url;
     }
 
@@ -36,7 +36,7 @@ public class DaysImporter {
      * Main function of this class.
      * @return Returns a list of {@link Day} objects from particular {@link GroupTimetable}.
      */
-    public ArrayList<Day> importDays() {
+    ArrayList<Day> importDays() {
         importHtmlContent();
         importTable();
         return daysList;

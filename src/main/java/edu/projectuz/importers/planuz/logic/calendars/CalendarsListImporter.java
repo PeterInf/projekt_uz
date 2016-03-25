@@ -36,8 +36,15 @@ import java.util.ArrayList;
  */
 public class CalendarsListImporter {
 
-    private String calendarsUrl = "http://plan.uz.zgora.pl/kalendarze_lista.php";
+    private String calendarsUrl;
     private Document htmlContent;
+
+    /**
+     * Class constructor that sets default url to planUz calendars.
+     */
+    public CalendarsListImporter() {
+        calendarsUrl = "http://plan.uz.zgora.pl/kalendarze_lista.php";
+    }
 
     /**
      * This is a main function of this class.
