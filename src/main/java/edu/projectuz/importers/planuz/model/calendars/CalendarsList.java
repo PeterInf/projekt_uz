@@ -43,17 +43,17 @@ public class CalendarsList {
 
     /**
      * This function allows you to search a {@link Calendar} by it's name.
+     * If calendar is not found it throws an exception.
      * @param name - name of a {@link Calendar} to find.
-     * @return Returns {@link Calendar} object that was found
-     * or null if there was no Calendar with given name.
+     * @return Returns {@link Calendar} object that was found.
      */
-    public Calendar getCalendarByName(String name) {
+    public Calendar getCalendarByName(String name) throws Exception {
         for(Calendar calendar : calendars) {
             if(calendar.getName().equals(name)) {
                 return calendar;
             }
         }
-        return null;
+        throw new Exception("Calendar with name \'" + name + "\' not found.");
     }
 
     /**

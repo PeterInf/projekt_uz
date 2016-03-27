@@ -41,17 +41,17 @@ public class DaysList {
 
     /**
      * This function allows you to search for a day by it's date.
+     * If there's no day with this date it throws an exception.
      * @param date - Date of a {@link Day} to find.
      * @return Returns day that has been found.
-     *          If there's no day with this date it returns null.
      */
-    public Day getDayByDate(String date) {
+    public Day getDayByDate(String date) throws Exception {
         for(Day day : days) {
             if(day.getDate().equals(date)) {
                 return day;
             }
         }
-        return null;
+        throw new Exception("Day with date \'" + date + "\' not found");
     }
 
     /**

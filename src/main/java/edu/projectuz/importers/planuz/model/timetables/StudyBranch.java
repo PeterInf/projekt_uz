@@ -48,17 +48,17 @@ public class StudyBranch {
 
     /**
      * This function allows you to search for a single group by it's name.
+     * If nothing was found it throws an exception.
      * @param name - name of a {@link GroupTimetable} to find.
      * @return Returns found {@link GroupTimetable} object.
-     * If nothing was found it returns null.
      */
-    public GroupTimetable getGroupTimetableByName(String name) {
+    public GroupTimetable getGroupTimetableByName(String name) throws Exception {
         for(GroupTimetable groupTimetable : groupTimetablesList) {
             if(groupTimetable.getName().equals(name)) {
                 return groupTimetable;
             }
         }
-        return null;
+        throw new Exception("Group timetable with name \'" + name + "\' not found.");
     }
 
     /**

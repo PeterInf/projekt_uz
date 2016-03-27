@@ -46,18 +46,17 @@ public class Department {
 
     /**
      * This function allows you to search for a {@link StudyBranch} object by it's name.
+     * If object wasn't found it throws an exception.
      * @param name - name of {@link StudyBranch} to find.
-     * @return Returns {@link StudyBranch} object that was found. If it wasn't
-     * it returns null.
+     * @return Returns {@link StudyBranch} object that was found.
      */
-    public StudyBranch getStudyBranchByName(String name) {
+    public StudyBranch getStudyBranchByName(String name) throws Exception {
         for(StudyBranch studyBranch : studyBranchList) {
             if(studyBranch.getName().equals(name)) {
                 return studyBranch;
             }
         }
-
-        return null;
+        throw new Exception("Study branch with name \'" + name + "\' not found.");
     }
 
     /**

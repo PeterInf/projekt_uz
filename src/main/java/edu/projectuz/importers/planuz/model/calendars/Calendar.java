@@ -43,17 +43,17 @@ public class Calendar {
 
     /**
      * This function allows you to search for a particular object of {@link DaysList}
-     * by it's type. If there is no object of this type, it returns null.
+     * by it's type. If there is no object of this type, it throws an exception.
      * @param type - type of {@link DaysList} object to find.
      * @return Returns found {@link DaysList} object.
      */
-    public DaysList getDaysListByType(String type) {
+    public DaysList getDaysListByType(String type) throws Exception {
         for(DaysList daysList : daysLists) {
             if(daysList.getType().equals(type)) {
                 return daysList;
             }
         }
-        return null;
+        throw new Exception("Days list of type: \'" + type + "\' not found.");
     }
 
     /**

@@ -33,16 +33,17 @@ public class DepartmentsList {
 
     /**
      * This function allows you to search for a {@link Department} by it's name.
+     * If object wasn't found it throws an exception.
      * @param name - name of the {@link Department} to find.
      * @return Returns {@link Department} object found.
      */
-    public Department getDepartmentByName(String name) {
+    public Department getDepartmentByName(String name) throws Exception {
         for(Department department : departmentsList) {
             if(department.getName().equals(name)) {
                 return department;
             }
         }
-        return null;
+        throw new Exception("Department with name \'" + name + "\' not found.");
     }
 
     /**

@@ -55,17 +55,17 @@ public class GroupTimetable {
 
     /**
      * This function allows you to search for a day by it's name.
+     * If nothing was found then throws an exception.
      * @param name - name of {@link Day} to find.
-     * @return Returns found {@link Day} object. If nothing was found
-     * then returns null.
+     * @return Returns found {@link Day} object.
      */
-    public Day getDayByName(String name) {
+    public Day getDayByName(String name) throws Exception {
         for(Day day : daysList) {
             if(day.getName().equals(name)) {
                 return day;
             }
         }
-        return null;
+        throw new Exception("Day with name \'" + name + "\' not found.");
     }
 
     /**
