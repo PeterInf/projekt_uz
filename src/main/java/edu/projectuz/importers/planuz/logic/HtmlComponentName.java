@@ -7,6 +7,10 @@ package edu.projectuz.importers.planuz.logic;
  * For example you can use HtmlComponentName.COLUMN instead of "td" which makes more sense.
  */
 public class HtmlComponentName {
+
+    /**
+     * Names of components with their HTML tags.
+     */
     public static final String  TABLE = "table",
                                 HEADER = "h3",
                                 ROW = "tr",
@@ -14,8 +18,5 @@ public class HtmlComponentName {
                                 ADDRESS = "a",
                                 URL = "abs:href",
                                 BOLD_TEXT = "b",
-                                LIST = "ul",
-                                LIST_ITEM = "li";
-
-
+                                LIST = "ul";
 }

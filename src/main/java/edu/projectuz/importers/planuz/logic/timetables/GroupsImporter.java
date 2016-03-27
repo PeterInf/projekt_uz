@@ -2,6 +2,7 @@ package edu.projectuz.importers.planuz.logic.timetables;
 
 import edu.projectuz.importers.planuz.logic.HtmlComponentName;
 import edu.projectuz.importers.planuz.model.timetables.GroupTimetable;
+import edu.projectuz.importers.planuz.model.timetables.StudyBranch;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,18 +11,32 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GroupsImporter {
+/**
+ * This class is used for importing timetables of every group from one {@link StudyBranch}.
+ * It is used by {@link TimetablesImporter}
+ */
+class GroupsImporter {
 
     private String url;
 
     private ArrayList<GroupTimetable> groupTimetablesList = new ArrayList<>();
     private Document htmlContent;
 
-    public GroupsImporter(String url) {
+    /**
+     * Class constructor which simply sets a value of url variable.
+     * @param url - stores information about url address of
+     *            HTML content with every group of particular {@link StudyBranch}
+     */
+    GroupsImporter(String url) {
         this.url = url;
     }
 
-    public ArrayList<GroupTimetable> importGroups() {
+    /**
+     * Main function of this class. It imports
+     * @return Returns a list of {@link GroupTimetable} objects that
+     * stores information about every group from particular {@link StudyBranch}
+     */
+    ArrayList<GroupTimetable> importGroups() {
         importHtmlContent();
         importTable();
         return groupTimetablesList;
@@ -36,7 +51,7 @@ public class GroupsImporter {
     }
 
     private void importTable() {
-        Element table = htmlContent.select(HtmlComponentName.TABLE).get(Index.GROUPS_TABLE);
+        Element table = htmlContent.select(HtmlComponentName.TABLE).get(TimetableComponentIndex.GROUPS_TABLE);
         Elements rows = table.select(HtmlComponentName.ROW);
 
         for(Element row : rows) {

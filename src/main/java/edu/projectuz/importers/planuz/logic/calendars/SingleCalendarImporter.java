@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * This class imports single {@link Calendar} from planUz calendars list.
  * It is a part of {@link CalendarsListImporter}.
  */
-public class SingleCalendarImporter {
+class SingleCalendarImporter {
 
     private Document htmlContent;
 
@@ -35,7 +35,7 @@ public class SingleCalendarImporter {
      * @param description Description of importing calendar for example "Studia stacjonarne".
      * @param url Url address of importing calendar. It links to HTML content of calendar.
       */
-    public SingleCalendarImporter(String name, String description, String url) {
+    SingleCalendarImporter(String name, String description, String url) {
         this.name = name;
         this.description = description;
         this.url = url;
@@ -43,10 +43,9 @@ public class SingleCalendarImporter {
 
     /**
      * This is a main function of this class which is used to import calendar from planUz.
-     * @return Returns a {@link Calendar} object that can be
-     * added to {@link CalendarsList}.
+     * @return Returns a {@link Calendar} object that can be added to {@link CalendarsList}.
      */
-    public Calendar importCalendar() {
+    Calendar importCalendar() {
         Calendar calendar = new Calendar(name, description);
         importContent();
         calendar.setDaysLists(daysLists);
@@ -73,7 +72,7 @@ public class SingleCalendarImporter {
 
         Elements boldTexts = htmlContent.select(HtmlComponentName.BOLD_TEXT);
         int NUMBER_OF_BOLD_TEXTS_TO_SKIP_FOR_NEXT_TABLE_NAME = 5;
-        for(int textIndex = Index.SECOND_TABLE_NAME; textIndex < boldTexts.size();
+        for(int textIndex = CalendarComponentIndex.SECOND_TABLE_NAME; textIndex < boldTexts.size();
             textIndex += NUMBER_OF_BOLD_TEXTS_TO_SKIP_FOR_NEXT_TABLE_NAME) {
             tableNames.add(boldTexts.get(textIndex).text());
         }
@@ -94,13 +93,13 @@ public class SingleCalendarImporter {
 
     private void importTables() {
         Elements tables = htmlContent.select(HtmlComponentName.TABLE);
-        tables.remove(Index.TABLE_WITHOUT_DAYS);
+        tables.remove(CalendarComponentIndex.TABLE_WITHOUT_DAYS);
 
-        for(int tableIndex = Index.FIRST_TABLE_WITH_DAYS; tableIndex < tables.size(); tableIndex++ ) {
+        for(int tableIndex = CalendarComponentIndex.FIRST_TABLE_WITH_DAYS; tableIndex < tables.size(); tableIndex++ ) {
             DaysList daysList = new DaysList(tableNames.get(tableIndex));
             Elements rows = tables.get(tableIndex).select(HtmlComponentName.ROW);
 
-            for(int rowIndex = Index.FIRST_ROW_WITH_DAYS; rowIndex < rows.size(); rowIndex++) {
+            for(int rowIndex = CalendarComponentIndex.FIRST_ROW_WITH_DAYS; rowIndex < rows.size(); rowIndex++) {
                 Elements columns = rows.get(rowIndex).select(HtmlComponentName.COLUMN);
                 daysList.addDay(convertColumnsIntoDay(columns));
             }
@@ -110,10 +109,10 @@ public class SingleCalendarImporter {
     }
 
     private Day convertColumnsIntoDay(Elements columns) {
-        int number = Integer.parseInt(columns.get(Index.DAY_NUMBER_COLUMN).text());
-        String date = columns.get(Index.DAY_DATE_COLUMN).text();
-        String dayAccordingToTimetable = columns.get(Index.TIMETABLE_DAY_COLUMN).text();
-        String dayAccordingToCalendar = columns.get(Index.CALENDAR_DAY_COLUMN).text();
+        int number = Integer.parseInt(columns.get(CalendarComponentIndex.DAY_NUMBER_COLUMN).text());
+        String date = columns.get(CalendarComponentIndex.DAY_DATE_COLUMN).text();
+        String dayAccordingToTimetable = columns.get(CalendarComponentIndex.TIMETABLE_DAY_COLUMN).text();
+        String dayAccordingToCalendar = columns.get(CalendarComponentIndex.CALENDAR_DAY_COLUMN).text();
         return new Day(number, date, dayAccordingToTimetable, dayAccordingToCalendar);
     }
 
