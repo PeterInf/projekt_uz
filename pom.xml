@@ -176,11 +176,15 @@
                 <configuration>
                     <forkCount>3</forkCount>
                     <reuseForks>true</reuseForks>
-                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
+                    <argLine>${argLine} -Xmx1024m -XX:MaxPermSize=256m</argLine>
                     <systemPropertyVariables>
                         <databaseSchema>MY_TEST_SCHEMA_${surefire.forkNumber}</databaseSchema>
                     </systemPropertyVariables>
                     <workingDirectory>FORK_DIRECTORY_${surefire.forkNumber}</workingDirectory>
+                    <includes>
+                        <include>**/*Test*.java</include>
+                    </includes>
+                    <junitArtifactName>junit:junit</junitArtifactName>
                 </configuration>
             </plugin>
         </plugins>
