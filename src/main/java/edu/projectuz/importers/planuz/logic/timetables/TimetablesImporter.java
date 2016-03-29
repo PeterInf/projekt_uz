@@ -3,7 +3,7 @@ package edu.projectuz.importers.planuz.logic.timetables;
 import edu.projectuz.importers.planuz.logic.HtmlComponentName;
 import edu.projectuz.importers.planuz.model.timetables.Department;
 import edu.projectuz.importers.planuz.model.timetables.DepartmentsList;
-import edu.projectuz.importers.planuz.model.timetables.Major;
+import edu.projectuz.importers.planuz.model.timetables.StudyBranch;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -11,13 +11,40 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
+/**
+ * This is a main class for importing planUz timetables.
+ * It returns {@link DepartmentsList} object. It's structure
+ * is very similar to structure of planUz website.
+ * <br>
+ * You can use this structure to access every single element of
+ * a timetable you want starting with main function of this class
+ * {@link #importTimetables()}.
+ * <br>
+ * For example:
+ * <br>
+ * new TimetablesImporter().importTimetables().
+ * getDepartmentByName("Wydział Prawa i Administracji").getStudyBranchByName("Administracja").
+ * getGroupTimetableByName("11ADM-SP (Administracja stacjonarne-dzienne pierwszego stopnia z tyt. licencjata)").
+ * getDayByName("Poniedziałek"));
+ */
 public class TimetablesImporter {
 
     private Document htmlContent;
-    private String timetablesUrl = "http://plan.uz.zgora.pl/grupy_lista_kierunkow.php";
+    private String timetablesUrl;
 
     private DepartmentsList departmentsList = new DepartmentsList();
 
+    /**
+     * Class constructor that sets default url to planUz timetables.
+     */
+    public TimetablesImporter() {
+        timetablesUrl = "http://plan.uz.zgora.pl/grupy_lista_kierunkow.php";
+    }
+
+    /**
+     * Main function of this class. It allows you to import every planUz timetable.
+     * @return Returns {@link DepartmentsList} which is a root of planUz hierarchy.
+     */
     public DepartmentsList importTimetables() {
         importHtmlContent();
         return getDepartmentsList();
@@ -46,15 +73,15 @@ public class TimetablesImporter {
         String departmentName = getDepartmentName(departmentElement);
         Department department = new Department(departmentName);
 
-        Elements majorElements = departmentElement.select(HtmlComponentName.ADDRESS);
-        for (Element majorElement : majorElements) {
-            department.addMajor(getMajor(majorElement));
+        Elements studyBranchElements = departmentElement.select(HtmlComponentName.ADDRESS);
+        for (Element studyBranchElement : studyBranchElements) {
+            department.addStudyBranch(getStudyBranch(studyBranchElement));
         }
         return department;
     }
 
     private String getDepartmentName(Element department) {
-        String departmentName = department.childNodes().get(Index.NAME_NODE).toString();
+        String departmentName = department.childNodes().get(TimetableComponentIndex.NAME_NODE).toString();
         return getNameWithoutSpaceAtTheEnd(departmentName);
     }
 
@@ -70,14 +97,14 @@ public class TimetablesImporter {
                 departmentName.length() - NUMBER_OF_CHARACTERS_TO_DELETE);
     }
 
-    private Major getMajor(Element majorElement) {
-        String majorName = majorElement.text();
-        String majorUrl = majorElement.attr(HtmlComponentName.URL);
-        Major major = new Major(majorName);
+    private StudyBranch getStudyBranch(Element studyBranchElement) {
+        String studyBranchName = studyBranchElement.text();
+        String studyBranchUrl = studyBranchElement.attr(HtmlComponentName.URL);
+        StudyBranch studyBranch = new StudyBranch(studyBranchName);
 
-        GroupsImporter groupsImporter = new GroupsImporter(majorUrl);
-        major.setGroupTimetablesList(groupsImporter.importGroups());
-        return major;
+        GroupsImporter groupsImporter = new GroupsImporter(studyBranchUrl);
+        studyBranch.setGroupTimetablesList(groupsImporter.importGroups());
+        return studyBranch;
     }
 
 }

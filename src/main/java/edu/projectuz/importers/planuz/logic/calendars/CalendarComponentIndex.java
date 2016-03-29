@@ -1,7 +1,15 @@
 package edu.projectuz.importers.planuz.logic.calendars;
 
-public class Index {
-    public final static int TITLE_HEADER = 0,
+/**
+ * This class stores information about indexes of different components
+ * that are using when it comes to importing Calendars.
+ * Using this descriptive names instead of numbers improves readability of the code.
+ */
+class CalendarComponentIndex {
+    /**
+     * Names of indexes with their values.
+     */
+    final static int TITLE_HEADER = 0,
                             CALENDARS_TABLE = 1,
                             FIRST_ROW_WITH_CALENDARS = 1,
                             NAME_COLUMN = 0,
