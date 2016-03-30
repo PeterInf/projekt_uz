@@ -4,6 +4,7 @@ import edu.projectuz.core.models.CalendarEvent;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -12,7 +13,7 @@ import static junit.framework.TestCase.assertEquals;
 /**
  * It's a test class for class {@link CSVImporter}.
  */
-public class CSVImporterTest {
+public class CSVImporterTests {
 
     private CSVImporter csvImporter;
 
@@ -23,8 +24,9 @@ public class CSVImporterTest {
      */
     @Before
     public void setUp() throws Exception {
-        String filePath = "D:/Programy/IntelliJ IDEA/Projekty/webapp/src/main/java/edu/projectuz/importers/csv/resourcestmp/filetest.csv";
-        this.csvImporter = new CSVImporter(filePath);
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getClass().getResource("/csv/filetest.csv").getFile());
+        this.csvImporter = new CSVImporter(file.getAbsolutePath());
     }
 
     /**
