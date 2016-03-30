@@ -3,6 +3,9 @@ package edu.projectuz.core.models;
 import java.util.Date;
 import java.util.TimeZone;
 
+/**
+ * This class stores information about events.
+ */
 public class CalendarEvent {
 
     private Date startDate;
@@ -12,14 +15,28 @@ public class CalendarEvent {
     private String tag;
     private TimeZone timeZone;
 
+    /**
+     * Default constructor takes to create an object in CSVImporter class.
+     */
     public CalendarEvent() {}
 
-    public CalendarEvent(String title, Date startDate, Date endDate, String description, String tag) {
+    /**
+     * The constructor needed for the test class.
+     *
+     * @param title       - event name.
+     * @param startDate   - start time of the events.
+     * @param endDate     - end date of the events.
+     * @param description - description of events.
+     * @param tag         - tag of events.
+     * @param timeZone    - time zone of events.
+     */
+    public CalendarEvent(String title, Date startDate, Date endDate, String description, String tag, TimeZone timeZone) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
         this.description = description;
         this.tag = tag;
+        this.timeZone = timeZone;
     }
 
     public Date getStartDate() {
@@ -70,6 +87,9 @@ public class CalendarEvent {
         this.title = title;
     }
 
+    /**
+     * @return Returned a string representation of the object CalendarEvent.
+     */
     @Override
     public String toString() {
         return System.lineSeparator() +
@@ -77,15 +97,23 @@ public class CalendarEvent {
                 startDate +
                 endDate +
                 description +
-                tag;
+                tag +
+                timeZone.getID();
     }
 
+    /**
+     * This method is needed to make comparing two objects in a class CSVImporterTest.
+     * Indicates whether some other object is "equal to" this one.
+     *
+     * @param obj - the reference object with which to compare.
+     * @return Returned true if this object is the same as the obj argument, false otherwise.
+     */
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
 
-        CalendarEvent that = (CalendarEvent) o;
+        CalendarEvent that = (CalendarEvent) obj;
 
         if (startDate != null ? !startDate.equals(that.startDate) : that.startDate != null) return false;
         if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
@@ -96,6 +124,11 @@ public class CalendarEvent {
 
     }
 
+    /**
+     * This method is needed to make comparing two objects in a class CSVImporterTest.
+     *
+     * @return Returned a hash code value for the object.
+     */
     @Override
     public int hashCode() {
         int result = startDate != null ? startDate.hashCode() : 0;
