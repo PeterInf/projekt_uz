@@ -27,8 +27,8 @@ public class CSVImporter {
      */
     public CSVImporter(String filePath) {
         try {
-            this.fileReader = new BufferedReader(new FileReader(filePath));
-        } catch (FileNotFoundException e) {
+            this.fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
@@ -40,7 +40,7 @@ public class CSVImporter {
      * @return Returned list of events.
      * @throws IOException on input error.
      */
-    public ArrayList<CalendarEvent> convertCsvToObject() throws IOException {
+    ArrayList<CalendarEvent> convertCsvToObject() throws IOException {
         String[] header = {"TITLE", "START", "END", "DESCRIPTION", "TAG", "TIMEZONE"};
         CSVFormat format = CSVFormat.DEFAULT.withDelimiter(',').withHeader(header).withSkipHeaderRecord(true);
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
