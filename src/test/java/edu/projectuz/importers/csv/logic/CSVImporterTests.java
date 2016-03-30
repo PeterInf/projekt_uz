@@ -38,22 +38,8 @@ public class CSVImporterTests {
      */
     @SuppressWarnings("deprecation")
     @Test
-    public void testConvertCsvToObjectTrue() throws Exception {
+    public void ConvertCsvToObject() throws Exception {
         assertEquals(new CalendarEvent("TPI KOŁO", new Date(Date.parse("2016/01/22 00:00")), new Date(Date.parse("2016/01/23 00:00")), "OPIS", "f", TimeZone.getTimeZone("America/Los_Angeles")),
-                csvImporter.convertCsvToObject().get(0));
-    }
-
-    /**
-     * This test method compare the data received after used main method from {@link CSVImporter},
-     * the data from the file.
-     * The result should be negative.
-     *
-     * @throws Exception on input error.
-     */
-    @SuppressWarnings("deprecation")
-    @Test
-    public void testConvertCsvToObjectFalse() throws Exception {
-        assertEquals(new CalendarEvent("TPIFALSE", new Date(Date.parse("2016/01/22 00:00")), new Date(Date.parse("2016/01/23 00:00")), "O", "f", TimeZone.getTimeZone("America")),
                 csvImporter.convertCsvToObject().get(0));
     }
 }
