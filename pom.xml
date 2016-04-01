@@ -127,7 +127,7 @@
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                            <mainClass>launcher.Main</mainClass>
+                            <mainClass>edu.projectuz.mCal.launcher.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
