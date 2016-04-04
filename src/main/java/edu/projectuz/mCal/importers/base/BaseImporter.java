@@ -7,14 +7,14 @@ import java.io.*;
 import java.net.URL;
 
 /**
- * Base class for importers which read data from specified source and provide interface
+ * Base class for importers which read data from specified source.
  */
-public abstract class BaseImporter {
+public abstract class BaseImporter implements EventImporter {
 
     private final Logger logger = LogManager.getLogger(BaseImporter.class);
     private String sourceContent;
 
-    public BaseImporter(String sourcePath, ImporterSourceType sourceType) {
+    private BaseImporter(String sourcePath, ImporterSourceType sourceType) {
         String startLog = String.format("Start importer %s with data [sourcePath=%s sourceType=%s]",
                 getName(), sourcePath, sourceType);
         logger.debug(startLog);
@@ -27,16 +27,16 @@ public abstract class BaseImporter {
     public abstract String getName();
 
     /**
-     * Method import data from file to database.
-     */
-    public abstract void importData();
-
-    /**
      * @return Content of imported file
      */
     protected String getSourceContent() {
         return sourceContent;
     }
+
+    /**
+     * Method import data from file to database. Every imported has own implementation of this method.
+     */
+    public abstract void importData();
 
     private BufferedReader getReader(String sourcePath, ImporterSourceType sourceType) throws Exception {
         logger.debug(String.format("Trying to create reader for importer %s", getName()));
