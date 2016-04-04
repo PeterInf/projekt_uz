@@ -1,0 +1,89 @@
+package edu.projectuz.mCal.importers.base;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.*;
+import java.net.URL;
+
+/**
+ * Base class for importers which read data from specified source and provide interface
+ */
+public abstract class BaseImporter {
+
+    private final Logger logger = LogManager.getLogger(BaseImporter.class);
+    private String sourceContent;
+
+    public BaseImporter(String sourcePath, ImporterSourceType sourceType) {
+        String startLog = String.format("Start importer %s with data [sourcePath=%s sourceType=%s]",
+                getName(), sourcePath, sourceType);
+        logger.debug(startLog);
+        readSourceFile(sourcePath, sourceType);
+    }
+
+    /**
+     * @return Name of importer
+     */
+    public abstract String getName();
+
+    /**
+     * Method import data from file to database.
+     */
+    public abstract void importData();
+
+    /**
+     * @return Content of imported file
+     */
+    protected String getSourceContent() {
+        return sourceContent;
+    }
+
+    private BufferedReader getReader(String sourcePath, ImporterSourceType sourceType) throws Exception {
+        logger.debug(String.format("Trying to create reader for importer %s", getName()));
+
+        switch (sourceType) {
+            case FILE:
+                try {
+                    return new BufferedReader(new FileReader(sourcePath));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    logger.error(e.getMessage());
+                }
+                break;
+            case WEB:
+                try {
+                    URL fileUrl = new URL(sourcePath);
+                    return new BufferedReader(new InputStreamReader(fileUrl.openStream()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    logger.error(e.getMessage());
+                }
+                break;
+        }
+
+        throw new Exception("Cannot create buffered reader with provided data");
+    }
+
+    private void readSourceFile(String sourcePath, ImporterSourceType sourceType) {
+        BufferedReader reader;
+        logger.debug(String.format("Start read file from source: %s", sourcePath));
+
+        try {
+            StringBuilder builder = new StringBuilder();
+            String currentLine;
+            reader = getReader(sourcePath, sourceType);
+
+            while ((currentLine = reader.readLine()) != null) {
+                builder.append(currentLine);
+            }
+
+            logger.debug(String.format("Close reader: %s", sourcePath));
+            reader.close();
+
+            sourceContent = builder.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.getMessage());
+        }
+    }
+}
