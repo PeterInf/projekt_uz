@@ -9,16 +9,16 @@ import java.net.URL;
 /**
  * Base class for importers which read data from specified source.
  */
-public abstract class BaseImporter implements EventImporter {
+public abstract class BaseEventImporter implements EventImporter {
 
-    private final Logger logger = LogManager.getLogger(BaseImporter.class);
-    private String sourceContent;
+    private final Logger logger = LogManager.getLogger(BaseEventImporter.class);
+    private final String sourceContent;
 
-    private BaseImporter(String sourcePath, ImporterSourceType sourceType) {
+    private BaseEventImporter(String sourcePath, ImporterSourceType sourceType) {
         String startLog = String.format("Start importer %s with data [sourcePath=%s sourceType=%s]",
                 getName(), sourcePath, sourceType);
         logger.debug(startLog);
-        readSourceFile(sourcePath, sourceType);
+        sourceContent = getDataFromSource(sourcePath, sourceType);
     }
 
     /**
@@ -64,12 +64,13 @@ public abstract class BaseImporter implements EventImporter {
         throw new Exception("Cannot create buffered reader with provided data");
     }
 
-    private void readSourceFile(String sourcePath, ImporterSourceType sourceType) {
+    private String getDataFromSource(String sourcePath, ImporterSourceType sourceType) {
         BufferedReader reader;
+        StringBuilder builder = new StringBuilder();
         logger.debug(String.format("Start read file from source: %s", sourcePath));
 
         try {
-            StringBuilder builder = new StringBuilder();
+
             String currentLine;
             reader = getReader(sourcePath, sourceType);
 
@@ -79,11 +80,11 @@ public abstract class BaseImporter implements EventImporter {
 
             logger.debug(String.format("Close reader: %s", sourcePath));
             reader.close();
-
-            sourceContent = builder.toString();
         } catch (Exception e) {
             e.printStackTrace();
             logger.error(e.getMessage());
         }
+
+        return builder.toString();
     }
 }
