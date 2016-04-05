@@ -39,17 +39,8 @@ public class CalendarTest {
         assertTrue(calendar != null);
     }
 
-    /*@Test
-    public void addDaysList() {
-        DaysList daysList = new DaysList("Type3");
-        daysList.addDay(new Day(3, "01-06-2016", "Wtorek", "Wtorek"));
-        daysList.addDay(new Day(4, "11-05-2016", "Czwartek", "Poniedziałek"));
-
-        calendar.addDaysList(daysList);
-    }*/
-
     @Test
-    public void whenGetAndDaysListFoundThenTrue() throws Exception {
+    public void whenDaysListFoundThenTrue() throws Exception {
          assertEquals(daysList1, calendar.getDaysListByType("Type1"));
     }
 
