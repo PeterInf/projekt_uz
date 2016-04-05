@@ -53,4 +53,24 @@ public class Day {
                 '}';
     }
 
+    /**
+     * Compares one object to another
+     * @param o - object to compare with
+     * @return returns true if object are equal, if not then returns false
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Day day = (Day) o;
+
+        if (number != day.number) return false;
+        if (date != null ? !date.equals(day.date) : day.date != null) return false;
+        if (dayAccordingToTimetable != null ? !dayAccordingToTimetable.equals(day.dayAccordingToTimetable) : day.dayAccordingToTimetable != null)
+            return false;
+        return getDayAccordingToCalendar != null ? getDayAccordingToCalendar.equals(day.getDayAccordingToCalendar) : day.getDayAccordingToCalendar == null;
+
+    }
+
 }
