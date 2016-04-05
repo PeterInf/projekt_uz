@@ -18,6 +18,9 @@ import java.util.TimeZone;
  */
 public class CSVImporter {
 
+    /**
+     * Wrap a BufferedReader around InputStreamReader and FileInputStream.
+     */
     private BufferedReader fileReader;
 
     /**
@@ -58,22 +61,23 @@ public class CSVImporter {
                 eventObject.setTimeZone(convertStringToTimeZone(csvRecord.get(CSVSections.TIME_ZONE)));
                 listOfEvents.add(eventObject);
             }
-            return listOfEvents;
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             //noinspection ThrowFromFinallyBlock
             fileReader.close();
         }
-        return null;
+        return listOfEvents;
     }
 
     /**
      * This function converts a date from String ("yyyy/MM/dd hh:mm") to Date type.
      *
+     * @param dateInString Date in String format from file.
      * @return Returned the date of the start or end of the event.
+     * @throws Exception Missing date in .csv.
      */
-    private Date convertStringToDate(String dateInString) {
+    private Date convertStringToDate(String dateInString) throws IOException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd hh:mm");
         Date date;
         try {
@@ -82,12 +86,13 @@ public class CSVImporter {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return null;
+        throw new IOException("Missing date.");
     }
 
     /**
      * This function converts a date from String ("Country/City" or "GMT Sign TwoDigitHours : Minutes") to TimeZone type.
      *
+     * @param timeZoneInString Timezone in String format from file.
      * @return Returned the time zone of the event.
      */
     private TimeZone convertStringToTimeZone(String timeZoneInString) {
