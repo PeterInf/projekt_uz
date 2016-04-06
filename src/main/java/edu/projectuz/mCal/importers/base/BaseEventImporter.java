@@ -14,7 +14,7 @@ public abstract class BaseEventImporter implements EventImporter {
     private final Logger logger = LogManager.getLogger(BaseEventImporter.class);
     private final String sourceContent;
 
-    private BaseEventImporter(String sourcePath, ImporterSourceType sourceType) {
+    protected BaseEventImporter(String sourcePath, ImporterSourceType sourceType) {
         String startLog = String.format("Start importer %s with data [sourcePath=%s sourceType=%s]",
                 getName(), sourcePath, sourceType);
         logger.debug(startLog);

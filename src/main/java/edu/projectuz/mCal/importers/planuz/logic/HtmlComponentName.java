@@ -16,7 +16,8 @@ public class HtmlComponentName {
                                 ROW = "tr",
                                 COLUMN = "td",
                                 ADDRESS = "a",
-                                URL = "abs:href",
+                                ABSOLUTE_URL = "abs:href",
+                                URL = "href",
                                 BOLD_TEXT = "b",
                                 LIST = "ul";
 }
