@@ -28,6 +28,23 @@ public class DayTest {
     public void whenCompareTwoDifferentObjectsThenFalse() {
         assertNotEquals(day, new Day(1, "10-02-2011", "Wtorek", "Środa"));
         assertNotEquals(day, new Day(13, "11-01-2014", "Czwartek", "Czwartek"));
+        assertNotEquals(day, new Day(1, "11-01-2014", "Środa", "Czwartek"));
+    }
+
+    @Test
+    public void whenCompareObjectWithItselfThenTrue() {
+        assertEquals(day, day);
+    }
+
+    @Test
+    public void whenCompareObjectWithNullThenFalse() {
+        assertNotEquals(null, day);
+        assertFalse(day.equals(null));
+    }
+
+    @Test
+    public void whenCompareToDifferentClassObjectThenFalse() {
+        assertFalse(day.equals(3));
     }
 
     @Test
