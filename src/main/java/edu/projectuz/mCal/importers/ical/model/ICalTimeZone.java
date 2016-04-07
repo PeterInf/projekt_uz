@@ -2,9 +2,6 @@ package edu.projectuz.mCal.importers.ical.model;
 
 import java.util.ArrayList;
 
-/**
- * Created by Sivik on 05-Apr-16.
- */
 public class ICalTimeZone {
     private String timeZoneId;  //timeZone id  etc. continent/country
     private String timeZoneUrl;

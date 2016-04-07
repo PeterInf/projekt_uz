@@ -1,8 +1,5 @@
 package edu.projectuz.mCal.importers.ical.model;
 
-/**
- * Created by Sivik on 05-Apr-16.
- */
 public class ICalEventAlarm {
 
     private String Action;
