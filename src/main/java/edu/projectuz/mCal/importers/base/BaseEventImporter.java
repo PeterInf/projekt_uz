@@ -14,7 +14,7 @@ public abstract class BaseEventImporter implements EventImporter {
     private final Logger logger = LogManager.getLogger(BaseEventImporter.class);
     private final String sourceContent;
 
-    private BaseEventImporter(String sourcePath, ImporterSourceType sourceType) {
+    protected BaseEventImporter(String sourcePath, ImporterSourceType sourceType) {
         String startLog = String.format("Start importer %s with data [sourcePath=%s sourceType=%s]",
                 getName(), sourcePath, sourceType);
         logger.debug(startLog);
@@ -29,9 +29,7 @@ public abstract class BaseEventImporter implements EventImporter {
     /**
      * @return Content of imported file
      */
-    protected String getSourceContent() {
-        return sourceContent;
-    }
+    protected String getSourceContent() { return sourceContent; }
 
     /**
      * Method import data from file to database. Every imported has own implementation of this method.
@@ -44,7 +42,7 @@ public abstract class BaseEventImporter implements EventImporter {
         switch (sourceType) {
             case FILE:
                 try {
-                    return new BufferedReader(new FileReader(sourcePath));
+                    return new BufferedReader(new InputStreamReader(new FileInputStream(sourcePath), "UTF-8"));
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                     logger.error(e.getMessage());
@@ -75,7 +73,7 @@ public abstract class BaseEventImporter implements EventImporter {
             reader = getReader(sourcePath, sourceType);
 
             while ((currentLine = reader.readLine()) != null) {
-                builder.append(currentLine);
+                builder.append(currentLine +  System.lineSeparator());
             }
 
             logger.debug(String.format("Close reader: %s", sourcePath));

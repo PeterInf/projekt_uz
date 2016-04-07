@@ -1,6 +1,7 @@
 package edu.projectuz.mCal.importers.csv.logic;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
+import edu.projectuz.mCal.importers.base.ImporterSourceType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,7 +27,7 @@ public class CSVImporterTests {
     public void setUp() throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/csv/filetest.csv").getFile());
-        this.csvImporter = new CSVImporter(file.getAbsolutePath());
+        this.csvImporter = new CSVImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
     }
 
     /**

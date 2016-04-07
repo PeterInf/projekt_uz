@@ -20,8 +20,7 @@ public class DateHelper {
     public static Date stringToDate(String dateText, String dateFormat, TimeZone timezone){
         SimpleDateFormat format = new SimpleDateFormat(dateFormat);
         Date date = null;
-        format.setTimeZone(timezone);
-
+       // format.setTimeZone(timezone);
         try {
             date = format.parse(dateText);
         } catch (ParseException e) {
@@ -29,5 +28,9 @@ public class DateHelper {
         }
 
         return date;
+    }
+
+    public static TimeZone stringToTimeZone(String timeZoneInString) {
+        return TimeZone.getTimeZone(timeZoneInString);
     }
 }

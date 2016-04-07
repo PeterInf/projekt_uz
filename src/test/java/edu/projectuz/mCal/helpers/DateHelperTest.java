@@ -1,18 +1,14 @@
 package edu.projectuz.mCal.helpers;
 
 import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnitParamsRunner.class)
 public class DateHelperTest {
