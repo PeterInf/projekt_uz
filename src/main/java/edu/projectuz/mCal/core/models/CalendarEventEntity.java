@@ -44,6 +44,10 @@ public class CalendarEventEntity {
         this.timeZone = timeZone;
     }
 
+    public int getId() { return id;}
+
+    public void setId(int id) { this.id = id;}
+
     public Date getStartDate() {
         return startDate;
     }
