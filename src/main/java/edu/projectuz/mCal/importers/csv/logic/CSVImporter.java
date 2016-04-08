@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class CSVImporter extends BaseEventImporter {
 
     /**
-     * @param sourcePath
-     * @param sourceType
+     * @param sourcePath specifies the path of the file.
+     * @param sourceType specifies the type of resource {@link ImporterSourceType}.
      */
     protected CSVImporter(String sourcePath, ImporterSourceType sourceType) {
         super(sourcePath, sourceType);
@@ -32,26 +32,16 @@ public class CSVImporter extends BaseEventImporter {
      * @return Returned list of events.
      * @throws IOException on input error.
      */
-    ArrayList<CalendarEvent> convertCsvToObject() throws IOException {
+    public ArrayList<CalendarEvent> convertCsvToObject() throws IOException {
         String[] header = {"TITLE", "START", "END", "DESCRIPTION", "TAG", "TIMEZONE"};
         String dateFormat = "yyyy/MM/dd hh:mm";
         CSVFormat format = CSVFormat.DEFAULT.withDelimiter(',').withHeader(header).withSkipHeaderRecord(true);
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
-
         CSVParser parser;
         try {
             parser = new CSVParser(new StringReader(getSourceContent()), format);
             for (CSVRecord csvRecord : parser) {
-                CalendarEvent eventObject = new CalendarEvent();
-                eventObject.setTitle(csvRecord.get(CSVSections.TITLE));
-                eventObject.setStartDate(DateHelper.stringToDate(csvRecord.get(CSVSections.DATE_START),
-                        dateFormat, DateHelper.stringToTimeZone(csvRecord.get(CSVSections.TIME_ZONE))));
-                eventObject.setEndDate(DateHelper.stringToDate(csvRecord.get(CSVSections.DATE_END),
-                        dateFormat, DateHelper.stringToTimeZone(csvRecord.get(CSVSections.TIME_ZONE))));
-                eventObject.setDescription(csvRecord.get(CSVSections.DESCRIPTION));
-                eventObject.setTag(csvRecord.get(CSVSections.TAG));
-                eventObject.setTimeZone(DateHelper.stringToTimeZone(csvRecord.get(CSVSections.TIME_ZONE)));
-                listOfEvents.add(eventObject);
+                helperForParser(csvRecord, listOfEvents, dateFormat);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,9 +49,29 @@ public class CSVImporter extends BaseEventImporter {
         return listOfEvents;
     }
 
+    /**
+     * Simple helper method for parsing.
+     *
+     * @param csvRecord    records from the list.
+     * @param listOfEvents list of Events.
+     * @param dateFormat   date format.
+     */
+    private void helperForParser(CSVRecord csvRecord, ArrayList<CalendarEvent> listOfEvents, String dateFormat) {
+        CalendarEvent eventObject = new CalendarEvent();
+        eventObject.setTitle(csvRecord.get(CSVSections.TITLE));
+        eventObject.setStartDate(DateHelper.stringToDate(csvRecord.get(CSVSections.DATE_START),
+                dateFormat, DateHelper.stringToTimeZone(csvRecord.get(CSVSections.TIME_ZONE))));
+        eventObject.setEndDate(DateHelper.stringToDate(csvRecord.get(CSVSections.DATE_END),
+                dateFormat, DateHelper.stringToTimeZone(csvRecord.get(CSVSections.TIME_ZONE))));
+        eventObject.setDescription(csvRecord.get(CSVSections.DESCRIPTION));
+        eventObject.setTag(csvRecord.get(CSVSections.TAG));
+        eventObject.setTimeZone(DateHelper.stringToTimeZone(csvRecord.get(CSVSections.TIME_ZONE)));
+        listOfEvents.add(eventObject);
+    }
+
     @Override
     public String getName() {
-        return "CSV";
+        return "CSV Importer";
     }
 
     @Override

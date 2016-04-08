@@ -29,7 +29,9 @@ public abstract class BaseEventImporter implements EventImporter {
     /**
      * @return Content of imported file
      */
-    protected String getSourceContent() { return sourceContent; }
+    protected String getSourceContent() {
+        return sourceContent;
+    }
 
     /**
      * Method import data from file to database. Every imported has own implementation of this method.
@@ -73,7 +75,7 @@ public abstract class BaseEventImporter implements EventImporter {
             reader = getReader(sourcePath, sourceType);
 
             while ((currentLine = reader.readLine()) != null) {
-                builder.append(currentLine +  System.lineSeparator());
+                builder.append(currentLine + System.lineSeparator());
             }
 
             logger.debug(String.format("Close reader: %s", sourcePath));
