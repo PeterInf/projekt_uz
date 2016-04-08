@@ -75,7 +75,7 @@ public abstract class BaseEventImporter implements EventImporter {
             reader = getReader(sourcePath, sourceType);
 
             while ((currentLine = reader.readLine()) != null) {
-                builder.append(currentLine);
+                builder.append(currentLine + System.lineSeparator());
             }
 
             logger.debug(String.format("Close reader: %s", sourcePath));
