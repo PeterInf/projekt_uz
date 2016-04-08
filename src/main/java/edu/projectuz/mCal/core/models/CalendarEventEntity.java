@@ -20,12 +20,18 @@ public class CalendarEventEntity {
     @Column(nullable=false)
     private Date startDate;
     private Date endDate;
-    
+
     @Column(nullable=false)
     private String title;
     private String description;
     private String tag;
     private TimeZone timeZone;
+
+    /**
+     * Default constructor takes to create an object in CSVImporter class.
+     */
+    public CalendarEventEntity() {}
+
 
     /**
      * The constructor needed for the test class.
@@ -113,28 +119,6 @@ public class CalendarEventEntity {
                 timeZone.getID();
     }
 
-    /**
-     * This method is needed to make comparing two objects in a class CSVImporterTest.
-     * Indicates whether some other object is "equal to" this one.
-     *
-     * @param obj - the reference object with which to compare.
-     * @return Returned true if this object is the same as the obj argument, false otherwise.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-
-        CalendarEvent that = (CalendarEvent) obj;
-
-        if (startDate != null ? !startDate.equals(that.startDate) : that.startDate != null) return false;
-        if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (tag != null ? !tag.equals(that.tag) : that.tag != null) return false;
-        return timeZone != null ? timeZone.equals(that.timeZone) : that.timeZone == null;
-
-    }
 
     /**
      * This method is needed to make comparing two objects in a class CSVImporterTest.
