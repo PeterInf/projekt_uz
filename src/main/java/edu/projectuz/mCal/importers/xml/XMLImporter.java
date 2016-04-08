@@ -21,8 +21,6 @@ import java.util.TimeZone;
 
 public class XMLImporter extends BaseEventImporter{
 
-    //private File file;
-
     protected XMLImporter(String sourcePath, ImporterSourceType sourceType) {
         super(sourcePath, sourceType);
     }
