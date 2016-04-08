@@ -44,7 +44,7 @@ public abstract class BaseEventImporter implements EventImporter {
         switch (sourceType) {
             case FILE:
                 try {
-                    return new BufferedReader(new FileReader(sourcePath));
+                    return new BufferedReader(new InputStreamReader(new FileInputStream(sourcePath), "UTF-8"));
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                     logger.error(e.getMessage());
@@ -75,7 +75,7 @@ public abstract class BaseEventImporter implements EventImporter {
             reader = getReader(sourcePath, sourceType);
 
             while ((currentLine = reader.readLine()) != null) {
-                builder.append(currentLine);
+                builder.append(currentLine + System.lineSeparator());
             }
 
             logger.debug(String.format("Close reader: %s", sourcePath));

@@ -12,16 +12,16 @@ public class DateHelper {
 
     /**
      * Simple helper for convert String to Date.
-     * @param dateText provided date to convert
+     *
+     * @param dateText   provided date to convert
      * @param dateFormat date is formatted by specified parameter
-     * @param timezone timezone to format date
+     * @param timezone   timezone to format date
      * @return formatted date from String
      */
-    public static Date stringToDate(String dateText, String dateFormat, TimeZone timezone){
+    public static Date stringToDate(String dateText, String dateFormat, TimeZone timezone) {
         SimpleDateFormat format = new SimpleDateFormat(dateFormat);
         Date date = null;
-        format.setTimeZone(timezone);
-
+        // format.setTimeZone(timezone);
         try {
             date = format.parse(dateText);
         } catch (ParseException e) {
@@ -29,5 +29,9 @@ public class DateHelper {
         }
 
         return date;
+    }
+
+    public static TimeZone stringToTimeZone(String timeZoneInString) {
+        return TimeZone.getTimeZone(timeZoneInString);
     }
 }
