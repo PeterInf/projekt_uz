@@ -16,9 +16,11 @@ public class CalendarEventEntity {
     @Id
     @GeneratedValue
     private int id;
+
     @Column(nullable=false)
     private Date startDate;
     private Date endDate;
+    
     @Column(nullable=false)
     private String title;
     private String description;
