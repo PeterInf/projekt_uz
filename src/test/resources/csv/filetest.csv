@@ -1,10 +1,3 @@
 ﻿"TITLE","START","END","DESCRIPTION","TAG","TIMEZONE"
 TPI KOŁO,2016/01/22 00:00,2016/01/23 00:00,OPIS,f,America/Los_Angeles
-"SYSTEMY LAB KOŁO","2016/01/27 00:00","2016/01/28 00:00","Opis","f","America/Los_Angeles"
-"ANG KOŁO UNIT1-3","2016/01/27 00:00","2016/01/28 00:00","Opis","f","GMT-1"
-"ANG 3MIN SPEECH","2016/01/27 00:00","2016/01/28 00:00","Opis","f","America/Los_Angeles"
-"JAVA LAB KOŁO","2016/01/28 00:00","2016/01/29 00:00","Opis","f","America/Los_Angeles"
-"SYSTEMY WYKŁAD KOŁO","2016/02/01 10:15","2016/02/01 11:15","Opis","f","GMT+3"
-"Dodatkowe spotkanie lutowe - CD i DDD","2016/02/01 13:00","2016/02/01 14:00","Opis","f","GMT+8"
-"jakiesWydarzenie","2016/03/15 00:00","2016/03/16 00:00","Opis","f","America/Los_Angeles"
-"Spotkanie marcowe - RxJava i JavaScript","2016/03/29 12:30","2016/03/29 13:30","Opis","f","America/Los_Angeles"
+"TPI KOŁO","2016/01/22 00:00","2016/01/23 00:00","OPIS","f","America/Los_Angeles"
