@@ -40,6 +40,14 @@ public class DaysList {
     }
 
     /**
+     * Get value of days variable.
+     * @return Returns list of days.
+     */
+    public ArrayList<Day> getDays() {
+        return days;
+    }
+
+    /**
      * This function allows you to search for a day by it's date.
      * If there's no day with this date it throws an exception.
      * @param date - Date of a {@link Day} to find.
