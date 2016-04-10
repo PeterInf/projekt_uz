@@ -5,17 +5,17 @@ public class ICalTimeZoneProperty {
     private String timeZoneOffsetFrom;
     private String timeZoneOffsetTo;
     private String timezoneName;
-    private String DateTimeStart;
-    private String RRule;
+    private String dateTimeStart;
+    private String rRule;
 
     public ICalTimeZoneProperty(String nameTimeZone, String timeZoneOffsetFrom, String timeZoneOffsetTo,
-                                String timezoneName, String dateTimeStart, String RRule) {
+                                String timezoneName, String dateTimeStart, String rRule) {
         this.nameTimeZone = nameTimeZone;
         this.timeZoneOffsetFrom = timeZoneOffsetFrom;
         this.timeZoneOffsetTo = timeZoneOffsetTo;
         this.timezoneName = timezoneName;
-        DateTimeStart = dateTimeStart;
-        this.RRule = RRule;
+        this.dateTimeStart = dateTimeStart;
+        this.rRule = rRule;
     }
 
     //region ICalTimeZoneProperty Getters and Setters
@@ -52,19 +52,19 @@ public class ICalTimeZoneProperty {
     }
 
     public String getDateTimeStart() {
-        return DateTimeStart;
+        return dateTimeStart;
     }
 
     public void setDateTimeStart(String dateTimeStart) {
-        DateTimeStart = dateTimeStart;
+        this.dateTimeStart = dateTimeStart;
     }
 
-    public String getRRule() {
-        return RRule;
+    public String getrRule() {
+        return rRule;
     }
 
-    public void setRRule(String RRule) {
-        this.RRule = RRule;
+    public void setrRule(String rRule) {
+        this.rRule = rRule;
     }
     //endregion
 

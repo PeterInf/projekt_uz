@@ -8,16 +8,16 @@ public class ICalModel {
     private String prodId;
     private String calscale;
 
-    private ArrayList<ICalTimeZone> TimeZones = new ArrayList<ICalTimeZone>();
+    private ArrayList<ICalTimeZone> timeZones = new ArrayList<>();
 
-    private ArrayList<ICalEvent> Events = new ArrayList<ICalEvent>();
+    private ArrayList<ICalEvent> events = new ArrayList<>();
 
     public ICalModel(String version, String prodId, String calscale, ArrayList<ICalTimeZone> timeZones, ArrayList<ICalEvent> events) {
         this.version = version;
         this.prodId = prodId;
         this.calscale = calscale;
-        TimeZones = timeZones;
-        Events = events;
+        this.timeZones = timeZones;
+        this.events = events;
     }
     //region ICalModels Getter and Setters
     public String getVersion() {
@@ -45,19 +45,19 @@ public class ICalModel {
     }
 
     public ArrayList<ICalTimeZone> getTimeZones() {
-        return TimeZones;
+        return timeZones;
     }
 
     public void setTimeZones(ArrayList<ICalTimeZone> timeZones) {
-        TimeZones = timeZones;
+        this.timeZones = timeZones;
     }
 
     public ArrayList<ICalEvent> getEvents() {
-        return Events;
+        return events;
     }
 
     public void setEvents(ArrayList<ICalEvent> events) {
-        Events = events;
+        this.events = events;
     }
     //endregion
 }

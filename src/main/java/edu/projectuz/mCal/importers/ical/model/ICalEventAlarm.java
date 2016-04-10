@@ -2,39 +2,39 @@ package edu.projectuz.mCal.importers.ical.model;
 
 public class ICalEventAlarm {
 
-    private String Action;
-    private String AlarmDescription;
-    private String Trigger;
+    private String action;
+    private String alarmDescription;
+    private String trigger;
 
     public ICalEventAlarm(String action, String alarmDescription, String trigger) {
-        Action = action;
-        AlarmDescription = alarmDescription;
-        Trigger = trigger;
+        this.action = action;
+        this.alarmDescription = alarmDescription;
+        this.trigger = trigger;
     }
 
     //region ICalEventAlarm Getters and Setters
     public String getAction() {
-        return Action;
+        return action;
     }
 
     public void setAction(String action) {
-        Action = action;
+        this.action = action;
     }
 
     public String getAlarmDescription() {
-        return AlarmDescription;
+        return alarmDescription;
     }
 
     public void setAlarmDescription(String alarmDescription) {
-        AlarmDescription = alarmDescription;
+        this.alarmDescription = alarmDescription;
     }
 
     public String getTrigger() {
-        return Trigger;
+        return trigger;
     }
 
     public void setTrigger(String trigger) {
-        Trigger = trigger;
+        this.trigger = trigger;
     }
     //endregion
 }
