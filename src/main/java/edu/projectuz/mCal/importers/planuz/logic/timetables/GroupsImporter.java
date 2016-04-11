@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  * This class is used for importing timetables of every group from one {@link StudyBranch}.
- * It is used by {@link TimetablesImporter}
+ * It is used by {@link DepartmentsListImporter}
  */
 class GroupsImporter {
 
@@ -56,7 +56,7 @@ class GroupsImporter {
 
         for(Element row : rows) {
             String groupName = row.text();
-            String groupUrl = row.select(HtmlComponentName.ADDRESS).attr(HtmlComponentName.URL);
+            String groupUrl = row.select(HtmlComponentName.ADDRESS).attr(HtmlComponentName.ABSOLUTE_URL);
 
             GroupTimetable groupTimetable = new GroupTimetable(groupName);
             DaysImporter daysImporter = new DaysImporter(groupUrl);

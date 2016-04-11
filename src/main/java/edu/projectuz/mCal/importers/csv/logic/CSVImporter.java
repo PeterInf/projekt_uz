@@ -1,36 +1,28 @@
 package edu.projectuz.mCal.importers.csv.logic;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
+import edu.projectuz.mCal.helpers.DateHelper;
+import edu.projectuz.mCal.importers.base.BaseEventImporter;
+import edu.projectuz.mCal.importers.base.ImporterSourceType;
 import edu.projectuz.mCal.importers.csv.model.CSVSections;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import java.io.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * This class is main class for importer all data from CSV file.
  */
-public class CSVImporter {
-
-    private BufferedReader fileReader;
+public class CSVImporter extends BaseEventImporter {
 
     /**
-     * Constructor sets the class member variables.
-     *
-     * @param filePath - the source file path.
+     * @param sourcePath specifies the path of the file.
+     * @param sourceType specifies the type of resource {@link ImporterSourceType}.
      */
-    public CSVImporter(String filePath) {
-        try {
-            this.fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
-        } catch (FileNotFoundException | UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+    protected CSVImporter(String sourcePath, ImporterSourceType sourceType) {
+        super(sourcePath, sourceType);
     }
 
     /**
@@ -40,57 +32,52 @@ public class CSVImporter {
      * @return Returned list of events.
      * @throws IOException on input error.
      */
-    ArrayList<CalendarEvent> convertCsvToObject() throws IOException {
+    public ArrayList<CalendarEvent> convertCsvToObject() throws Exception {
         String[] header = {"TITLE", "START", "END", "DESCRIPTION", "TAG", "TIMEZONE"};
+        String dateFormat = "yyyy/MM/dd hh:mm";
         CSVFormat format = CSVFormat.DEFAULT.withDelimiter(',').withHeader(header).withSkipHeaderRecord(true);
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
-
         CSVParser parser;
         try {
-            parser = new CSVParser(fileReader, format);
+            parser = new CSVParser(new StringReader(getSourceContent()), format);
             for (CSVRecord csvRecord : parser) {
-                CalendarEvent eventObject = new CalendarEvent();
-                eventObject.setTitle(csvRecord.get(CSVSections.TITLE));
-                eventObject.setStartDate(convertStringToDate(csvRecord.get(CSVSections.DATE_START)));
-                eventObject.setEndDate(convertStringToDate(csvRecord.get(CSVSections.DATE_END)));
-                eventObject.setDescription(csvRecord.get(CSVSections.DESCRIPTION));
-                eventObject.setTag(csvRecord.get(CSVSections.TAG));
-                eventObject.setTimeZone(convertStringToTimeZone(csvRecord.get(CSVSections.TIME_ZONE)));
-                listOfEvents.add(eventObject);
+                helperForParser(csvRecord, listOfEvents, dateFormat);
             }
-            return listOfEvents;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            //noinspection ThrowFromFinallyBlock
-            fileReader.close();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException();
+        } catch (IOException e){
+            throw new IOException();
         }
-        return null;
+        return listOfEvents;
     }
 
     /**
-     * This function converts a date from String ("yyyy/MM/dd hh:mm") to Date type.
+     * Simple helper method for parsing.
      *
-     * @return Returned the date of the start or end of the event.
+     * @param csvRecord    records from the list.
+     * @param listOfEvents list of Events.
+     * @param dateFormat   date format.
      */
-    private Date convertStringToDate(String dateInString) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd hh:mm");
-        Date date;
-        try {
-            date = format.parse(dateInString);
-            return date;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
+    private void helperForParser(CSVRecord csvRecord, ArrayList<CalendarEvent> listOfEvents, String dateFormat) {
+        CalendarEvent eventObject = new CalendarEvent();
+        eventObject.setTitle(csvRecord.get(CSVSections.TITLE));
+        eventObject.setStartDate(DateHelper.stringToDate(csvRecord.get(CSVSections.DATE_START),
+                dateFormat, DateHelper.stringToTimeZone(csvRecord.get(CSVSections.TIME_ZONE))));
+        eventObject.setEndDate(DateHelper.stringToDate(csvRecord.get(CSVSections.DATE_END),
+                dateFormat, DateHelper.stringToTimeZone(csvRecord.get(CSVSections.TIME_ZONE))));
+        eventObject.setDescription(csvRecord.get(CSVSections.DESCRIPTION));
+        eventObject.setTag(csvRecord.get(CSVSections.TAG));
+        eventObject.setTimeZone(DateHelper.stringToTimeZone(csvRecord.get(CSVSections.TIME_ZONE)));
+        listOfEvents.add(eventObject);
     }
 
-    /**
-     * This function converts a date from String ("Country/City" or "GMT Sign TwoDigitHours : Minutes") to TimeZone type.
-     *
-     * @return Returned the time zone of the event.
-     */
-    private TimeZone convertStringToTimeZone(String timeZoneInString) {
-        return TimeZone.getTimeZone(timeZoneInString);
+    @Override
+    public String getName() {
+        return "CSV Importer";
+    }
+
+    @Override
+    public void importData() {
+
     }
 }
