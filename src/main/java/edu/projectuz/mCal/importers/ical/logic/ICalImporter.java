@@ -12,11 +12,17 @@ public class ICalImporter extends BaseEventImporter {
 
     @Override
     public String getName() {
-        return null;
+        return "ICalImporter";
     }
 
     @Override
     public void importData() {
 
     }
+
+    public void GetContetnt(){
+
+    }
+
+
 }
