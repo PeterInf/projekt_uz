@@ -1,14 +1,16 @@
 package edu.projectuz.mCal.importers.planuz;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
+import edu.projectuz.mCal.helpers.DateHelper;
 import edu.projectuz.mCal.importers.planuz.logic.calendars.CalendarsListImporter;
-import edu.projectuz.mCal.importers.planuz.model.calendars.Calendar;
 import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
 import edu.projectuz.mCal.importers.planuz.model.timetables.Day;
 import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
 import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableEvent;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * This class can be used for converting planUz group
@@ -39,18 +41,6 @@ public class PlanUzConverter {
         return calendarEvents;
     }
 
-    private void addEventsToList(GroupTimetable timetable, ArrayList<CalendarEvent> calendarEvents) {
-        for(Day day : timetable.getDaysList()) {
-            for(TimetableEvent timetableEvent : day.getEventsList()) {
-                calendarEvents.add(convertToCalendarEvent(timetableEvent));
-            }
-        }
-    }
-
-    private CalendarEvent convertToCalendarEvent(TimetableEvent timetableEvent) {
-        return null;
-    }
-
     /**
      * This function will be changed to get calendars from
      * database instead of importer itself.
@@ -59,4 +49,78 @@ public class PlanUzConverter {
         String calendarsUrl = "http://plan.uz.zgora.pl/kalendarze_lista.php";
         return new CalendarsListImporter(calendarsUrl).importCalendars();
     }
+
+    private void addEventsToList(GroupTimetable timetable, ArrayList<CalendarEvent> calendarEvents) {
+        for(Day day : timetable.getDaysList()) {
+            for(TimetableEvent timetableEvent : day.getEventsList()) {
+                calendarEvents.addAll(convertToCalendarEventsList(timetableEvent));
+            }
+        }
+    }
+
+    private ArrayList<CalendarEvent> convertToCalendarEventsList(TimetableEvent timetableEvent) {
+        ArrayList<CalendarEvent> calendarEvents = new ArrayList<>();
+        DaysType daysType = getTypeOfDays(timetableEvent.getDays());
+
+        switch(daysType) {
+            case DATES:
+                addEventsWithDates(timetableEvent, calendarEvents);
+                break;
+            case CALENDAR:
+//                addEventsWithCalendar(timetableEvent, calendarEvents);
+                break;
+        }
+        return calendarEvents;
+    }
+
+    /**
+     * Dates are separated with ';' char.
+     * When there's a calendar name, not dates,
+     * then there's no ';' char in name.
+     */
+    private DaysType getTypeOfDays(String days) {
+        final int INDEX_WHEN_CHAR_NOT_FOUND = -1;
+
+        if(days.indexOf(';') == INDEX_WHEN_CHAR_NOT_FOUND) {
+            return DaysType.CALENDAR;
+        } else {
+            return  DaysType.DATES;
+        }
+    }
+
+    private void addEventsWithDates(TimetableEvent timetableEvent, ArrayList<CalendarEvent> calendarEvents) {
+        String[] dates = getFormattedDates(timetableEvent);
+
+        for (String date : dates) {
+            calendarEvents.add(getCalendarEvent(timetableEvent, date));
+        }
+    }
+
+    private String[] getFormattedDates(TimetableEvent timetableEvent) {
+        String dates = timetableEvent.getDays().replace(" ", "");
+        return dates.split(";");
+    }
+
+    private CalendarEvent getCalendarEvent(TimetableEvent timetableEvent, String date) {
+        String title = timetableEvent.getEventName();
+        Date startDate = getDate(date, timetableEvent.getStartTime());
+        Date endDate = getDate(date, timetableEvent.getEndTime());
+        String description = getDescription(timetableEvent);
+        return new CalendarEvent(title, startDate, endDate, description, "UZ", TimeZone.getTimeZone("Europe/Warsaw"));
+    }
+
+    private String getDescription(TimetableEvent timetableEvent) {
+        return String.format("Subgroup: %s, Type: %s, Teacher: %s, Room: %s",
+                timetableEvent.getSubgroup(), timetableEvent.getEventType(),
+                timetableEvent.getTeacherName(), timetableEvent.getRoom());
+    }
+
+    private Date getDate(String date, String time) {
+        return DateHelper.stringToDate(date + " " + time, "DD-MM-YY hh:mm", TimeZone.getTimeZone("Europe/Warsaw"));
+    }
+
+    private void addEventsWithCalendar(TimetableEvent timetableEvent, ArrayList<CalendarEvent> calendarEvents) {
+
+    }
+
 }
