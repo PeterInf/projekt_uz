@@ -50,6 +50,62 @@ public class TimetableEvent {
     }
 
     /**
+     * @return Subgroup name.
+     */
+    public String getSubgroup() {
+        return subgroup;
+    }
+
+    /**
+     * @return Start time for example "9:15".
+     */
+    public String getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * @return End time for example "10:45".
+     */
+    public String getEndTime() {
+        return endTime;
+    }
+
+    /**
+     * @return Event name.
+     */
+    public String getEventName() {
+        return eventName;
+    }
+
+    /**
+     * @return Event type.
+     */
+    public String getEventType() {
+        return eventType;
+    }
+
+    /**
+     * @return Teacher name.
+     */
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    /**
+     * @return Room name.
+     */
+    public String getRoom() {
+        return room;
+    }
+
+    /**
+     * @return Type of days from calendar or dates.
+     */
+    public String getDays() {
+        return days;
+    }
+
+    /**
      * Converts object of this class to String object with all of it's content.
      * @return Returns converted String.
      */
