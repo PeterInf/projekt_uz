@@ -2,6 +2,7 @@ package edu.projectuz.mCal.importers.csv.logic;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
+import org.joda.time.DateTime;
 import org.junit.Test;
 
 import java.io.File;
@@ -30,10 +31,11 @@ public class CSVImporterTests {
         CSVImporter csvImporter = new CSVImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
 
         //Act
-        CalendarEvent calendarEvent = new CalendarEvent("TPI KOŁO", new Date(Date.parse("2016/01/22 00:00")),
-                new Date(Date.parse("2016/01/23 00:00")), "OPIS", "f", TimeZone.getTimeZone("America/Los_Angeles"));
+        CalendarEvent calendarEvent = new CalendarEvent("TPI KOŁO", new DateTime(Date.parse("2016/01/22 00:00")),
+                new DateTime(Date.parse("2016/01/23 00:00")), "OPIS", "f", TimeZone.getTimeZone("America/Los_Angeles"));
 
         //Assert
+        System.err.println();
         assertEquals(calendarEvent, csvImporter.convertCsvToObject().get(0));
         assertEquals(calendarEvent, csvImporter.convertCsvToObject().get(1));
     }

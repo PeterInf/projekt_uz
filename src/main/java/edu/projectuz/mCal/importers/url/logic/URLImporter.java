@@ -21,9 +21,9 @@ public class URLImporter extends BaseEventImporter {
         super(sourcePath, sourceType);
     }
 
-    public ArrayList<CalendarEvent> convertToObject() {
+    public ArrayList<CalendarEvent> convertHTMLTableToObject() {
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
-        String dateFormat = "yyyy/MM/dd hh:mm";
+        String dateFormat = "yyyy/MM/dd HH:mm";
         Document document = Jsoup.parse(getSourceContent());
 
         Element table = document.getElementById("exampleTable");
@@ -31,20 +31,23 @@ public class URLImporter extends BaseEventImporter {
         inputElements.remove(0);
 
             for (Element row : inputElements) {
-                Elements elements = row.select("td");
-                CalendarEvent calendarEvent = new CalendarEvent();
-
-                calendarEvent.setTitle(elements.get(URLSections.TITLE).text());
-                calendarEvent.setStartDate(DateHelper.stringToDate(elements.get(URLSections.DATE_START).text(),
-                        dateFormat, DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text())));
-                calendarEvent.setEndDate(DateHelper.stringToDate(elements.get(URLSections.DATE_END).text(),
-                        dateFormat, DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text())));
-                calendarEvent.setDescription(elements.get(URLSections.DESCRIPTION).text());
-                calendarEvent.setTag(elements.get(URLSections.TAG).text());
-                calendarEvent.setTimeZone(DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text()));
-                listOfEvents.add(calendarEvent);
+                helperForParser(row, listOfEvents, dateFormat);
             }
         return listOfEvents;
+    }
+
+    private void helperForParser(Element row, ArrayList<CalendarEvent> listOfEvents, String dateFormat) {
+        Elements elements = row.select("td");
+        CalendarEvent calendarEvent = new CalendarEvent();
+        calendarEvent.setTitle(elements.get(URLSections.TITLE).text());
+        calendarEvent.setStartDate(DateHelper.stringToDate(elements.get(URLSections.DATE_START).text(),
+                dateFormat, DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text())));
+        calendarEvent.setEndDate(DateHelper.stringToDate(elements.get(URLSections.DATE_END).text(),
+                dateFormat, DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text())));
+        calendarEvent.setDescription(elements.get(URLSections.DESCRIPTION).text());
+        calendarEvent.setTag(elements.get(URLSections.TAG).text());
+        calendarEvent.setTimeZone(DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text()));
+        listOfEvents.add(calendarEvent);
     }
 
     @Override
