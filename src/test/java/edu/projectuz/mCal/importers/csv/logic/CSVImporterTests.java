@@ -2,11 +2,13 @@ package edu.projectuz.mCal.importers.csv.logic;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
@@ -21,21 +23,26 @@ public class CSVImporterTests {
      * the data from the file.
      * The result should be positive.
      */
-    @SuppressWarnings("deprecation")
     @Test
     public void convertCsvToObject() throws Exception {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/csv/filetest.csv").getFile());
         CSVImporter csvImporter = new CSVImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        String dateFormat = ("yyyy/MM/dd HH:mm");
 
         //Act
-        CalendarEvent calendarEvent = new CalendarEvent("TPI KOŁO", new Date(Date.parse("2016/01/22 00:00")),
-                new Date(Date.parse("2016/01/23 00:00")), "OPIS", "f", TimeZone.getTimeZone("America/Los_Angeles"));
+        CalendarEvent calendarEvent = new CalendarEvent("TPI KOŁO", new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/22 00:00"))
+                .withZone(DateTimeZone.forID("America/Los_Angeles")), new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/23 00:00"))
+                .withZone(DateTimeZone.forID("America/Los_Angeles")), "OPIS", "f", TimeZone.getTimeZone("America/Los_Angeles"));
+        CalendarEvent calendarEvent1 = new CalendarEvent("TPI KOŁO", new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/22 00:00"))
+                .withZone(DateTimeZone.forID("Europe/Warsaw")), new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/23 00:00"))
+                .withZone(DateTimeZone.forID("Europe/Warsaw")), "OPIS", "f", TimeZone.getTimeZone("Europe/Warsaw"));
 
         //Assert
+        System.err.println();
         assertEquals(calendarEvent, csvImporter.convertCsvToObject().get(0));
-        assertEquals(calendarEvent, csvImporter.convertCsvToObject().get(1));
+        assertEquals(calendarEvent1, csvImporter.convertCsvToObject().get(1));
     }
 
     /**
