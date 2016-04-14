@@ -27,7 +27,7 @@ public class URLImporterTest {
                 .withZone(DateTimeZone.forID("Europe/Warsaw")), new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/23 15:00"))
                 .withZone(DateTimeZone.forID("Europe/Warsaw")), "OPIS1", "Tag", TimeZone.getTimeZone("Europe/Warsaw"));
         CalendarEvent calendarEvent1 = new CalendarEvent("example1", new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/22 01:00"))
-                .withZone(DateTimeZone.forID("America/Los_Angeles")), new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/23 15:00"))
+                .withZone(DateTimeZone.forID("America/Los_Angeles")), new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/23 24:00"))
                 .withZone(DateTimeZone.forID("America/Los_Angeles")), "OPIS1", "Tag", TimeZone.getTimeZone("America/Los_Angeles"));
 
         //Assert
