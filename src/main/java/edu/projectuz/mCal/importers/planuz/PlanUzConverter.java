@@ -1,8 +1,8 @@
 package edu.projectuz.mCal.importers.planuz;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
-import edu.projectuz.mCal.helpers.DateHelper;
 import edu.projectuz.mCal.importers.planuz.logic.calendars.CalendarsListImporter;
+import edu.projectuz.mCal.importers.planuz.model.calendars.Calendar;
 import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
 import edu.projectuz.mCal.importers.planuz.model.timetables.Day;
 import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
@@ -127,7 +127,18 @@ public class PlanUzConverter {
     }
 
     private void addEventsWithCalendar(TimetableEvent timetableEvent, ArrayList<CalendarEvent> calendarEvents) {
+        Calendar calendar = getCalendar(timetableEvent.getDays());
+        System.out.println(calendar.getName());
+    }
 
+    private Calendar getCalendar(String dayType) {
+        for(Calendar calendar : calendarsList.getListOfCalendars()) {
+            if(calendar.isContainingDayType(dayType)) {
+                return calendar;
+            }
+        }
+        throw new IllegalArgumentException(String.format(
+                "None of calendars contain day type: %s", dayType));
     }
 
 }
