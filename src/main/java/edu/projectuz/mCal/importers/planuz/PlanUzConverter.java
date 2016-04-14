@@ -114,9 +114,10 @@ public class PlanUzConverter {
     }
 
     private String getDescription(TimetableEvent timetableEvent) {
-        return String.format("Subgroup: %s, Type: %s, Teacher: %s, Room: %s",
+        return String.format("Subgroup: %s, Type: %s, Teacher: %s, Room: %s, Day: %s",
                 timetableEvent.getSubgroup(), timetableEvent.getEventType(),
-                timetableEvent.getTeacherName(), timetableEvent.getRoom());
+                timetableEvent.getTeacherName(), timetableEvent.getRoom(),
+                timetableEvent.getDayName());
     }
 
     private Date getDate(String date, String time) {

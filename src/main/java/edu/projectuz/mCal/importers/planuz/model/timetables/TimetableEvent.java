@@ -25,6 +25,7 @@ public class TimetableEvent {
      * which is stored in ({@link DaysList}) object.
      */
     private String days;
+    private String dayName;
 
     /**
      * Class constructor that sets all the information about a event.
@@ -106,6 +107,22 @@ public class TimetableEvent {
     }
 
     /**
+     * Sets day name
+     * @param dayName - day of the week
+     */
+    public void setDayName(String dayName) {
+        this.dayName = dayName;
+    }
+
+    /**
+     * Gets day name
+     * @return Day of the week
+     */
+    public String getDayName() {
+        return dayName;
+    }
+
+    /**
      * Converts object of this class to String object with all of it's content.
      * @return Returns converted String.
      */
@@ -120,7 +137,7 @@ public class TimetableEvent {
                 ", teacherName='" + teacherName + '\'' +
                 ", room='" + room + '\'' +
                 ", days='" + days + '\'' +
+                ", dayName='" + dayName + '\'' +
                 '}';
     }
-
 }

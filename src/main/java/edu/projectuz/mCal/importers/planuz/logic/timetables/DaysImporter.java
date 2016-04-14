@@ -86,7 +86,21 @@ class DaysImporter {
         if(daysList.isEmpty()) {
             daysList = null;
         }
+
+        if(daysList != null) {
+            addDayNamesToEvents(daysList);
+        }
     }
+
+    private void addDayNamesToEvents(ArrayList<Day> daysList) {
+        for(Day day : daysList) {
+            String name = day.getName();
+
+            for(TimetableEvent timetableEvent : day.getEventsList()) {
+                timetableEvent.setDayName(name);
+            }
+        }
+     }
 
     private TimetableEvent convertRowIntoEvent(Element row) {
         Elements columns = row.select(HtmlComponentName.COLUMN);
