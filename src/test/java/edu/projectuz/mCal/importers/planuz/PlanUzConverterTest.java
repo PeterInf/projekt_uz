@@ -16,13 +16,13 @@ public class PlanUzConverterTest {
     public void setUp() throws Exception {
         planUzConverter = new PlanUzConverter();
         groupTimetable = new DepartmentsListImporter("http://plan.uz.zgora.pl/grupy_lista_kierunkow.php").
-                importDepartments().getDepartmentByName("Wydział Informatyki, Elektrotechniki i Automatyki").
-                getStudyBranchByName("Informatyka").
-                getGroupTimetableByName("23INF-SP (Informatyka stacjonarne-dzienne pierwszego stopnia z tyt. inżyniera)");
+                importDepartments().getDepartmentByName("Wydział Artystyczny").
+                getStudyBranchByName("Grafika").
+                getGroupTimetableByName("21GRAFIKASP (Grafika stacjonarne-dzienne pierwszego stopnia z tyt. licencjata)");
     }
 
     @Test
     public void whenConvertingTimetableEventsCountMatches() {
-        assertEquals(221, planUzConverter.convertTimetable(groupTimetable).size());
+        assertEquals(132, planUzConverter.convertTimetable(groupTimetable).size());
     }
 }
