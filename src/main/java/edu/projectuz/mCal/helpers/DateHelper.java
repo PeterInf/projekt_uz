@@ -1,6 +1,7 @@
 package edu.projectuz.mCal.helpers;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -21,10 +22,7 @@ public class DateHelper {
      */
     public static DateTime stringToDate(String dateText, String dateFormat, TimeZone timezone) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(dateFormat);
-        DateTime dateTime = dateTimeFormatter.parseDateTime(dateText);
-                //.withZone(DateTimeZone.forTimeZone(timezone));
-                //.withZoneRetainFields(DateTimeZone.forTimeZone(timezone));
-        System.err.println(dateTime.getZone());
+        DateTime dateTime = dateTimeFormatter.withZone(DateTimeZone.forTimeZone(timezone)).parseDateTime(dateText);
         return dateTime;
     }
 

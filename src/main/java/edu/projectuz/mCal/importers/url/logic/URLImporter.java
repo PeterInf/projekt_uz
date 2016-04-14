@@ -21,7 +21,7 @@ public class URLImporter extends BaseEventImporter {
         super(sourcePath, sourceType);
     }
 
-    private ArrayList<CalendarEvent> convertToObject() {
+    public ArrayList<CalendarEvent> convertToObject() {
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
         String dateFormat = "yyyy/MM/dd hh:mm";
         importData();
