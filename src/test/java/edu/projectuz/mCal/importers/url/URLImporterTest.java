@@ -20,7 +20,7 @@ public class URLImporterTest {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/url/filetest.html").getFile());
         URLImporter urlImporter = new URLImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
-        String dateFormat = ("yyyy/MM/dd HH:mm");
+        String dateFormat = ("yyyy/MM/dd kk:mm");
 
         //Act
         CalendarEvent calendarEvent = new CalendarEvent("example1", new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/22 01:00"))

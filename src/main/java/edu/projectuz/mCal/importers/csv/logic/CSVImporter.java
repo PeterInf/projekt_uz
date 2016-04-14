@@ -35,7 +35,7 @@ public class CSVImporter extends BaseEventImporter {
      */
     public ArrayList<CalendarEvent> convertCsvToObject() throws Exception {
         String[] header = {"TITLE", "START", "END", "DESCRIPTION", "TAG", "TIMEZONE"};
-        String dateFormat = "yyyy/MM/dd HH:mm";
+        String dateFormat = "yyyy/MM/dd kk:mm";
         CSVFormat format = CSVFormat.DEFAULT.withDelimiter(',').withHeader(header).withSkipHeaderRecord(true);
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
         CSVParser parser;
