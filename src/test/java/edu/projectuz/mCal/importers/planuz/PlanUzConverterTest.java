@@ -5,6 +5,8 @@ import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
 import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
+
 public class PlanUzConverterTest {
 
     private PlanUzConverter planUzConverter;
@@ -20,8 +22,7 @@ public class PlanUzConverterTest {
     }
 
     @Test
-    public void test() {
-        System.out.println(planUzConverter.convertTimetable(groupTimetable));
-
+    public void whenConvertingTimetableEventsCountMatches() {
+        assertEquals(221, planUzConverter.convertTimetable(groupTimetable).size());
     }
 }
