@@ -4,6 +4,7 @@ import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.importers.planuz.logic.calendars.CalendarsListImporter;
 import edu.projectuz.mCal.importers.planuz.model.calendars.Calendar;
 import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
+import edu.projectuz.mCal.importers.planuz.model.calendars.DaysList;
 import edu.projectuz.mCal.importers.planuz.model.timetables.Day;
 import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
 import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableEvent;
@@ -70,7 +71,7 @@ public class PlanUzConverter {
                 addEventsWithDates(timetableEvent, calendarEvents);
                 break;
             case CALENDAR:
-//                addEventsWithCalendar(timetableEvent, calendarEvents);
+                addEventsWithCalendar(timetableEvent, calendarEvents);
                 break;
         }
         return calendarEvents;
@@ -127,18 +128,26 @@ public class PlanUzConverter {
     }
 
     private void addEventsWithCalendar(TimetableEvent timetableEvent, ArrayList<CalendarEvent> calendarEvents) {
-        Calendar calendar = getCalendar(timetableEvent.getDays());
-        System.out.println(calendar.getName());
+        try {
+            DaysList daysList = getDaysList(timetableEvent.getDays());
+
+            for(edu.projectuz.mCal.importers.planuz.model.calendars.Day day : daysList.getDays()) {
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
-    private Calendar getCalendar(String dayType) {
+    private DaysList getDaysList(String daysType) throws Exception {
         for(Calendar calendar : calendarsList.getListOfCalendars()) {
-            if(calendar.isContainingDayType(dayType)) {
-                return calendar;
+            if(calendar.isContainingDayType(daysType)) {
+                return calendar.getDaysListByType(daysType);
             }
         }
         throw new IllegalArgumentException(String.format(
-                "None of calendars contain day type: %s", dayType));
+                "Days list with type: '%s' not found", daysType));
     }
 
 }

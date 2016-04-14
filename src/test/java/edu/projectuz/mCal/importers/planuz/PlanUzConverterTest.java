@@ -5,8 +5,6 @@ import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertNull;
-
 public class PlanUzConverterTest {
 
     private PlanUzConverter planUzConverter;

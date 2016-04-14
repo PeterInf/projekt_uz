@@ -58,7 +58,7 @@ public class DayTest {
                 "number=" + 13 +
                 ", date=" + "11-01-2014" +
                 ", dayAccordingToTimetable='" + "Środa" + '\'' +
-                ", getDayAccordingToCalendar='" + "Czwartek" + '\'' +
+                ", dayAccordingToCalendar='" + "Czwartek" + '\'' +
                 '}';
 
         assertEquals(dayConvertedToString, day.toString());
