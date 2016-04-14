@@ -1,6 +1,7 @@
 package edu.projectuz.mCal.core.models;
 
-import java.util.Date;
+import org.joda.time.DateTime;
+
 import java.util.TimeZone;
 
 /**
@@ -8,8 +9,8 @@ import java.util.TimeZone;
  */
 public class CalendarEvent {
 
-    private Date startDate;
-    private Date endDate;
+    private DateTime startDate;
+    private DateTime endDate;
     private String title;
     private String description;
     private String tag;
@@ -30,7 +31,7 @@ public class CalendarEvent {
      * @param tag         - tag of events.
      * @param timeZone    - time zone of events.
      */
-    public CalendarEvent(String title, Date startDate, Date endDate, String description, String tag, TimeZone timeZone) {
+    public CalendarEvent(String title, DateTime startDate, DateTime endDate, String description, String tag, TimeZone timeZone) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -39,19 +40,19 @@ public class CalendarEvent {
         this.timeZone = timeZone;
     }
 
-    public Date getStartDate() {
+    public DateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(DateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public DateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(DateTime endDate) {
         this.endDate = endDate;
     }
 
