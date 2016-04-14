@@ -59,9 +59,14 @@ public class XMLImporter extends BaseEventImporter{
 
             Element element = (Element) node;
 
+            eventObject.setTitle(element.getElementsByTagName("summary").item(0).getTextContent().trim());
             eventObject.setStartDate(DateHelper.stringToDate(element.getElementsByTagName("dtstart").item(0).getTextContent().trim(),
                     dateFormat, DateHelper.stringToTimeZone(element.getElementsByTagName("tzid").item(0).getTextContent().trim())));
-            eventObject.setDescription(element.getElementsByTagName("summary").item(0).getTextContent().trim());
+            eventObject.setEndDate(DateHelper.stringToDate(element.getElementsByTagName("dtend").item(0).getTextContent().trim(),
+                    dateFormat, DateHelper.stringToTimeZone(element.getElementsByTagName("tzid").item(0).getTextContent().trim())));
+            eventObject.setDescription(element.getElementsByTagName("description").item(0).getTextContent().trim());
+            eventObject.setTag(element.getElementsByTagName("tag").item(0).getTextContent().trim());
+            eventObject.setTimeZone(DateHelper.stringToTimeZone(element.getElementsByTagName("tzid").item(0).getTextContent().trim()));
             listOfEvents.add(eventObject);
         }
     }
