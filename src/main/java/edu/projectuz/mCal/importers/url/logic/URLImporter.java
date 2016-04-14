@@ -16,34 +16,31 @@ import java.util.ArrayList;
 
 public class URLImporter extends BaseEventImporter {
 
+    private Elements inputElements;
 
     public URLImporter(String sourcePath, ImporterSourceType sourceType) throws IOException {
         super(sourcePath, sourceType);
     }
 
-    public ArrayList<CalendarEvent> convertToObject() {
+    private ArrayList<CalendarEvent> convertToObject() {
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
         String dateFormat = "yyyy/MM/dd hh:mm";
-        Document document = Jsoup.parse(getSourceContent());
+        importData();
 
-        Element table = document.getElementById("exampleTable");
-        Elements inputElements = table.getElementsByTag("tr");
-        inputElements.remove(0);
+        for (Element row : inputElements) {
+            Elements elements = row.select("td");
+            CalendarEvent calendarEvent = new CalendarEvent();
 
-            for (Element row : inputElements) {
-                Elements elements = row.select("td");
-                CalendarEvent calendarEvent = new CalendarEvent();
-
-                calendarEvent.setTitle(elements.get(URLSections.TITLE).text());
-                calendarEvent.setStartDate(DateHelper.stringToDate(elements.get(URLSections.DATE_START).text(),
-                        dateFormat, DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text())));
-                calendarEvent.setEndDate(DateHelper.stringToDate(elements.get(URLSections.DATE_END).text(),
-                        dateFormat, DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text())));
-                calendarEvent.setDescription(elements.get(URLSections.DESCRIPTION).text());
-                calendarEvent.setTag(elements.get(URLSections.TAG).text());
-                calendarEvent.setTimeZone(DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text()));
-                listOfEvents.add(calendarEvent);
-            }
+            calendarEvent.setTitle(elements.get(URLSections.TITLE).text());
+            calendarEvent.setStartDate(DateHelper.stringToDate(elements.get(URLSections.DATE_START).text(),
+                    dateFormat, DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text())));
+            calendarEvent.setEndDate(DateHelper.stringToDate(elements.get(URLSections.DATE_END).text(),
+                    dateFormat, DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text())));
+            calendarEvent.setDescription(elements.get(URLSections.DESCRIPTION).text());
+            calendarEvent.setTag(elements.get(URLSections.TAG).text());
+            calendarEvent.setTimeZone(DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text()));
+            listOfEvents.add(calendarEvent);
+        }
         return listOfEvents;
     }
 
@@ -54,6 +51,9 @@ public class URLImporter extends BaseEventImporter {
 
     @Override
     public void importData() {
-
+        Document document = Jsoup.parse(getSourceContent());
+        Element table = document.getElementById("exampleTable");
+        inputElements = table.getElementsByTag("tr");
+        inputElements.remove(0);
     }
 }
