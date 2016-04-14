@@ -133,7 +133,9 @@ public class PlanUzConverter {
             DaysList daysList = getDaysList(timetableEvent.getDays());
 
             for(edu.projectuz.mCal.importers.planuz.model.calendars.Day day : daysList.getDays()) {
-
+                if(day.getDayAccordingToCalendar().equals(timetableEvent.getDayName())) {
+                    calendarEvents.add(getCalendarEvent(timetableEvent, day.getDate()));
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

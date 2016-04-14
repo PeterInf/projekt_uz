@@ -35,7 +35,7 @@ public class Day {
      * Gets value of date variable.
      * @return Returns value of date variable.
      */
-    String getDate() {
+    public String getDate() {
         return date;
     }
 
