@@ -7,6 +7,9 @@ import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
 import edu.projectuz.mCal.importers.planuz.model.timetables.Day;
 import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
 import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableEvent;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -116,7 +119,11 @@ public class PlanUzConverter {
     }
 
     private Date getDate(String date, String time) {
-        return DateHelper.stringToDate(date + " " + time, "DD-MM-YY hh:mm", TimeZone.getTimeZone("Europe/Warsaw"));
+        //later on this date formatting can be replaced with DateHelper class
+        //but for now it doesn't work
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd-MM-yyyy HH:mm");
+        DateTime dateTime = formatter.parseDateTime(date + " " + time);
+        return dateTime.toDate();
     }
 
     private void addEventsWithCalendar(TimetableEvent timetableEvent, ArrayList<CalendarEvent> calendarEvents) {
