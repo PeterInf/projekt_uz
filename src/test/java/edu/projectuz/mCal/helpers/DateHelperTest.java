@@ -19,7 +19,7 @@ public class DateHelperTest {
         //Arrange
         String dateText = "04-08-1994 12:44:33";
         TimeZone timeZone = TimeZone.getTimeZone("America/Los_Angeles");
-        String dateFormat = "dd-mm-yyyy kk:mm:ss";
+        String dateFormat = "dd-mm-yyyy HH:mm:ss";
 
         DateTime expected = new DateTime(DateTimeFormat.forPattern(dateFormat).withZone(DateTimeZone.forTimeZone(timeZone)).parseDateTime(dateText));
 

@@ -20,14 +20,14 @@ public class URLImporterTest {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/url/filetest.html").getFile());
         URLImporter urlImporter = new URLImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
-        String dateFormat = ("yyyy/MM/dd kk:mm");
+        String dateFormat = ("yyyy/MM/dd HH:mm");
 
         //Act
         CalendarEvent calendarEvent = new CalendarEvent("example1", new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/22 01:00"))
                 .withZone(DateTimeZone.forID("Europe/Warsaw")), new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/23 15:00"))
                 .withZone(DateTimeZone.forID("Europe/Warsaw")), "OPIS1", "Tag", TimeZone.getTimeZone("Europe/Warsaw"));
         CalendarEvent calendarEvent1 = new CalendarEvent("example1", new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/22 01:00"))
-                .withZone(DateTimeZone.forID("America/Los_Angeles")), new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/23 24:00"))
+                .withZone(DateTimeZone.forID("America/Los_Angeles")), new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/23 00:00"))
                 .withZone(DateTimeZone.forID("America/Los_Angeles")), "OPIS1", "Tag", TimeZone.getTimeZone("America/Los_Angeles"));
 
         //Assert

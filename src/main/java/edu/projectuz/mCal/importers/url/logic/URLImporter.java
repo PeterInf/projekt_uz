@@ -23,7 +23,7 @@ public class URLImporter extends BaseEventImporter {
 
     public ArrayList<CalendarEvent> convertToObject() {
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
-        String dateFormat = "yyyy/MM/dd kk:mm";
+        String dateFormat = "yyyy/MM/dd HH:mm";
         importData();
 
         for (Element row : inputElements) {
