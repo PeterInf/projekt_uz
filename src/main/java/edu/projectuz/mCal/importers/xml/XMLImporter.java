@@ -27,7 +27,7 @@ public class XMLImporter extends BaseEventImporter{
 
     public ArrayList<CalendarEvent> convertToObject()
     {
-        String dateFormat = "yyyy-MM-dd";
+        String dateFormat = "yyyy/MM/dd HH:mm";
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
 
         try {
