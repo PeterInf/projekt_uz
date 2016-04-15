@@ -12,6 +12,10 @@ public class PlanUzConverterTest {
     private PlanUzConverter planUzConverter;
     private GroupTimetable groupTimetable;
 
+    /**
+     * This information won't test 100% of code, but for now it's better,
+     * because is more stable. Tests won't fail so often.
+     */
     @Before
     public void setUp() throws Exception {
         planUzConverter = new PlanUzConverter();
@@ -24,5 +28,6 @@ public class PlanUzConverterTest {
     @Test
     public void whenConvertingTimetableEventsCountMatches() {
         assertEquals(132, planUzConverter.convertTimetable(groupTimetable).size());
+        System.out.println(planUzConverter.convertTimetable(groupTimetable));
     }
 }
