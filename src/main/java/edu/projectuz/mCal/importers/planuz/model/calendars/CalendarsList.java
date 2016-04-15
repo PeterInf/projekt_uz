@@ -57,6 +57,13 @@ public class CalendarsList {
     }
 
     /**
+     * @return Size of calendars list
+     */
+    public int size() {
+        return calendars.size();
+    }
+
+    /**
      * Converts object of this class to String object with all of it's content.
      * @return Returns converted String.
      */
@@ -67,4 +74,5 @@ public class CalendarsList {
                 ", calendars=" + calendars +
                 '}';
     }
+
 }

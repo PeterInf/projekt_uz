@@ -9,7 +9,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 
 /**
@@ -32,9 +33,9 @@ public class CSVImporter extends BaseEventImporter {
      * @return Returned list of events.
      * @throws IOException on input error.
      */
-    public ArrayList<CalendarEvent> convertCsvToObject() throws IOException {
+    public ArrayList<CalendarEvent> convertCsvToObject() throws Exception {
         String[] header = {"TITLE", "START", "END", "DESCRIPTION", "TAG", "TIMEZONE"};
-        String dateFormat = "yyyy/MM/dd hh:mm";
+        String dateFormat = "yyyy/MM/dd HH:mm";
         CSVFormat format = CSVFormat.DEFAULT.withDelimiter(',').withHeader(header).withSkipHeaderRecord(true);
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
         CSVParser parser;
@@ -43,8 +44,10 @@ public class CSVImporter extends BaseEventImporter {
             for (CSVRecord csvRecord : parser) {
                 helperForParser(csvRecord, listOfEvents, dateFormat);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException();
+        } catch (IOException e){
+            throw new IOException();
         }
         return listOfEvents;
     }

@@ -42,8 +42,8 @@ public class CalendarsListImporter {
     /**
      * Class constructor that sets default url to planUz calendars.
      */
-    public CalendarsListImporter() {
-        calendarsUrl = "http://plan.uz.zgora.pl/kalendarze_lista.php";
+    public CalendarsListImporter(String calendarsUrl) {
+        this.calendarsUrl = calendarsUrl;
     }
 
     /**
@@ -94,7 +94,7 @@ public class CalendarsListImporter {
         String name = columns.get(CalendarComponentIndex.NAME_COLUMN).text();
         String description = columns.get(CalendarComponentIndex.DESCRIPTION_COLUMN).text();
         String calendarUrl = columns.get(CalendarComponentIndex.NAME_COLUMN).
-                select(HtmlComponentName.ADDRESS).attr(HtmlComponentName.URL);
+                select(HtmlComponentName.ADDRESS).attr(HtmlComponentName.ABSOLUTE_URL);
         return new SingleCalendarImporter(name, description, calendarUrl).importCalendar();
     }
 }

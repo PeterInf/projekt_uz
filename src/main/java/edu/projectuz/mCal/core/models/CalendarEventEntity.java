@@ -1,16 +1,27 @@
 package edu.projectuz.mCal.core.models;
 
-import org.joda.time.DateTime;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.util.Date;
 import java.util.TimeZone;
 
 /**
  * This class stores information about events.
  */
-public class CalendarEvent {
+@Entity
+public class CalendarEventEntity {
 
-    private DateTime startDate;
-    private DateTime endDate;
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @Column(nullable=false)
+    private Date startDate;
+    private Date endDate;
+
+    @Column(nullable=false)
     private String title;
     private String description;
     private String tag;
@@ -19,7 +30,8 @@ public class CalendarEvent {
     /**
      * Default constructor takes to create an object in CSVImporter class.
      */
-    public CalendarEvent() {}
+    public CalendarEventEntity() {}
+
 
     /**
      * The constructor needed for the test class.
@@ -31,7 +43,7 @@ public class CalendarEvent {
      * @param tag         - tag of events.
      * @param timeZone    - time zone of events.
      */
-    public CalendarEvent(String title, DateTime startDate, DateTime endDate, String description, String tag, TimeZone timeZone) {
+    public CalendarEventEntity(String title, Date startDate, Date endDate, String description, String tag, TimeZone timeZone) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -40,19 +52,23 @@ public class CalendarEvent {
         this.timeZone = timeZone;
     }
 
-    public DateTime getStartDate() {
+    public int getId() { return id;}
+
+    public void setId(int id) { this.id = id;}
+
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(DateTime startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public DateTime getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(DateTime endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
@@ -88,6 +104,7 @@ public class CalendarEvent {
         this.title = title;
     }
 
+
     /**
      * @return Returned a string representation of the object CalendarEvent.
      */
@@ -102,28 +119,6 @@ public class CalendarEvent {
                 timeZone.getID();
     }
 
-    /**
-     * This method is needed to make comparing two objects in a class CSVImporterTest.
-     * Indicates whether some other object is "equal to" this one.
-     *
-     * @param obj - the reference object with which to compare.
-     * @return Returned true if this object is the same as the obj argument, false otherwise.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-
-        CalendarEvent that = (CalendarEvent) obj;
-
-        if (startDate != null ? !startDate.equals(that.startDate) : that.startDate != null) return false;
-        if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (tag != null ? !tag.equals(that.tag) : that.tag != null) return false;
-        return timeZone != null ? timeZone.equals(that.timeZone) : that.timeZone == null;
-
-    }
 
     /**
      * This method is needed to make comparing two objects in a class CSVImporterTest.

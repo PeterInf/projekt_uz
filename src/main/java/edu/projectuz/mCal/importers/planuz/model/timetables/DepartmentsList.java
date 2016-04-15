@@ -1,6 +1,6 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
-import edu.projectuz.mCal.importers.planuz.logic.timetables.TimetablesImporter;
+import edu.projectuz.mCal.importers.planuz.logic.timetables.DepartmentsListImporter;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * very similar way to planUz timetables on website.
  * This class stores a list of {@link Department} objects.
  * Instance of this class is returned by
- * {@link TimetablesImporter#importTimetables()}.
+ * {@link DepartmentsListImporter#importDepartments()}.
  */
 public class DepartmentsList {
 
@@ -55,6 +55,13 @@ public class DepartmentsList {
     }
 
     /**
+     * @return Size of departments list.
+     */
+    public int size() {
+        return departmentsList.size();
+    }
+
+    /**
      * Converts object of this class to String object with all of it's content.
      * @return Returns converted String.
      */
@@ -64,4 +71,5 @@ public class DepartmentsList {
                 "departmentsList=" + departmentsList +
                 '}';
     }
+
 }

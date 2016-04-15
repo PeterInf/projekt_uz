@@ -18,16 +18,16 @@ import java.io.IOException;
  * <br>
  * You can use this structure to access every single element of
  * a timetable you want starting with main function of this class
- * {@link #importTimetables()}.
+ * {@link #importDepartments()}.
  * <br>
  * For example:
  * <br>
- * new TimetablesImporter().importTimetables().
+ * new DepartmentsListImporter().importDepartments().
  * getDepartmentByName("Wydział Prawa i Administracji").getStudyBranchByName("Administracja").
  * getGroupTimetableByName("11ADM-SP (Administracja stacjonarne-dzienne pierwszego stopnia z tyt. licencjata)").
  * getDayByName("Poniedziałek"));
  */
-public class TimetablesImporter {
+public class DepartmentsListImporter {
 
     private Document htmlContent;
     private String timetablesUrl;
@@ -37,15 +37,15 @@ public class TimetablesImporter {
     /**
      * Class constructor that sets default url to planUz timetables.
      */
-    public TimetablesImporter() {
-        timetablesUrl = "http://plan.uz.zgora.pl/grupy_lista_kierunkow.php";
+    public DepartmentsListImporter(String timetablesUrl) {
+        this.timetablesUrl = timetablesUrl;
     }
 
     /**
      * Main function of this class. It allows you to import every planUz timetable.
      * @return Returns {@link DepartmentsList} which is a root of planUz hierarchy.
      */
-    public DepartmentsList importTimetables() {
+    public DepartmentsList importDepartments() {
         importHtmlContent();
         return getDepartmentsList();
     }
@@ -99,7 +99,7 @@ public class TimetablesImporter {
 
     private StudyBranch getStudyBranch(Element studyBranchElement) {
         String studyBranchName = studyBranchElement.text();
-        String studyBranchUrl = studyBranchElement.attr(HtmlComponentName.URL);
+        String studyBranchUrl = studyBranchElement.attr(HtmlComponentName.ABSOLUTE_URL);
         StudyBranch studyBranch = new StudyBranch(studyBranchName);
 
         GroupsImporter groupsImporter = new GroupsImporter(studyBranchUrl);
