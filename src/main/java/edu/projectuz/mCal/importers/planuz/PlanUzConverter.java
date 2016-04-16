@@ -1,6 +1,7 @@
 package edu.projectuz.mCal.importers.planuz;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
+import edu.projectuz.mCal.helpers.DateHelper;
 import edu.projectuz.mCal.importers.planuz.logic.calendars.CalendarsListImporter;
 import edu.projectuz.mCal.importers.planuz.model.calendars.Calendar;
 import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
@@ -107,8 +108,8 @@ public class PlanUzConverter {
 
     private CalendarEvent getCalendarEvent(TimetableEvent timetableEvent, String date) {
         String title = timetableEvent.getEventName();
-        Date startDate = getDate(date, timetableEvent.getStartTime());
-        Date endDate = getDate(date, timetableEvent.getEndTime());
+        DateTime startDate = getDate(date, timetableEvent.getStartTime());
+        DateTime endDate = getDate(date, timetableEvent.getEndTime());
         String description = getDescription(timetableEvent);
         return new CalendarEvent(title, startDate, endDate, description, "UZ", TimeZone.getTimeZone("Europe/Warsaw"));
     }
@@ -120,12 +121,9 @@ public class PlanUzConverter {
                 timetableEvent.getDayName());
     }
 
-    private Date getDate(String date, String time) {
-        //later on this date formatting can be replaced with DateHelper class
-        //but for now it doesn't work
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd-MM-yyyy HH:mm");
-        DateTime dateTime = formatter.parseDateTime(date + " " + time);
-        return dateTime.toDate();
+    private DateTime getDate(String date, String time) {
+        return DateHelper.stringToDate(date + " " + time, "dd-MM-yyyy HH:mm",
+                TimeZone.getTimeZone("Europe/Warsaw"));
     }
 
     private void addEventsWithCalendar(TimetableEvent timetableEvent, ArrayList<CalendarEvent> calendarEvents) {

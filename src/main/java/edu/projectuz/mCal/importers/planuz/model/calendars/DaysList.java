@@ -63,6 +63,13 @@ public class DaysList {
     }
 
     /**
+     * @return Size of days list
+     */
+    public int size() {
+        return days.size();
+    }
+
+    /**
      * Converts object of this class to String object with all of it's content.
      * @return Returns converted String.
      */

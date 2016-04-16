@@ -11,6 +11,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+/**
+ * This is main clas of Plan UZ importer.
+ * It allows you to import calendars and timetables
+ * using {@link #importData()}.
+ */
 public class PlanUzImporter extends BaseEventImporter {
 
     private String name = "Plan UZ";
@@ -26,11 +31,17 @@ public class PlanUzImporter extends BaseEventImporter {
         super("http://plan.uz.zgora.pl/index.php", ImporterSourceType.WEB);
     }
 
+    /**
+     * @return Name of importer.
+     */
     @Override
     public String getName() {
         return name;
     }
 
+    /**
+     * Imports data - calendars and timetables.
+     */
     @Override
     public void importData() {
         Document homePageContent = Jsoup.parse(getSourceContent());

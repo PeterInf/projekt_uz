@@ -1,8 +1,10 @@
 package edu.projectuz.mCal.helpers;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.TimeZone;
 
 /**
@@ -18,17 +20,10 @@ public class DateHelper {
      * @param timezone   timezone to format date
      * @return formatted date from String
      */
-    public static Date stringToDate(String dateText, String dateFormat, TimeZone timezone) {
-        SimpleDateFormat format = new SimpleDateFormat(dateFormat);
-        Date date = null;
-        // format.setTimeZone(timezone);
-        try {
-            date = format.parse(dateText);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return date;
+    public static DateTime stringToDate(String dateText, String dateFormat, TimeZone timezone) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(dateFormat);
+        DateTime dateTime = dateTimeFormatter.withZone(DateTimeZone.forTimeZone(timezone)).parseDateTime(dateText);
+        return dateTime;
     }
 
     public static TimeZone stringToTimeZone(String timeZoneInString) {
