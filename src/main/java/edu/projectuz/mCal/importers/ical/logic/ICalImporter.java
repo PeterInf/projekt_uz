@@ -27,9 +27,8 @@ public class ICalImporter extends BaseEventImporter {
 
     }
 
-    public void GetContetnt(){
-//te ha st
-
+    public void getContent(){
+        //
     }
 
 
