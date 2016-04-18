@@ -42,6 +42,13 @@ public class CalendarsList {
     }
 
     /**
+     * This method gets calendars list.
+     * @return Calendars list.
+     */
+    public ArrayList<Calendar> getListOfCalendars() {
+        return calendars;
+    }
+    /**
      * This function allows you to search a {@link Calendar} by it's name.
      * If calendar is not found it throws an exception.
      * @param name - name of a {@link Calendar} to find.

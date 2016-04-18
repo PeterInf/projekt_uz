@@ -66,6 +66,11 @@ public class CalendarsListTest {
     }
 
     @Test
+    public void whenGetCalendarsListThenCountMatches() {
+        assertEquals(1, calendarsList.getListOfCalendars().size());
+    }
+
+    @Test
     public void whenConvertedToStringThenMatchThePattern() {
         String calendarsListConvertedToString =
                 "CalendarsList{" +

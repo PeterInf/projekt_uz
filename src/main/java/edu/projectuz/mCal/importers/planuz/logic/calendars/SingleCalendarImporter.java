@@ -68,14 +68,20 @@ class SingleCalendarImporter {
 
     private void importAllTablesNames() {
         String firstTableName = getFirstTableNameFromHeader();
-        tableNames.add(firstTableName);
+        tableNames.add(formatName(firstTableName));
 
         Elements boldTexts = htmlContent.select(HtmlComponentName.BOLD_TEXT);
         int NUMBER_OF_BOLD_TEXTS_TO_SKIP_FOR_NEXT_TABLE_NAME = 5;
         for(int textIndex = CalendarComponentIndex.SECOND_TABLE_NAME; textIndex < boldTexts.size();
             textIndex += NUMBER_OF_BOLD_TEXTS_TO_SKIP_FOR_NEXT_TABLE_NAME) {
-            tableNames.add(boldTexts.get(textIndex).text());
+            tableNames.add(formatName(boldTexts.get(textIndex).text()));
         }
+    }
+
+    private String formatName(String tableName) {
+        final int NAME_PART_INDEX = 0;
+        String[] nameParts = tableName.split(" - ");
+        return nameParts[NAME_PART_INDEX];
     }
 
     /**

@@ -15,28 +15,35 @@ public class Day {
     private int number;
     private String date;
     private String dayAccordingToTimetable;
-    private String getDayAccordingToCalendar;
+    private String dayAccordingToCalendar;
 
     /**
      * Class constructor that simply sets all of the member variables describing day.
      * @param number - Number of a day.
      * @param date - Date of a day.
      * @param dayAccordingToTimetable - Day name according to timetable.
-     * @param getDayAccordingToCalendar - Day name according to calendar.
+     * @param dayAccordingToCalendar - Day name according to calendar.
      */
-    public Day(int number, String date, String dayAccordingToTimetable, String getDayAccordingToCalendar) {
+    public Day(int number, String date, String dayAccordingToTimetable, String dayAccordingToCalendar) {
         this.number = number;
         this.date = date;
         this.dayAccordingToTimetable = dayAccordingToTimetable;
-        this.getDayAccordingToCalendar = getDayAccordingToCalendar;
+        this.dayAccordingToCalendar = dayAccordingToCalendar;
     }
 
     /**
      * Gets value of date variable.
      * @return Returns value of date variable.
      */
-    String getDate() {
+    public String getDate() {
         return date;
+    }
+
+    /**
+     * @return Day name according to calendar.
+     */
+    public String getDayAccordingToCalendar() {
+        return dayAccordingToCalendar;
     }
 
     /**
@@ -49,7 +56,7 @@ public class Day {
                 "number=" + number +
                 ", date=" + date +
                 ", dayAccordingToTimetable='" + dayAccordingToTimetable + '\'' +
-                ", getDayAccordingToCalendar='" + getDayAccordingToCalendar + '\'' +
+                ", dayAccordingToCalendar='" + dayAccordingToCalendar + '\'' +
                 '}';
     }
 
@@ -69,7 +76,7 @@ public class Day {
         if (date != null ? !date.equals(day.date) : day.date != null) return false;
         if (dayAccordingToTimetable != null ? !dayAccordingToTimetable.equals(day.dayAccordingToTimetable) : day.dayAccordingToTimetable != null)
             return false;
-        return getDayAccordingToCalendar != null ? getDayAccordingToCalendar.equals(day.getDayAccordingToCalendar) : day.getDayAccordingToCalendar == null;
+        return dayAccordingToCalendar != null ? dayAccordingToCalendar.equals(day.dayAccordingToCalendar) : day.dayAccordingToCalendar == null;
 
     }
 

@@ -21,8 +21,8 @@ public class SingleCalendarImporterTest {
         Calendar calendar = singleCalendarImporter.importCalendar();
 
         //Assert
-        assertEquals(75, calendar.getDaysListByType("D - Studia stacjonarne").size());
-        assertEquals(40, calendar.getDaysListByType("DI - Studia stacjonarne I-sza połowa sem.").size());
+        assertEquals(75, calendar.getDaysListByType("D").size());
+        assertEquals(40, calendar.getDaysListByType("DI").size());
     }
 
 }

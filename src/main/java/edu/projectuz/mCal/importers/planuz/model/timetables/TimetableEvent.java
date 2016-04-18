@@ -25,6 +25,7 @@ public class TimetableEvent {
      * which is stored in ({@link DaysList}) object.
      */
     private String days;
+    private String dayName;
 
     /**
      * Class constructor that sets all the information about a event.
@@ -50,6 +51,78 @@ public class TimetableEvent {
     }
 
     /**
+     * @return Subgroup name.
+     */
+    public String getSubgroup() {
+        return subgroup;
+    }
+
+    /**
+     * @return Start time for example "9:15".
+     */
+    public String getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * @return End time for example "10:45".
+     */
+    public String getEndTime() {
+        return endTime;
+    }
+
+    /**
+     * @return Event name.
+     */
+    public String getEventName() {
+        return eventName;
+    }
+
+    /**
+     * @return Event type.
+     */
+    public String getEventType() {
+        return eventType;
+    }
+
+    /**
+     * @return Teacher name.
+     */
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    /**
+     * @return Room name.
+     */
+    public String getRoom() {
+        return room;
+    }
+
+    /**
+     * @return Type of days from calendar or dates.
+     */
+    public String getDays() {
+        return days;
+    }
+
+    /**
+     * Sets day name
+     * @param dayName - day of the week
+     */
+    public void setDayName(String dayName) {
+        this.dayName = dayName;
+    }
+
+    /**
+     * Gets day name
+     * @return Day of the week
+     */
+    public String getDayName() {
+        return dayName;
+    }
+
+    /**
      * Converts object of this class to String object with all of it's content.
      * @return Returns converted String.
      */
@@ -64,6 +137,7 @@ public class TimetableEvent {
                 ", teacherName='" + teacherName + '\'' +
                 ", room='" + room + '\'' +
                 ", days='" + days + '\'' +
+                ", dayName='" + dayName + '\'' +
                 '}';
     }
 }

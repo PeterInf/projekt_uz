@@ -90,4 +90,14 @@ public class CalendarTest {
         calendar.getDaysListByType("Type1");
     }
 
+    @Test
+    public void whenContainDayTypeThenTrue() {
+        assertTrue(calendar.isContainingDayType("Type1"));
+    }
+
+    @Test
+    public void whenNotContainDayTypeThenFalse() {
+        assertFalse(calendar.isContainingDayType("Type123"));
+    }
+
 }

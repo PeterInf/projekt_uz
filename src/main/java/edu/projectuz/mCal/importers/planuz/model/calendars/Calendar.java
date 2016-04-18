@@ -77,4 +77,12 @@ public class Calendar {
                 '}';
     }
 
+    public boolean isContainingDayType(String dayType) {
+        for(DaysList daysList : daysLists) {
+            if(daysList.getType().equals(dayType)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
