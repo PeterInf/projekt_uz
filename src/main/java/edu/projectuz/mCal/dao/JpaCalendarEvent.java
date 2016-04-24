@@ -7,35 +7,32 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- * Created by Piotr Różański on 4/21/2016.
- */
 @Repository
 @Transactional
 public class JpaCalendarEvent implements CalendarEventRepository{
 
     @PersistenceContext
-    private EntityManager em;
+    private EntityManager entityManager;
 
 
     @Override
-    public void create(CalendarEvent ce) {
-        em.persist(ce);
+    public void create(CalendarEvent calendarEvent) {
+        entityManager.persist(calendarEvent);
     }
 
     @Override
     public CalendarEvent read(long id) {
-        return em.find(CalendarEvent.class, id);
+        return entityManager.find(CalendarEvent.class, id);
     }
 
     @Override
-    public CalendarEvent update(CalendarEvent emp) {
-        return em.merge(emp);
+    public CalendarEvent update(CalendarEvent calendarEvent) {
+        return entityManager.merge(calendarEvent);
     }
 
     @Override
     public void delete(long id) {
-        CalendarEvent ce=em.find(CalendarEvent.class, id);
-        em.remove(ce);
+        CalendarEvent calendarEvent= entityManager.find(CalendarEvent.class, id);
+        entityManager.remove(calendarEvent);
     }
 }
