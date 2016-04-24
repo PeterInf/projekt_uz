@@ -2,15 +2,27 @@ package edu.projectuz.mCal.core.models;
 
 import org.joda.time.DateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.TimeZone;
 
 /**
  * This class stores information about events.
  */
+@Entity
 public class CalendarEvent {
 
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @Column(nullable=false)
     private DateTime startDate;
     private DateTime endDate;
+
+    @Column(nullable=false)
     private String title;
     private String description;
     private String tag;
