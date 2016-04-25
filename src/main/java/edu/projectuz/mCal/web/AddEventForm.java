@@ -2,15 +2,26 @@ package edu.projectuz.mCal.web;
 
 import org.joda.time.DateTime;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.TimeZone;
 
 public class AddEventForm {
 
+    @NotNull
     private DateTime startDate;
+    @NotNull
     private DateTime endDate;
+    @NotNull
+    @Size(min = 5, max = 16)
     private String title;
+    @NotNull
+    @Size(min = 5)
     private String description;
+    @NotNull
+    @Size(min = 5, max = 16)
     private String tag;
+    @NotNull
     private TimeZone timeZone;
 
     public DateTime getStartDate() {

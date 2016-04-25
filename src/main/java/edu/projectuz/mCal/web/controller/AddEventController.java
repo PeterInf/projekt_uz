@@ -2,12 +2,13 @@ package edu.projectuz.mCal.web.controller;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.dao.CalendarEventRepository;
-import edu.projectuz.mCal.importers.planuz.model.calendars.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -34,7 +35,7 @@ public class AddEventController {
 
     @RequestMapping(value = "/calendar", method = GET)
     public String processDeleteEvent(
-            @Validated CalendarEvent calendarEvent, Errors errors) {
+            @Valid CalendarEvent calendarEvent, Errors errors) {
         if (errors.hasErrors()) {
             return "registerForm";
         }
