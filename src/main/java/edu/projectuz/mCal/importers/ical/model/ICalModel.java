@@ -19,9 +19,7 @@ public class ICalModel {
         this.timeZones = timeZones;
         this.events = events;
     }
-    public ICalModel(){
-
-    }
+    public ICalModel(){}
 
     //region ICalModels Getter and Setters
     public String getVersion() {

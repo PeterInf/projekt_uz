@@ -52,18 +52,9 @@ public class ICalImporter extends BaseEventImporter {
  * @return Returned list of events.
  * */
     public ArrayList<CalendarEvent> getCalendarEventList() throws Exception {
-        InputStream is = new ByteArrayInputStream(getSourceContent().getBytes());
-        CalendarBuilder builder = new CalendarBuilder();
-        Calendar calendar = null;
-        try {
-            calendar = builder.build(is);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParserException e) {
-            e.printStackTrace();
-        }
+        Calendar calendar = buildCalendar();
         ArrayList<VEvent> vevents = calendar.getComponents(Component.VEVENT);
-        ArrayList<CalendarEvent> events = new ArrayList<CalendarEvent>();
+        ArrayList<CalendarEvent> events = new ArrayList<>();
         try {
             for (VEvent ev : vevents) {
                 CalendarEvent event = new CalendarEvent();
@@ -78,5 +69,25 @@ public class ICalImporter extends BaseEventImporter {
             throw new IllegalArgumentException();
         }
         return events;
+    }
+
+    /**
+     * This is a private function of this class.
+     * It is used to build calendar.
+     *
+     * @return Returned calendar.
+     * */
+    private Calendar buildCalendar(){
+        InputStream is = new ByteArrayInputStream(getSourceContent().getBytes());
+        CalendarBuilder builder = new CalendarBuilder();
+        Calendar calendar = null;
+        try {
+            calendar = builder.build(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParserException e) {
+            e.printStackTrace();
+        }
+        return calendar;
     }
 }
