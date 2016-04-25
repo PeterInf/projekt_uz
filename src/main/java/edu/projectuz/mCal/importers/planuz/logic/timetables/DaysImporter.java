@@ -86,22 +86,46 @@ class DaysImporter {
         if(daysList.isEmpty()) {
             daysList = null;
         }
+
+        if(daysList != null) {
+            addDayNamesToEvents(daysList);
+        }
     }
+
+    private void addDayNamesToEvents(ArrayList<Day> daysList) {
+        for(Day day : daysList) {
+            String name = day.getName();
+
+            for(TimetableEvent timetableEvent : day.getEventsList()) {
+                timetableEvent.setDayName(name);
+            }
+        }
+     }
 
     private TimetableEvent convertRowIntoEvent(Element row) {
         Elements columns = row.select(HtmlComponentName.COLUMN);
 
-        String subgroup = columns.get(TimetableComponentIndex.SUBGROUP).text();
+        String subgroup = getFormattedSubgroup(columns.get(TimetableComponentIndex.SUBGROUP).text());
         String startTime = columns.get(TimetableComponentIndex.START_TIME).text();
         String endTime = columns.get(TimetableComponentIndex.END_TIME).text();
         String className = columns.get(TimetableComponentIndex.CLASS_NAME).text();
         String classType = columns.get(TimetableComponentIndex.CLASS_TYPE).text();
         String teacherName = columns.get(TimetableComponentIndex.TEACHER_NAME).text();
         String room = columns.get(TimetableComponentIndex.ROOM).text();
-        String days = columns.get(TimetableComponentIndex.DAYS).text();
+        String days = getFormattedDays(columns.get(TimetableComponentIndex.DAYS).text());
 
         return new TimetableEvent(subgroup, startTime, endTime, className,
                 classType, teacherName, room, days);
+    }
+
+    private String getFormattedSubgroup(String text) {
+        return text.equals(" ") ? "Everyone" : text;
+    }
+
+    private String getFormattedDays(String days) {
+        final int DAYS_PART_INDEX = 0;
+        String[] daysParts = days.split("/");
+        return daysParts[DAYS_PART_INDEX];
     }
 
     private boolean isRowWithDayName(Element row) {
@@ -109,7 +133,6 @@ class DaysImporter {
         int numberOfColumns = row.select(HtmlComponentName.COLUMN).size();
         return numberOfColumns == NUMBER_OF_COLUMNS_IN_ROW_WITH_DAY_NAME;
     }
-
 
     /**
      * This function is kind of tricky to understand.
@@ -134,4 +157,5 @@ class DaysImporter {
 
         return numberOfTables < numberOfTableWithTimetable;
     }
+
 }

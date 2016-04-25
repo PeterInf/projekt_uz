@@ -1,11 +1,12 @@
 package edu.projectuz.mCal.helpers;
 
 import junitparams.JUnitParamsRunner;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
@@ -17,15 +18,13 @@ public class DateHelperTest {
     public void convertStringToDate() throws Exception {
         //Arrange
         String dateText = "04-08-1994 12:44:33";
-        TimeZone timeZone = TimeZone.getTimeZone("Europe/Warsaw");
+        TimeZone timeZone = TimeZone.getTimeZone("America/Los_Angeles");
         String dateFormat = "dd-mm-yyyy HH:mm:ss";
 
-        Calendar cal = Calendar.getInstance();
-        cal.set(1994, Calendar.JANUARY, 4, 12, 44, 33); //Year, month, day of month, hours, minutes and seconds
-        Date expected = cal.getTime();
+        DateTime expected = new DateTime(DateTimeFormat.forPattern(dateFormat).withZone(DateTimeZone.forTimeZone(timeZone)).parseDateTime(dateText));
 
         //Act
-        Date result = DateHelper.stringToDate(dateText, dateFormat, timeZone);
+        DateTime result = DateHelper.stringToDate(dateText, dateFormat, timeZone);
 
         //Assert
         assertEquals(expected.toString(), result.toString());

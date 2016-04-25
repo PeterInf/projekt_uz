@@ -10,6 +10,9 @@ import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.component.VEvent;
+import edu.projectuz.mCal.helpers.DateHelper;
+
+import javax.xml.crypto.Data;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,6 +34,7 @@ public class ICalImporter extends BaseEventImporter {
     }
     public ICalModel iCalModel = new ICalModel();
     private CalendarParserImpl Parser = new CalendarParserImpl();
+    String dateFormat = "yyyyMMdd";
 
     /**
      * This method return name importer.
@@ -58,11 +62,12 @@ public class ICalImporter extends BaseEventImporter {
         try {
             for (VEvent ev : vevents) {
                 CalendarEvent event = new CalendarEvent();
-                //event.setStartDate() // tutaj data
-                //event.setEndDate() // tutaj tysz
-                event.setTitle(ev.getName());//not sure
+                event.setStartDate(DateHelper.stringToDate(ev.getStartDate().toString(), dateFormat,
+                                        DateHelper.stringToTimeZone(ev.getGeographicPos().toString())));
+                event.setStartDate(DateHelper.stringToDate(ev.getEndDate().toString(), dateFormat,
+                                        DateHelper.stringToTimeZone(ev.getGeographicPos().toString())));
+                event.setTitle(ev.getName());
                 event.setDescription(ev.getDescription().getValue());
-                //event.setTimeZone()//;c
                 events.add(event);
             }
         }catch (IllegalArgumentException e) {
@@ -90,4 +95,5 @@ public class ICalImporter extends BaseEventImporter {
         }
         return calendar;
     }
+
 }

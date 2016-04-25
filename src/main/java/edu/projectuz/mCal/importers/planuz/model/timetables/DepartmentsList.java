@@ -55,6 +55,13 @@ public class DepartmentsList {
     }
 
     /**
+     * @return Size of departments list.
+     */
+    public int size() {
+        return departmentsList.size();
+    }
+
+    /**
      * Converts object of this class to String object with all of it's content.
      * @return Returns converted String.
      */
@@ -64,4 +71,5 @@ public class DepartmentsList {
                 "departmentsList=" + departmentsList +
                 '}';
     }
+
 }

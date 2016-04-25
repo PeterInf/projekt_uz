@@ -42,6 +42,13 @@ public class CalendarsList {
     }
 
     /**
+     * This method gets calendars list.
+     * @return Calendars list.
+     */
+    public ArrayList<Calendar> getListOfCalendars() {
+        return calendars;
+    }
+    /**
      * This function allows you to search a {@link Calendar} by it's name.
      * If calendar is not found it throws an exception.
      * @param name - name of a {@link Calendar} to find.
@@ -57,6 +64,13 @@ public class CalendarsList {
     }
 
     /**
+     * @return Size of calendars list
+     */
+    public int size() {
+        return calendars.size();
+    }
+
+    /**
      * Converts object of this class to String object with all of it's content.
      * @return Returns converted String.
      */
@@ -67,4 +81,5 @@ public class CalendarsList {
                 ", calendars=" + calendars +
                 '}';
     }
+
 }
