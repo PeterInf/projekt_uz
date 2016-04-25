@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("edu.projectuz.mCal.importers")
+@ComponentScan("edu.projectuz.mCal.web")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
