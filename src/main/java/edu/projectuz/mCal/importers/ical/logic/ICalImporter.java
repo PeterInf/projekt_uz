@@ -11,8 +11,6 @@ import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.component.VEvent;
 import edu.projectuz.mCal.helpers.DateHelper;
-
-import javax.xml.crypto.Data;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,7 +32,7 @@ public class ICalImporter extends BaseEventImporter {
     }
     public ICalModel iCalModel = new ICalModel();
     private CalendarParserImpl Parser = new CalendarParserImpl();
-    String dateFormat = "yyyyMMdd";
+    private String dateFormat = "yyyyMMdd";
 
     /**
      * This method return name importer.
@@ -68,6 +66,7 @@ public class ICalImporter extends BaseEventImporter {
                                         DateHelper.stringToTimeZone(ev.getGeographicPos().toString())));
                 event.setTitle(ev.getName());
                 event.setDescription(ev.getDescription().getValue());
+                event.setTimeZone(DateHelper.stringToTimeZone(ev.getGeographicPos().toString()));
                 events.add(event);
             }
         }catch (IllegalArgumentException e) {
