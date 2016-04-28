@@ -1,10 +1,12 @@
 package edu.projectuz.mCal.importers.planuz.logic.calendars;
 
 import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
+@Ignore
 public class CalendarsListImporterTest {
 
     @Test

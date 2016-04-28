@@ -3,10 +3,12 @@ package edu.projectuz.mCal.importers.planuz;
 import edu.projectuz.mCal.importers.planuz.logic.timetables.DepartmentsListImporter;
 import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
+@Ignore
 public class PlanUzConverterTest {
 
     private PlanUzConverter planUzConverter;
