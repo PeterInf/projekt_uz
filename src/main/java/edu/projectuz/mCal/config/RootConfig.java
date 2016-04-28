@@ -7,10 +7,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-@Import(DataConfig.class)
-@ComponentScan(basePackages={"edu.projectuz.mCal.importers"},
+@ComponentScan(basePackages={"edu.projectuz.mCal"},
         excludeFilters={
-                @ComponentScan.Filter(type= FilterType.CUSTOM, value= EnableWebMvc.class)
+                @ComponentScan.Filter(type= FilterType.ANNOTATION, value= EnableWebMvc.class)
         })
 public class RootConfig {
 }
