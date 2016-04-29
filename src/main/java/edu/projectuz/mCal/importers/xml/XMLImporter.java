@@ -13,6 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Element;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.io.StringReader;
 
@@ -25,7 +26,7 @@ public class XMLImporter extends BaseEventImporter{
         super(sourcePath, sourceType);
     }
 
-    public ArrayList<CalendarEvent> convertToObject()
+    public ArrayList<CalendarEvent> convertToObject() throws Exception
     {
         String dateFormat = "yyyy/MM/dd HH:mm";
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
@@ -42,16 +43,17 @@ public class XMLImporter extends BaseEventImporter{
                 helperForParser(nodeList, listOfEvents, dateFormat, i);
             }
 
-        } catch (Exception e)
-        {
-            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
             logger.debug(e.getMessage());
+            throw new IllegalArgumentException();
+        } catch (IOException e){
+            logger.debug(e.getMessage());
+            throw new IOException();
         }
         return listOfEvents;
     }
 
     private void helperForParser(NodeList nodeList, ArrayList<CalendarEvent> listOfEvents, String dateFormat, int i) {
-
         CalendarEvent eventObject = new CalendarEvent();
         Node node = nodeList.item(i);
 
@@ -59,16 +61,20 @@ public class XMLImporter extends BaseEventImporter{
 
             Element element = (Element) node;
 
-            eventObject.setTitle(element.getElementsByTagName("summary").item(0).getTextContent().trim());
-            eventObject.setStartDate(DateHelper.stringToDate(element.getElementsByTagName("dtstart").item(0).getTextContent().trim(),
-                    dateFormat, DateHelper.stringToTimeZone(element.getElementsByTagName("tzid").item(0).getTextContent().trim())));
-            eventObject.setEndDate(DateHelper.stringToDate(element.getElementsByTagName("dtend").item(0).getTextContent().trim(),
-                    dateFormat, DateHelper.stringToTimeZone(element.getElementsByTagName("tzid").item(0).getTextContent().trim())));
-            eventObject.setDescription(element.getElementsByTagName("description").item(0).getTextContent().trim());
-            eventObject.setTag(element.getElementsByTagName("tag").item(0).getTextContent().trim());
-            eventObject.setTimeZone(DateHelper.stringToTimeZone(element.getElementsByTagName("tzid").item(0).getTextContent().trim()));
+            mapElements(dateFormat, eventObject, element);
             listOfEvents.add(eventObject);
         }
+    }
+
+    private void mapElements(String dateFormat, CalendarEvent eventObject, Element element) {
+        eventObject.setTitle(element.getElementsByTagName("summary").item(0).getTextContent().trim());
+        eventObject.setStartDate(DateHelper.stringToDate(element.getElementsByTagName("dtstart").item(0).getTextContent().trim(),
+                dateFormat, DateHelper.stringToTimeZone(element.getElementsByTagName("tzid").item(0).getTextContent().trim())));
+        eventObject.setEndDate(DateHelper.stringToDate(element.getElementsByTagName("dtend").item(0).getTextContent().trim(),
+                dateFormat, DateHelper.stringToTimeZone(element.getElementsByTagName("tzid").item(0).getTextContent().trim())));
+        eventObject.setDescription(element.getElementsByTagName("description").item(0).getTextContent().trim());
+        eventObject.setTag(element.getElementsByTagName("tag").item(0).getTextContent().trim());
+        eventObject.setTimeZone(DateHelper.stringToTimeZone(element.getElementsByTagName("tzid").item(0).getTextContent().trim()));
     }
 
     @Override
