@@ -58,7 +58,7 @@ public class XMLImporter extends BaseEventImporter{
         } catch (IllegalArgumentException e) {
             logger.debug(e.getMessage());
             throw new IllegalArgumentException();
-        } catch (IOException e){
+        } catch (IndexOutOfBoundsException e){
             logger.debug(e.getMessage());
             throw new IndexOutOfBoundsException();
         }
