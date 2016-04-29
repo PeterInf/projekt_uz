@@ -37,7 +37,7 @@ public class XMLImporter extends BaseEventImporter{
      * It is used to import all data from .xml file.
      *
      * @return Returned list of events
-     * @throws IOException
+     * @throws IndexOutOfBoundsException
      * @throws IllegalArgumentException
      */
     public ArrayList<CalendarEvent> convertToObject() throws Exception
@@ -60,7 +60,7 @@ public class XMLImporter extends BaseEventImporter{
             throw new IllegalArgumentException();
         } catch (IOException e){
             logger.debug(e.getMessage());
-            throw new IOException();
+            throw new IndexOutOfBoundsException();
         }
         return listOfEvents;
     }
