@@ -4,21 +4,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
-import edu.projectuz.mCal.config.RootConfig.WebPackage;
-import org.springframework.core.type.filter.RegexPatternTypeFilter;
-
-import java.util.regex.Pattern;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-@Import(DataConfig.class)
 @ComponentScan(basePackages={"edu.projectuz.mCal"},
         excludeFilters={
-                @ComponentScan.Filter(type= FilterType.CUSTOM, value= WebPackage.class)
+                @ComponentScan.Filter(type= FilterType.ANNOTATION, value= EnableWebMvc.class)
         })
 public class RootConfig {
-        public static class WebPackage extends RegexPatternTypeFilter{
-                public WebPackage() {
-                        super(Pattern.compile("edu.projectuz.mCal\\.web"));
-                }
-        }
 }
