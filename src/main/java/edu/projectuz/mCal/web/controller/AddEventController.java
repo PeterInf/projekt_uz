@@ -9,9 +9,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
-@RequestMapping("edu.projectuz.mCal")
 public class AddEventController {
     private CalendarEventRepository calendarEventRepository;
 
@@ -20,11 +20,11 @@ public class AddEventController {
         this.calendarEventRepository = calendarEventRepository;
     }
 
-    @RequestMapping(value = "/addEvent", method = GET)
+    @RequestMapping(value = "/addEvent", method = POST)
     public String processAddEvent(@Validated CalendarEvent calendarEvent, Errors errors) {
         if (errors.hasErrors()) {
             return "redirect:/event/error";
         }
-        return "redirect:/event/";
+        return "redirect:/event";
     }
 }

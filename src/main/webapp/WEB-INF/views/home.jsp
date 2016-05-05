@@ -5,7 +5,7 @@
 <body>
     <h1>iCal Generator</h1>
 
-    <form>
+    <form action="/addEvent" method="post">
         Event name:<br>
         <input title="eventName" type="text"><br>
 
@@ -27,7 +27,7 @@
         Description:<br>
         <input title="description" type="text"><br>
 
-        <input title="addEvent" type="button" value="Add event">
+        <input title="addEvent" type="submit" value="Add event">
     </form>
 
     <br>
