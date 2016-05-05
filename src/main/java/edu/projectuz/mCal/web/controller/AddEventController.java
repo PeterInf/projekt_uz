@@ -8,10 +8,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
-
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 @RequestMapping("edu.projectuz.mCal")
@@ -23,23 +20,11 @@ public class AddEventController {
         this.calendarEventRepository = calendarEventRepository;
     }
 
-    @RequestMapping(value = "/calendar", method = POST)
-    public String processAddEvent(
-            @Validated CalendarEvent calendarEvent, Errors errors) {
+    @RequestMapping(value = "/addEvent", method = GET)
+    public String processAddEvent(@Validated CalendarEvent calendarEvent, Errors errors) {
         if (errors.hasErrors()) {
-            return "registerForm";
+            return "redirect:/event/error";
         }
-        calendarEventRepository.create(calendarEvent);
-        return "redirect:/edu.projectuz.mCal/" + calendarEvent.getTitle();
-    }
-
-    @RequestMapping(value = "/calendar", method = GET)
-    public String processDeleteEvent(
-            @Valid CalendarEvent calendarEvent, Errors errors) {
-        if (errors.hasErrors()) {
-            return "registerForm";
-        }
-        calendarEventRepository.create(calendarEvent);
-        return "redirect:/edu.projectuz.mCal/" + calendarEvent.getTitle();
+        return "redirect:/event/";
     }
 }

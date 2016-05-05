@@ -14,7 +14,6 @@ public class JpaCalendarEvent implements CalendarEventRepository{
     @PersistenceContext
     private EntityManager entityManager;
 
-
     @Override
     public void create(CalendarEvent calendarEvent) {
         entityManager.persist(calendarEvent);

@@ -5,18 +5,18 @@
 <body>
     <h1>iCal Generator</h1>
 
-    <form>
+    <form id="addEvent" action="/edu.projectuz.mCal/addEvent" method="GET">
         Event name:<br>
-        <input title="eventName" type="text"><br>
+        <input title="title" type="text"><br>
 
         Start time:<br>
-        <input title="startTime" type="text"><br>
+        <input title="startDate" type="text"><br>
 
         End time:<br>
-        <input title="endTime" type="text"><br>
+        <input title="endDate" type="text"><br>
 
-        Location:<br>
-        <input title="title" type="text"><br>
+        Tag:<br>
+        <input title="tag" type="text"><br>
 
         Time zone:<br>
         <select title="timeZone">
@@ -27,7 +27,7 @@
         Description:<br>
         <input title="description" type="text"><br>
 
-        <input title="addEvent" type="button" value="Add event">
+        <input title="addEvent" type="submit" value="Add event">
         <input title="removeEvent" type="button" value="Remove">
         <br>
         <input title="clearEvents" type="button" value="Clear"><br><br>
