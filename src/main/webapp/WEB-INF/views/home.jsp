@@ -1,3 +1,4 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
     <title>iCal Generator</title>
@@ -5,18 +6,18 @@
 <body>
     <h1>iCal Generator</h1>
 
-    <form action="/addEvent" method="post">
+    <form:form action="/addEvent" method="post" modelAttribute="calendarEvent">
         Event name:<br>
-        <input title="eventName" type="text"><br>
+        <form:input path="title" type="text"/><br>
 
         Start time:<br>
-        <input title="startTime" type="text"><br>
+        <input title="startDate" type="text"><br>
 
         End time:<br>
-        <input title="endTime" type="text"><br>
+        <input title="endDate" type="text"><br>
 
-        Location:<br>
-        <input title="title" type="text"><br>
+        Tag:<br>
+        <form:input path="tag" type="text"/><br>
 
         Time zone:<br>
         <select title="timeZone">
@@ -28,7 +29,14 @@
         <input title="description" type="text"><br>
 
         <input title="addEvent" type="submit" value="Add event">
-    </form>
+        <input title="reset" type="reset" value="Reset">
+    </form:form>
+
+    <br>
+    <textarea title="events" rows="10" cols="50">
+        Title: ${title}
+        Tag:  ${tag}
+    </textarea>
 
     <br>
     <input title="removeEvent" type="button" value="Remove">
