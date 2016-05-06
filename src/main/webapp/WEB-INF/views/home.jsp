@@ -1,4 +1,5 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <title>iCal Generator</title>
@@ -7,7 +8,7 @@
     <h1>iCal Generator</h1>
 
     <form:form action="/addEvent" method="post" modelAttribute="calendarEvent">
-        Event name:<br>
+        Title:<br>
         <form:input path="title" type="text"/><br>
 
         Start time:<br>
@@ -26,17 +27,33 @@
         </select><br>
 
         Description:<br>
-        <input title="description" type="text"><br>
+        <form:input path="description" type="text"/><br>
 
         <input title="addEvent" type="submit" value="Add event">
         <input title="reset" type="reset" value="Reset">
     </form:form>
 
     <br>
-    <textarea title="events" rows="10" cols="50">
-        Title: ${title}
-        Tag:  ${tag}
-    </textarea>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Start time</th>
+            <th>End time</th>
+            <th>Tag</th>
+            <th>Time zone</th>
+            <th>Description</th>
+        </tr>
+        <c:forEach items="${calendarEvents}" var="calendarEvent">
+            <tr>
+                <td>${calendarEvent.title}</td>
+                <td></td>
+                <td></td>
+                <td>${calendarEvent.tag}</td>
+                <td></td>
+                <td>${calendarEvent.description}</td>
+            </tr>
+        </c:forEach>
+    </table>
 
     <br>
     <input title="removeEvent" type="button" value="Remove">
