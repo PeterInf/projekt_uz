@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ArrayListRepository implements CalendarEventRepository {
+public class ArrayListEventsRepository implements CalendarEventRepository {
 
     private List<CalendarEvent> calendarEventList = new ArrayList<>();
     @Override

@@ -11,20 +11,20 @@
         Title:<br>
         <form:input path="title" type="text"/><br>
 
-        Start time:<br>
-        <input title="startDate" type="text"><br>
+        Start time (dd-mm-yyyy hh:mm:ss):<br>
+        <form:input path="startDate" type="text"/><br>
 
-        End time:<br>
-        <input title="endDate" type="text"><br>
+        End time (dd-mm-yyyy hh:mm:ss):<br>
+        <form:input path="endDate" type="text"/><br>
 
         Tag:<br>
         <form:input path="tag" type="text"/><br>
 
         Time zone:<br>
-        <select title="timeZone">
-            <option value="GMT +1:00">GMT +1:00</option>
-            <option value="GMT +2:00">GMT +2:00</option>
-        </select><br>
+        <form:select path="timeZone">
+            <option value="Europe/Warsaw">Europe/Warsaw</option>
+            <option value="America/Mexico_City">America/Mexico_City</option>
+        </form:select><br>
 
         Description:<br>
         <form:input path="description" type="text"/><br>
@@ -36,6 +36,7 @@
     <br>
     <table border="1">
         <tr>
+            <th>ID</th>
             <th>Title</th>
             <th>Start time</th>
             <th>End time</th>
@@ -45,11 +46,12 @@
         </tr>
         <c:forEach items="${calendarEvents}" var="calendarEvent">
             <tr>
+                <td></td>
                 <td>${calendarEvent.title}</td>
-                <td></td>
-                <td></td>
+                <td>${calendarEvent.startDate}</td>
+                <td>${calendarEvent.endDate}></td>
                 <td>${calendarEvent.tag}</td>
-                <td></td>
+                <td>${calendarEvent.timeZone}</td>
                 <td>${calendarEvent.description}</td>
             </tr>
         </c:forEach>

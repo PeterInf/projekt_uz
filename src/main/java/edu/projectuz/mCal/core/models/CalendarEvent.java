@@ -1,5 +1,6 @@
 package edu.projectuz.mCal.core.models;
 
+import edu.projectuz.mCal.helpers.DateHelper;
 import org.joda.time.DateTime;
 
 import javax.persistence.Column;
@@ -69,6 +70,11 @@ public class CalendarEvent {
 
     public void setStartDate(DateTime startDate) {
         this.startDate = startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = DateHelper.stringToDate(startDate, "dd-mm-yyyy HH:mm:ss",
+                TimeZone.getTimeZone("America/Los_Angeles"));
     }
 
     public DateTime getEndDate() {

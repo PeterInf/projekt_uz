@@ -1,7 +1,7 @@
 package edu.projectuz.mCal.web.controller;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
-import edu.projectuz.mCal.dao.ArrayListRepository;
+import edu.projectuz.mCal.dao.ArrayListEventsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class HomeController {
 
     @Autowired
-    private ArrayListRepository repository;
+    private ArrayListEventsRepository repository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
