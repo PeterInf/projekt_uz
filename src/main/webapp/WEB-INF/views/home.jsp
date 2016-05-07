@@ -1,65 +1,75 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>iCal Generator</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <meta charset="utf-8">
 </head>
 <body>
-    <h1>iCal Generator</h1>
+    <div class="page-header text-center">
+        <h1>iCal Generator</h1>
+        <p>Import from XML, CSV iCal and Plan UZ</p>
+    </div>
+    <div class="container">
+        <form:form action="/addEvent" method="post" modelAttribute="calendarEvent">
+            Title:<br>
+            <form:input path="title" type="text"/><br>
 
-    <form:form action="/addEvent" method="post" modelAttribute="calendarEvent">
-        Title:<br>
-        <form:input path="title" type="text"/><br>
+            Start time:<br>
+            <form:input path="startDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"/><br>
 
-        Start time (dd-mm-yyyy hh:mm:ss):<br>
-        <form:input path="startDate" type="text"/><br>
+            End time:<br>
+            <form:input path="endDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"/><br>
 
-        End time (dd-mm-yyyy hh:mm:ss):<br>
-        <form:input path="endDate" type="text"/><br>
+            Tag:<br>
+            <form:input path="tag" type="text"/><br>
 
-        Tag:<br>
-        <form:input path="tag" type="text"/><br>
+            Time zone:<br>
+            <form:select path="timeZone">
+                <option value="Europe/Warsaw">Europe/Warsaw</option>
+                <option value="America/Mexico_City">America/Mexico_City</option>
+            </form:select><br>
 
-        Time zone:<br>
-        <form:select path="timeZone">
-            <option value="Europe/Warsaw">Europe/Warsaw</option>
-            <option value="America/Mexico_City">America/Mexico_City</option>
-        </form:select><br>
+            Description:<br>
+            <form:input path="description" type="text"/><br><br>
 
-        Description:<br>
-        <form:input path="description" type="text"/><br>
+            <input title="addEvent" type="submit" value="Add event">
+            <input title="reset" type="reset" value="Reset">
+        </form:form>
+    </div>
 
-        <input title="addEvent" type="submit" value="Add event">
-        <input title="reset" type="reset" value="Reset">
-    </form:form>
-
-    <br>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Start time</th>
-            <th>End time</th>
-            <th>Tag</th>
-            <th>Time zone</th>
-            <th>Description</th>
-        </tr>
-        <c:forEach items="${calendarEvents}" var="calendarEvent">
+    <div class="container">
+        <table class="table table-hover">
             <tr>
-                <td></td>
-                <td>${calendarEvent.title}</td>
-                <td>${calendarEvent.startDate}</td>
-                <td>${calendarEvent.endDate}></td>
-                <td>${calendarEvent.tag}</td>
-                <td>${calendarEvent.timeZone}</td>
-                <td>${calendarEvent.description}</td>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Start time</th>
+                <th>End time</th>
+                <th>Tag</th>
+                <th>Time zone</th>
+                <th>Description</th>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach items="${calendarEvents}" var="calendarEvent">
+                <tr>
+                    <td></td>
+                    <td>${calendarEvent.title}</td>
+                    <td>${calendarEvent.startDate}</td>
+                    <td>${calendarEvent.endDate}</td>
+                    <td>${calendarEvent.tag}</td>
+                    <td>${calendarEvent.timeZone.ID}</td>
+                    <td>${calendarEvent.description}</td>
+                </tr>
+            </c:forEach>
+        </table>
 
-    <br>
-    <input title="removeEvent" type="button" value="Remove">
-    <input title="clearEvents" type="button" value="Clear"><br><br>
+        <br>
+        <input title="removeEvent" type="button" value="Remove">
+        <input title="clearEvents" type="button" value="Clear"><br><br>
+    </div>
+
 
     <select title="fileType">
         <option selected="true" style="display:none;">From file...</option>

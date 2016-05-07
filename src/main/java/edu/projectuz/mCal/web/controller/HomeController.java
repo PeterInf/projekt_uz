@@ -27,6 +27,7 @@ public class HomeController {
     public String addEventSubmit(@ModelAttribute("calendarEvent") CalendarEvent calendarEvent, Model model) {
         repository.create(calendarEvent);
         model.addAttribute("calendarEvents", repository.getAll());
+        model.addAttribute("calendarEvent", new CalendarEvent());
         return "home";
     }
 }
