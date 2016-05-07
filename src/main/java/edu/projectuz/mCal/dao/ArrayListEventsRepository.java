@@ -33,4 +33,8 @@ public class ArrayListEventsRepository implements CalendarEventRepository {
     public List<CalendarEvent> getAll() {
         return calendarEventList;
     }
+
+    public void deleteAll() {
+        calendarEventList = new ArrayList<>();
+    }
 }

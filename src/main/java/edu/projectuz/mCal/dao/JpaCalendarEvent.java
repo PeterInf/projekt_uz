@@ -34,4 +34,9 @@ public class JpaCalendarEvent implements CalendarEventRepository{
         CalendarEvent calendarEvent= entityManager.find(CalendarEvent.class, id);
         entityManager.remove(calendarEvent);
     }
+
+    @Override
+    public void deleteAll() {
+        //TODO:
+    }
 }
