@@ -5,7 +5,7 @@ package edu.projectuz.mCal.importers.csv.model;
  */
 public final class CSVSections {
 
-    private CSVSections(){
+    private CSVSections() {
 
     }
 

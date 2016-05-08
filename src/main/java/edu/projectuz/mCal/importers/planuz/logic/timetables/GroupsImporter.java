@@ -2,7 +2,6 @@ package edu.projectuz.mCal.importers.planuz.logic.timetables;
 
 import edu.projectuz.mCal.importers.planuz.logic.HtmlComponentName;
 import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
-import edu.projectuz.mCal.importers.planuz.model.timetables.StudyBranch;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,7 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * This class is used for importing timetables of every group from one {@link StudyBranch}.
+ * This class is used for importing timetables of
+ * every group from one {@link StudyBranch}.
  * It is used by {@link DepartmentsListImporter}
  */
 class GroupsImporter {
@@ -24,15 +24,18 @@ class GroupsImporter {
 
     /**
      * Class constructor which simply sets a value of url variable.
-     * @param url - stores information about url address of
-     *            HTML content with every group of particular {@link StudyBranch}
+     *
+     * @param anUrl - stores information about url address of
+     *              HTML content with every group
+     *              of particular {@link StudyBranch}
      */
-    GroupsImporter(String url) {
-        this.url = url;
+    GroupsImporter(final String anUrl) {
+        this.url = anUrl;
     }
 
     /**
      * Main function of this class. It imports
+     *
      * @return Returns a list of {@link GroupTimetable} objects that
      * stores information about every group from particular {@link StudyBranch}
      */
@@ -51,12 +54,14 @@ class GroupsImporter {
     }
 
     private void importTable() {
-        Element table = htmlContent.select(HtmlComponentName.TABLE).get(TimetableComponentIndex.GROUPS_TABLE);
+        Element table = htmlContent.select(HtmlComponentName.TABLE).
+                get(TimetableComponentIndex.GROUPS_TABLE);
         Elements rows = table.select(HtmlComponentName.ROW);
 
-        for(Element row : rows) {
+        for (Element row : rows) {
             String groupName = row.text();
-            String groupUrl = row.select(HtmlComponentName.ADDRESS).attr(HtmlComponentName.ABSOLUTE_URL);
+            String groupUrl = row.select(HtmlComponentName.ADDRESS).
+                    attr(HtmlComponentName.ABSOLUTE_URL);
 
             GroupTimetable groupTimetable = new GroupTimetable(groupName);
             DaysImporter daysImporter = new DaysImporter(groupUrl);

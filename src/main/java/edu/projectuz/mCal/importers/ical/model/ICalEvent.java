@@ -77,7 +77,8 @@ public class ICalEvent {
         return eventAlarms;
     }
 
-    public final void setEventAlarms(final ArrayList<ICalEventAlarm> anEventAlarms) {
+    public final void setEventAlarms(
+            final ArrayList<ICalEventAlarm> anEventAlarms) {
         this.eventAlarms = anEventAlarms;
     }
     //endregion

@@ -2,8 +2,11 @@ package edu.projectuz.mCal.importers.base;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
 import java.net.URL;
 
 /**
@@ -42,7 +45,8 @@ public abstract class BaseEventImporter implements EventImporter {
     public abstract void importData();
 
     private BufferedReader getReader(final String sourcePath,
-                                     final ImporterSourceType sourceType) throws Exception {
+                                     final ImporterSourceType sourceType)
+            throws Exception {
         logger.debug(String.format(
                 "Trying to create reader for importer %s", getName()));
 
@@ -78,7 +82,8 @@ public abstract class BaseEventImporter implements EventImporter {
                                      final ImporterSourceType sourceType) {
         BufferedReader reader;
         StringBuilder builder = new StringBuilder();
-        logger.debug(String.format("Start read file from source: %s", sourcePath));
+        logger.debug(String.format(
+                "Start read file from source: %s", sourcePath));
 
         try {
 

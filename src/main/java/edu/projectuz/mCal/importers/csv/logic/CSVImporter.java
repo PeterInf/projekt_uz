@@ -23,7 +23,8 @@ public class CSVImporter extends BaseEventImporter {
      * @param sourceType specifies the type of
      *                   resource {@link ImporterSourceType}.
      */
-    protected CSVImporter(final String sourcePath, final ImporterSourceType sourceType) {
+    protected CSVImporter(final String sourcePath,
+                          final ImporterSourceType sourceType) {
         super(sourcePath, sourceType);
     }
 
@@ -44,7 +45,8 @@ public class CSVImporter extends BaseEventImporter {
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
         CSVParser parser;
         try {
-            parser = new CSVParser(new StringReader(getSourceContent()), format);
+            parser = new CSVParser(new StringReader(
+                    getSourceContent()), format);
             for (CSVRecord csvRecord : parser) {
                 helperForParser(csvRecord, listOfEvents, dateFormat);
             }

@@ -12,7 +12,7 @@ import java.util.TimeZone;
  */
 public final class DateHelper {
 
-    private DateHelper(){
+    private DateHelper() {
 
     }
 
@@ -25,7 +25,8 @@ public final class DateHelper {
      * @return formatted date from String
      */
     public static DateTime stringToDate(final String dateText,
-                                        final String dateFormat, final TimeZone timezone) {
+                                        final String dateFormat,
+                                        final TimeZone timezone) {
         DateTimeFormatter dateTimeFormatter =
                 DateTimeFormat.forPattern(dateFormat);
         DateTime dateTime = dateTimeFormatter.withZone(DateTimeZone.

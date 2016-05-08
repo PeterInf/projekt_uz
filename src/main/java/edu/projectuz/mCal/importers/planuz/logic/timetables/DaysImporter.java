@@ -1,9 +1,7 @@
 package edu.projectuz.mCal.importers.planuz.logic.timetables;
 
 import edu.projectuz.mCal.importers.planuz.logic.HtmlComponentName;
-import edu.projectuz.mCal.importers.planuz.model.calendars.DaysList;
 import edu.projectuz.mCal.importers.planuz.model.timetables.Day;
-import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
 import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableEvent;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -25,16 +23,20 @@ class DaysImporter {
 
     /**
      * Class constructor which simply sets a value of url variable.
-     * @param url - stores information about url address of
-     *            HTML content with every {@link Day} of particular {@link GroupTimetable}.
+     *
+     * @param anUrl - stores information about url address of
+     *              HTML content with every {@link Day} of
+     *              particular {@link GroupTimetable}.
      */
-    DaysImporter(String url) {
-        this.url = url;
+    DaysImporter(final String anUrl) {
+        this.url = anUrl;
     }
 
     /**
      * Main function of this class.
-     * @return Returns a list of {@link Day} objects from particular {@link GroupTimetable}.
+     *
+     * @return Returns a list of {@link Day}
+     * objects from particular {@link GroupTimetable}.
      */
     ArrayList<Day> importDays() {
         importHtmlContent();
@@ -51,10 +53,11 @@ class DaysImporter {
     }
 
     private void importTable() {
-        if(isTimetableEmpty()) {
+        if (isTimetableEmpty()) {
             daysList = null;
         } else {
-            Element table = htmlContent.select(HtmlComponentName.TABLE).get(getTableIndex());
+            Element table = htmlContent.select(HtmlComponentName.TABLE).
+                    get(getTableIndex());
             Elements rows = table.select(HtmlComponentName.ROW);
             rows.remove(TimetableComponentIndex.ROW_WITH_HEADERS);
             importDaysListFromRows(rows);
@@ -65,10 +68,10 @@ class DaysImporter {
         return htmlContent.select(HtmlComponentName.TABLE).size() - 1;
     }
 
-    private void importDaysListFromRows(Elements rows) {
+    private void importDaysListFromRows(final Elements rows) {
         Day day = null;
-        for(Element row : rows) {
-            if(isRowWithDayName(row)) {
+        for (Element row : rows) {
+            if (isRowWithDayName(row)) {
                 daysList.add(day);
                 String dayName = row.text();
                 day = new Day(dayName);
@@ -79,56 +82,65 @@ class DaysImporter {
         }
 
         daysList.add(day);
-        if(!daysList.isEmpty()) {
+        if (!daysList.isEmpty()) {
             daysList.remove(TimetableComponentIndex.NULL_ELEMENT);
         }
 
-        if(daysList.isEmpty()) {
+        if (daysList.isEmpty()) {
             daysList = null;
         }
 
-        if(daysList != null) {
+        if (daysList != null) {
             addDayNamesToEvents(daysList);
         }
     }
 
-    private void addDayNamesToEvents(ArrayList<Day> daysList) {
-        for(Day day : daysList) {
+    private void addDayNamesToEvents(final ArrayList<Day> aDaysList) {
+        for (Day day : aDaysList) {
             String name = day.getName();
 
-            for(TimetableEvent timetableEvent : day.getEventsList()) {
+            for (TimetableEvent timetableEvent : day.getEventsList()) {
                 timetableEvent.setDayName(name);
             }
         }
-     }
+    }
 
-    private TimetableEvent convertRowIntoEvent(Element row) {
+    private TimetableEvent convertRowIntoEvent(final Element row) {
         Elements columns = row.select(HtmlComponentName.COLUMN);
 
-        String subgroup = getFormattedSubgroup(columns.get(TimetableComponentIndex.SUBGROUP).text());
-        String startTime = columns.get(TimetableComponentIndex.START_TIME).text();
-        String endTime = columns.get(TimetableComponentIndex.END_TIME).text();
-        String className = columns.get(TimetableComponentIndex.CLASS_NAME).text();
-        String classType = columns.get(TimetableComponentIndex.CLASS_TYPE).text();
-        String teacherName = columns.get(TimetableComponentIndex.TEACHER_NAME).text();
-        String room = columns.get(TimetableComponentIndex.ROOM).text();
-        String days = getFormattedDays(columns.get(TimetableComponentIndex.DAYS).text());
+        String subgroup = getFormattedSubgroup(
+                columns.get(TimetableComponentIndex.SUBGROUP).text());
+        String startTime = columns.get(
+                TimetableComponentIndex.START_TIME).text();
+        String endTime = columns.get(
+                TimetableComponentIndex.END_TIME).text();
+        String className = columns.get(
+                TimetableComponentIndex.CLASS_NAME).text();
+        String classType = columns.get(
+                TimetableComponentIndex.CLASS_TYPE).text();
+        String teacherName = columns.get(
+                TimetableComponentIndex.TEACHER_NAME).text();
+        String room = columns.get(
+                TimetableComponentIndex.ROOM).text();
+        String days = getFormattedDays(columns.get(
+                TimetableComponentIndex.DAYS).text());
 
-        return new TimetableEvent(subgroup, startTime, endTime, className,
+        return new TimetableEvent(subgroup,
+                startTime, endTime, className,
                 classType, teacherName, room, days);
     }
 
-    private String getFormattedSubgroup(String text) {
+    private String getFormattedSubgroup(final String text) {
         return text.equals(" ") ? "Everyone" : text;
     }
 
-    private String getFormattedDays(String days) {
+    private String getFormattedDays(final String days) {
         final int DAYS_PART_INDEX = 0;
         String[] daysParts = days.split("/");
         return daysParts[DAYS_PART_INDEX];
     }
 
-    private boolean isRowWithDayName(Element row) {
+    private boolean isRowWithDayName(final Element row) {
         int NUMBER_OF_COLUMNS_IN_ROW_WITH_DAY_NAME = 1;
         int numberOfColumns = row.select(HtmlComponentName.COLUMN).size();
         return numberOfColumns == NUMBER_OF_COLUMNS_IN_ROW_WITH_DAY_NAME;
@@ -151,11 +163,10 @@ class DaysImporter {
         int numberOfTableWithTimetable = NORMAL_TIMETABLE_POSITION;
 
         //change of position when there's additional table
-        if (numberOfTables == WITH_ADDITIONAL_TABLE){
+        if (numberOfTables == WITH_ADDITIONAL_TABLE) {
             numberOfTableWithTimetable = WITH_ADDITIONAL_TABLE;
         }
 
         return numberOfTables < numberOfTableWithTimetable;
     }
-
 }

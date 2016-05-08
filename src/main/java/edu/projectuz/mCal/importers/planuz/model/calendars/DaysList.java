@@ -17,45 +17,50 @@ public class DaysList {
 
     /**
      * Class constructor. Simply sets a value of type variable.
-     * @param type - name of days type.
+     *
+     * @param aType - name of days type.
      */
-    public DaysList(String type) {
-        this.type = type;
+    public DaysList(final String aType) {
+        this.type = aType;
     }
 
     /**
      * Adds single {@link Day} object passed by parameter to the list of days.
+     *
      * @param day - {@link Day} object to add.
      */
-    public void addDay(Day day) {
+    public final void addDay(final Day day) {
         days.add(day);
     }
 
     /**
      * Get value of type variable.
+     *
      * @return Returns value of type variable.
      */
-    public String getType() {
+    public final String getType() {
         return type;
     }
 
     /**
      * Get value of days variable.
+     *
      * @return Returns list of days.
      */
-    public ArrayList<Day> getDays() {
+    public final ArrayList<Day> getDays() {
         return days;
     }
 
     /**
      * This function allows you to search for a day by it's date.
      * If there's no day with this date it throws an exception.
+     *
      * @param date - Date of a {@link Day} to find.
      * @return Returns day that has been found.
      */
-    public Day getDayByDate(String date) throws Exception {
-        for(Day day : days) {
-            if(day.getDate().equals(date)) {
+    public final Day getDayByDate(final String date) throws Exception {
+        for (Day day : days) {
+            if (day.getDate().equals(date)) {
                 return day;
             }
         }
@@ -65,20 +70,20 @@ public class DaysList {
     /**
      * @return Size of days list
      */
-    public int size() {
+    public final int size() {
         return days.size();
     }
 
     /**
      * Converts object of this class to String object with all of it's content.
+     *
      * @return Returns converted String.
      */
     @Override
-    public String toString() {
-        return "DaysList{" +
-                "type='" + type + '\'' +
-                ", days=" + days +
-                '}';
+    public final String toString() {
+        return "DaysList{" + "type='"
+                + type + '\'' + ", days="
+                + days + '}';
     }
 
 }
