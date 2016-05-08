@@ -9,30 +9,31 @@ import javax.persistence.PersistenceContext;
 
 @Repository
 @Transactional
-public class JpaCalendarEvent implements CalendarEventRepository{
+public class JpaCalendarEvent implements CalendarEventRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
 
     @Override
-    public void create(CalendarEvent calendarEvent) {
+    public final void create(final CalendarEvent calendarEvent) {
         entityManager.persist(calendarEvent);
     }
 
     @Override
-    public CalendarEvent read(long id) {
+    public final CalendarEvent read(final long id) {
         return entityManager.find(CalendarEvent.class, id);
     }
 
     @Override
-    public CalendarEvent update(CalendarEvent calendarEvent) {
+    public final CalendarEvent update(final CalendarEvent calendarEvent) {
         return entityManager.merge(calendarEvent);
     }
 
     @Override
-    public void delete(long id) {
-        CalendarEvent calendarEvent= entityManager.find(CalendarEvent.class, id);
+    public final void delete(final long id) {
+        CalendarEvent calendarEvent =
+                entityManager.find(CalendarEvent.class, id);
         entityManager.remove(calendarEvent);
     }
 }
