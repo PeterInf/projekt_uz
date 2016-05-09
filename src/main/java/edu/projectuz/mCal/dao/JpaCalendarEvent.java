@@ -14,7 +14,6 @@ public class JpaCalendarEvent implements CalendarEventRepository{
     @PersistenceContext
     private EntityManager entityManager;
 
-
     @Override
     public void create(CalendarEvent calendarEvent) {
         entityManager.persist(calendarEvent);
@@ -34,5 +33,10 @@ public class JpaCalendarEvent implements CalendarEventRepository{
     public void delete(long id) {
         CalendarEvent calendarEvent= entityManager.find(CalendarEvent.class, id);
         entityManager.remove(calendarEvent);
+    }
+
+    @Override
+    public void deleteAll() {
+        //TODO:
     }
 }
