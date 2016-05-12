@@ -19,24 +19,29 @@
                 <form:form action="addEvent" method="post" modelAttribute="calendarEvent">
                     Title:<br>
                     <form:input path="title" type="text"/><br>
+                    <form:errors path="title"/><br>
 
                     Start time:<br>
                     <form:input path="startDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"/><br>
+                    <form:errors path="startDate"/><br>
 
                     End time:<br>
                     <form:input path="endDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"/><br>
+                    <form:errors path="endDate"/><br>
 
                     Tag:<br>
                     <form:input path="tag" type="text"/><br>
+                    <form:errors path="tag"/><br>
 
                     Time zone:<br>
                     <form:select path="timeZone">
                         <option value="Europe/Warsaw">Europe/Warsaw</option>
                         <option value="America/Mexico_City">America/Mexico_City</option>
-                    </form:select><br>
+                    </form:select><br><br>
 
                     Description:<br>
-                    <form:input path="description" type="text"/><br><br>
+                    <form:input path="description" type="text"/><br>
+                    <form:errors path="description"/><br>
 
                     <input title="addEvent" type="submit" value="Add event">
                     <input title="clear" type="reset" value="Clear">

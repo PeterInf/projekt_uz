@@ -1,6 +1,7 @@
 package edu.projectuz.mCal.core.models;
 
 import edu.projectuz.mCal.helpers.DateHelper;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.TimeZone;
 
@@ -22,23 +24,24 @@ public class CalendarEvent {
     private int id;
 
     @Column(nullable=false)
-    @NotNull
-    private DateTime startDate;
-    @NotNull
-    private DateTime endDate;
+    @NotNull @Size(min=1, max=25, message="Error")
+    private String title;
 
     @Column(nullable=false)
-    @NotNull
-    @Size(min=5, max=16, message="{title.size}")
-    private String title;
-    @NotNull
-    @Size(min=5, message="{description.size}")
-    private String description;
-    @NotNull
-    @Size(min=5, max=16, message="{tag.size}")
+    @NotNull(message="Error")
+    private DateTime startDate;
+
+    @NotNull(message="Error")
+    private DateTime endDate;
+
+    @NotNull @Size(min=1, max=25, message="Error")
     private String tag;
+
     @NotNull
     private TimeZone timeZone;
+
+    @NotNull @Size(min=1, message="Error")
+    private String description;
 
     /**
      * Default constructor takes to create an object in CSVImporter class.
