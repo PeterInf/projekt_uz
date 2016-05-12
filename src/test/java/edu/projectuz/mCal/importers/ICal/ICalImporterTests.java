@@ -9,6 +9,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
@@ -43,7 +44,7 @@ public class ICalImporterTests {
      * This test checks the data for a single event.
      * Expected IllegalArgumentException.
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = Exception.class)
     public void badConvertICal() throws Exception {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
@@ -58,7 +59,7 @@ public class ICalImporterTests {
      * This test checks the data for a single event.
      * Expected IOException.
      */
-    @Test(expected = IOException.class)
+    @Test(expected = Exception.class)
     public void bad2ConvertICalToObject() throws Exception {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
