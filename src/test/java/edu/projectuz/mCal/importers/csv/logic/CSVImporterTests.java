@@ -40,7 +40,6 @@ public class CSVImporterTests {
                 .withZone(DateTimeZone.forID("Europe/Warsaw")), "OPIS", "f", TimeZone.getTimeZone("Europe/Warsaw"));
 
         //Assert
-        System.err.println();
         assertEquals(calendarEvent, csvImporter.convertCsvToObject().get(0));
         assertEquals(calendarEvent1, csvImporter.convertCsvToObject().get(1));
     }
