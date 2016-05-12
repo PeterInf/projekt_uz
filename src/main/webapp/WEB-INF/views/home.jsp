@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-sm-2">
             <div class="container">
-                <form:form action="/addEvent" method="post" modelAttribute="calendarEvent">
+                <form:form action="addEvent" method="post" modelAttribute="calendarEvent">
                     Title:<br>
                     <form:input path="title" type="text"/><br>
 
@@ -71,7 +71,7 @@
 
                 <br>
                 <input title="removeEvent" type="button" value="Remove">
-                <input onclick="location.href='/clearEvents'" title="clearEvents" type="button" value="Clear"><br><br>
+                <input onclick="location.href='clearEvents'" title="clearEvents" type="button" value="Clear"><br><br>
             </div>
         </div>
     </div>
