@@ -3,9 +3,7 @@ package edu.projectuz.mCal.importers.ical.logic;
 import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.importers.base.BaseEventImporter;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
-import edu.projectuz.mCal.importers.ical.model.ICalModel;
 import net.fortuna.ical4j.data.CalendarBuilder;
-import net.fortuna.ical4j.data.CalendarParserImpl;
 import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.Component;
@@ -27,12 +25,10 @@ public class ICalImporter extends BaseEventImporter {
      * @param sourceType specifies the type of resource {@link ImporterSourceType}.
      */
 
-    protected ICalImporter(String sourcePath, ImporterSourceType sourceType) {
+    public ICalImporter(String sourcePath, ImporterSourceType sourceType) {
         super(sourcePath, sourceType);
     }
-    public ICalModel iCalModel = new ICalModel();
-    private CalendarParserImpl Parser = new CalendarParserImpl();
-    private String dateFormat = "yyyyMMdd";
+    private String dateFormat = "yyyyMMddHHmmss";
 
     /**
      * This method return name importer.
@@ -53,20 +49,19 @@ public class ICalImporter extends BaseEventImporter {
  *
  * @return Returned list of events.
  * */
-    public ArrayList<CalendarEvent> getCalendarEventList() throws Exception {
+    public ArrayList<CalendarEvent> convertICalToObject() throws Exception {
         Calendar calendar = buildCalendar();
         ArrayList<VEvent> vevents = calendar.getComponents(Component.VEVENT);
         ArrayList<CalendarEvent> events = new ArrayList<>();
         try {
             for (VEvent ev : vevents) {
                 CalendarEvent event = new CalendarEvent();
-                event.setStartDate(DateHelper.stringToDate(ev.getStartDate().toString(), dateFormat,
-                                        DateHelper.stringToTimeZone(ev.getGeographicPos().toString())));
-                event.setStartDate(DateHelper.stringToDate(ev.getEndDate().toString(), dateFormat,
-                                        DateHelper.stringToTimeZone(ev.getGeographicPos().toString())));
-                event.setTitle(ev.getName());
+                event.setStartDate(DateHelper.stringToDate(ICalHelper.getGroupFromDate(ev.getStartDate().toString(), "date") + ICalHelper.getGroupFromDate(ev.getStartDate().toString(), "time"), dateFormat));
+                event.setEndDate(DateHelper.stringToDate(ICalHelper.getGroupFromDate(ev.getStartDate().toString(), "date") + ICalHelper.getGroupFromDate(ev.getStartDate().toString(), "time"), dateFormat));
+                event.setTitle(ev.getDescription().getValue());
                 event.setDescription(ev.getDescription().getValue());
-                event.setTimeZone(DateHelper.stringToTimeZone(ev.getGeographicPos().toString()));
+                event.setTimeZone(DateHelper.stringToTimeZone(ICalHelper.getGroupFromDate(ev.getEndDate().toString(), "timezone")));
+                event.setTag("");
                 events.add(event);
             }
         }catch (IllegalArgumentException e) {
