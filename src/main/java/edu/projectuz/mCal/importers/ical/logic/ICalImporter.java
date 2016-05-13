@@ -4,13 +4,11 @@ import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.importers.base.BaseEventImporter;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
 import net.fortuna.ical4j.data.CalendarBuilder;
-import net.fortuna.ical4j.data.ParserException;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.Component;
 import net.fortuna.ical4j.model.component.VEvent;
 import edu.projectuz.mCal.helpers.DateHelper;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -53,20 +51,18 @@ public class ICalImporter extends BaseEventImporter {
         Calendar calendar = buildCalendar();
         ArrayList<VEvent> vevents = calendar.getComponents(Component.VEVENT);
         ArrayList<CalendarEvent> events = new ArrayList<>();
-        try {
             for (VEvent ev : vevents) {
                 CalendarEvent event = new CalendarEvent();
-                event.setStartDate(DateHelper.stringToDate(ICalHelper.getGroupFromDate(ev.getStartDate().toString(), "date") + ICalHelper.getGroupFromDate(ev.getStartDate().toString(), "time"), dateFormat));
-                event.setEndDate(DateHelper.stringToDate(ICalHelper.getGroupFromDate(ev.getStartDate().toString(), "date") + ICalHelper.getGroupFromDate(ev.getStartDate().toString(), "time"), dateFormat));
+                event.setStartDate(DateHelper.stringToDate(ICalHelper.getGroupFromDate(ev.getStartDate().toString(), ICalRegexSections.DATE) +
+                        ICalHelper.getGroupFromDate(ev.getStartDate().toString(),  ICalRegexSections.TIME), dateFormat));
+                event.setEndDate(DateHelper.stringToDate(ICalHelper.getGroupFromDate(ev.getStartDate().toString(),  ICalRegexSections.DATE) +
+                        ICalHelper.getGroupFromDate(ev.getStartDate().toString(), ICalRegexSections.TIME), dateFormat));
                 event.setTitle(ev.getDescription().getValue());
                 event.setDescription(ev.getDescription().getValue());
-                event.setTimeZone(DateHelper.stringToTimeZone(ICalHelper.getGroupFromDate(ev.getEndDate().toString(), "timezone")));
+                event.setTimeZone(DateHelper.stringToTimeZone(ICalHelper.getGroupFromDate(ev.getEndDate().toString(), ICalRegexSections.TIMEZONE)));
                 event.setTag("");
                 events.add(event);
             }
-        }catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
-        }
         return events;
     }
 
@@ -82,9 +78,7 @@ public class ICalImporter extends BaseEventImporter {
         Calendar calendar = null;
         try {
             calendar = builder.build(is);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParserException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return calendar;

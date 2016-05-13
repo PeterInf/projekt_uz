@@ -33,16 +33,18 @@ public class ICalImporterTests {
         String dateFormat = ("yyyy/MM/dd HH:mm");
 
         //Act
-        CalendarEvent calendarEvent = new CalendarEvent("Access-A-Ride to 900 Jay St., Brooklyn", new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2013/08/02 10:34")), new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2013/08/02 10:34")), "Access-A-Ride to 900 Jay St., Brooklyn", "", TimeZone.getTimeZone("America/New_York"));
-
+        CalendarEvent calendarEvent = new CalendarEvent("Access-A-Ride to 900 Jay St., Brooklyn",
+                new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2013/08/02 10:34")),
+                new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2013/08/02 10:34")),
+                "Access-A-Ride to 900 Jay St., Brooklyn", "", TimeZone.getTimeZone("America/New_York"));
         //Assert
         assertEquals(calendarEvent, iCalImporter.convertICalToObject().get(0));
     }
 
-    /*
+
     /**
      * This test checks the data for a single event.
-     * Expected IllegalArgumentException.
+     * Expected Exception.
      */
     @Test(expected = Exception.class)
     public void badConvertICal() throws Exception {
@@ -57,7 +59,7 @@ public class ICalImporterTests {
 
     /**
      * This test checks the data for a single event.
-     * Expected IOException.
+     * Expected Exception.
      */
     @Test(expected = Exception.class)
     public void bad2ConvertICalToObject() throws Exception {
