@@ -20,31 +20,31 @@
                 <form:form action="addEvent" method="post" modelAttribute="calendarEvent">
                     <form:label path="title" cssErrorClass="error">Title:</form:label><br>
                     <form:input path="title" type="text" cssErrorClass="error"/><br>
-                    <form:errors path="title" cssClass="error"/><br>
+                    <form:errors path="title" cssClass="errors" element="div"/>
 
                     <form:label path="startDate" cssErrorClass="error">Start time:</form:label><br>
                     <form:input path="startDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"
                                 cssErrorClass="error"/><br>
-                    <form:errors path="startDate"/><br>
+                    <form:errors path="startDate" cssClass="errors" element="div"/>
 
                     <form:label path="endDate" cssErrorClass="error">End time:</form:label><br>
                     <form:input path="endDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"
                                 cssErrorClass="error"/><br>
-                    <form:errors path="endDate"/><br>
+                    <form:errors path="endDate" cssClass="errors" element="div"/>
 
                     <form:label path="tag" cssErrorClass="error">Tag:</form:label><br>
                     <form:input path="tag" type="text" cssErrorClass="error"/><br>
-                    <form:errors path="tag"/><br>
+                    <form:errors path="tag" cssClass="errors" element="div"/>
 
                     <form:label path="timeZone">Time zone:</form:label><br>
                     <form:select path="timeZone">
                         <option value="Europe/Warsaw">Europe/Warsaw</option>
                         <option value="America/Mexico_City">America/Mexico_City</option>
-                    </form:select><br><br>
+                    </form:select><br>
 
                     <form:label path="description" cssErrorClass="error">Description:</form:label><br>
                     <form:input path="description" type="text" cssErrorClass="error"/><br>
-                    <form:errors path="description"/><br><br>
+                    <form:errors path="description" cssClass="errors" element="div"/><br>
 
                     <input title="addEvent" type="submit" value="Add event">
                     <input title="clear" type="reset" value="Clear">
