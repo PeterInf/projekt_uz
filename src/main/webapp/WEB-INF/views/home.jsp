@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <title>iCal Generator</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
     <meta charset="utf-8">
 </head>
 <body>
@@ -41,7 +41,7 @@
 
                     Description:<br>
                     <form:input path="description" type="text"/><br>
-                    <form:errors path="description"/><br>
+                    <form:errors path="description"/><br><br>
 
                     <input title="addEvent" type="submit" value="Add event">
                     <input title="clear" type="reset" value="Clear">
