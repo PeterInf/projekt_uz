@@ -22,23 +22,23 @@ public class CalendarEvent {
     private int id;
 
     @Column(nullable=false)
-    @NotNull @Size(min=1, max=25, message="Error")
+    @NotNull @Size(min=1, max=25, message="Title should contain 1-25 characters")
     private String title;
 
     @Column(nullable=false)
-    @NotNull(message="Error")
+    @NotNull(message="Wrong date format")
     private DateTime startDate;
 
-    @NotNull(message="Error")
+    @NotNull(message="Wrong date format")
     private DateTime endDate;
 
-    @NotNull @Size(min=1, max=25, message="Error")
+    @NotNull @Size(min=1, max=25, message="Tag should contain 1-25 characters")
     private String tag;
 
     @NotNull
     private TimeZone timeZone;
 
-    @NotNull @Size(min=1, message="Error")
+    @NotNull @Size(min=1, message="Description should contain at least 1 character")
     private String description;
 
     /**
