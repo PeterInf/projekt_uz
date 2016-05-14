@@ -55,8 +55,8 @@ public class ICalImporter extends BaseEventImporter {
                 CalendarEvent event = new CalendarEvent();
                 event.setStartDate(DateHelper.stringToDate(ICalHelper.getGroupFromDate(ev.getStartDate().toString(), ICalRegexSections.DATE) +
                         ICalHelper.getGroupFromDate(ev.getStartDate().toString(),  ICalRegexSections.TIME), dateFormat));
-                event.setEndDate(DateHelper.stringToDate(ICalHelper.getGroupFromDate(ev.getStartDate().toString(),  ICalRegexSections.DATE) +
-                        ICalHelper.getGroupFromDate(ev.getStartDate().toString(), ICalRegexSections.TIME), dateFormat));
+                event.setEndDate(DateHelper.stringToDate(ICalHelper.getGroupFromDate(ev.getEndDate().toString(),  ICalRegexSections.DATE) +
+                        ICalHelper.getGroupFromDate(ev.getEndDate().toString(), ICalRegexSections.TIME), dateFormat));
                 event.setTitle(ev.getDescription().getValue());
                 event.setDescription(ev.getDescription().getValue());
                 event.setTimeZone(DateHelper.stringToTimeZone(ICalHelper.getGroupFromDate(ev.getEndDate().toString(), ICalRegexSections.TIMEZONE)));

@@ -35,7 +35,7 @@ public class ICalImporterTests {
         //Act
         CalendarEvent calendarEvent = new CalendarEvent("Access-A-Ride to 900 Jay St., Brooklyn",
                 new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2013/08/02 10:34")),
-                new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2013/08/02 10:34")),
+                new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2013/08/02 11:04")),
                 "Access-A-Ride to 900 Jay St., Brooklyn", "", TimeZone.getTimeZone("America/New_York"));
         //Assert
         assertEquals(calendarEvent, iCalImporter.convertICalToObject().get(0));
