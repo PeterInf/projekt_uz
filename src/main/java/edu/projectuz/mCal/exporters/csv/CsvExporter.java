@@ -4,6 +4,7 @@ import edu.projectuz.mCal.core.models.CalendarEvent;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,9 +17,10 @@ public class CsvExporter {
         this.fileName = fileName;
     }
 
-    public void generateCsvFile(ArrayList<CalendarEvent> listOfEvents) {
+    public File generateCsvFile(ArrayList<CalendarEvent> listOfEvents) {
+        File file = new File(fileName);
         try {
-            FileWriter fileWriter = new FileWriter(fileName);
+            FileWriter fileWriter = new FileWriter(file);
             String separator = ",";
             String dateFormat = ("yyyy/MM/dd HH:mm");
             DateTimeFormatter formatter = DateTimeFormat.forPattern(dateFormat);
@@ -42,5 +44,6 @@ public class CsvExporter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return file;
     }
 }
