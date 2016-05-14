@@ -20,10 +20,10 @@ public class CsvExporterTest {
         //Act
         CalendarEvent event1 = new CalendarEvent("TPI KOŁO", new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/22 15:00"))
                 .withZone(DateTimeZone.forID("America/Los_Angeles")), new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/23 00:00"))
-                .withZone(DateTimeZone.forID("America/Los_Angeles")), "OPIS", "fa", TimeZone.getTimeZone("America/Los_Angeles"));
-        CalendarEvent event2 = new CalendarEvent("Wyd.2", new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/22 15:00"))
+                .withZone(DateTimeZone.forID("America/Los_Angeles")), "OPIS", "f", TimeZone.getTimeZone("America/Los_Angeles"));
+        CalendarEvent event2 = new CalendarEvent("TPI KOŁO", new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/22 00:00"))
                 .withZone(DateTimeZone.forID("Europe/Warsaw")), new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2016/01/23 00:00"))
-                .withZone(DateTimeZone.forID("Europe/Warsaw")), "OPIS", "faxxxx", TimeZone.getTimeZone("Europe/Warsaw"));
+                .withZone(DateTimeZone.forID("Europe/Warsaw")), "OPIS", "f", TimeZone.getTimeZone("Europe/Warsaw"));
 
         listOfEvents.add(event1);
         listOfEvents.add(event2);

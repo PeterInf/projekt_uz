@@ -1,6 +1,7 @@
 package edu.projectuz.mCal.exporters.csv;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
+import edu.projectuz.mCal.importers.csv.model.CSVSections;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -24,6 +25,19 @@ public class CsvExporter {
             String separator = ",";
             String dateFormat = ("yyyy/MM/dd HH:mm");
             DateTimeFormatter formatter = DateTimeFormat.forPattern(dateFormat);
+
+            fileWriter.append(CSVSections.TITLE);
+            fileWriter.append(separator);
+            fileWriter.append(CSVSections.DATE_START);
+            fileWriter.append(separator);
+            fileWriter.append(CSVSections.DATE_END);
+            fileWriter.append(separator);
+            fileWriter.append(CSVSections.DESCRIPTION);
+            fileWriter.append(separator);
+            fileWriter.append(CSVSections.TAG);
+            fileWriter.append(separator);
+            fileWriter.append(CSVSections.TIME_ZONE);
+            fileWriter.append(System.lineSeparator());
 
             for (CalendarEvent calendarEvent : listOfEvents) {
                 fileWriter.append(calendarEvent.getTitle());
