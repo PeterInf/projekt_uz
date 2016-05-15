@@ -33,7 +33,7 @@ public class ICalImporterTests {
         String dateFormat = ("yyyy/MM/dd HH:mm");
 
         //Act
-        CalendarEvent calendarEvent = new CalendarEvent("Access-A-Ride to 900 Jay St., Brooklyn",
+        CalendarEvent calendarEvent = new CalendarEvent("Access-A-Ride Pickup",
                 new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2013/08/02 10:34")),
                 new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2013/08/02 11:04")),
                 "Access-A-Ride to 900 Jay St., Brooklyn", "", TimeZone.getTimeZone("America/New_York"));
