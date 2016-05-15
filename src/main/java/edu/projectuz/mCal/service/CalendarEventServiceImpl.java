@@ -23,12 +23,12 @@ public class CalendarEventServiceImpl implements CalendarEventService{
         return dao.findAllCalendarEvent();
     }
 
-    public void deleteCalendarEventBySsn(String ssn) {
-        dao.deleteCalendarEventBySsn(ssn);
+    public void deleteCalendarEventById(int id) {
+        dao.deleteCalendarEventById(id);
     }
 
-    public CalendarEvent findBySsn(String ssn) {
-        return dao.findBySsn(ssn);
+    public CalendarEvent findById(int id) {
+        return dao.findById(id);
     }
 
     public void updateCalendarEvent(CalendarEvent calendarEvent){

@@ -10,9 +10,9 @@ public interface CalendarEventService {
 
     List<CalendarEvent> findAllCalendarEvent();
 
-    void deleteCalendarEventBySsn(String ssn);
+    void deleteCalendarEventById(int id);
 
-    CalendarEvent findBySsn(String ssn);
+    CalendarEvent findById(int id);
 
     void updateCalendarEvent(CalendarEvent calendarEvent);
 }

@@ -21,16 +21,16 @@ public class CalendarEventDaoImpl extends AbstractDao implements CalendarEventDa
         return (List<CalendarEvent>) criteria.list();
     }
 
-    public void deleteCalendarEventBySsn(String ssn) {
-        Query query = getSession().createSQLQuery("delete from CalendarEvent where ssn = :ssn");
-        query.setString("ssn", ssn);
+    public void deleteCalendarEventById(int id) {
+        Query query = getSession().createSQLQuery("delete from CalendarEvent where id = :id");
+        query.setInteger("id", id);
         query.executeUpdate();
     }
 
 
-    public CalendarEvent findBySsn(String ssn){
+    public CalendarEvent findById(int id){
         Criteria criteria = getSession().createCriteria(CalendarEvent.class);
-        criteria.add(Restrictions.eq("ssn",ssn));
+        criteria.add(Restrictions.eq("id",id));
         return (CalendarEvent) criteria.uniqueResult();
     }
 

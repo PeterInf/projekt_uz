@@ -6,6 +6,7 @@ import java.util.TimeZone;
 
 import edu.projectuz.mCal.config.RootConfig;
 import edu.projectuz.mCal.core.models.CalendarEvent;
+import edu.projectuz.mCal.importers.planuz.model.calendars.Calendar;
 import edu.projectuz.mCal.service.CalendarEventService;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -43,6 +44,8 @@ public class App {
         for (CalendarEvent emp : calendarEvents) {
             System.out.println(emp);
         }
+        CalendarEvent calendarEvent = service.findById(2);
+        System.out.println(calendarEvent.toString());
 
 		/*
 		 * delete an employee
