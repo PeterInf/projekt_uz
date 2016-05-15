@@ -4,12 +4,10 @@ import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
 import edu.projectuz.mCal.importers.ical.logic.ICalImporter;
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
+
 import java.io.File;
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
@@ -41,7 +39,6 @@ public class ICalImporterTests {
         assertEquals(calendarEvent, iCalImporter.convertICalToObject().get(0));
     }
 
-
     /**
      * This test checks the data for a single event.
      * Expected Exception.
@@ -71,5 +68,4 @@ public class ICalImporterTests {
         //Assert
         iCalImporter.convertICalToObject().get(0);
     }
-
 }
