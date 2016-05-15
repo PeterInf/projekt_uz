@@ -22,11 +22,14 @@ public class DateHelperTest {
         String dateFormat = "dd-mm-yyyy HH:mm:ss";
 
         DateTime expected = new DateTime(DateTimeFormat.forPattern(dateFormat).withZone(DateTimeZone.forTimeZone(timeZone)).parseDateTime(dateText));
+        DateTime expected2 = new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime(dateText));
 
         //Act
         DateTime result = DateHelper.stringToDate(dateText, dateFormat, timeZone);
+        DateTime result2 = DateHelper.stringToDate(dateText, dateFormat);
 
         //Assert
         assertEquals(expected.toString(), result.toString());
+        assertEquals(expected2.toString(), result2.toString());
     }
 }
