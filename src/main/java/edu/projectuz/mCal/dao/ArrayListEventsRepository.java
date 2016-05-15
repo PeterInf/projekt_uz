@@ -6,35 +6,35 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class ArrayListEventsRepository implements CalendarEventRepository {
+//@Repository
+public class ArrayListEventsRepository  {
 
-    private List<CalendarEvent> calendarEventList = new ArrayList<>();
-    @Override
-    public void create(CalendarEvent calendarEvent) {
-        calendarEventList.add(calendarEvent);
-    }
+//    private List<CalendarEvent> calendarEventList = new ArrayList<>();
+//    @Override
+//    public void create(CalendarEvent calendarEvent) {
+//        calendarEventList.add(calendarEvent);
+//    }
+//
+//    @Override
+//    public CalendarEvent read(long id) {
+//        return null;
+//    }
+//
+//    @Override
+//    public CalendarEvent update(CalendarEvent calendarEvent) {
+//        return null;
+//    }
+//
+//    @Override
+//    public void delete(long id) {
+//
+//    }
 
-    @Override
-    public CalendarEvent read(long id) {
-        return null;
-    }
-
-    @Override
-    public CalendarEvent update(CalendarEvent calendarEvent) {
-        return null;
-    }
-
-    @Override
-    public void delete(long id) {
-
-    }
-
-    public List<CalendarEvent> getAll() {
-        return calendarEventList;
-    }
-
-    public void deleteAll() {
-        calendarEventList = new ArrayList<>();
-    }
+//    public List<CalendarEvent> getAll() {
+//        return calendarEventList;
+//    }
+//
+//    public void deleteAll() {
+//        calendarEventList = new ArrayList<>();
+//    }
 }

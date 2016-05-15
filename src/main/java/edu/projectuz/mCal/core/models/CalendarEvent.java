@@ -1,6 +1,7 @@
 package edu.projectuz.mCal.core.models;
 
 import edu.projectuz.mCal.helpers.DateHelper;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.Column;
@@ -23,9 +24,12 @@ public class CalendarEvent {
 
     @Column(nullable=false)
     @NotNull
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime startDate;
     @NotNull
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime endDate;
+
 
     @Column(nullable=false)
     @NotNull
@@ -84,6 +88,12 @@ public class CalendarEvent {
     public void setEndDate(DateTime endDate) {
         this.endDate = endDate;
     }
+    public void setEndDate(String endDate) {
+        this.endDate = DateHelper.stringToDate(endDate, "dd-mm-yyyy HH:mm:ss",
+                TimeZone.getTimeZone("America/Los_Angeles"));
+    }
+
+
 
     public String getDescription() {
         return description;
