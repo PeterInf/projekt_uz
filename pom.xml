@@ -11,9 +11,9 @@
         <tomcat.version>7.0.57</tomcat.version>
         <jacoco.version>0.7.6.201602180812</jacoco.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <springframework.version>4.2.3.RELEASE</springframework.version>
-            <hibernate.version>4.3.6.Final</hibernate.version>
-            <mysql.version>5.1.31</mysql.version>
+            <springframework.version>4.2.6.RELEASE</springframework.version>
+            <hibernate.version>4.3.11.Final</hibernate.version>
+            <mysql.version>5.1.37</mysql.version>
     </properties>
     <dependencies>
         <dependency>
@@ -94,16 +94,6 @@
             <artifactId>jsoup</artifactId>
             <version>1.8.3</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>mysql</groupId>-->
-            <!--<artifactId>mysql-connector-java</artifactId>-->
-            <!--<version>6.0.2</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.hibernate</groupId>-->
-            <!--<artifactId>hibernate-entitymanager</artifactId>-->
-            <!--<version>5.1.0.Final</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.apache.directory.studio</groupId>
             <artifactId>org.apache.commons.io</artifactId>
@@ -146,21 +136,11 @@
             <version>2.53.0</version>
         </dependency>
         <!--SPRING framework-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-core</artifactId>-->
-            <!--<version>4.2.5.RELEASE</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>4.2.5.RELEASE</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-tx</artifactId>-->
-            <!--<version>4.2.5.RELEASE</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -186,14 +166,12 @@
             <artifactId>spring-orm</artifactId>
             <version>${springframework.version}</version>
         </dependency>
-
         <!-- Hibernate -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
-
         <!-- MySQL -->
         <dependency>
             <groupId>mysql</groupId>
@@ -205,7 +183,6 @@
             <artifactId>usertype.core</artifactId>
             <version>3.0.0.CR1</version>
         </dependency>
-
         <!--Bean Validation API-->
         <dependency>
             <groupId>javax.validation</groupId>
