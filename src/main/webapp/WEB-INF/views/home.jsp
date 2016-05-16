@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-sm-2">
             <div class="container">
-                <form:form action="/mCal/addEvent" method="post" modelAttribute="calendarEvent">
+                <form:form action="addEvent" method="post" modelAttribute="calendarEvent">
                     Title:<br>
                     <form:input path="title" type="text"/><br>
 
@@ -67,11 +67,14 @@
                             <td>${calendarEvent.description}</td>
                         </tr>
                     </c:forEach>
-                </table>
+                </table><br>
 
-                <br>
-                <input title="removeEvent" type="button" value="Remove">
-                <input onclick="location.href='/mCal/clearEvents'" title="clearEvents" type="button" value="Clear"><br><br>
+                <form:form action="removeEvent" method="get" modelAttribute="eventToRemoveInfo">
+                    <form:input path="name" type="text" placeholder="Name"/>
+                    <input title="removeEvent" type="submit" value="Remove">
+                </form:form><br>
+
+                <input onclick="location.href='clearEvents'" title="clearEvents" type="button" value="Clear"><br><br>
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@
 
     <property name="fileExtensions" value="java, properties, xml"/>
 
-    <!-- Checks that a package-info.java file exists for each package.     -->
+    <!-- Checks that a package-name.java file exists for each package.     -->
     <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocPackage -->
     <module name="JavadocPackage"/>
 
