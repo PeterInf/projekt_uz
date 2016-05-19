@@ -73,7 +73,6 @@
                     <form:input path="name" type="text" placeholder="Name"/>
                     <input title="removeEvent" type="submit" value="Remove">
                 </form:form><br>
-
                 <input onclick="location.href='clearEvents'" title="clearEvents" type="button" value="Clear"><br><br>
             </div>
         </div>
