@@ -15,41 +15,49 @@ public class Calendar {
     private ArrayList<DaysList> daysLists = new ArrayList<>();
 
     /**
-     * Class constructor that simply sets values of name and description variables.
-     * @param name - name of a Calendar.
-     * @param description - description of Calendar.
+     * Class constructor that simply
+     * sets values of name and description variables.
+     *
+     * @param aName        - name of a Calendar.
+     * @param aDescription - description of Calendar.
      */
-    public Calendar(String name, String description) {
-        this.name = name;
-        this.description = description;
+    public Calendar(final String aName, final String aDescription) {
+        this.name = aName;
+        this.description = aDescription;
     }
 
     /**
      * This functions adds a single {@link DaysList} object to the list.
+     *
      * @param daysList - {@link DaysList} object to add.
      */
-    public void addDaysList(DaysList daysList) {
+    public final void addDaysList(final DaysList daysList) {
         daysLists.add(daysList);
     }
 
 
     /**
-     * This function sets a list of {@link DaysList} to this given as a parameter.
-     * @param daysLists - list of {@link DaysList} objects to set.
+     * This function sets a list of {@link DaysList}
+     * to this given as a parameter.
+     *
+     * @param aDaysLists - list of {@link DaysList} objects to set.
      */
-    public void setDaysLists(ArrayList<DaysList> daysLists) {
-        this.daysLists = daysLists;
+    public final void setDaysLists(final ArrayList<DaysList> aDaysLists) {
+        this.daysLists = aDaysLists;
     }
 
     /**
-     * This function allows you to search for a particular object of {@link DaysList}
+     * This function allows you to search for a particular
+     * object of {@link DaysList}
      * by it's type. If there is no object of this type, it throws an exception.
+     *
      * @param type - type of {@link DaysList} object to find.
      * @return Returns found {@link DaysList} object.
      */
-    public DaysList getDaysListByType(String type) throws Exception {
-        for(DaysList daysList : daysLists) {
-            if(daysList.getType().equals(type)) {
+    public final DaysList getDaysListByType(
+            final String type) throws Exception {
+        for (DaysList daysList : daysLists) {
+            if (daysList.getType().equals(type)) {
                 return daysList;
             }
         }
@@ -58,28 +66,30 @@ public class Calendar {
 
     /**
      * Gets value of name variable.
+     *
      * @return Returns value of name variable.
      */
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
     /**
      * Converts object of this class to String object with all of it's content.
+     *
      * @return Returns converted String.
      */
     @Override
-    public String toString() {
-        return "Calendar{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", daysLists=" + daysLists +
-                '}';
+    public final String toString() {
+        return "Calendar{"
+                + "name='" + name
+                + '\'' + ", description='"
+                + description + '\'' + ", daysLists="
+                + daysLists + '}';
     }
 
-    public boolean isContainingDayType(String dayType) {
-        for(DaysList daysList : daysLists) {
-            if(daysList.getType().equals(dayType)) {
+    public final boolean isContainingDayType(final String dayType) {
+        for (DaysList daysList : daysLists) {
+            if (daysList.getType().equals(dayType)) {
                 return true;
             }
         }

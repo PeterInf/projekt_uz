@@ -14,69 +14,78 @@ public class Department {
 
     /**
      * Class constructor. Simply sets a value of name variable.
-     * @param name - name of department to set.
+     *
+     * @param aName - name of department to set.
      */
-    public Department(String name) {
-        this.name = name;
+    public Department(final String aName) {
+        this.name = aName;
     }
 
     /**
      * Adds single {@link StudyBranch} object to the list.
+     *
      * @param studyBranch - {@link StudyBranch} object to add.
      */
-    public void addStudyBranch(StudyBranch studyBranch) {
+    public final void addStudyBranch(final StudyBranch studyBranch) {
         studyBranchList.add(studyBranch);
     }
 
     /**
      * Sets list of {@link StudyBranch} to this given as a parameter.
-     * @param studyBranchList - list of {@link StudyBranch} objects to set.
+     *
+     * @param aStudyBranchList - list of {@link StudyBranch} objects to set.
      */
-    public void setStudyBranchList(ArrayList<StudyBranch> studyBranchList) {
-        this.studyBranchList = studyBranchList;
+    public final void setStudyBranchList(
+            final ArrayList<StudyBranch> aStudyBranchList) {
+        this.studyBranchList = aStudyBranchList;
     }
 
     /**
      * Gets department's name.
+     *
      * @return Returns value of name variable.
      */
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
     /**
-     * This function allows you to search for a {@link StudyBranch} object by it's name.
+     * This function allows you to search
+     * for a {@link StudyBranch} object by it's name.
      * If object wasn't found it throws an exception.
-     * @param name - name of {@link StudyBranch} to find.
+     *
+     * @param aName - name of {@link StudyBranch} to find.
      * @return Returns {@link StudyBranch} object that was found.
      */
-    public StudyBranch getStudyBranchByName(String name) throws Exception {
-        for(StudyBranch studyBranch : studyBranchList) {
-            if(studyBranch.getName().equals(name)) {
+    public final StudyBranch getStudyBranchByName(
+            final String aName) throws Exception {
+        for (StudyBranch studyBranch : studyBranchList) {
+            if (studyBranch.getName().equals(aName)) {
                 return studyBranch;
             }
         }
-        throw new Exception("Study branch with name \'" + name + "\' not found.");
+        throw new Exception("Study branch with name \'"
+                + aName + "\' not found.");
     }
 
     /**
      * Gets all study branches from this department.
+     *
      * @return Returns a list of {@link StudyBranch} objects.
      */
-    public ArrayList<StudyBranch> getStudyBranchList() {
+    public final ArrayList<StudyBranch> getStudyBranchList() {
         return studyBranchList;
     }
 
     /**
      * Converts object of this class to String object with all of it's content.
+     *
      * @return Returns converted String.
      */
     @Override
-    public String toString() {
-        return "Department{" +
-                "name='" + name + '\'' +
-                ", studyBranchList=" + studyBranchList +
-                '}';
+    public final String toString() {
+        return "Department{" + "name='"
+                + name + '\'' + ", studyBranchList="
+                + studyBranchList + '}';
     }
-
 }
