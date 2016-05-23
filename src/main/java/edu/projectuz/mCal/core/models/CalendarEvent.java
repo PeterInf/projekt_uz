@@ -1,12 +1,17 @@
 package edu.projectuz.mCal.core.models;
 
+import edu.projectuz.mCal.helpers.DateHelper;
 import org.joda.time.DateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.TimeZone;
+
+import static javax.swing.text.StyleConstants.Size;
 
 /**
  * This class stores information about events.
@@ -18,14 +23,24 @@ public class CalendarEvent {
     @GeneratedValue
     private int id;
 
+
     @Column(nullable = false)
+    @NotNull
     private DateTime startDate;
+    @NotNull
     private DateTime endDate;
 
     @Column(nullable = false)
+    @NotNull
+    @Size(min = 5, max = 16, message = "{title.size}")
     private String title;
+    @NotNull
+    @Size(min = 5, message = "{description.size}")
     private String description;
+    @NotNull
+    @Size(min = 5, max = 16, message = "{tag.size}")
     private String tag;
+    @NotNull
     private TimeZone timeZone;
 
     private final int hashCode = 31;
@@ -63,6 +78,11 @@ public class CalendarEvent {
 
     public final void setStartDate(final DateTime aStartDate) {
         this.startDate = aStartDate;
+    }
+
+    public final void setStartDate(final String startDate) {
+        this.startDate = DateHelper.stringToDate(startDate, "dd-mm-yyyy HH:mm:ss",
+                TimeZone.getTimeZone("America/Los_Angeles"));
     }
 
     public final DateTime getEndDate() {

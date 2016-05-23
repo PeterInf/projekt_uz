@@ -7,4 +7,5 @@ public interface CalendarEventRepository {
     CalendarEvent read(long id);
     CalendarEvent update(CalendarEvent calendarEvent);
     void delete(long id);
+    void deleteAll();
 }
