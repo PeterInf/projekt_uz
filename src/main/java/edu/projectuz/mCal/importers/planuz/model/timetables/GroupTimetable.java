@@ -3,7 +3,8 @@ package edu.projectuz.mCal.importers.planuz.model.timetables;
 import java.util.ArrayList;
 
 /**
- * This class stores a timetable for one group of specific {@link StudyBranch} from planUz.
+ * This class stores a timetable for one group
+ * of specific {@link StudyBranch} from planUz.
  * List of this class instances is stored in {@link Department} class.
  * The class itself stores every day of planUz timetable it is
  * represented by a list of {@link Day} objects.
@@ -15,69 +16,74 @@ public class GroupTimetable {
 
     /**
      * Class constructor. Simply sets name of a group.
-     * @param name - name of group to set.
+     *
+     * @param aName - name of group to set.
      */
-    public GroupTimetable(String name) {
-        this.name = name;
+    public GroupTimetable(final String aName) {
+        this.name = aName;
     }
 
     /**
      * Adds single day to a list.
+     *
      * @param day - {@link Day} object to add.
      */
-    public void addDay(Day day) {
+    public final void addDay(final Day day) {
         daysList.add(day);
     }
 
     /**
      * Sets list of days for this passed by a parameter.
-     * @param daysList - list of {@link Day} objects to set.
+     *
+     * @param aDaysList - list of {@link Day} objects to set.
      */
-    public void setDaysList(ArrayList<Day> daysList) {
-        this.daysList = daysList;
+    public final void setDaysList(final ArrayList<Day> aDaysList) {
+        this.daysList = aDaysList;
     }
 
     /**
      * Gets name of a group.
+     *
      * @return Returns value of name variable.
      */
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
     /**
      * Gets every day in group.
+     *
      * @return Returns list of {@link Day} objects.
      */
-    public ArrayList<Day> getDaysList() {
+    public final ArrayList<Day> getDaysList() {
         return daysList;
     }
 
     /**
      * This function allows you to search for a day by it's name.
      * If nothing was found then throws an exception.
-     * @param name - name of {@link Day} to find.
+     *
+     * @param aName - name of {@link Day} to find.
      * @return Returns found {@link Day} object.
      */
-    public Day getDayByName(String name) throws Exception {
-        for(Day day : daysList) {
-            if(day.getName().equals(name)) {
+    public final Day getDayByName(final String aName) throws Exception {
+        for (Day day : daysList) {
+            if (day.getName().equals(aName)) {
                 return day;
             }
         }
-        throw new Exception("Day with name \'" + name + "\' not found.");
+        throw new Exception("Day with name \'" + aName + "\' not found.");
     }
 
     /**
      * Converts object of this class to String object with all of it's content.
+     *
      * @return Returns converted String.
      */
     @Override
-    public String toString() {
-        return "GroupTimetable{" +
-                "name='" + name + '\'' +
-                ", daysList=" + daysList +
-                '}';
+    public final String toString() {
+        return "GroupTimetable{" + "name='" + name
+                + '\'' + ", daysList=" + daysList + '}';
     }
 
 }

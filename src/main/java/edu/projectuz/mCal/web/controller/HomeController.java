@@ -13,7 +13,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
-public class HomeController {
+public final class HomeController {
+
+    private HomeController() {
+
+    }
 
     @Autowired
     private ArrayListEventsRepository repository;
