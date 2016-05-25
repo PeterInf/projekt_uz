@@ -96,7 +96,9 @@ public class CalendarEvent {
                 TimeZone.getTimeZone("America/Los_Angeles"));
     }
 
-
+    public int getId() {
+        return id;
+    }
 
     public final String getDescription() {
         return description;
