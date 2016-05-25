@@ -3,6 +3,9 @@ package edu.projectuz.mCal.config;
 import org.springframework.web.servlet.support.
         AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration.*;
+
 public class WebInitializer extends
         AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
@@ -18,5 +21,11 @@ public class WebInitializer extends
     @Override
     protected final String[] getServletMappings() {
         return new String[]{"/"};
+    }
+
+    @Override
+    protected void customizeRegistration(Dynamic registration) {
+        registration.setMultipartConfig(
+                new MultipartConfigElement("/tmp/calendar/uploads", 15097152, 30194304, 0));
     }
 }

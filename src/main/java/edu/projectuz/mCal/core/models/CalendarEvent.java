@@ -24,12 +24,12 @@ public class CalendarEvent {
     @NotNull @Size(min=1, max=25, message="Title should contain 1-25 characters")
     private String title;
 
-    @NotNull(message="Wrong date format")
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @NotNull(message="Wrong date format")
     private DateTime startDate;
 
-    @NotNull(message="Wrong date format")
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @NotNull(message="Wrong date format")
     private DateTime endDate;
 
     @NotNull @Size(min=1, max=25, message="Tag should contain 1-25 characters")
