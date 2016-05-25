@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-@Ignore
 public class PlanUzConverterTest {
 
     private PlanUzConverter planUzConverter;
