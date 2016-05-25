@@ -4,7 +4,6 @@ import edu.projectuz.mCal.helpers.DateHelper;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

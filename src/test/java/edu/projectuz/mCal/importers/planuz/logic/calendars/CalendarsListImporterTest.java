@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
+@Ignore
 public class CalendarsListImporterTest {
 
     @Test

@@ -94,6 +94,7 @@
             <option selected="true" style="display:none;">From file...</option>
             <option value="csv">*.csv</option>
             <option value="xml">*.xml</option>
+            <option value="ical">*.ical</option>
         </select>
         <input title="importFromFile" type="button" value="Import">
 
