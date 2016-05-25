@@ -1,0 +1,8 @@
+input.error {
+    background-color: #ffdddc;
+}
+
+div.errors {
+    color: red;
+    font-size: small;
+}

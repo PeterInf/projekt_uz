@@ -28,7 +28,8 @@ public class XMLImporter extends BaseEventImporter{
      * @param sourcePath specifies the path of the file.
      * @param sourceType specifies the type of resource {@link ImporterSourceType}.
      */
-    public XMLImporter(String sourcePath, ImporterSourceType sourceType) {
+    public XMLImporter(final String sourcePath,
+                       final ImporterSourceType sourceType) {
         super(sourcePath, sourceType);
     }
 
@@ -40,25 +41,31 @@ public class XMLImporter extends BaseEventImporter{
      * @throws IndexOutOfBoundsException
      * @throws IllegalArgumentException
      */
-    public ArrayList<CalendarEvent> convertToObject() throws Exception
-    {
+    public final ArrayList<CalendarEvent> convertToObject() {
         String dateFormat = "yyyy/MM/dd HH:mm";
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
 
         try {
-            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse(new InputSource(new StringReader(getSourceContent())));
+
+            DocumentBuilderFactory documentBuilderFactory =
+                    DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder =
+                    documentBuilderFactory.newDocumentBuilder();
+            Document document =
+                    documentBuilder.parse(new InputSource(
+                            new StringReader(getSourceContent())));
             NodeList nodeList = document.getElementsByTagName("vevent");
 
-            for (int i=0; i<nodeList.getLength(); i++) {
+            for (int i = 0; i < nodeList.getLength(); i++) {
                 helperForParser(nodeList, listOfEvents, dateFormat, i);
             }
-
         } catch (IllegalArgumentException e) {
             logger.debug(e.getMessage());
             throw new IllegalArgumentException();
         } catch (IndexOutOfBoundsException e){
+            logger.debug(e.getMessage());
+            throw new IndexOutOfBoundsException();
+        } catch (Exception e) {
             logger.debug(e.getMessage());
             throw new IndexOutOfBoundsException();
         }
@@ -73,13 +80,40 @@ public class XMLImporter extends BaseEventImporter{
      * @param dateFormat   date format.
      * @param i            loop counter variable.
      */
-    private void helperForParser(NodeList nodeList, ArrayList<CalendarEvent> listOfEvents, String dateFormat, int i) {
+    private void helperForParser(
+            final NodeList nodeList,
+            final ArrayList<CalendarEvent> listOfEvents,
+            final String dateFormat, final int i) {
         CalendarEvent eventObject = new CalendarEvent();
         Node node = nodeList.item(i);
 
         if (node.getNodeType() == Node.ELEMENT_NODE) {
 
             Element element = (Element) node;
+
+            eventObject.setTitle(element.getElementsByTagName(
+                    "summary").item(0).getTextContent().trim());
+            eventObject.setStartDate(DateHelper.stringToDate(element.
+                    getElementsByTagName("dtstart").item(0).getTextContent().
+                    trim(),
+                    dateFormat, DateHelper.stringToTimeZone(
+                            element.getElementsByTagName("tzid").item(0).
+                                    getTextContent().trim())));
+            eventObject.setEndDate(DateHelper.stringToDate(element.
+                    getElementsByTagName("dtend").item(0).getTextContent().
+                    trim(),
+                    dateFormat, DateHelper.stringToTimeZone(element.
+                            getElementsByTagName("tzid").item(0).
+                            getTextContent().trim())));
+            eventObject.setDescription(element.
+                    getElementsByTagName("description").
+                    item(0).getTextContent().trim());
+            eventObject.setTag(element.getElementsByTagName("tag").
+                    item(0).getTextContent().trim());
+            eventObject.setTimeZone(DateHelper.stringToTimeZone(element.
+                    getElementsByTagName("tzid").item(0).
+                    getTextContent().trim()));
+            listOfEvents.add(eventObject);
 
             mapElements(dateFormat, eventObject, element);
             listOfEvents.add(eventObject);
@@ -108,7 +142,7 @@ public class XMLImporter extends BaseEventImporter{
      * @return Name of importer.
      */
     @Override
-    public String getName() {
+    public final String getName() {
         return "XML Importer";
     }
 

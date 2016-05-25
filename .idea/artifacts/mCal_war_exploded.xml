@@ -98,6 +98,8 @@
           <element id="library" level="project" name="Maven: org.joda:joda-money:0.6" />
           <element id="library" level="project" name="Maven: org.jadira.usertype:usertype.spi:3.0.0.CR1" />
           <element id="library" level="project" name="Maven: javax.validation:validation-api:1.1.0.Final" />
+          <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:5.0.1.Final" />
+          <element id="library" level="project" name="Maven: com.fasterxml:classmate:0.8.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">
