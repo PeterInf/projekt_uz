@@ -67,10 +67,12 @@
                             <td>${calendarEvent.description}</td>
                         </tr>
                     </c:forEach>
-                </table>
+                </table><br>
 
-                <br>
-                <input title="removeEvent" type="button" value="Remove">
+                <form:form action="removeEvent" method="get" modelAttribute="eventToRemoveInfo">
+                    <form:input path="name" type="text" placeholder="Name"/>
+                    <input title="removeEvent" type="submit" value="Remove">
+                </form:form><br>
                 <input onclick="location.href='clearEvents'" title="clearEvents" type="button" value="Clear"><br><br>
             </div>
         </div>
