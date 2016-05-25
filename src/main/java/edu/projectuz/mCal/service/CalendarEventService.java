@@ -15,4 +15,6 @@ public interface CalendarEventService {
     CalendarEvent findById(int id);
 
     void updateCalendarEvent(CalendarEvent calendarEvent);
+
+    void deleteAll();
 }

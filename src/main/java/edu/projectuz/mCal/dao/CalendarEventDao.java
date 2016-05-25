@@ -15,4 +15,6 @@ public interface CalendarEventDao {
     CalendarEvent findById(int id);
 
     void updateCalendarEvent(CalendarEvent employee);
+
+    void deleteAll();
 }

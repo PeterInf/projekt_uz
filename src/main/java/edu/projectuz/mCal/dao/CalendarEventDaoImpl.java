@@ -38,4 +38,8 @@ public class CalendarEventDaoImpl extends AbstractDao implements CalendarEventDa
         getSession().update(calendarEvent);
     }
 
+    public void deleteAll() {
+        Query query = getSession().createSQLQuery("delete from CalendarEvent");
+        query.executeUpdate();
+    }
 }

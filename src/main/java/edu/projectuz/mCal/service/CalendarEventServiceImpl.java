@@ -34,4 +34,9 @@ public class CalendarEventServiceImpl implements CalendarEventService{
     public void updateCalendarEvent(CalendarEvent calendarEvent){
         dao.updateCalendarEvent(calendarEvent);
     }
+
+    public void deleteAll() {
+        dao.deleteAll();
+    }
+
 }

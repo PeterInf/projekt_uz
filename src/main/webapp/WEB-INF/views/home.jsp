@@ -80,7 +80,7 @@
                 </table><br>
 
                 <form:form action="removeEvent" method="get" modelAttribute="eventToRemoveInfo">
-                    <form:input path="name" type="text" placeholder="Name"/>
+                    <form:input path="id" type="text" placeholder="ID"/>
                     <input title="removeEvent" type="submit" value="Remove">
                 </form:form><br>
                 <input onclick="location.href='clearEvents'" title="clearEvents" type="button" value="Clear"><br><br>

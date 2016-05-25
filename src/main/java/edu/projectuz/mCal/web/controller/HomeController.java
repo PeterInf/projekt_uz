@@ -47,13 +47,13 @@ public final class HomeController {
 
     @RequestMapping(value = "/clearEvents", method = GET)
     public String clearEvents() {
-//        repository.deleteAll();
+        service.deleteAll();
         return "redirect:/";
     }
 
     @RequestMapping(value = "/removeEvent", method = GET)
     public String removeEvent(@ModelAttribute("eventToRemoveInfo") EventToRemoveInfo eventInfo, Model model) {
-//        repository.delete(eventInfo.getName());
+        service.deleteCalendarEventById(eventInfo.getId());
         return "redirect:/";
     }
 }
