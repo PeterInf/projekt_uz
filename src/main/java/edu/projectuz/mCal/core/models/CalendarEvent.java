@@ -11,8 +11,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.TimeZone;
 
-import static javax.swing.text.StyleConstants.Size;
-
 /**
  * This class stores information about events.
  */
@@ -23,26 +21,25 @@ public class CalendarEvent {
     @GeneratedValue
     private int id;
 
+    @Column(nullable=false)
+    @NotNull @Size(min=1, max=25, message="Title should contain 1-25 characters")
+    private String title;
 
-    @Column(nullable = false)
-    @NotNull
+    @Column(nullable=false)
+    @NotNull(message="Wrong date format")
     private DateTime startDate;
-    @NotNull
+
+    @NotNull(message="Wrong date format")
     private DateTime endDate;
 
-    @Column(nullable = false)
-    @NotNull
-    @Size(min = 5, max = 16, message = "{title.size}")
-    private String title;
-    @NotNull
-    @Size(min = 5, message = "{description.size}")
-    private String description;
-    @NotNull
-    @Size(min = 5, max = 16, message = "{tag.size}")
+    @NotNull @Size(min=1, max=25, message="Tag should contain 1-25 characters")
     private String tag;
+
     @NotNull
     private TimeZone timeZone;
 
+    @NotNull @Size(min=1, message="Description should contain at least 1 character")
+    private String description;
     private final int hashCode = 31;
 
     /**
@@ -61,15 +58,15 @@ public class CalendarEvent {
      * @param tag         - tag of events.
      * @param timeZone    - time zone of events.
      */
-    public CalendarEvent(final String aTitle, final DateTime aStartDate,
-                         final DateTime anEndDate, final String aDescription,
-                         final String aTag, final TimeZone aTimeZone) {
-        this.title = aTitle;
-        this.startDate = aStartDate;
-        this.endDate = anEndDate;
-        this.description = aDescription;
-        this.tag = aTag;
-        this.timeZone = aTimeZone;
+    public CalendarEvent(final String title, final DateTime startDate,
+                         final DateTime endDate, final String description,
+                         final String tag, final TimeZone timeZone) {
+        this.title = title;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.description = description;
+        this.tag = tag;
+        this.timeZone = timeZone;
     }
 
     public final DateTime getStartDate() {

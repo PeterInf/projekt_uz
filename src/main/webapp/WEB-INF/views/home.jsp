@@ -5,7 +5,8 @@
 <html lang="en">
 <head>
     <title>iCal Generator</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
+    <link href="<c:url value="/resources/css/error.css"/>" rel="stylesheet">
     <meta charset="utf-8">
 </head>
 <body>
@@ -17,26 +18,33 @@
         <div class="col-sm-2">
             <div class="container">
                 <form:form action="addEvent" method="post" modelAttribute="calendarEvent">
-                    Title:<br>
-                    <form:input path="title" type="text"/><br>
+                    <form:label path="title" cssErrorClass="error">Title:</form:label><br>
+                    <form:input path="title" type="text" cssErrorClass="error"/><br>
+                    <form:errors path="title" cssClass="errors" element="div"/>
 
-                    Start time:<br>
-                    <form:input path="startDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"/><br>
+                    <form:label path="startDate" cssErrorClass="error">Start time:</form:label><br>
+                    <form:input path="startDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"
+                                cssErrorClass="error"/><br>
+                    <form:errors path="startDate" cssClass="errors" element="div"/>
 
-                    End time:<br>
-                    <form:input path="endDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"/><br>
+                    <form:label path="endDate" cssErrorClass="error">End time:</form:label><br>
+                    <form:input path="endDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"
+                                cssErrorClass="error"/><br>
+                    <form:errors path="endDate" cssClass="errors" element="div"/>
 
-                    Tag:<br>
-                    <form:input path="tag" type="text"/><br>
+                    <form:label path="tag" cssErrorClass="error">Tag:</form:label><br>
+                    <form:input path="tag" type="text" cssErrorClass="error"/><br>
+                    <form:errors path="tag" cssClass="errors" element="div"/>
 
-                    Time zone:<br>
+                    <form:label path="timeZone">Time zone:</form:label><br>
                     <form:select path="timeZone">
                         <option value="Europe/Warsaw">Europe/Warsaw</option>
                         <option value="America/Mexico_City">America/Mexico_City</option>
                     </form:select><br>
 
-                    Description:<br>
-                    <form:input path="description" type="text"/><br><br>
+                    <form:label path="description" cssErrorClass="error">Description:</form:label><br>
+                    <form:input path="description" type="text" cssErrorClass="error"/><br>
+                    <form:errors path="description" cssClass="errors" element="div"/><br>
 
                     <input title="addEvent" type="submit" value="Add event">
                     <input title="clear" type="reset" value="Clear">

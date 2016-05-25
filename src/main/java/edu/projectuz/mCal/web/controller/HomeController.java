@@ -6,8 +6,12 @@ import edu.projectuz.mCal.web.EventToRemoveInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -15,9 +19,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Controller
 public final class HomeController {
 
-    private HomeController() {
-
-    }
+    private HomeController() {}
 
     @Autowired
     private ArrayListEventsRepository repository;
@@ -31,9 +33,14 @@ public final class HomeController {
     }
 
     @RequestMapping(value = "/addEvent", method = POST)
-    public String addEventSubmit(@ModelAttribute("calendarEvent") CalendarEvent calendarEvent, Model model) {
-        repository.create(calendarEvent);
-        return "redirect:/";
+    public String addEventSubmit(@Valid @ModelAttribute("calendarEvent") CalendarEvent calendarEvent, Errors errors) {
+        if (errors.hasErrors()) {
+            return "home";
+        } else {
+            repository.create(calendarEvent);
+            return "redirect:/";
+        }
+
     }
 
     @RequestMapping(value = "/clearEvents", method = GET)
