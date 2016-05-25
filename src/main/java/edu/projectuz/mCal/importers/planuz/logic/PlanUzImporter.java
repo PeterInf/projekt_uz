@@ -2,8 +2,10 @@ package edu.projectuz.mCal.importers.planuz.logic;
 
 import edu.projectuz.mCal.importers.base.BaseEventImporter;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
-import edu.projectuz.mCal.importers.planuz.logic.calendars.CalendarsListImporter;
-import edu.projectuz.mCal.importers.planuz.logic.timetables.DepartmentsListImporter;
+import edu.projectuz.mCal.importers.
+        planuz.logic.calendars.CalendarsListImporter;
+import edu.projectuz.mCal.importers.
+        planuz.logic.timetables.DepartmentsListImporter;
 import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
 import edu.projectuz.mCal.importers.planuz.model.timetables.DepartmentsList;
 import org.jsoup.Jsoup;
@@ -35,7 +37,7 @@ public class PlanUzImporter extends BaseEventImporter {
      * @return Name of importer.
      */
     @Override
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
@@ -43,7 +45,7 @@ public class PlanUzImporter extends BaseEventImporter {
      * Imports data - calendars and timetables.
      */
     @Override
-    public void importData() {
+    public final void importData() {
         Document homePageContent = Jsoup.parse(getSourceContent());
         allLinks = homePageContent.select(HtmlComponentName.ADDRESS);
 
@@ -63,14 +65,16 @@ public class PlanUzImporter extends BaseEventImporter {
         calendarsList = calendarsListImporter.importCalendars();
     }
 
-    private String getUrlByName(Elements allLinks, String urlName) {
+    private String getUrlByName(final Elements anAllLinks,
+                                final String urlName) {
         String urlBase = "http://plan.uz.zgora.pl/";
-        for(Element link : allLinks) {
-            if(link.text().equals(urlName)) {
+        for (Element link : anAllLinks) {
+            if (link.text().equals(urlName)) {
                 String resourceUrl = link.attr(HtmlComponentName.URL);
                 return urlBase + resourceUrl;
             }
         }
-        throw new IllegalArgumentException("Link with name " + urlName + "not found");
+        throw new IllegalArgumentException("Link with name "
+                + urlName + "not found");
     }
 }

@@ -40,11 +40,13 @@ public class CalendarEvent {
 
     @NotNull @Size(min=1, message="Description should contain at least 1 character")
     private String description;
+    private final int hashCode = 31;
 
     /**
      * Default constructor takes to create an object in CSVImporter class.
      */
-    public CalendarEvent() {}
+    public CalendarEvent() {
+    }
 
     /**
      * The constructor needed for the test class.
@@ -56,7 +58,9 @@ public class CalendarEvent {
      * @param tag         - tag of events.
      * @param timeZone    - time zone of events.
      */
-    public CalendarEvent(String title, DateTime startDate, DateTime endDate, String description, String tag, TimeZone timeZone) {
+    public CalendarEvent(final String title, final DateTime startDate,
+                         final DateTime endDate, final String description,
+                         final String tag, final TimeZone timeZone) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -65,109 +69,135 @@ public class CalendarEvent {
         this.timeZone = timeZone;
     }
 
-    public DateTime getStartDate() {
+    public final DateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(DateTime startDate) {
-        this.startDate = startDate;
+    public final void setStartDate(final DateTime aStartDate) {
+        this.startDate = aStartDate;
     }
 
-    public void setStartDate(String startDate) {
+    public final void setStartDate(final String startDate) {
         this.startDate = DateHelper.stringToDate(startDate, "dd-mm-yyyy HH:mm:ss",
                 TimeZone.getTimeZone("America/Los_Angeles"));
     }
 
-    public DateTime getEndDate() {
+    public final DateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(DateTime endDate) {
-        this.endDate = endDate;
+    public final void setEndDate(final DateTime anEndDate) {
+        this.endDate = anEndDate;
     }
 
-    public String getDescription() {
+    public final String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public final void setDescription(final String aDescription) {
+        this.description = aDescription;
     }
 
-    public String getTag() {
+    public final String getTag() {
         return tag;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public final void setTag(final String aTag) {
+        this.tag = aTag;
     }
 
-    public TimeZone getTimeZone() {
+    public final TimeZone getTimeZone() {
         return timeZone;
     }
 
-    public void setTimeZone(TimeZone timeZone) {
-        this.timeZone = timeZone;
+    public final void setTimeZone(final TimeZone aTimeZone) {
+        this.timeZone = aTimeZone;
     }
 
-    public String getTitle() {
+    public final String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public final void setTitle(final String aTitle) {
+        this.title = aTitle;
     }
 
     /**
      * @return Returned a string representation of the object CalendarEvent.
      */
     @Override
-    public String toString() {
-        return System.lineSeparator() +
-                title +
-                startDate +
-                endDate +
-                description +
-                tag +
-                timeZone.getID();
+    public final String toString() {
+        return System.lineSeparator()
+                + title
+                + startDate
+                + endDate
+                + description
+                + tag
+                + timeZone.getID();
     }
 
     /**
-     * This method is needed to make comparing two objects in a class CSVImporterTest.
+     * This method is needed to make comparing
+     * two objects in a class CSVImporterTest.
      * Indicates whether some other object is "equal to" this one.
      *
      * @param obj - the reference object with which to compare.
-     * @return Returned true if this object is the same as the obj argument, false otherwise.
+     * @return Returned true if this object is the same
+     * as the obj argument, false otherwise.
      */
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+    public final boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
 
         CalendarEvent that = (CalendarEvent) obj;
 
-        if (startDate != null ? !startDate.equals(that.startDate) : that.startDate != null) return false;
-        if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (tag != null ? !tag.equals(that.tag) : that.tag != null) return false;
-        return timeZone != null ? timeZone.equals(that.timeZone) : that.timeZone == null;
-
+        if (startDate != null ? !startDate.equals(that.startDate)
+                : that.startDate != null) {
+            return false;
+        }
+        if (endDate != null ? !endDate.equals(that.endDate)
+                : that.endDate != null) {
+            return false;
+        }
+        if (title != null ? !title.equals(that.title)
+                : that.title != null) {
+            return false;
+        }
+        if (description != null ? !description.equals(that.description)
+                : that.description != null) {
+            return false;
+        }
+        if (tag != null ? !tag.equals(that.tag)
+                : that.tag != null) {
+            return false;
+        }
+        return timeZone != null ? timeZone.equals(that.timeZone)
+                : that.timeZone == null;
     }
 
     /**
-     * This method is needed to make comparing two objects in a class CSVImporterTest.
+     * This method is needed to make comparing
+     * two objects in a class CSVImporterTest.
      *
      * @return Returned a hash code value for the object.
      */
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int result = startDate != null ? startDate.hashCode() : 0;
-        result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (tag != null ? tag.hashCode() : 0);
-        result = 31 * result + (timeZone != null ? timeZone.hashCode() : 0);
+        result = hashCode * result
+                + (endDate != null ? endDate.hashCode() : 0);
+        result = hashCode * result + (title != null ? title.hashCode() : 0);
+        result = hashCode * result
+                + (description != null ? description.hashCode() : 0);
+        result = hashCode * result
+                + (tag != null ? tag.hashCode() : 0);
+        result = hashCode * result
+                + (timeZone != null ? timeZone.hashCode() : 0);
         return result;
     }
 }

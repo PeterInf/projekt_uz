@@ -6,35 +6,39 @@ public class ICalEventAlarm {
     private String alarmDescription;
     private String trigger;
 
-    public ICalEventAlarm(String action, String alarmDescription, String trigger) {
-        this.action = action;
-        this.alarmDescription = alarmDescription;
-        this.trigger = trigger;
+    public ICalEventAlarm(final String anAction,
+                          final String anAlarmDescription,
+                          final String aTrigger) {
+        this.action = anAction;
+        this.alarmDescription = anAlarmDescription;
+        this.trigger = aTrigger;
     }
 
     //region ICalEventAlarm Getters and Setters
-    public String getAction() {
+    public final String getAction() {
         return action;
     }
 
-    public void setAction(String action) {
-        this.action = action;
+    public final void setAction(final String anAction) {
+        this.action = anAction;
     }
 
-    public String getAlarmDescription() {
+    public final String getAlarmDescription() {
         return alarmDescription;
     }
 
-    public void setAlarmDescription(String alarmDescription) {
-        this.alarmDescription = alarmDescription;
+    public final void setAlarmDescription(final String anAlarmDescription) {
+        this.alarmDescription = anAlarmDescription;
     }
 
-    public String getTrigger() {
+    public final String getTrigger() {
         return trigger;
     }
 
-    public void setTrigger(String trigger) {
-        this.trigger = trigger;
+    public final void setTrigger(final String aTrigger) {
+        this.trigger = aTrigger;
     }
     //endregion
 }
+
+

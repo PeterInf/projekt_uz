@@ -1,7 +1,5 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
-import edu.projectuz.mCal.importers.planuz.logic.timetables.DepartmentsListImporter;
-
 import java.util.ArrayList;
 
 /**
@@ -17,29 +15,35 @@ public class DepartmentsList {
 
     /**
      * Adds single {@link Department} object to departments list.
+     *
      * @param department - {@link Department} object to add.
      */
-    public void addDepartment(Department department) {
+    public final void addDepartment(final Department department) {
         departmentsList.add(department);
     }
 
     /**
-     * Sets the list of the {@link Department} objects with this given as a parameter.
-     * @param departmentsList - {@link Department} objects list to set.
+     * Sets the list of the {@link Department} objects
+     * with this given as a parameter.
+     *
+     * @param aDepartmentsList - {@link Department} objects list to set.
      */
-    public void setDepartmentsList(ArrayList<Department> departmentsList) {
-        this.departmentsList = departmentsList;
+    public final void setDepartmentsList(
+            final ArrayList<Department> aDepartmentsList) {
+        this.departmentsList = aDepartmentsList;
     }
 
     /**
      * This function allows you to search for a {@link Department} by it's name.
      * If object wasn't found it throws an exception.
+     *
      * @param name - name of the {@link Department} to find.
      * @return Returns {@link Department} object found.
      */
-    public Department getDepartmentByName(String name) throws Exception {
-        for(Department department : departmentsList) {
-            if(department.getName().equals(name)) {
+    public final Department getDepartmentByName(
+            final String name) throws Exception {
+        for (Department department : departmentsList) {
+            if (department.getName().equals(name)) {
                 return department;
             }
         }
@@ -48,28 +52,29 @@ public class DepartmentsList {
 
     /**
      * Gets list of {@link Department} objects.
+     *
      * @return Returns list of {@link Department} objects.
      */
-    public ArrayList<Department> getDepartmentsList() {
+    public final ArrayList<Department> getDepartmentsList() {
         return departmentsList;
     }
 
     /**
      * @return Size of departments list.
      */
-    public int size() {
+    public final int size() {
         return departmentsList.size();
     }
 
     /**
      * Converts object of this class to String object with all of it's content.
+     *
      * @return Returns converted String.
      */
     @Override
-    public String toString() {
-        return "DepartmentsList{" +
-                "departmentsList=" + departmentsList +
-                '}';
+    public final String toString() {
+        return "DepartmentsList{" + "departmentsList="
+                + departmentsList + '}';
     }
 
 }
