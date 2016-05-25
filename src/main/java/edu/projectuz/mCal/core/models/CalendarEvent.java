@@ -1,6 +1,7 @@
 package edu.projectuz.mCal.core.models;
 
 import edu.projectuz.mCal.helpers.DateHelper;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.Column;
@@ -21,15 +22,15 @@ public class CalendarEvent {
     @GeneratedValue
     private int id;
 
-    @Column(nullable=false)
     @NotNull @Size(min=1, max=25, message="Title should contain 1-25 characters")
     private String title;
 
-    @Column(nullable=false)
     @NotNull(message="Wrong date format")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime startDate;
 
     @NotNull(message="Wrong date format")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime endDate;
 
     @NotNull @Size(min=1, max=25, message="Tag should contain 1-25 characters")
@@ -40,6 +41,7 @@ public class CalendarEvent {
 
     @NotNull @Size(min=1, message="Description should contain at least 1 character")
     private String description;
+
     private final int hashCode = 31;
 
     /**
@@ -88,6 +90,14 @@ public class CalendarEvent {
 
     public final void setEndDate(final DateTime anEndDate) {
         this.endDate = anEndDate;
+    }
+    public void setEndDate(String endDate) {
+        this.endDate = DateHelper.stringToDate(endDate, "dd-mm-yyyy HH:mm:ss",
+                TimeZone.getTimeZone("America/Los_Angeles"));
+    }
+
+    public int getId() {
+        return id;
     }
 
     public final String getDescription() {

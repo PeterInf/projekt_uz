@@ -66,10 +66,12 @@
                     </tr>
                     <c:forEach items="${calendarEvents}" var="calendarEvent">
                         <tr>
-                            <td></td>
+                            <td>${calendarEvent.id}</td>
                             <td>${calendarEvent.title}</td>
-                            <td>${calendarEvent.startDate}</td>
-                            <td>${calendarEvent.endDate}</td>
+                            <td>${calendarEvent.startDate.dayOfMonth}-${calendarEvent.startDate.monthOfYear}-${calendarEvent.startDate.year}
+                                ${calendarEvent.startDate.hourOfDay}:${calendarEvent.startDate.minuteOfHour}:${calendarEvent.startDate.secondOfMinute}</td>
+                            <td>${calendarEvent.endDate.dayOfMonth}-${calendarEvent.endDate.monthOfYear}-${calendarEvent.endDate.year}
+                                ${calendarEvent.endDate.hourOfDay}:${calendarEvent.endDate.minuteOfHour}:${calendarEvent.endDate.secondOfMinute}</td>
                             <td>${calendarEvent.tag}</td>
                             <td>${calendarEvent.timeZone.ID}</td>
                             <td>${calendarEvent.description}</td>
@@ -78,7 +80,7 @@
                 </table><br>
 
                 <form:form action="removeEvent" method="get" modelAttribute="eventToRemoveInfo">
-                    <form:input path="name" type="text" placeholder="Name"/>
+                    <form:input path="id" type="text" placeholder="ID"/>
                     <input title="removeEvent" type="submit" value="Remove">
                 </form:form><br>
                 <input onclick="location.href='clearEvents'" title="clearEvents" type="button" value="Clear"><br><br>

@@ -8,7 +8,7 @@ import java.util.TimeZone;
 
 public final class StringToDateConverter implements Converter<String, DateTime> {
 
-    private String dateFormat = "dd-mm-yyyy HH:mm:ss";
+    private String dateFormat = "dd-MM-yyyy HH:mm:ss";
     private TimeZone defaultTimeZone = TimeZone.getTimeZone("America/Los_Angeles");
 
     @Override

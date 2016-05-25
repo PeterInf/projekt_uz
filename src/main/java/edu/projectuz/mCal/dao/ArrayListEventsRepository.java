@@ -8,25 +8,22 @@ import java.util.Iterator;
 import java.util.List;
 
 @Repository
-public class ArrayListEventsRepository implements CalendarEventRepository {
+public class ArrayListEventsRepository {
 
     private List<CalendarEvent> calendarEventList = new ArrayList<>();
-    @Override
+
     public void create(CalendarEvent calendarEvent) {
         calendarEventList.add(calendarEvent);
     }
 
-    @Override
     public CalendarEvent read(long id) {
         return null;
     }
 
-    @Override
     public CalendarEvent update(CalendarEvent calendarEvent) {
         return null;
     }
 
-    @Override
     public void delete(long id) {
 
     }
