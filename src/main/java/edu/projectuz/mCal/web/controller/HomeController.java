@@ -23,9 +23,6 @@ public final class HomeController {
     @Autowired
     private CalendarEventService service;
 
-    @Autowired
-    private ArrayListEventsRepository repository;
-
     @RequestMapping(value = "/", method = GET)
     public String home(Model model) {
         model.addAttribute("calendarEvent", new CalendarEvent());
