@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.TimeZone;
@@ -40,8 +41,6 @@ public class CalendarEvent {
 
     @NotNull @Size(min=1, message="Description should contain at least 1 character")
     private String description;
-
-    private final int hashCode = 31;
 
     /**
      * Default constructor takes to create an object in CSVImporter class.
@@ -197,6 +196,7 @@ public class CalendarEvent {
      */
     @Override
     public final int hashCode() {
+        int hashCode = 31;
         int result = startDate != null ? startDate.hashCode() : 0;
         result = hashCode * result
                 + (endDate != null ? endDate.hashCode() : 0);
