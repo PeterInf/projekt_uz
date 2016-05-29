@@ -31,7 +31,8 @@ public final class HomeController {
     }
 
     @RequestMapping(value = "/addEvent", method = POST)
-    public String addEventSubmit(@Valid @ModelAttribute("calendarEvent") CalendarEvent calendarEvent, Errors errors, Model model) {
+    public String addEventSubmit(@Valid @ModelAttribute("calendarEvent") CalendarEvent calendarEvent,
+                                 Errors errors, Model model) {
         model.addAttribute("eventToRemoveInfo", new EventToRemoveInfo());
         if (errors.hasErrors()) {
             return "home";
