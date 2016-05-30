@@ -17,11 +17,13 @@ public class URLImporter extends BaseEventImporter {
 
     private Elements inputElements;
 
-    public URLImporter(String sourcePath, ImporterSourceType sourceType) throws IOException {
+    public URLImporter(final String sourcePath,
+                       final ImporterSourceType sourceType)
+            throws IOException {
         super(sourcePath, sourceType);
     }
 
-    public ArrayList<CalendarEvent> convertToObject() {
+    public final ArrayList<CalendarEvent> convertToObject() {
         ArrayList<CalendarEvent> listOfEvents = new ArrayList<>();
         String dateFormat = "yyyy/MM/dd HH:mm";
         importData();
@@ -31,25 +33,31 @@ public class URLImporter extends BaseEventImporter {
             CalendarEvent calendarEvent = new CalendarEvent();
 
             calendarEvent.setTitle(elements.get(URLSections.TITLE).text());
-            calendarEvent.setStartDate(DateHelper.stringToDate(elements.get(URLSections.DATE_START).text(),
-                    dateFormat, DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text())));
-            calendarEvent.setEndDate(DateHelper.stringToDate(elements.get(URLSections.DATE_END).text(),
-                    dateFormat, DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text())));
-            calendarEvent.setDescription(elements.get(URLSections.DESCRIPTION).text());
+            calendarEvent.setStartDate(DateHelper.stringToDate(
+                    elements.get(URLSections.DATE_START).text(),
+                    dateFormat, DateHelper.stringToTimeZone(
+                            elements.get(URLSections.TIME_ZONE).text())));
+            calendarEvent.setEndDate(DateHelper.stringToDate(
+                    elements.get(URLSections.DATE_END).text(),
+                    dateFormat, DateHelper.stringToTimeZone(
+                            elements.get(URLSections.TIME_ZONE).text())));
+            calendarEvent.setDescription(
+                    elements.get(URLSections.DESCRIPTION).text());
             calendarEvent.setTag(elements.get(URLSections.TAG).text());
-            calendarEvent.setTimeZone(DateHelper.stringToTimeZone(elements.get(URLSections.TIME_ZONE).text()));
+            calendarEvent.setTimeZone(DateHelper.stringToTimeZone(
+                    elements.get(URLSections.TIME_ZONE).text()));
             listOfEvents.add(calendarEvent);
         }
         return listOfEvents;
     }
 
     @Override
-    public String getName() {
+    public final String getName() {
         return "URL Importer";
     }
 
     @Override
-    public void importData() {
+    public final void importData() {
         Document document = Jsoup.parse(getSourceContent());
         Element table = document.getElementById("exampleTable");
         inputElements = table.getElementsByTag("tr");

@@ -12,11 +12,16 @@ import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
 
-
+/**
+ * It's a test class for class {@link XMLImporter}.
+ */
 public class XMLImporterTests {
 
-
-    @SuppressWarnings("deprecation")
+    /**
+     * This test method compare the data received after used main method from {@link XMLImporter},
+     * the data from the file.
+     * The result should be positive.
+     */
     @Test
     public void convertToObject() throws Exception {
         //Arrange
@@ -32,5 +37,35 @@ public class XMLImporterTests {
 
         //Assert
         assertEquals(calendarEvent, xmlImporter.convertToObject().get(0));
+    }
+
+    /**
+     * This test checks the data for a single event.
+     * Expected IllegalArgumentException.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void badDate() throws Exception {
+        //Arrange
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getClass().getResource("/xml/badDateXml.xml").getFile());
+        XMLImporter xmlImporter = new XMLImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+
+        //Assert
+        xmlImporter.convertToObject().get(0);
+    }
+
+    /**
+     * This test checks the data for a single event.
+     * Expected IndexOutOfBoundsException.
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void lackOfEvent() throws Exception {
+        //Arrange
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getClass().getResource("/xml/lackOfEventXml.xml").getFile());
+        XMLImporter xmlImporter = new XMLImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+
+        //Assert
+        xmlImporter.convertToObject().get(0);
     }
 }

@@ -16,69 +16,78 @@ public class StudyBranch {
 
     /**
      * Class constructor. Sets branch of study name.
-     * @param name - name to set.
+     *
+     * @param aName - name to set.
      */
-    public StudyBranch(String name) {
-        this.name = name;
+    public StudyBranch(final String aName) {
+        this.name = aName;
     }
 
     /**
      * Adds single group to ths list.
+     *
      * @param groupTimetable - {@link GroupTimetable} object to add.
      */
-    public void addGroupTimetable(GroupTimetable groupTimetable) {
+    public final void addGroupTimetable(final GroupTimetable groupTimetable) {
         groupTimetablesList.add(groupTimetable);
     }
 
     /**
      * Sets the list of all groups to this given as a parameter.
-     * @param groupTimetablesList - list of {@link GroupTimetable} objects to set.
+     *
+     * @param aGroupTimetablesList - list of {@link GroupTimetable}
+     *                             objects to set.
      */
-    public void setGroupTimetablesList(ArrayList<GroupTimetable> groupTimetablesList) {
-        this.groupTimetablesList = groupTimetablesList;
+    public final void setGroupTimetablesList(
+            final ArrayList<GroupTimetable> aGroupTimetablesList) {
+        this.groupTimetablesList = aGroupTimetablesList;
     }
 
     /**
      * Gets name of the branch of study.
+     *
      * @return Returns branch of study name.
      */
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
     /**
      * This function allows you to search for a single group by it's name.
      * If nothing was found it throws an exception.
-     * @param name - name of a {@link GroupTimetable} to find.
+     *
+     * @param aName - name of a {@link GroupTimetable} to find.
      * @return Returns found {@link GroupTimetable} object.
      */
-    public GroupTimetable getGroupTimetableByName(String name) throws Exception {
-        for(GroupTimetable groupTimetable : groupTimetablesList) {
-            if(groupTimetable.getName().equals(name)) {
+    public final GroupTimetable getGroupTimetableByName(
+            final String aName) throws Exception {
+        for (GroupTimetable groupTimetable : groupTimetablesList) {
+            if (groupTimetable.getName().equals(aName)) {
                 return groupTimetable;
             }
         }
-        throw new Exception("Group timetable with name \'" + name + "\' not found.");
+        throw new Exception("Group timetable with name \'"
+                + aName + "\' not found.");
     }
 
     /**
      * Gets a list of every group.
+     *
      * @return Returns a list of {@link GroupTimetable} objects.
      */
-    public ArrayList<GroupTimetable> getGroupTimetablesList() {
+    public final ArrayList<GroupTimetable> getGroupTimetablesList() {
         return groupTimetablesList;
     }
 
     /**
      * Converts object of this class to String object with all of it's content.
+     *
      * @return Returns converted String.
      */
     @Override
-    public String toString() {
-        return "StudyBranch{" +
-                "name='" + name + '\'' +
-                ", groupTimetablesList=" + groupTimetablesList +
-                '}';
+    public final String toString() {
+        return "StudyBranch{" + "name='" + name + '\''
+                + ", groupTimetablesList="
+                + groupTimetablesList + '}';
     }
-
 }
