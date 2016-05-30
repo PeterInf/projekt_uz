@@ -12,52 +12,58 @@ public class ICalModel {
 
     private ArrayList<ICalEvent> events = new ArrayList<>();
 
-    public ICalModel(String version, String prodId, String calscale, ArrayList<ICalTimeZone> timeZones, ArrayList<ICalEvent> events) {
-        this.version = version;
-        this.prodId = prodId;
-        this.calscale = calscale;
-        this.timeZones = timeZones;
-        this.events = events;
+    public ICalModel(final String aVersion,
+                     final String aProdId,
+                     final String aCalscale,
+                     final ArrayList<ICalTimeZone> aTimeZones,
+                     final ArrayList<ICalEvent> anEvents) {
+        this.version = aVersion;
+        this.prodId = aProdId;
+        this.calscale = aCalscale;
+        this.timeZones = aTimeZones;
+        this.events = anEvents;
     }
+    public ICalModel(){}
+
     //region ICalModels Getter and Setters
-    public String getVersion() {
+    public final String getVersion() {
         return version;
     }
 
-    public void setVersion(String version) {
-        this.version = version;
+    public final void setVersion(final String aVersion) {
+        this.version = aVersion;
     }
 
-    public String getProdId() {
+    public final String getProdId() {
         return prodId;
     }
 
-    public void setProdId(String prodId) {
-        this.prodId = prodId;
+    public final void setProdId(final String aProdId) {
+        this.prodId = aProdId;
     }
 
-    public String getCalscale() {
+    public final String getCalscale() {
         return calscale;
     }
 
-    public void setCalscale(String calscale) {
-        this.calscale = calscale;
+    public final void setCalscale(final String aCalscale) {
+        this.calscale = aCalscale;
     }
 
-    public ArrayList<ICalTimeZone> getTimeZones() {
+    public final ArrayList<ICalTimeZone> getTimeZones() {
         return timeZones;
     }
 
-    public void setTimeZones(ArrayList<ICalTimeZone> timeZones) {
-        this.timeZones = timeZones;
+    public final void setTimeZones(final ArrayList<ICalTimeZone> aTimeZones) {
+        this.timeZones = aTimeZones;
     }
 
-    public ArrayList<ICalEvent> getEvents() {
+    public final ArrayList<ICalEvent> getEvents() {
         return events;
     }
 
-    public void setEvents(ArrayList<ICalEvent> events) {
-        this.events = events;
+    public final void setEvents(final ArrayList<ICalEvent> anEvents) {
+        this.events = anEvents;
     }
     //endregion
 }

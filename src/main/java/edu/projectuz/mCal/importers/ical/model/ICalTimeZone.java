@@ -6,46 +6,52 @@ public class ICalTimeZone {
     private String timeZoneId;  //timeZone id  etc. continent/country
     private String timeZoneUrl;
     private String location;
-    private ArrayList <ICalTimeZoneProperty> propertyTimeZones = new ArrayList<>();
+    private ArrayList<ICalTimeZoneProperty>
+            propertyTimeZones = new ArrayList<>();
 
-    public ICalTimeZone(String timeZoneId, String timeZoneUrl, String location, ArrayList<ICalTimeZoneProperty> propertyTimeZones) {
-        this.timeZoneId = timeZoneId;
-        this.timeZoneUrl = timeZoneUrl;
-        this.location = location;
-        this.propertyTimeZones = propertyTimeZones;
+    public ICalTimeZone(
+            final String aTimeZoneId,
+            final String aTimeZoneUrl,
+            final String aLocation,
+            final ArrayList<ICalTimeZoneProperty> aPropertyTimeZones) {
+        this.timeZoneId = aTimeZoneId;
+        this.timeZoneUrl = aTimeZoneUrl;
+        this.location = aLocation;
+        this.propertyTimeZones = aPropertyTimeZones;
     }
 
     //region ICalTimeZone Getters and Setters
-    public String getTimeZoneId() {
+    public final String getTimeZoneId() {
         return timeZoneId;
     }
 
-    public void setTimeZoneId(String timeZoneId) {
-        this.timeZoneId = timeZoneId;
+    public final void setTimeZoneId(final String aTimeZoneId) {
+        this.timeZoneId = aTimeZoneId;
     }
 
-    public String getTimeZoneUrl() {
+    public final String getTimeZoneUrl() {
         return timeZoneUrl;
     }
 
-    public void setTimeZoneUrl(String timeZoneUrl) {
-        this.timeZoneUrl = timeZoneUrl;
+    public final void setTimeZoneUrl(final String aTimeZoneUrl) {
+        this.timeZoneUrl = aTimeZoneUrl;
     }
 
-    public String getLocation() {
+    public final String getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public final void setLocation(final String aLocation) {
+        this.location = aLocation;
     }
 
-    public ArrayList<ICalTimeZoneProperty> getPropertyTimeZones() {
+    public final ArrayList<ICalTimeZoneProperty> getPropertyTimeZones() {
         return propertyTimeZones;
     }
 
-    public void setPropertyTimeZones(ArrayList<ICalTimeZoneProperty> propertyTimeZones) {
-        this.propertyTimeZones = propertyTimeZones;
+    public final void setPropertyTimeZones(
+            final ArrayList<ICalTimeZoneProperty> aPropertyTimeZones) {
+        this.propertyTimeZones = aPropertyTimeZones;
     }
     //endregion
 }

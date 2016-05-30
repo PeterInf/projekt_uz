@@ -14,6 +14,7 @@ public class TimetableEventTest {
         timetableEvent = new TimetableEvent("A", "16:55", "18:25",
                 "Programowanie współbieżne i rozproszone", "L",
                 "dr inż. Tomasz Gratkowski", "207 A-2", "D/");
+        timetableEvent.setDayName("Poniedziałek");
     }
 
     @Test
@@ -32,6 +33,7 @@ public class TimetableEventTest {
                 ", teacherName='" + "dr inż. Tomasz Gratkowski" + '\'' +
                 ", room='" + "207 A-2" + '\'' +
                 ", days='" + "D/" + '\'' +
+                ", dayName='" + "Poniedziałek" + '\'' +
                 '}';
 
         assertEquals(timetableEventConvertedToString, timetableEvent.toString());

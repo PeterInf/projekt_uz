@@ -8,63 +8,67 @@ public class ICalTimeZoneProperty {
     private String dateTimeStart;
     private String rRule;
 
-    public ICalTimeZoneProperty(String nameTimeZone, String timeZoneOffsetFrom, String timeZoneOffsetTo,
-                                String timezoneName, String dateTimeStart, String rRule) {
-        this.nameTimeZone = nameTimeZone;
-        this.timeZoneOffsetFrom = timeZoneOffsetFrom;
-        this.timeZoneOffsetTo = timeZoneOffsetTo;
-        this.timezoneName = timezoneName;
-        this.dateTimeStart = dateTimeStart;
-        this.rRule = rRule;
+    public ICalTimeZoneProperty(final String aNameTimeZone,
+                                final String aTimeZoneOffsetFrom,
+                                final String aTimeZoneOffsetTo,
+                                final String aTimezoneName,
+                                final String aDateTimeStart,
+                                final String aRRule) {
+        this.nameTimeZone = aNameTimeZone;
+        this.timeZoneOffsetFrom = aTimeZoneOffsetFrom;
+        this.timeZoneOffsetTo = aTimeZoneOffsetTo;
+        this.timezoneName = aTimezoneName;
+        this.dateTimeStart = aDateTimeStart;
+        this.rRule = aRRule;
     }
 
     //region ICalTimeZoneProperty Getters and Setters
-    public String getNameTimeZone() {
+    public final String getNameTimeZone() {
         return nameTimeZone;
     }
 
-    public void setNameTimeZone(String nameTimeZone) {
-        this.nameTimeZone = nameTimeZone;
+    public final void setNameTimeZone(final String aNameTimeZone) {
+        this.nameTimeZone = aNameTimeZone;
     }
 
-    public String getTimeZoneOffsetFrom() {
+    public final String getTimeZoneOffsetFrom() {
         return timeZoneOffsetFrom;
     }
 
-    public void setTimeZoneOffsetFrom(String timeZoneOffsetFrom) {
-        this.timeZoneOffsetFrom = timeZoneOffsetFrom;
+    public final void setTimeZoneOffsetFrom(final String aTimeZoneOffsetFrom) {
+        this.timeZoneOffsetFrom = aTimeZoneOffsetFrom;
     }
 
-    public String getTimeZoneOffsetTo() {
+    public final String getTimeZoneOffsetTo() {
         return timeZoneOffsetTo;
     }
 
-    public void setTimeZoneOffsetTo(String timeZoneOffsetTo) {
-        this.timeZoneOffsetTo = timeZoneOffsetTo;
+    public final void setTimeZoneOffsetTo(final String aTimeZoneOffsetTo) {
+        this.timeZoneOffsetTo = aTimeZoneOffsetTo;
     }
 
-    public String getTimezoneName() {
+    public final String getTimezoneName() {
         return timezoneName;
     }
 
-    public void setTimezoneName(String timezoneName) {
-        this.timezoneName = timezoneName;
+    public final void setTimezoneName(final String aTimezoneName) {
+        this.timezoneName = aTimezoneName;
     }
 
-    public String getDateTimeStart() {
+    public final String getDateTimeStart() {
         return dateTimeStart;
     }
 
-    public void setDateTimeStart(String dateTimeStart) {
-        this.dateTimeStart = dateTimeStart;
+    public final void setDateTimeStart(final String aDateTimeStart) {
+        this.dateTimeStart = aDateTimeStart;
     }
 
-    public String getrRule() {
+    public final String getrRule() {
         return rRule;
     }
 
-    public void setrRule(String rRule) {
-        this.rRule = rRule;
+    public final void setrRule(final String aRRule) {
+        this.rRule = aRRule;
     }
     //endregion
 

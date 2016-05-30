@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<icalendar>
+    <vcalendar>
+        <properties>
+            <calscale>
+                <text>GREGORIAN</text>
+            </calscale>
+            <prodid>
+                <text>-//Example Inc.//Example Calendar//EN</text>
+            </prodid>
+            <version>
+                <text>2.0</text>
+            </version>
+        </properties>
+        <components>
+            <veventt>
+                <properties>
+                    <dtstamp>
+                        <date-time>2008-02-05T19:12:24Z</date-time>
+                    </dtstamp>
+                    <dtstart>
+                        <date>2016/01/22 15:00</date>
+                    </dtstart>
+                    <dtend>
+                        <date>2016/01/23 00:00</date>
+                    </dtend>
+                    <summary>
+                        <text>Planning meeting</text>
+                    </summary>
+                    <description>
+                        <text>We are having a meeting</text>
+                    </description>
+                    <tzid>
+                        <text>Europe/Berlin</text>
+                    </tzid>
+                    <uid>
+                        <text>4088E990AD89CB3DBB484909</text>
+                    </uid>
+                    <tag>
+                        <text>f</text>
+                    </tag>
+                </properties>
+            </veventt>
+            <veventt>
+                <properties>
+                    <dtstamp>
+                        <date-time>2009-02-05T19:12:24Z</date-time>
+                    </dtstamp>
+                    <dtstart>
+                        <date>2009/10/06 14:00</date>
+                    </dtstart>
+                    <dtend>
+                        <date>2009/10/06 16:00</date>
+                    </dtend>
+                    <description>
+                        <text>We are having a meeting on 2008-10-06</text>
+                    </description>
+                    <summary>
+                        <text>Planning meeting2</text>
+                    </summary>
+                    <tzid>
+                        <text>Europe/Berlin</text>
+                    </tzid>
+                    <uid>
+                        <text>4088E990AD89CB3DBB484909</text>
+                    </uid>
+                    <tag>
+                        <text>f</text>
+                    </tag>
+                </properties>
+            </veventt>
+        </components>
+    </vcalendar>
+</icalendar>

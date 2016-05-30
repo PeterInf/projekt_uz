@@ -43,9 +43,7 @@ public class CalendarsListTest {
         assertTrue(calendarsList != null);
     }
 
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
+    @Rule public ExpectedException thrown = ExpectedException.none();
     @Test
     public void whenCalendarAddedThenItCanBeFound() throws Exception {
         calendarsList.addCalendar(new Calendar("Kalendarz", "Opis"));
@@ -65,6 +63,11 @@ public class CalendarsListTest {
 
         calendarsList.setListOfCalendars(newCalendars);
         calendarsList.getCalendarByName("Kalendarz");
+    }
+
+    @Test
+    public void whenGetCalendarsListThenCountMatches() {
+        assertEquals(1, calendarsList.getListOfCalendars().size());
     }
 
     @Test

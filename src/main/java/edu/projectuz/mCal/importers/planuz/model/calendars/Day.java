@@ -15,62 +15,100 @@ public class Day {
     private int number;
     private String date;
     private String dayAccordingToTimetable;
-    private String getDayAccordingToCalendar;
+    private String dayAccordingToCalendar;
+    private final int magicNumber = 31;
 
     /**
-     * Class constructor that simply sets all of the member variables describing day.
-     * @param number - Number of a day.
-     * @param date - Date of a day.
-     * @param dayAccordingToTimetable - Day name according to timetable.
-     * @param getDayAccordingToCalendar - Day name according to calendar.
+     * Class constructor that simply sets all
+     * of the member variables describing day.
+     *
+     * @param aNumber                  - Number of a day.
+     * @param aDate                    - Date of a day.
+     * @param aDayAccordingToTimetable - Day name according to timetable.
+     * @param aDayAccordingToCalendar  - Day name according to calendar.
      */
-    public Day(int number, String date, String dayAccordingToTimetable, String getDayAccordingToCalendar) {
-        this.number = number;
-        this.date = date;
-        this.dayAccordingToTimetable = dayAccordingToTimetable;
-        this.getDayAccordingToCalendar = getDayAccordingToCalendar;
+    public Day(final int aNumber, final String aDate,
+               final String aDayAccordingToTimetable,
+               final String aDayAccordingToCalendar) {
+        this.number = aNumber;
+        this.date = aDate;
+        this.dayAccordingToTimetable = aDayAccordingToTimetable;
+        this.dayAccordingToCalendar = aDayAccordingToCalendar;
     }
 
     /**
      * Gets value of date variable.
+     *
      * @return Returns value of date variable.
      */
-    String getDate() {
+    public final String getDate() {
         return date;
     }
 
     /**
+     * @return Day name according to calendar.
+     */
+    public final String getDayAccordingToCalendar() {
+        return dayAccordingToCalendar;
+    }
+
+    /**
      * Converts object of this class to String object with all of it's content.
+     *
      * @return Returns converted String.
      */
     @Override
-    public String toString() {
-        return "Day{" +
-                "number=" + number +
-                ", date=" + date +
-                ", dayAccordingToTimetable='" + dayAccordingToTimetable + '\'' +
-                ", getDayAccordingToCalendar='" + getDayAccordingToCalendar + '\'' +
-                '}';
+    public final String toString() {
+        return "Day{" + "number="
+                + number + ", date=" + date
+                + ", dayAccordingToTimetable='"
+                + dayAccordingToTimetable + '\''
+                + ", dayAccordingToCalendar='"
+                + dayAccordingToCalendar + '\'' + '}';
+    }
+
+    @Override
+    public final int hashCode() {
+        int result = number;
+        result = magicNumber * result + (date != null ? date.hashCode() : 0);
+        result = magicNumber * result + (dayAccordingToTimetable != null
+                ? dayAccordingToTimetable.hashCode() : 0);
+        result = magicNumber * result + (dayAccordingToCalendar != null
+                ? dayAccordingToCalendar.hashCode() : 0);
+        return result;
     }
 
     /**
      * Compares one object to another
+     *
      * @param o - object to compare with
      * @return returns true if object are equal, if not then returns false
      */
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public final boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Day day = (Day) o;
 
-        if (number != day.number) return false;
-        if (date != null ? !date.equals(day.date) : day.date != null) return false;
-        if (dayAccordingToTimetable != null ? !dayAccordingToTimetable.equals(day.dayAccordingToTimetable) : day.dayAccordingToTimetable != null)
+        if (number != day.number) {
             return false;
-        return getDayAccordingToCalendar != null ? getDayAccordingToCalendar.equals(day.getDayAccordingToCalendar) : day.getDayAccordingToCalendar == null;
-
+        }
+        if (date != null ? !date.equals(day.date) : day.date != null) {
+            return false;
+        }
+        if (dayAccordingToTimetable != null ? !dayAccordingToTimetable.
+                equals(day.dayAccordingToTimetable)
+                : day.dayAccordingToTimetable != null) {
+            return false;
+        }
+        return dayAccordingToCalendar != null ? dayAccordingToCalendar.
+                equals(day.dayAccordingToCalendar)
+                : day.dayAccordingToCalendar == null;
     }
 
 }
