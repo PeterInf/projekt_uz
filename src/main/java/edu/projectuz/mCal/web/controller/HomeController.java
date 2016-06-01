@@ -42,6 +42,7 @@ public final class HomeController {
                                  Errors errors, Model model) {
         model.addAttribute("eventToRemoveInfo", new EventToRemoveInfo());
         if (errors.hasErrors()) {
+            model.addAttribute("calendarEvents", service.findAllCalendarEvent());
             return "home";
         } else {
             service.saveCalendarEvent(calendarEvent);
