@@ -75,4 +75,17 @@ public final class HomeController {
         out.flush();
         out.close();
     }
+
+    @RequestMapping(value = "/generateICal", method = GET)
+    public void generateICal(HttpServletResponse response) throws IOException {
+        response.setContentType("text/text");
+        response.setHeader("Content-Disposition","attachment;filename=events.ical");
+        ServletOutputStream out = response.getOutputStream();
+
+        //TODO: use converter to iCal string
+        out.println("");
+        out.flush();
+        out.close();
+    }
+
 }

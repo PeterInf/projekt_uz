@@ -92,7 +92,7 @@
 
     <div class="row">
         <div class="text-center">
-            <input title="generateICal" type="button" value="Generate iCal">
+            <input onclick="location.href='generateICal'" title="generateICal" type="button" value="Generate iCal">
             <input onclick="location.href='generateCsv'" title="generateCsv" type="button" value="Generate CSV">
         </div>
     </div>
