@@ -40,5 +40,6 @@ public class ICalSections {
             VEVENT = "VEVENT",
             EVENTALARMS = "EVENTALARMS:",
             COLONSEPARATOR =":",
-            TSEPARATOR="T";
+            TSEPARATOR="T",
+            ALLDAYEVENT="ALLDAYEVENT";
 }
