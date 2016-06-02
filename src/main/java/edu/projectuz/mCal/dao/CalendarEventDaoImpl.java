@@ -1,5 +1,6 @@
 package edu.projectuz.mCal.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
@@ -42,4 +43,10 @@ public class CalendarEventDaoImpl extends AbstractDao implements CalendarEventDa
         Query query = getSession().createSQLQuery("delete from CalendarEvent");
         query.executeUpdate();
     }
+
+    public void saveCalendarEventsList(ArrayList<CalendarEvent> events) {
+        events.forEach(this::persist);
+    }
+
+
 }

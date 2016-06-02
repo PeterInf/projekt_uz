@@ -2,6 +2,7 @@ package edu.projectuz.mCal.service;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface CalendarEventService {
@@ -17,4 +18,6 @@ public interface CalendarEventService {
     void updateCalendarEvent(CalendarEvent calendarEvent);
 
     void deleteAll();
+
+    void saveCalendarEventsList(ArrayList<CalendarEvent> events);
 }

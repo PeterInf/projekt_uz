@@ -4,11 +4,13 @@ import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
 import edu.projectuz.mCal.importers.csv.logic.CSVImporter;
 import edu.projectuz.mCal.service.CalendarEventService;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.activation.MimetypesFileTypeMap;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,16 +45,22 @@ public class ImportFromFile {
                 stream.write(bytes);
                 stream.close();
 
-                CSVImporter csvImporter = new CSVImporter(serverFile.getAbsolutePath(), ImporterSourceType.FILE);
-                ArrayList<CalendarEvent> events = csvImporter.convertCsvToObject();
+                ArrayList<CalendarEvent> events = new ArrayList<>();
 
-                for(CalendarEvent event : events) {
-                    service.saveCalendarEvent(event);
+                String extension = FilenameUtils.getExtension(serverFile.getAbsolutePath());
+                switch (extension) {
+                    case "csv":
+                        CSVImporter csvImporter = new CSVImporter(serverFile.getAbsolutePath(), ImporterSourceType.FILE);
+                        events = csvImporter.convertCsvToObject();
+                        break;
                 }
+
+                service.saveCalendarEventsList(events);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return "redirect:/";
     }
+
 }
