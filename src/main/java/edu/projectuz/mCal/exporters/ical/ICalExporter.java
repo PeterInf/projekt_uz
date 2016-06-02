@@ -35,9 +35,11 @@ public class ICalExporter {
             stringBuilder.append(ICalSections.BEGIN);
             stringBuilder.append(ICalSections.VEVENT);
             stringBuilder.append('\n');
+            stringBuilder.append(ICalSections.SUMMARY);
+            stringBuilder.append(ev.getTitle());
+            stringBuilder.append('\n');
             stringBuilder.append(ICalSections.DATE_START);
-            stringBuilder.append(ICalSections.TIMEZONEID);
-            stringBuilder.append(DateHelper.stringToTimeZone(ICalHelper.getGroupFromDate(ev.getEndDate().toString(), ICalRegexSections.TIMEZONE)));
+            stringBuilder.append(ev.getStartDate());
             stringBuilder.append(ICalSections.COLONSEPARATOR);
             tempDateTime = ev.getStartDate().toString();
             tempDate = tempDateTime.substring(0,9);
@@ -53,9 +55,6 @@ public class ICalExporter {
             stringBuilder.append(tempDate);
             stringBuilder.append(ICalSections.TSEPARATOR);
             stringBuilder.append(tempTime);
-            stringBuilder.append('\n');
-            stringBuilder.append(ICalSections.SUMMARY);
-            stringBuilder.append(ev.getTitle());
             stringBuilder.append('\n');
             stringBuilder.append(ICalSections.DESCRIPTION);
             stringBuilder.append(ev.getDescription());
