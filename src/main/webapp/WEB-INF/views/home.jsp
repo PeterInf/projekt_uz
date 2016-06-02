@@ -49,6 +49,14 @@
                     <input title="addEvent" type="submit" value="Add event">
                     <input title="clear" type="reset" value="Clear">
                 </form:form>
+
+                <br><br>
+
+                <form:form method="POST" action="importFromFile" enctype="multipart/form-data">
+                    <label>Import from file:</label>
+                    <input type="file" name="file"><br>
+                    <input type="submit" value="Import">
+                </form:form>
             </div>
         </div>
 
@@ -97,11 +105,6 @@
             <option value="24">24 Inf-SP</option>
         </select>
         <input title="importFromPlanUz" type="button" value="Import"><br><br>
-
-        <form:form method="POST" action="importFromFile" enctype="multipart/form-data">
-            File to upload: <input type="file" name="file" value="Import">
-            <input type="submit" value="Upload"> Press here to upload the file!
-        </form:form>
 
         <input title="generateICal" type="button" value="Generate iCal">
         <input title="generateCsv" type="button" value="Generate CSV">
