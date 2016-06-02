@@ -4,7 +4,9 @@ import edu.projectuz.mCal.helpers.DateHelper;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.TimeZone;
@@ -22,12 +24,12 @@ public class CalendarEvent {
     @NotNull @Size(min=1, max=50, message="Title should contain 1-50 characters")
     private String title;
 
-    @NotNull(message="Wrong date format")
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @NotNull(message="Wrong date format")
     private DateTime startDate;
 
-    @NotNull(message="Wrong date format")
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @NotNull(message="Wrong date format")
     private DateTime endDate;
 
     @NotNull @Size(min=1, max=50, message="Tag should contain 1-50 characters")
@@ -38,9 +40,6 @@ public class CalendarEvent {
 
     @NotNull @Size(min=1, message="Description should contain at least 1 character")
     private String description;
-
-    @Transient
-    private final int hashCode = 31;
 
     /**
      * Default constructor takes to create an object in CSVImporter class.
@@ -196,6 +195,7 @@ public class CalendarEvent {
      */
     @Override
     public final int hashCode() {
+        int hashCode = 31;
         int result = startDate != null ? startDate.hashCode() : 0;
         result = hashCode * result
                 + (endDate != null ? endDate.hashCode() : 0);

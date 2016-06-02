@@ -96,18 +96,25 @@
         </div>
     </div>
 
+    <br><br>
+
+    <div class="row">
+        <div class="text-center">
+            <input onclick="location.href='generateICal'" title="generateICal" type="button" value="Generate iCal">
+            <input onclick="location.href='generateCsv'" title="generateCsv" type="button" value="Generate CSV">
+        </div>
+    </div>
+
     <br><br><br><br><br>
     <div class="container">
-
         <select title="planUz">
             <option selected="true" style="display:none;">Plan UZ</option>
             <option value="23">23 Inf-SP</option>
             <option value="24">24 Inf-SP</option>
         </select>
         <input title="importFromPlanUz" type="button" value="Import"><br><br>
-
-        <input title="generateICal" type="button" value="Generate iCal">
-        <input title="generateCsv" type="button" value="Generate CSV">
     </div>
+
+
 </body>
 </html>
