@@ -19,7 +19,7 @@ public class CalendarEvent {
     @GeneratedValue
     private int id;
 
-    @NotNull @Size(min=1, max=25, message="Title should contain 1-25 characters")
+    @NotNull @Size(min=1, max=50, message="Title should contain 1-50 characters")
     private String title;
 
     @NotNull(message="Wrong date format")
@@ -30,7 +30,7 @@ public class CalendarEvent {
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime endDate;
 
-    @NotNull @Size(min=1, max=25, message="Tag should contain 1-25 characters")
+    @NotNull @Size(min=1, max=50, message="Tag should contain 1-50 characters")
     private String tag;
 
     @NotNull

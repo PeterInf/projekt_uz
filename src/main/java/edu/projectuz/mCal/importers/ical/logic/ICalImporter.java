@@ -62,7 +62,7 @@ public class ICalImporter extends BaseEventImporter {
             event.setTitle(ev.getSummary().getValue());
             event.setDescription(ev.getDescription().getValue());
             event.setTimeZone(DateHelper.stringToTimeZone(ICalHelper.getGroupFromDate(ev.getEndDate().toString(), ICalRegexSections.TIMEZONE)));
-            event.setTag("");
+            event.setTag(ev.getLocation().toString());
             events.add(event);
         }
         return events;
