@@ -4,10 +4,7 @@ import edu.projectuz.mCal.helpers.DateHelper;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.TimeZone;
@@ -42,6 +39,7 @@ public class CalendarEvent {
     @NotNull @Size(min=1, message="Description should contain at least 1 character")
     private String description;
 
+    @Transient
     private final int hashCode = 31;
 
     /**

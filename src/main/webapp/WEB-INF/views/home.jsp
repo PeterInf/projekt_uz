@@ -90,12 +90,6 @@
 
     <br><br><br><br><br>
     <div class="container">
-        <select title="fileType">
-            <option selected="true" style="display:none;">From file...</option>
-            <option value="csv">*.csv</option>
-            <option value="xml">*.xml</option>
-        </select>
-        <input title="importFromFile" type="button" value="Import">
 
         <select title="planUz">
             <option selected="true" style="display:none;">Plan UZ</option>
@@ -103,6 +97,11 @@
             <option value="24">24 Inf-SP</option>
         </select>
         <input title="importFromPlanUz" type="button" value="Import"><br><br>
+
+        <form:form method="POST" action="importFromFile" enctype="multipart/form-data">
+            File to upload: <input type="file" name="file" value="Import">
+            <input type="submit" value="Upload"> Press here to upload the file!
+        </form:form>
 
         <input title="generateICal" type="button" value="Generate iCal">
         <input title="generateCsv" type="button" value="Generate CSV">

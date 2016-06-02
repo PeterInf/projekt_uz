@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import javax.validation.Valid;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -22,9 +23,6 @@ public final class HomeController {
 
     @Autowired
     private CalendarEventService service;
-
-    @Autowired
-    private ArrayListEventsRepository repository;
 
     @RequestMapping(value = "/", method = GET)
     public String home(Model model) {
@@ -56,4 +54,5 @@ public final class HomeController {
         service.deleteCalendarEventById(eventInfo.getId());
         return "redirect:/";
     }
+
 }

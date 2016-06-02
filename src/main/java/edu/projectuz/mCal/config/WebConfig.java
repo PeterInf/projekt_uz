@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.
         DefaultServletHandlerConfigurer;
@@ -15,17 +17,14 @@ import org.springframework.web.servlet.config.annotation.
         WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.
         InternalResourceViewResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import java.io.IOException;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan("edu.projectuz.mCal.web")
 public class WebConfig extends WebMvcConfigurerAdapter {
-
 
     @Bean
     public ViewResolver viewResolver() {
@@ -52,6 +51,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    }
+
+    @Bean
+    public MultipartResolver multipartResolver() throws IOException {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxInMemorySize(0);
+        return multipartResolver;
     }
 
 }

@@ -19,4 +19,5 @@ public class WebInitializer extends
     protected final String[] getServletMappings() {
         return new String[]{"/"};
     }
+
 }
