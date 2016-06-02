@@ -30,7 +30,7 @@ public class ICalExporter {
      * This is function of this class.
      * It is used to export data to File.
      */
-
+/*
     public static void main(){
         new ICalExporter();
     }
@@ -46,12 +46,25 @@ public class ICalExporter {
         calendarEvents.add(calendarEvent1);
         calendarEvents.add(calendarEvent);
         try {
-            generateICal(calendarEvents);
+            generateICalFile(generateICal(calendarEvents),"C:\\Users\\Sivik\\Desktop");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public File generateICalFile(String text, String filePath) {
+        File file = new File(filePath);
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write(text);
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+*/
     public String generateICal(ArrayList<CalendarEvent> listOfEvents) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(ICalSections.BEGIN);
