@@ -2,6 +2,7 @@ package edu.projectuz.mCal.web.controller;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.exporters.csv.ConverterToCsvString;
+import edu.projectuz.mCal.exporters.ical.ICalExporter;
 import edu.projectuz.mCal.service.CalendarEventService;
 import edu.projectuz.mCal.web.EventToRemoveInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,12 +79,14 @@ public final class HomeController {
 
     @RequestMapping(value = "/generateICal", method = GET)
     public void generateICal(HttpServletResponse response) throws IOException {
-        response.setContentType("text/text");
-        response.setHeader("Content-Disposition","attachment;filename=events.ical");
+        response.setContentType("text/ics");
+        response.setHeader("Content-Disposition","attachment;filename=events.ics");
         ServletOutputStream out = response.getOutputStream();
 
-        //TODO: use converter to iCal string
-        out.println("");
+        ICalExporter converter = new ICalExporter();
+        ArrayList<CalendarEvent> calendarEvents = (ArrayList<CalendarEvent>) service.findAllCalendarEvent();
+
+        out.println(converter.generateICal(calendarEvents));
         out.flush();
         out.close();
     }
