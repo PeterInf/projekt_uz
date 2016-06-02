@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * It's a test class for class {@link CSVImporter}.
  */
-public class CSVImporterTests {
+public class CsvImporterTests {
 
     /**
      * This test method compare the data received after used main method from {@link CSVImporter},
