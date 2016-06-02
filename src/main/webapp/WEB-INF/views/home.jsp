@@ -56,7 +56,15 @@
                     <label>Import from file:</label>
                     <input type="file" name="file"><br>
                     <input type="submit" value="Import">
-                </form:form>
+                </form:form><br><br><br>
+
+                <select title="planUz">
+                    <option selected="true" style="display:none;">Plan UZ</option>
+                    <option value="23">23 Inf-SP</option>
+                    <option value="24">24 Inf-SP</option>
+                </select>
+                <input onclick="location.href='updateDatabase'" title="updateDatabase" type="button" value="Update database"><br><br>
+                <input title="importFromPlanUz" type="button" value="Import">
             </div>
         </div>
 
@@ -104,17 +112,5 @@
             <input onclick="location.href='generateCsv'" title="generateCsv" type="button" value="Generate CSV">
         </div>
     </div>
-
-    <br><br><br><br><br>
-    <div class="container">
-        <select title="planUz">
-            <option selected="true" style="display:none;">Plan UZ</option>
-            <option value="23">23 Inf-SP</option>
-            <option value="24">24 Inf-SP</option>
-        </select>
-        <input title="importFromPlanUz" type="button" value="Import"><br><br>
-    </div>
-
-
 </body>
 </html>

@@ -31,6 +31,7 @@ public class PlanUzImporter extends BaseEventImporter {
 
     public PlanUzImporter() {
         super("http://plan.uz.zgora.pl/index.php", ImporterSourceType.WEB);
+        importData();
     }
 
     /**
@@ -51,6 +52,14 @@ public class PlanUzImporter extends BaseEventImporter {
 
         importCalendars();
         importTimetables();
+    }
+
+    public CalendarsList getCalendarsList() {
+        return calendarsList;
+    }
+
+    public DepartmentsList getDepartmentsList() {
+        return departmentsList;
     }
 
     private void importTimetables() {
