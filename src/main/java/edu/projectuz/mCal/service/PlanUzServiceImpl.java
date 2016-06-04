@@ -13,7 +13,7 @@ public class PlanUzServiceImpl implements PlanUzService {
     @Autowired
     private PlanUzDao dao;
 
-    public void saveCalendarsList(CalendarsList calendars) {
-        dao.saveCalendarsList(calendars);
+    public void saveCalendarsList(CalendarsList calendarsList) {
+        dao.saveCalendarsList(calendarsList);
     }
 }

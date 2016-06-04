@@ -4,5 +4,5 @@ import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
 
 public interface PlanUzService {
 
-    void saveCalendarsList(CalendarsList calendars);
+    void saveCalendarsList(CalendarsList calendarsList);
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository("planUzDao")
 public class PlanUzDaoImpl extends AbstractDao implements PlanUzDao  {
 
-    public void saveCalendarsList(CalendarsList calendars) {
-        persist(calendars);
+    public void saveCalendarsList(CalendarsList calendarsList) {
+        persist(calendarsList);
     }
 }
