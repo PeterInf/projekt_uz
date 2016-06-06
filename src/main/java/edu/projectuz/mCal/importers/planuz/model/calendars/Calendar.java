@@ -1,18 +1,25 @@
 package edu.projectuz.mCal.importers.planuz.model.calendars;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class stores information about single planUz calendar.
  * It's a part of {@link CalendarsList}.
  * It keeps this information as a list of {@link DaysList} object.
  */
+@Entity
 public class Calendar {
+    @Id
+    @GeneratedValue
+    private int id;
 
     private String name;
     private String description;
 
-    private ArrayList<DaysList> daysLists = new ArrayList<>();
+    @OneToMany(cascade={CascadeType.ALL})
+    private List<DaysList> daysLists = new ArrayList<>();
 
     /**
      * Class constructor that simply
@@ -95,4 +102,37 @@ public class Calendar {
         }
         return false;
     }
+
+    //region Getter/Setter/Constructor(No-Arg)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<DaysList> getDaysLists() {
+        return daysLists;
+    }
+
+    public void setDaysLists(List<DaysList> daysLists) {
+        this.daysLists = daysLists;
+    }
+
+    public Calendar() {
+    }
+    //endregion
 }

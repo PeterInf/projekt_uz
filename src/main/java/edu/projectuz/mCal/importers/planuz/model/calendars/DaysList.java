@@ -1,6 +1,8 @@
 package edu.projectuz.mCal.importers.planuz.model.calendars;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class stores a list of {@link Day} objects of a particular type.
@@ -10,10 +12,15 @@ import java.util.ArrayList;
  * For example: planUz calendar called D - Studia stacjonarne has few day types
  * like D, DP, DN...
  */
+@Entity
 public class DaysList {
-
+    @Id
+    @GeneratedValue
+    private int id;
     private String type;
-    private ArrayList<Day> days = new ArrayList<>();
+
+    @OneToMany(cascade={CascadeType.ALL})
+    private List<Day> days = new ArrayList<>() ;
 
     /**
      * Class constructor. Simply sets a value of type variable.
@@ -47,7 +54,7 @@ public class DaysList {
      *
      * @return Returns list of days.
      */
-    public final ArrayList<Day> getDays() {
+    public final List<Day> getDays() {
         return days;
     }
 
@@ -86,4 +93,24 @@ public class DaysList {
                 + days + '}';
     }
 
+    //region Getter/Setter/Constructor(No-Arg)
+    public DaysList() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setDays(List<Day> days) {
+        this.days = days;
+    }
+    //endregion
 }

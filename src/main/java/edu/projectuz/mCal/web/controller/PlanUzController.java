@@ -17,7 +17,7 @@ public class PlanUzController {
     private PlanUzService service;
 
     @RequestMapping(value = "/updateDatabase")
-    public String updateDatabase() {
+    public String updateDatabase() throws Exception {
         PlanUzImporter importer = new PlanUzImporter();
         CalendarsList calendarsList = importer.getCalendarsList();
 //        DepartmentsList departmentsList = importer.getDepartmentsList();
