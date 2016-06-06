@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * It's a test class for class {@link CSVImporter}.
  */
-public class CSVImporterTests {
+public class CsvImporterTests {
 
     /**
      * This test method compare the data received after used main method from {@link CSVImporter},
@@ -40,7 +40,6 @@ public class CSVImporterTests {
                 .withZone(DateTimeZone.forID("Europe/Warsaw")), "OPIS", "f", TimeZone.getTimeZone("Europe/Warsaw"));
 
         //Assert
-        System.err.println();
         assertEquals(calendarEvent, csvImporter.convertCsvToObject().get(0));
         assertEquals(calendarEvent1, csvImporter.convertCsvToObject().get(1));
     }

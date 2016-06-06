@@ -81,9 +81,7 @@ public class CalendarEvent {
                 TimeZone.getTimeZone("America/Los_Angeles"));
     }
 
-    public final DateTime getEndDate() {
-        return endDate;
-    }
+    public final DateTime getEndDate() {return endDate;}
 
     public final void setEndDate(final DateTime anEndDate) {
         this.endDate = anEndDate;
@@ -120,6 +118,7 @@ public class CalendarEvent {
     public final void setTimeZone(final TimeZone aTimeZone) {
         this.timeZone = aTimeZone;
     }
+    public String getIdTimeZone(){return timeZone.getID();}
 
     public final String getTitle() {
         return title;
