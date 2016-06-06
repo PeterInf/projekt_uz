@@ -20,6 +20,13 @@ public class DateHelper {
      * @param timezone   timezone to format date
      * @return formatted date from String
      */
+
+    public static DateTime stringToDate(String dateText, String dateFormat) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(dateFormat);
+        DateTime dateTime = dateTimeFormatter.parseDateTime(dateText);
+        return dateTime;
+    }
+
     public static DateTime stringToDate(String dateText, String dateFormat, TimeZone timezone) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(dateFormat);
         DateTime dateTime = dateTimeFormatter.withZone(DateTimeZone.forTimeZone(timezone)).parseDateTime(dateText);

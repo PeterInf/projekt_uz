@@ -42,21 +42,23 @@ public class CalendarsListImporter {
     /**
      * Class constructor that sets default url to planUz calendars.
      */
-    public CalendarsListImporter(String calendarsUrl) {
-        this.calendarsUrl = calendarsUrl;
+    public CalendarsListImporter(final String aCalendarsUrl) {
+        this.calendarsUrl = aCalendarsUrl;
     }
 
     /**
      * This is a main function of this class.
      * It is used to import every single planUz calendar.
+     *
      * @return Returns instance of {@link CalendarsList} class.
      */
-    public CalendarsList importCalendars() {
+    public final CalendarsList importCalendars() {
         importHtmlContent();
         String description = getCalendarsDescription();
         CalendarsList calendarsList = new CalendarsList(description);
         Elements calendarsTableRows = getCalendarsTableRows();
-        calendarsList.setListOfCalendars(convertRowsIntoCalendarsList(calendarsTableRows));
+        calendarsList.setListOfCalendars(
+                convertRowsIntoCalendarsList(calendarsTableRows));
         return calendarsList;
     }
 
@@ -79,9 +81,11 @@ public class CalendarsListImporter {
         return table.select(HtmlComponentName.ROW);
     }
 
-    private ArrayList<Calendar> convertRowsIntoCalendarsList(Elements calendarsTableRows) {
+    private ArrayList<Calendar> convertRowsIntoCalendarsList(
+            final Elements calendarsTableRows) {
         ArrayList<Calendar> calendarsList = new ArrayList<>();
-        for(int rowIndex = CalendarComponentIndex.FIRST_ROW_WITH_CALENDARS; rowIndex < calendarsTableRows.size(); rowIndex++) {
+        for (int rowIndex = CalendarComponentIndex.FIRST_ROW_WITH_CALENDARS;
+             rowIndex < calendarsTableRows.size(); rowIndex++) {
             Element row = calendarsTableRows.get(rowIndex);
             Calendar calendar = convertRowIntoCalendar(row);
             calendarsList.add(calendar);
@@ -89,12 +93,15 @@ public class CalendarsListImporter {
         return calendarsList;
     }
 
-    private Calendar convertRowIntoCalendar(Element row) {
+    private Calendar convertRowIntoCalendar(final Element row) {
         Elements columns = row.select(HtmlComponentName.COLUMN);
         String name = columns.get(CalendarComponentIndex.NAME_COLUMN).text();
-        String description = columns.get(CalendarComponentIndex.DESCRIPTION_COLUMN).text();
+        String description = columns.get(
+                CalendarComponentIndex.DESCRIPTION_COLUMN).text();
         String calendarUrl = columns.get(CalendarComponentIndex.NAME_COLUMN).
-                select(HtmlComponentName.ADDRESS).attr(HtmlComponentName.ABSOLUTE_URL);
-        return new SingleCalendarImporter(name, description, calendarUrl).importCalendar();
+                select(HtmlComponentName.ADDRESS).attr(
+                HtmlComponentName.ABSOLUTE_URL);
+        return new SingleCalendarImporter(name,
+                description, calendarUrl).importCalendar();
     }
 }

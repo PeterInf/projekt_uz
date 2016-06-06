@@ -15,33 +15,34 @@ public class Day {
 
     /**
      * Class constructor that sets name of a day.
-     * @param name - name of a day to set.
+     * @param aName - name of a day to set.
      */
-    public Day(String name) {
-        this.name = name;
+    public Day(final String aName) {
+        this.name = aName;
     }
 
     /**
      * Adds single event passed as a parameter to this particular day.
      * @param timetableEvent - {@link TimetableEvent} object to add to the list.
      */
-    public void addEvent(TimetableEvent timetableEvent) {
+    public final void addEvent(final TimetableEvent timetableEvent) {
         eventsList.add(timetableEvent);
     }
 
     /**
      * Sets list of every event with this given as a parameter.
-     * @param eventsList - list of {@link TimetableEvent} objects to set.
+     * @param anEventsList - list of {@link TimetableEvent} objects to set.
      */
-    public void setEventsList(ArrayList<TimetableEvent> eventsList) {
-        this.eventsList = eventsList;
+    public final void setEventsList(
+            final ArrayList<TimetableEvent> anEventsList) {
+        this.eventsList = anEventsList;
     }
 
     /**
      * Gets a name of a day.
      * @return Returns value of name variable.
      */
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
@@ -49,7 +50,7 @@ public class Day {
      * Gets list of all events.
      * @return Returns a list of {@link TimetableEvent} objects.
      */
-    public ArrayList<TimetableEvent> getEventsList() {
+    public final ArrayList<TimetableEvent> getEventsList() {
         return eventsList;
     }
 
@@ -58,11 +59,10 @@ public class Day {
      * @return Returns converted String.
      */
     @Override
-    public String toString() {
-        return "Day{" +
-                "name='" + name + '\'' +
-                ", eventsList=" + eventsList +
-                '}';
+    public final String toString() {
+        return "Day{"
+                + "name='" + name + '\''
+                + ", eventsList=" + eventsList + '}';
     }
 
 }

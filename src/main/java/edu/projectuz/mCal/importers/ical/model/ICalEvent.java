@@ -9,74 +9,77 @@ public class ICalEvent {
     private String dateTimeEnd;
     private String summary;
     private String description;
-    private ArrayList <ICalEventAlarm> eventAlarms = new ArrayList<>();
+    private ArrayList<ICalEventAlarm> eventAlarms = new ArrayList<>();
 
-    public ICalEvent(String dateTimeStamp, String uid, String dateTimeStart, String dateTimeEnd,
-                     String summary, String description, ArrayList<ICalEventAlarm> eventAlarms) {
-        this.dateTimeStamp = dateTimeStamp;
-        this.uid = uid;
-        this.dateTimeStart = dateTimeStart;
-        this.dateTimeEnd = dateTimeEnd;
-        this.summary = summary;
-        this.description = description;
-        this.eventAlarms = eventAlarms;
+    public ICalEvent(final String aDateTimeStamp, final String anUid,
+                     final String aDateTimeStart, final String aDateTimeEnd,
+                     final String aSummary, final String aDescription,
+                     final ArrayList<ICalEventAlarm> anEventAlarms) {
+        this.dateTimeStamp = aDateTimeStamp;
+        this.uid = anUid;
+        this.dateTimeStart = aDateTimeStart;
+        this.dateTimeEnd = aDateTimeEnd;
+        this.summary = aSummary;
+        this.description = aDescription;
+        this.eventAlarms = anEventAlarms;
     }
 
     //region ICalEvent Getters and Setters
-    public String getDateTimeStamp() {
+    public final String getDateTimeStamp() {
         return dateTimeStamp;
     }
 
-    public void setDateTimeStamp(String dateTimeStamp) {
-        this.dateTimeStamp = dateTimeStamp;
+    public final void setDateTimeStamp(final String aDateTimeStamp) {
+        this.dateTimeStamp = aDateTimeStamp;
     }
 
-    public String getUid() {
+    public final String getUid() {
         return uid;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public final void setUid(final String anUid) {
+        this.uid = anUid;
     }
 
-    public String getDateTimeStart() {
+    public final String getDateTimeStart() {
         return dateTimeStart;
     }
 
-    public void setDateTimeStart(String dateTimeStart) {
-        this.dateTimeStart = dateTimeStart;
+    public final void setDateTimeStart(final String aDateTimeStart) {
+        this.dateTimeStart = aDateTimeStart;
     }
 
-    public String getDateTimeEnd() {
+    public final String getDateTimeEnd() {
         return dateTimeEnd;
     }
 
-    public void setDateTimeEnd(String dateTimeEnd) {
-        this.dateTimeEnd = dateTimeEnd;
+    public final void setDateTimeEnd(final String aDateTimeEnd) {
+        this.dateTimeEnd = aDateTimeEnd;
     }
 
-    public String getSummary() {
+    public final String getSummary() {
         return summary;
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public final void setSummary(final String aSummary) {
+        this.summary = aSummary;
     }
 
-    public String getDescription() {
+    public final String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public final void setDescription(final String aDescription) {
+        this.description = aDescription;
     }
 
-    public ArrayList<ICalEventAlarm> getEventAlarms() {
+    public final ArrayList<ICalEventAlarm> getEventAlarms() {
         return eventAlarms;
     }
 
-    public void setEventAlarms(ArrayList<ICalEventAlarm> eventAlarms) {
-        this.eventAlarms = eventAlarms;
+    public final void setEventAlarms(
+            final ArrayList<ICalEventAlarm> anEventAlarms) {
+        this.eventAlarms = anEventAlarms;
     }
     //endregion
 }

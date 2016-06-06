@@ -5,7 +5,8 @@
 <html lang="en">
 <head>
     <title>iCal Generator</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
+    <link href="<c:url value="/resources/css/error.css"/>" rel="stylesheet">
     <meta charset="utf-8">
 </head>
 <body>
@@ -17,29 +18,44 @@
         <div class="col-sm-2">
             <div class="container">
                 <form:form action="addEvent" method="post" modelAttribute="calendarEvent">
-                    Title:<br>
-                    <form:input path="title" type="text"/><br>
+                    <form:label path="title" cssErrorClass="error">Title:</form:label><br>
+                    <form:input path="title" type="text" cssErrorClass="error"/><br>
+                    <form:errors path="title" cssClass="errors" element="div"/>
 
-                    Start time:<br>
-                    <form:input path="startDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"/><br>
+                    <form:label path="startDate" cssErrorClass="error">Start time:</form:label><br>
+                    <form:input path="startDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"
+                                cssErrorClass="error"/><br>
+                    <form:errors path="startDate" cssClass="errors" element="div"/>
 
-                    End time:<br>
-                    <form:input path="endDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"/><br>
+                    <form:label path="endDate" cssErrorClass="error">End time:</form:label><br>
+                    <form:input path="endDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"
+                                cssErrorClass="error"/><br>
+                    <form:errors path="endDate" cssClass="errors" element="div"/>
 
-                    Tag:<br>
-                    <form:input path="tag" type="text"/><br>
+                    <form:label path="tag" cssErrorClass="error">Tag:</form:label><br>
+                    <form:input path="tag" type="text" cssErrorClass="error"/><br>
+                    <form:errors path="tag" cssClass="errors" element="div"/>
 
-                    Time zone:<br>
+                    <form:label path="timeZone">Time zone:</form:label><br>
                     <form:select path="timeZone">
                         <option value="Europe/Warsaw">Europe/Warsaw</option>
                         <option value="America/Mexico_City">America/Mexico_City</option>
                     </form:select><br>
 
-                    Description:<br>
-                    <form:input path="description" type="text"/><br><br>
+                    <form:label path="description" cssErrorClass="error">Description:</form:label><br>
+                    <form:input path="description" type="text" cssErrorClass="error"/><br>
+                    <form:errors path="description" cssClass="errors" element="div"/><br>
 
                     <input title="addEvent" type="submit" value="Add event">
                     <input title="clear" type="reset" value="Clear">
+                </form:form>
+
+                <br><br>
+
+                <form:form method="POST" action="importFromFile" enctype="multipart/form-data">
+                    <label>Import from file:</label>
+                    <input type="file" name="file"><br>
+                    <input type="submit" value="Import">
                 </form:form>
             </div>
         </div>
@@ -58,42 +74,47 @@
                     </tr>
                     <c:forEach items="${calendarEvents}" var="calendarEvent">
                         <tr>
-                            <td></td>
+                            <td>${calendarEvent.id}</td>
                             <td>${calendarEvent.title}</td>
-                            <td>${calendarEvent.startDate}</td>
-                            <td>${calendarEvent.endDate}</td>
+                            <td>${calendarEvent.startDate.dayOfMonth}-${calendarEvent.startDate.monthOfYear}-${calendarEvent.startDate.year}
+                                ${calendarEvent.startDate.hourOfDay}:${calendarEvent.startDate.minuteOfHour}:${calendarEvent.startDate.secondOfMinute}</td>
+                            <td>${calendarEvent.endDate.dayOfMonth}-${calendarEvent.endDate.monthOfYear}-${calendarEvent.endDate.year}
+                                ${calendarEvent.endDate.hourOfDay}:${calendarEvent.endDate.minuteOfHour}:${calendarEvent.endDate.secondOfMinute}</td>
                             <td>${calendarEvent.tag}</td>
                             <td>${calendarEvent.timeZone.ID}</td>
                             <td>${calendarEvent.description}</td>
                         </tr>
                     </c:forEach>
-                </table>
+                </table><br>
 
-                <br>
-                <input title="removeEvent" type="button" value="Remove">
+                <form:form action="removeEvent" method="get" modelAttribute="eventToRemoveInfo">
+                    <form:input path="id" type="text" placeholder="ID"/>
+                    <input title="removeEvent" type="submit" value="Remove">
+                </form:form><br>
                 <input onclick="location.href='clearEvents'" title="clearEvents" type="button" value="Clear"><br><br>
             </div>
         </div>
     </div>
 
+    <br><br>
+
+    <div class="row">
+        <div class="text-center">
+            <input onclick="location.href='generateICal'" title="generateICal" type="button" value="Generate iCal">
+            <input onclick="location.href='generateCsv'" title="generateCsv" type="button" value="Generate CSV">
+        </div>
+    </div>
+
     <br><br><br><br><br>
     <div class="container">
-        <select title="fileType">
-            <option selected="true" style="display:none;">From file...</option>
-            <option value="csv">*.csv</option>
-            <option value="xml">*.xml</option>
-        </select>
-        <input title="importFromFile" type="button" value="Import">
-
         <select title="planUz">
             <option selected="true" style="display:none;">Plan UZ</option>
             <option value="23">23 Inf-SP</option>
             <option value="24">24 Inf-SP</option>
         </select>
         <input title="importFromPlanUz" type="button" value="Import"><br><br>
-
-        <input title="generateICal" type="button" value="Generate iCal">
-        <input title="generateCsv" type="button" value="Generate CSV">
     </div>
+
+
 </body>
 </html>
