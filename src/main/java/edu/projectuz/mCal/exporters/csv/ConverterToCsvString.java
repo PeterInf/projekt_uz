@@ -55,6 +55,7 @@ public class ConverterToCsvString {
             stringBuilder.append(separator);
             stringBuilder.append(false);
             stringBuilder.append(separator);
+            stringBuilder.append(System.lineSeparator());
         }
         return stringBuilder.toString();
     }
