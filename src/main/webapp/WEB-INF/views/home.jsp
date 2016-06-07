@@ -8,8 +8,24 @@
     <title>iCal Generator</title>
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/error.css"/>" rel="stylesheet">
+
 </head>
 <body>
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script type='text/javascript'>
+        (function($){
+            $(document).ready(function(){
+                $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    $(this).parent().siblings().removeClass('open');
+                    $(this).parent().toggleClass('open');
+                });
+            });
+        })(jQuery);
+    </script>
+
     <div class="page-header text-center">
         <h1>iCal Generator</h1>
         <p>Import from XML, CSV, iCal and Plan UZ</p>
@@ -59,17 +75,29 @@
                 </form:form><br><br><br>
 
                 <label>Import from Plan UZ:</label><br>
+
+                <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Select group <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <c:forEach items="${departmentsList}" var="department">
+                                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${department.name}</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Dropdown Submenu Link 4.1</a></li>
+                                            <li><a href="#">Dropdown Submenu Link 4.2</a></li>
+                                            <li><a href="#">Dropdown Submenu Link 4.3</a></li>
+                                            <li><a href="#">Dropdown Submenu Link 4.4</a></li>
+                                        </ul>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
                 <select title="department">
                     <option selected="true" style="display:none;">Department</option>
-                    <c:forEach items="${departmentsList}" var="departmentsList">
-                        <option value="23">${departmentsList.name}</option>
-                    </c:forEach>
-                </select>
-                <select title="branch">
-                    <option selected="true" style="display:none;">Branch</option>
-                </select>
-                <select title="group">
-                    <option selected="true" style="display:none;">Group</option>
+
                 </select>
                 <input title="importFromPlanUz" type="button" value="Import">
                 <br><br>
@@ -90,7 +118,7 @@
                         <th>Time zone</th>
                         <th>Description</th>
                     </tr>
-                    <c:forEach items="${calendarsList}" var="calendarEvent">
+                    <c:forEach items="${calendarEvents}" var="calendarEvent">
                         <tr>
                             <td>${calendarEvent.id}</td>
                             <td>${calendarEvent.title}</td>
