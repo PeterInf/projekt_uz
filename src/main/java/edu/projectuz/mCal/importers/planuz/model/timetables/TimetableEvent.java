@@ -23,6 +23,7 @@ public class TimetableEvent {
     private String endTime;
     private String eventName;
     private String eventType;
+
     @Size(max = 500)
     private String teacherName;
     private String room;

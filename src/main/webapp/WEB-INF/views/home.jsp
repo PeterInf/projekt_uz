@@ -1,5 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +8,6 @@
     <title>iCal Generator</title>
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/error.css"/>" rel="stylesheet">
-    <meta charset="utf-8">
 </head>
 <body>
     <div class="page-header text-center">
@@ -58,13 +58,23 @@
                     <input type="submit" value="Import">
                 </form:form><br><br><br>
 
-                <select title="planUz">
-                    <option selected="true" style="display:none;">Plan UZ</option>
-                    <option value="23">23 Inf-SP</option>
-                    <option value="24">24 Inf-SP</option>
+                <label>Import from Plan UZ:</label><br>
+                <select title="department">
+                    <option selected="true" style="display:none;">Department</option>
+                    <c:forEach items="${departmentsList}" var="departmentsList">
+                        <option value="23">${departmentsList.name}</option>
+                    </c:forEach>
                 </select>
-                <input onclick="location.href='updateDatabase'" title="updateDatabase" type="button" value="Update database"><br><br>
+                <select title="branch">
+                    <option selected="true" style="display:none;">Branch</option>
+                </select>
+                <select title="group">
+                    <option selected="true" style="display:none;">Group</option>
+                </select>
                 <input title="importFromPlanUz" type="button" value="Import">
+                <br><br>
+                <input onclick="location.href='updateDatabase'" title="updateDatabase" type="button" value="Update database">
+
             </div>
         </div>
 
@@ -80,7 +90,7 @@
                         <th>Time zone</th>
                         <th>Description</th>
                     </tr>
-                    <c:forEach items="${calendarEvents}" var="calendarEvent">
+                    <c:forEach items="${calendarsList}" var="calendarEvent">
                         <tr>
                             <td>${calendarEvent.id}</td>
                             <td>${calendarEvent.title}</td>

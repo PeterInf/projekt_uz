@@ -18,7 +18,7 @@ public class DepartmentsList {
     @GeneratedValue
     private int id;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Department> departmentsList = new ArrayList<>();
 
     /**

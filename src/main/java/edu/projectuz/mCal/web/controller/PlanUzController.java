@@ -10,6 +10,7 @@ import edu.projectuz.mCal.service.CalendarEventService;
 import edu.projectuz.mCal.service.PlanUzService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class PlanUzController {
     private PlanUzService service;
 
     @RequestMapping(value = "/updateDatabase")
-    public String updateDatabase() throws Exception {
+    public String updateDatabase(Model model) throws Exception {
         PlanUzImporter importer = new PlanUzImporter();
         CalendarsList calendarsList = importer.getCalendarsList();
         DepartmentsList departmentsList = importer.getDepartmentsList();

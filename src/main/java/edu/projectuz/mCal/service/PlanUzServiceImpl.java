@@ -21,4 +21,8 @@ public class PlanUzServiceImpl implements PlanUzService {
     public void saveTimetables(DepartmentsList departmentsList) {
         dao.saveTimetables(departmentsList);
     }
+
+    public DepartmentsList getAllTimetables() {
+        return dao.getAllTimetables();
+    }
 }
