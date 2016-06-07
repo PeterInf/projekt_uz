@@ -1,6 +1,8 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents a single branch of study from planUz.
@@ -8,11 +10,15 @@ import java.util.ArrayList;
  * The class itself stores all groups of particular branch of study
  * in a list of {@link GroupTimetable} objects.
  */
+@Entity
 public class StudyBranch {
+    @Id
+    @GeneratedValue
+    private int id;
 
     private String name;
-
-    private ArrayList<GroupTimetable> groupTimetablesList = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<GroupTimetable> groupTimetablesList = new ArrayList<>();
 
     /**
      * Class constructor. Sets branch of study name.
@@ -39,7 +45,7 @@ public class StudyBranch {
      *                             objects to set.
      */
     public final void setGroupTimetablesList(
-            final ArrayList<GroupTimetable> aGroupTimetablesList) {
+            final List<GroupTimetable> aGroupTimetablesList) {
         this.groupTimetablesList = aGroupTimetablesList;
     }
 
@@ -75,7 +81,7 @@ public class StudyBranch {
      *
      * @return Returns a list of {@link GroupTimetable} objects.
      */
-    public final ArrayList<GroupTimetable> getGroupTimetablesList() {
+    public final List<GroupTimetable> getGroupTimetablesList() {
         return groupTimetablesList;
     }
 
@@ -89,5 +95,17 @@ public class StudyBranch {
         return "StudyBranch{" + "name='" + name + '\''
                 + ", groupTimetablesList="
                 + groupTimetablesList + '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

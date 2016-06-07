@@ -1,16 +1,26 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents single planUz department.
  * Instances of this class are stored in {@link DepartmentsList} class.
  * It contains a list of {@link StudyBranch} objects.
  */
+@Entity
 public class Department {
+    @Id
+    @GeneratedValue
+    private int id;
 
     private String name;
-    private ArrayList<StudyBranch> studyBranchList = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<StudyBranch> studyBranchList = new ArrayList<>();
 
     /**
      * Class constructor. Simply sets a value of name variable.
@@ -36,7 +46,7 @@ public class Department {
      * @param aStudyBranchList - list of {@link StudyBranch} objects to set.
      */
     public final void setStudyBranchList(
-            final ArrayList<StudyBranch> aStudyBranchList) {
+            final List<StudyBranch> aStudyBranchList) {
         this.studyBranchList = aStudyBranchList;
     }
 
@@ -73,7 +83,7 @@ public class Department {
      *
      * @return Returns a list of {@link StudyBranch} objects.
      */
-    public final ArrayList<StudyBranch> getStudyBranchList() {
+    public final List<StudyBranch> getStudyBranchList() {
         return studyBranchList;
     }
 
@@ -87,5 +97,17 @@ public class Department {
         return "Department{" + "name='"
                 + name + '\'' + ", studyBranchList="
                 + studyBranchList + '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

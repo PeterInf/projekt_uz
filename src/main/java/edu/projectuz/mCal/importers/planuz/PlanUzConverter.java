@@ -7,7 +7,7 @@ import edu.projectuz.mCal.importers.planuz.logic.
 import edu.projectuz.mCal.importers.planuz.model.calendars.Calendar;
 import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
 import edu.projectuz.mCal.importers.planuz.model.calendars.DaysList;
-import edu.projectuz.mCal.importers.planuz.model.timetables.Day;
+import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableDay;
 import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
 import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableEvent;
 import org.joda.time.DateTime;
@@ -58,8 +58,8 @@ public class PlanUzConverter {
     private void addEventsToList(
             final GroupTimetable timetable,
             final ArrayList<CalendarEvent> calendarEvents) {
-        for (Day day : timetable.getDaysList()) {
-            for (TimetableEvent timetableEvent : day.getEventsList()) {
+        for (TimetableDay timetableDay : timetable.getDaysList()) {
+            for (TimetableEvent timetableEvent : timetableDay.getEventsList()) {
                 calendarEvents.addAll(
                         convertToCalendarEventsList(timetableEvent));
             }
@@ -126,7 +126,7 @@ public class PlanUzConverter {
 
     private String getDescription(final TimetableEvent timetableEvent) {
         return String.format(
-                "Subgroup: %s, Type: %s, Teacher: %s, Room: %s, Day: %s",
+                "Subgroup: %s, Type: %s, Teacher: %s, Room: %s, TimetableDay: %s",
                 timetableEvent.getSubgroup(), timetableEvent.getEventType(),
                 timetableEvent.getTeacherName(), timetableEvent.getRoom(),
                 timetableEvent.getDayName());
