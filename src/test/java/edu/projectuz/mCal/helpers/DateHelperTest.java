@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(JUnitParamsRunner.class)
 public class DateHelperTest {
@@ -31,5 +32,7 @@ public class DateHelperTest {
         //Assert
         assertEquals(expected.toString(), result.toString());
         assertEquals(expected2.toString(), result2.toString());
+
+        assertNotNull(new DateHelper());
     }
 }
