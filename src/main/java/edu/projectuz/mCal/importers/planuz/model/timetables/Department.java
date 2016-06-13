@@ -1,5 +1,9 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.persistence.*;
@@ -19,7 +23,9 @@ public class Department {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<StudyBranch> studyBranchList = new ArrayList<>();
 
     /**

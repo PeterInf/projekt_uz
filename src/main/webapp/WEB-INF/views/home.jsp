@@ -83,10 +83,9 @@
                                 <c:forEach items="${departmentsList}" var="department">
                                     <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${department.name}</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">Dropdown Submenu Link 4.1</a></li>
-                                            <li><a href="#">Dropdown Submenu Link 4.2</a></li>
-                                            <li><a href="#">Dropdown Submenu Link 4.3</a></li>
-                                            <li><a href="#">Dropdown Submenu Link 4.4</a></li>
+                                            <c:forEach items="${department.studyBranchList}" var="studyBranch">
+                                                <li><a href="#">${studyBranch.name}</a></li>
+                                            </c:forEach>
                                         </ul>
                                     </li>
                                 </c:forEach>
