@@ -1,5 +1,8 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +20,12 @@ public class StudyBranch {
     private int id;
 
     private String name;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<GroupTimetable> groupTimetablesList = new ArrayList<>();
+
+
+    public StudyBranch() {}
 
     /**
      * Class constructor. Sets branch of study name.
@@ -109,6 +116,4 @@ public class StudyBranch {
         this.name = name;
     }
 
-    public StudyBranch() {
-    }
 }

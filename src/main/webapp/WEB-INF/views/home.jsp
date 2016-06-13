@@ -84,7 +84,12 @@
                                     <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${department.name}</a>
                                         <ul class="dropdown-menu">
                                             <c:forEach items="${department.studyBranchList}" var="studyBranch">
-                                                <li><a href="#">${studyBranch.name}</a></li>
+                                                <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${studyBranch.name}</a>
+                                                <ul class="dropdown-menu">
+                                                    <c:forEach items="${studyBranch.groupTimetablesList}" var="groupTimetable">
+                                                        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${groupTimetable.name}</a>
+                                                    </c:forEach>
+                                                </ul>
                                             </c:forEach>
                                         </ul>
                                     </li>
@@ -94,10 +99,6 @@
                     </ul>
                 </div>
 
-                <select title="department">
-                    <option selected="true" style="display:none;">Department</option>
-
-                </select>
                 <input title="importFromPlanUz" type="button" value="Import">
                 <br><br>
                 <input onclick="location.href='updateDatabase'" title="updateDatabase" type="button" value="Update database">

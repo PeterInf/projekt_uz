@@ -22,6 +22,8 @@ public class GroupTimetable {
     @OneToMany(cascade = CascadeType.ALL)
     private List<TimetableDay> daysList = new ArrayList<>();
 
+    public GroupTimetable() {}
+
     /**
      * Class constructor. Simply sets name of a group.
      *
