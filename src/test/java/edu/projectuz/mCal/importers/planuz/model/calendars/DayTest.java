@@ -7,11 +7,21 @@ import static org.junit.Assert.*;
 
 public class DayTest {
 
-    private Day day;
+    private Day day, sameDay, differentDay;
+    private int number;
+    private String date;
+    private String dayAccordingToTimetable;
+    private String dayAccordingToCalendar;
 
     @Before
     public void setUp() {
-        day = new Day(13, "11-01-2014", "Środa", "Czwartek");
+        number = 13;
+        date = "11-01-2014";
+        dayAccordingToTimetable = "Środa";
+        dayAccordingToCalendar = "Czwartek";
+        day = new Day(number, date, dayAccordingToTimetable, dayAccordingToCalendar);
+        sameDay = new Day(number, date, dayAccordingToTimetable, dayAccordingToCalendar);
+        differentDay = new Day(13, "13-01-2014", "Środa", "Czwartek");
     }
 
     @Test
@@ -62,6 +72,31 @@ public class DayTest {
                 '}';
 
         assertEquals(dayConvertedToString, day.toString());
+    }
+
+    @Test
+    public void hashCodeAndEqualsMethods(){
+        assertTrue(day.equals(sameDay) && sameDay.equals(day));
+        assertTrue(day.hashCode() == sameDay.hashCode());
+        assertFalse(day.equals(differentDay));
+        assertFalse(differentDay.equals(day));
+        assertFalse(differentDay.hashCode() == day.hashCode());
+        assertFalse(differentDay.equals(day));
+    }
+
+    @Test
+    public void gettersTest(){
+        assertEquals(number, day.getNumber());
+        assertEquals(date, day.getDate());
+        assertEquals(dayAccordingToCalendar, day.getDayAccordingToCalendar());
+        assertEquals(dayAccordingToTimetable, day.getDayAccordingToTimetable());
+        assertEquals(31, day.getMagicNumber());
+        Day empty = new Day();
+        empty.setDate(date);
+        empty.setId(number);
+        empty.setDayAccordingToCalendar(dayAccordingToCalendar);
+        empty.setDayAccordingToTimetable(dayAccordingToTimetable);
+        empty.setNumber(22);
     }
 
 }
