@@ -37,6 +37,8 @@ public class TimetableEvent {
     private String days;
     private String dayName;
 
+    public TimetableEvent() {}
+
     /**
      * Class constructor that sets all the information about a event.
      *

@@ -27,9 +27,10 @@ public class PlanUzController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/importGroup/{groupName}", method= RequestMethod.GET)
+    @RequestMapping(value = "/importGroup/{groupName:.+}", method= RequestMethod.GET)
     public String importGroup(@PathVariable String groupName) {
-        System.out.println(groupName);
+        GroupTimetable groupTimetable = service.getGroupTimetable(groupName);
+        System.out.println(groupTimetable);
         return "redirect:/";
     }
 }

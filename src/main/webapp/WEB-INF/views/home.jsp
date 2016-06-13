@@ -108,7 +108,6 @@
                     </ul>
                 </div>
 
-                <input title="importFromPlanUz" type="button" value="Import">
                 <br><br>
                 <input onclick="location.href='updateDatabase'" title="updateDatabase" type="button" value="Update database">
 

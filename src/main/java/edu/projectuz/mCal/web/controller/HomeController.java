@@ -5,6 +5,7 @@ import edu.projectuz.mCal.exporters.csv.ConverterToCsvString;
 import edu.projectuz.mCal.exporters.ical.ICalExporter;
 import edu.projectuz.mCal.importers.planuz.logic.PlanUzImporter;
 import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
+import edu.projectuz.mCal.importers.planuz.model.timetables.Department;
 import edu.projectuz.mCal.importers.planuz.model.timetables.DepartmentsList;
 import edu.projectuz.mCal.service.CalendarEventService;
 import edu.projectuz.mCal.service.PlanUzService;
@@ -42,7 +43,7 @@ public final class HomeController {
         model.addAttribute("calendarEvent", new CalendarEvent());
         model.addAttribute("eventToRemoveInfo", new EventToRemoveInfo());
         model.addAttribute("calendarEvents", calendarService.findAllCalendarEvent());
-        model.addAttribute("departmentsList", planUzService.getAllTimetables().getDepartmentsList());
+        addDepartmentsList(model);
         return "home";
     }
 
@@ -97,6 +98,15 @@ public final class HomeController {
         out.println(converter.generateICal(calendarEvents));
         out.flush();
         out.close();
+    }
+
+    private void addDepartmentsList(Model model) {
+        DepartmentsList departmentsList = planUzService.getAllTimetables();
+        if (departmentsList == null) {
+            model.addAttribute("departmentsList", new ArrayList<Department>());
+        } else {
+            model.addAttribute("departmentsList", planUzService.getAllTimetables().getDepartmentsList());
+        }
     }
 
 }

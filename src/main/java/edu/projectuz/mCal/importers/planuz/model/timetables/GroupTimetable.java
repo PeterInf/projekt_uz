@@ -1,5 +1,8 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +22,8 @@ public class GroupTimetable {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<TimetableDay> daysList = new ArrayList<>();
 
     public GroupTimetable() {}

@@ -24,7 +24,6 @@ public class StudyBranch {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<GroupTimetable> groupTimetablesList = new ArrayList<>();
 
-
     public StudyBranch() {}
 
     /**
