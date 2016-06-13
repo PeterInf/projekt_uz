@@ -13,10 +13,12 @@ public class CalendarsListTest {
 
     private CalendarsList calendarsList;
     private ArrayList<Calendar> calendars = new ArrayList<>();
+    private String description;
 
     @Before
     public void setUp() {
-        calendarsList = new CalendarsList("Kalendarze na rok 2015/2016");
+        description = "Kalendarze na rok 2015/2016";
+        calendarsList = new CalendarsList(description);
 
         Calendar calendar = new Calendar("D", "Studia stacjonarne");
 
@@ -78,5 +80,22 @@ public class CalendarsListTest {
                 ", calendars=" + calendars +
                 '}';
         assertEquals(calendarsListConvertedToString, calendarsList.toString());
+    }
+
+    @Test
+    public void gettersAndSettersTests(){
+        CalendarsList calendarsListEmpty = new CalendarsList();
+        assertNotNull(calendarsListEmpty);
+        int id = 1;
+        String description = "description";
+        ArrayList<Calendar> calendars = new ArrayList<>();
+        calendarsListEmpty.setId(id);
+        calendarsListEmpty.setDescription(description);
+        calendarsListEmpty.setCalendars(calendars);
+        assertEquals(id, calendarsListEmpty.getId());
+        assertEquals(description, calendarsListEmpty.getDescription());
+        assertEquals(calendars, calendarsListEmpty.getCalendars());
+        assertEquals(0, calendarsListEmpty.size());
+
     }
 }
