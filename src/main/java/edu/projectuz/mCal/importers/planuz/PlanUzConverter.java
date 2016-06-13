@@ -50,6 +50,7 @@ public class PlanUzConverter {
      * This function will be changed to get calendars from
      * database instead of importer itself.
      */
+    //TODO:
     private CalendarsList getCalendars() {
         String calendarsUrl = "http://plan.uz.zgora.pl/kalendarze_lista.php";
         return new CalendarsListImporter(calendarsUrl).importCalendars();
