@@ -87,7 +87,7 @@
                                                 <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${studyBranch.name}</a>
                                                 <ul class="dropdown-menu">
                                                     <c:forEach items="${studyBranch.groupTimetablesList}" var="groupTimetable">
-                                                        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${groupTimetable.name}</a>
+                                                        <li><a href="importGroup/${groupTimetable.name}">${groupTimetable.name}</a></li>
                                                     </c:forEach>
                                                 </ul>
                                             </c:forEach>
