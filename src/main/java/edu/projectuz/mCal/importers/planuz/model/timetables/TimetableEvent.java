@@ -122,7 +122,7 @@ public class TimetableEvent {
     /**
      * Gets day name
      *
-     * @return Day of the week
+     * @return Day of the week.
      */
     public final String getDayName() {
         return dayName;
