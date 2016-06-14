@@ -64,6 +64,7 @@ public class DaysList {
      *
      * @param date - Date of a {@link Day} to find.
      * @return Returns day that has been found.
+     * @throws Exception not found day.
      */
     public final Day getDayByDate(final String date) throws Exception {
         for (Day day : days) {

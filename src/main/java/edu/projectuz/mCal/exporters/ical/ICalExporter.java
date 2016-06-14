@@ -21,6 +21,9 @@ public class ICalExporter {
     /**
      * This is function of this class.
      * It is used to export data to File.
+     * @param listOfEvents list of events.
+     * @return event in string.
+     * @throws IOException empty.
      */
 
     public String generateICal(ArrayList<CalendarEvent> listOfEvents) throws IOException {

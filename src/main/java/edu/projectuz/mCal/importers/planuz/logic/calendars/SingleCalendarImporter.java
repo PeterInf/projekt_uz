@@ -51,7 +51,7 @@ class SingleCalendarImporter {
      * which is used to import calendar from planUz.
      *
      * @return Returns a {@link Calendar} object that
-     * can be added to {@link CalendarsList}.
+     * can be added to {@link CalendarsListImporter}.
      */
     Calendar importCalendar() {
         Calendar calendar = new Calendar(name, description);
