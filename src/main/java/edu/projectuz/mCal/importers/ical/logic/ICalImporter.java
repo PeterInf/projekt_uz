@@ -48,6 +48,7 @@ public class ICalImporter extends BaseEventImporter {
      * It is used to import all data from ICal.
      *
      * @return Returned list of events.
+     * @throws Exception empty.
      */
     public ArrayList<CalendarEvent> convertICalToObject() throws Exception {
         Calendar calendar = buildCalendar();
