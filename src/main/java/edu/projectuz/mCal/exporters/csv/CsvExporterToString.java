@@ -6,8 +6,16 @@ import org.joda.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 
+/**
+ * This class is main class for exporter all data from this app to string.
+ */
 public class CsvExporterToString {
 
+    /**
+     * This function returned a string of all events.
+     * @param listOfEvents list of all events.
+     * @return list of events in string.
+     */
     public String generateCsvToString(ArrayList<CalendarEvent> listOfEvents) {
         StringBuilder stringBuilder = new StringBuilder();
         String separator = ",";

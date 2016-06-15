@@ -3,9 +3,9 @@ package edu.projectuz.mCal.importers.csv.model;
 /**
  * Represents a mapping from a column in a csv, for class CSVImporter.
  */
-public final class CSVSections {
+public final class CsvSections {
 
-    private CSVSections() {
+    private CsvSections() {
 
     }
 

@@ -1,7 +1,7 @@
 package edu.projectuz.mCal.web.controller;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
-import edu.projectuz.mCal.exporters.csv.ConverterToCsvString;
+import edu.projectuz.mCal.exporters.csv.CsvExporterToString;
 import edu.projectuz.mCal.exporters.ical.ICalExporter;
 import edu.projectuz.mCal.service.CalendarEventService;
 import edu.projectuz.mCal.web.EventToRemoveInfo;
@@ -15,12 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public final class HomeController {
@@ -70,9 +69,9 @@ public final class HomeController {
         response.setHeader("Content-Disposition","attachment;filename=events.csv");
         ServletOutputStream out = response.getOutputStream();
 
-        ConverterToCsvString converter = new ConverterToCsvString();
+        CsvExporterToString converter = new CsvExporterToString();
         ArrayList<CalendarEvent> calendarEvents = (ArrayList<CalendarEvent>) service.findAllCalendarEvent();
-        out.println(converter.convert(calendarEvents));
+        out.println(converter.generateCsvToString(calendarEvents));
         out.flush();
         out.close();
     }
