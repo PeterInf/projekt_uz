@@ -1,10 +1,12 @@
 package edu.projectuz.mCal.importers.planuz.logic;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
+@Ignore
 public class PlanUzImporterTest {
 
     private PlanUzImporter planUzImporter;

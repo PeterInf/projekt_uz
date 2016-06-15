@@ -13,10 +13,12 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
     <link rel="stylesheet" href="<c:url value="/resources/css/fullcalendar.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/mCal.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-datetimepicker.css"/>">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
     <script src="<c:url value="/resources/js/jquery.min.js"/>"></script>
+    <script src="<c:url value="/resources/js/mCal.js"/>"></script>
     <script src="<c:url value="/resources/js/moment.min.js"/>"></script>
     <script src="<c:url value="/resources/js/fullcalendar.js"/>"></script>
     <script src="<c:url value="/resources/js/bootstrap-datetimepicker.min.js"/>"></script>
@@ -76,7 +78,10 @@
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
-                <li class="dropdown">
+                <li>
+                    <a onclick="location.href='updateDatabase'" title="updateDatabase">Aktualizacja planu</a>
+                </li>
+                <li>
                     <a href="#">Dokumentacja</a>
                 </li>
             </ul>
@@ -161,16 +166,62 @@
                     </div>
                 </fieldset>
             </form:form>
-
-            <form id="command" action="importFromFile" method="POST" enctype="multipart/form-data">
+            <h2>Importery</h2>
+            <form:form id="command" method="POST" action="importFromFile" enctype="multipart/form-data">
                 <fieldset class="form-group">
                     <label class>Importuj wydarzenia z pliku:</label>
+                    <p>Możliwy import z formatu: iCal, XML, CSV</p>
                     <input type="file" name="file"><br>
                     <button class="btn btn-primary" type="submit" >Import</button>
                 </fieldset>
-            </form>
+            </form:form>
 
-            <!-- PlanUZ Start -->
+            <h3>Import z planu UZ</h3>
+            <p>Wybierz plan, który chcesz zaimportować:</p>
+
+            <!-- Start PlanUZ -->
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Select group <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <c:forEach items="${departmentsList}" var="department">
+                                <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${department.name}</a>
+                                    <ul class="dropdown-menu">
+                                        <c:forEach items="${department.studyBranchList}" var="studyBranch">
+                                        <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${studyBranch.name}</a>
+                                            <ul class="dropdown-menu">
+                                                <c:forEach items="${studyBranch.groupTimetablesList}" var="groupTimetable">
+                                                    <li><a href="importGroup/${groupTimetable.name}">${groupTimetable.name}</a></li>
+                                                </c:forEach>
+                                            </ul>
+                                            </c:forEach>
+                                    </ul>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+
+            <!-- Import modal window -->
+            <div id="file-import-modal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>One fine body&hellip;</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
 
         </div>
         <div class="col-md-9">
