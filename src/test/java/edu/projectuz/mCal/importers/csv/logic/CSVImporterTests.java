@@ -14,21 +14,22 @@ import java.util.TimeZone;
 import static org.junit.Assert.assertEquals;
 
 /**
- * It's a test class for class {@link CSVImporter}.
+ * It's a test class for class {@link CsvImporter}.
  */
-public class CSVImporterTests {
+public class CsvImporterTests {
 
     /**
-     * This test method compare the data received after used main method from {@link CSVImporter},
+     * This test method compare the data received after used main method from {@link CsvImporter},
      * the data from the file.
      * The result should be positive.
+     * @throws Exception no found data to input.
      */
     @Test
     public void convertCsvToObject() throws Exception {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/csv/filetest.csv").getFile());
-        CSVImporter csvImporter = new CSVImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        CsvImporter csvImporter = new CsvImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
         String dateFormat = ("yyyy/MM/dd HH:mm");
 
         //Act
@@ -47,13 +48,14 @@ public class CSVImporterTests {
     /**
      * This test checks the data for a single event.
      * Expected IllegalArgumentException.
+     * @throws Exception illegal argument exception.
      */
     @Test(expected = IllegalArgumentException.class)
     public void badConvertCsv() throws Exception {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/csv/filebad1.csv").getFile());
-        CSVImporter csvImporter = new CSVImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        CsvImporter csvImporter = new CsvImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
 
         //Assert
         csvImporter.convertCsvToObject().get(0);
@@ -62,13 +64,14 @@ public class CSVImporterTests {
     /**
      * This test checks the data for a single event.
      * Expected IOException.
+     * @throws  Exception input-output exception.
      */
     @Test(expected = IOException.class)
     public void bad2ConvertCsvToObject() throws Exception {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/csv/filebad2.csv").getFile());
-        CSVImporter csvImporter = new CSVImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        CsvImporter csvImporter = new CsvImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
 
         //Assert
         csvImporter.convertCsvToObject().get(0);

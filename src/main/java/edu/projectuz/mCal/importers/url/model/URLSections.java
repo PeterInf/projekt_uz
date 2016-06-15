@@ -1,8 +1,11 @@
 package edu.projectuz.mCal.importers.url.model;
 
-public final class URLSections {
+/**
+ * Represents a mapping from a column in a table on web page, for class URLImporter.
+ */
+public final class UrlSections {
 
-    private URLSections() {
+    private UrlSections() {
 
     }
 

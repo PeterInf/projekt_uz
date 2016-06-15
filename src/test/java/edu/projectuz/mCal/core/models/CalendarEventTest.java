@@ -9,6 +9,9 @@ import java.util.TimeZone;
 
 import static org.junit.Assert.*;
 
+/**
+ * It's a test class for class {@link CalendarEvent}.
+ */
 public class CalendarEventTest {
 
     private String title, description, tag;
@@ -29,12 +32,20 @@ public class CalendarEventTest {
         emptyCalendarEvent = new CalendarEvent();
     }
 
+    /**
+     * This method tested setters from {@link CalendarEvent} class.
+     * Result should be positive.
+     */
     @Test
     public void settersTests(){
         emptyCalendarEvent.setStartDate(startDate);
         emptyCalendarEvent.setEndDate(endDate);
     }
 
+    /**
+     * This method tested all getters from {@link CalendarEvent} class.
+     * Result should be positive.
+     */
     @Test
     public void gettersTests(){
         assertEquals(emptyCalendarEvent.getId(), calendarEvent.getId());
@@ -43,6 +54,10 @@ public class CalendarEventTest {
         assertEquals(timeZone, calendarEvent.getTimeZone());
     }
 
+    /**
+     * This method tested equals and haschode method from {@link CalendarEvent} class.
+     * Result should be positive.
+     */
     @Test
     public void equalsAndHashCodeMethodsTests(){
         assertTrue(calendarEvent.equals(sameCalendarEvent) && sameCalendarEvent.equals(calendarEvent));
