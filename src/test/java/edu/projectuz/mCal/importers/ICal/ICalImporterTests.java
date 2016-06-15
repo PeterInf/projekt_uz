@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 public class ICalImporterTests {
 
     /**
-     * This test method compare the data received after used main method from {@link ICallImporter},
+     * This test method compare the data received after used main method from ICallImporter,
      * the data from the file.
      * The result should be positive.
      */

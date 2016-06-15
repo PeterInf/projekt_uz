@@ -65,6 +65,7 @@ public class GroupTimetable {
      *
      * @param aName - name of {@link Day} to find.
      * @return Returns found {@link Day} object.
+     * @throws Exception not found day.
      */
     public final Day getDayByName(final String aName) throws Exception {
         for (Day day : daysList) {

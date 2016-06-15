@@ -1,5 +1,6 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
+import edu.projectuz.mCal.importers.planuz.logic.timetables.DepartmentsListImporter;
 import java.util.ArrayList;
 
 /**
@@ -39,6 +40,7 @@ public class DepartmentsList {
      *
      * @param name - name of the {@link Department} to find.
      * @return Returns {@link Department} object found.
+     * @throws Exception not found department.
      */
     public final Department getDepartmentByName(
             final String name) throws Exception {

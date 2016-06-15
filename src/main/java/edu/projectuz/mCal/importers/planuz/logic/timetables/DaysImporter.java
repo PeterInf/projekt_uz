@@ -1,5 +1,7 @@
 package edu.projectuz.mCal.importers.planuz.logic.timetables;
 
+import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
+import edu.projectuz.mCal.importers.planuz.model.calendars.DaysList;
 import edu.projectuz.mCal.importers.planuz.logic.HtmlComponentName;
 import edu.projectuz.mCal.importers.planuz.model.timetables.Day;
 import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableEvent;
@@ -154,6 +156,7 @@ class DaysImporter {
      * Usually table with timetable is on the second position,
      * but when there's this additional table with text,
      * the table with timetable is moved on third position.
+     * @return true or false.
      */
     private boolean isTimetableEmpty() {
         final int NORMAL_TIMETABLE_POSITION = 2;

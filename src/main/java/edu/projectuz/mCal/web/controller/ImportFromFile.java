@@ -4,7 +4,7 @@ import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
 import edu.projectuz.mCal.importers.csv.logic.CsvImporter;
 import edu.projectuz.mCal.importers.ical.logic.ICalImporter;
-import edu.projectuz.mCal.importers.xml.XMLImporter;
+import edu.projectuz.mCal.importers.xml.XmlImporter;
 import edu.projectuz.mCal.service.CalendarEventService;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,8 @@ public class ImportFromFile {
 
     /**
      * Upload single file using Spring Controller
+     * @param file file.
+     * @return string.
      */
     @RequestMapping(value = "/importFromFile", method = RequestMethod.POST)
     public String importFromFile(@RequestParam("file") MultipartFile file) {
@@ -66,7 +68,7 @@ public class ImportFromFile {
                 events = csvImporter.convertCsvToObject();
                 break;
             case "xml":
-                XMLImporter xmlImporter = new XMLImporter(serverFile.getAbsolutePath(), ImporterSourceType.FILE);
+                XmlImporter xmlImporter = new XmlImporter(serverFile.getAbsolutePath(), ImporterSourceType.FILE);
                 events = xmlImporter.convertToObject();
                 break;
             case "ics":

@@ -38,6 +38,7 @@ public class DepartmentsListImporter {
 
     /**
      * Class constructor that sets default url to planUz timetables.
+     * @param aTimetablesUrl url of departments list.
      */
     public DepartmentsListImporter(final String aTimetablesUrl) {
         this.timetablesUrl = aTimetablesUrl;
@@ -99,6 +100,8 @@ public class DepartmentsListImporter {
      * at the end of every single name, so it have to be deleted, because
      * searching Departments by name wouldn't
      * work with this space at the end.
+     * @param departmentName name department.
+     * @return name department.
      */
     private String getNameWithoutSpaceAtTheEnd(final String departmentName) {
         final int NAME_START_INDEX = 0;

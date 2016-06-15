@@ -56,6 +56,7 @@ public class Department {
      *
      * @param aName - name of {@link StudyBranch} to find.
      * @return Returns {@link StudyBranch} object that was found.
+     * @throws Exception not found study branch.
      */
     public final StudyBranch getStudyBranchByName(
             final String aName) throws Exception {

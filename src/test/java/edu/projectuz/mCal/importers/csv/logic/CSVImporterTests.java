@@ -14,14 +14,15 @@ import java.util.TimeZone;
 import static org.junit.Assert.assertEquals;
 
 /**
- * It's a test class for class {@link CSVImporter}.
+ * It's a test class for class {@link CsvImporter}.
  */
-public class CSVImporterTests {
+public class CsvImporterTests {
 
     /**
-     * This test method compare the data received after used main method from {@link CSVImporter},
+     * This test method compare the data received after used main method from {@link CsvImporter},
      * the data from the file.
      * The result should be positive.
+     * @throws Exception no found data to input.
      */
     @Test
     public void convertCsvToObject() throws Exception {
@@ -47,6 +48,7 @@ public class CSVImporterTests {
     /**
      * This test checks the data for a single event.
      * Expected IllegalArgumentException.
+     * @throws Exception illegal argument exception.
      */
     @Test(expected = IllegalArgumentException.class)
     public void badConvertCsv() throws Exception {
@@ -62,6 +64,7 @@ public class CSVImporterTests {
     /**
      * This test checks the data for a single event.
      * Expected IOException.
+     * @throws  Exception input-output exception.
      */
     @Test(expected = IOException.class)
     public void bad2ConvertCsvToObject() throws Exception {
