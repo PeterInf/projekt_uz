@@ -73,31 +73,28 @@ public final class HomeController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/generateCsv", method = GET)
+    @RequestMapping(value = "/generateCsv", method = GET, produces = "text/csv;charset=UTF-8")
     public void generateCsv(HttpServletResponse response) throws IOException {
-        response.setContentType("text/csv");
         response.setHeader("Content-Disposition","attachment;filename=events.csv");
-        ServletOutputStream out = response.getOutputStream();
 
         ConverterToCsvString converter = new ConverterToCsvString();
         ArrayList<CalendarEvent> calendarEvents = (ArrayList<CalendarEvent>) calendarService.findAllCalendarEvent();
-        out.println(converter.convert(calendarEvents));
-        out.flush();
-        out.close();
+
+        try (ServletOutputStream out = response.getOutputStream()) {
+            out.write(converter.convert(calendarEvents).getBytes("UTF-8"));
+        }
     }
 
-    @RequestMapping(value = "/generateICal", method = GET)
+    @RequestMapping(value = "/generateICal", method = GET, produces = "text/ics;charset=UTF-8")
     public void generateICal(HttpServletResponse response) throws IOException {
-        response.setContentType("text/ics");
         response.setHeader("Content-Disposition","attachment;filename=events.ics");
-        ServletOutputStream out = response.getOutputStream();
 
         ICalExporter converter = new ICalExporter();
         ArrayList<CalendarEvent> calendarEvents = (ArrayList<CalendarEvent>) calendarService.findAllCalendarEvent();
 
-        out.println(converter.generateICal(calendarEvents));
-        out.flush();
-        out.close();
+        try (ServletOutputStream out = response.getOutputStream();) {
+            out.write(converter.generateICal(calendarEvents).getBytes("UTF-8"));
+        }
     }
 
     private void addDepartmentsList(Model model) {

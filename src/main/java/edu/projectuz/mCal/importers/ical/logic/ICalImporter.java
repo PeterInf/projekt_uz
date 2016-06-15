@@ -3,6 +3,7 @@ package edu.projectuz.mCal.importers.ical.logic;
 import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.importers.base.BaseEventImporter;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import net.fortuna.ical4j.data.CalendarBuilder;
 import net.fortuna.ical4j.model.Calendar;
 import net.fortuna.ical4j.model.Component;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 /**
  * This class is main class for importer all data from ICal.
  */
+@Ignore
 public class ICalImporter extends BaseEventImporter {
 
     /**
