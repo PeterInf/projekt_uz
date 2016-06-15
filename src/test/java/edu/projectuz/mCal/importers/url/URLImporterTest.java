@@ -2,7 +2,7 @@ package edu.projectuz.mCal.importers.url;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
-import edu.projectuz.mCal.importers.url.logic.URLImporter;
+import edu.projectuz.mCal.importers.url.logic.UrlImporter;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -13,13 +13,13 @@ import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
 
-public class URLImporterTest {
+public class UrlImporterTest {
     @Test
     public void convertToObject() throws Exception {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/url/filetest.html").getFile());
-        URLImporter urlImporter = new URLImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        UrlImporter urlImporter = new UrlImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
         String dateFormat = ("yyyy/MM/dd HH:mm");
 
         //Act

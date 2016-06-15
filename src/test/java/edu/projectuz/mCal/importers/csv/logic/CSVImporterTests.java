@@ -28,7 +28,7 @@ public class CSVImporterTests {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/csv/filetest.csv").getFile());
-        CSVImporter csvImporter = new CSVImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        CsvImporter csvImporter = new CsvImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
         String dateFormat = ("yyyy/MM/dd HH:mm");
 
         //Act
@@ -53,7 +53,7 @@ public class CSVImporterTests {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/csv/filebad1.csv").getFile());
-        CSVImporter csvImporter = new CSVImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        CsvImporter csvImporter = new CsvImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
 
         //Assert
         csvImporter.convertCsvToObject().get(0);
@@ -68,7 +68,7 @@ public class CSVImporterTests {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/csv/filebad2.csv").getFile());
-        CSVImporter csvImporter = new CSVImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        CsvImporter csvImporter = new CsvImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
 
         //Assert
         csvImporter.convertCsvToObject().get(0);

@@ -1,8 +1,8 @@
 package edu.projectuz.mCal.importers.url.model;
 
-public final class URLSections {
+public final class UrlSections {
 
-    private URLSections() {
+    private UrlSections() {
 
     }
 

@@ -2,17 +2,18 @@ package edu.projectuz.mCal.web.controller;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
-import edu.projectuz.mCal.importers.csv.logic.CSVImporter;
+import edu.projectuz.mCal.importers.csv.logic.CsvImporter;
 import edu.projectuz.mCal.importers.ical.logic.ICalImporter;
 import edu.projectuz.mCal.importers.xml.XMLImporter;
 import edu.projectuz.mCal.service.CalendarEventService;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.activation.MimetypesFileTypeMap;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -61,7 +62,7 @@ public class ImportFromFile {
 
         switch (extension) {
             case "csv":
-                CSVImporter csvImporter = new CSVImporter(serverFile.getAbsolutePath(), ImporterSourceType.FILE);
+                CsvImporter csvImporter = new CsvImporter(serverFile.getAbsolutePath(), ImporterSourceType.FILE);
                 events = csvImporter.convertCsvToObject();
                 break;
             case "xml":

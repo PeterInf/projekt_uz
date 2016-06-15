@@ -1,7 +1,6 @@
 package edu.projectuz.mCal.exporters.csv;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
-import edu.projectuz.mCal.importers.csv.model.CSVSections;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
