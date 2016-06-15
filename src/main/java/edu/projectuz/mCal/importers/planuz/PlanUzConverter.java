@@ -13,6 +13,7 @@ import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableEvent;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TimeZone;
 
 /**
@@ -22,14 +23,14 @@ import java.util.TimeZone;
  */
 public class PlanUzConverter {
 
-    private CalendarsList calendarsList;
+    private List<Calendar> calendarsList;
 
     /**
      * Class constructor that imports calendars which
      * will be used in converting process.
      */
-    public PlanUzConverter() {
-        calendarsList = getCalendars();
+    public PlanUzConverter(List<Calendar> calendarsList) {
+        this.calendarsList = calendarsList;
     }
 
     /**
@@ -50,11 +51,6 @@ public class PlanUzConverter {
      * This function will be changed to get calendars from
      * database instead of importer itself.
      */
-    //TODO:
-    private CalendarsList getCalendars() {
-        String calendarsUrl = "http://plan.uz.zgora.pl/kalendarze_lista.php";
-        return new CalendarsListImporter(calendarsUrl).importCalendars();
-    }
 
     private void addEventsToList(
             final GroupTimetable timetable,
@@ -159,7 +155,7 @@ public class PlanUzConverter {
     }
 
     private DaysList getDaysList(final String daysType) throws Exception {
-        for (Calendar calendar : calendarsList.getListOfCalendars()) {
+        for (Calendar calendar : calendarsList) {
             if (calendar.isContainingDayType(daysType)) {
                 return calendar.getDaysListByType(daysType);
             }

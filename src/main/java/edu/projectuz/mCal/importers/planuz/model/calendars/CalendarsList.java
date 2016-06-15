@@ -17,7 +17,7 @@ public class CalendarsList {
     private int id;
 
     private String description;
-    @OneToMany(cascade={CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, cascade={CascadeType.ALL})
     private List<Calendar> calendars = new ArrayList<>();
 
     /**

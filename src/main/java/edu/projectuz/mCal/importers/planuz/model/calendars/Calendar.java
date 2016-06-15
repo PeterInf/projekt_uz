@@ -1,5 +1,8 @@
 package edu.projectuz.mCal.importers.planuz.model.calendars;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,8 @@ public class Calendar {
     private String name;
     private String description;
 
-    @OneToMany(cascade={CascadeType.ALL})
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<DaysList> daysLists = new ArrayList<>();
 
     /**

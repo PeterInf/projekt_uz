@@ -39,7 +39,7 @@ public class PlanUzController {
     @RequestMapping(value = "/importGroup/{groupName:.+}", method= RequestMethod.GET)
     public String importGroup(@PathVariable String groupName, Model model) {
         GroupTimetable groupTimetable = service.getGroupTimetable(groupName);
-        PlanUzConverter planUzConverter = new PlanUzConverter();
+        PlanUzConverter planUzConverter = new PlanUzConverter(service.getCalendarsList());
         calendarService.saveCalendarEventsList(planUzConverter.convertTimetable(groupTimetable));
         return "redirect:/";
     }
