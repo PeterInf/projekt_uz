@@ -20,15 +20,15 @@ import java.util.ArrayList;
 /**
  * This class import all data from XML file.
  */
-public class XmlImporter extends BaseEventImporter{
+public class XMLImporter extends BaseEventImporter{
 
-    private final Logger logger = LogManager.getLogger(XmlImporter.class);
+    private final Logger logger = LogManager.getLogger(XMLImporter.class);
 
     /**
      * @param sourcePath specifies the path of the file.
      * @param sourceType specifies the type of resource {@link ImporterSourceType}.
      */
-    public XmlImporter(final String sourcePath,
+    public XMLImporter(final String sourcePath,
                        final ImporterSourceType sourceType) {
         super(sourcePath, sourceType);
     }

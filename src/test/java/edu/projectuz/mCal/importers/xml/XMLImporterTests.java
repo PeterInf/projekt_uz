@@ -13,12 +13,12 @@ import java.util.TimeZone;
 import static org.junit.Assert.assertEquals;
 
 /**
- * It's a test class for class {@link XmlImporter}.
+ * It's a test class for class {@link XMLImporter}.
  */
-public class XmlImporterTests {
+public class XMLImporterTests {
 
     /**
-     * This test method compare the data received after used main method from {@link XmlImporter},
+     * This test method compare the data received after used main method from {@link XMLImporter},
      * the data from the file.
      * The result should be positive.
      */
@@ -27,7 +27,7 @@ public class XmlImporterTests {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/xml/filetest.xml").getFile());
-        XmlImporter xmlImporter = new XmlImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        XMLImporter xmlImporter = new XMLImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
         String dateFormat = ("yyyy/MM/dd HH:mm");
 
         //Act
@@ -48,7 +48,7 @@ public class XmlImporterTests {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/xml/badDateXml.xml").getFile());
-        XmlImporter xmlImporter = new XmlImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        XMLImporter xmlImporter = new XMLImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
 
         //Assert
         xmlImporter.convertToObject().get(0);
@@ -63,7 +63,7 @@ public class XmlImporterTests {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/xml/lackOfEventXml.xml").getFile());
-        XmlImporter xmlImporter = new XmlImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        XMLImporter xmlImporter = new XMLImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
 
         //Assert
         xmlImporter.convertToObject().get(0);

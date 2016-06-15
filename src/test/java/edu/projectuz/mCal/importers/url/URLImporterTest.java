@@ -2,7 +2,7 @@ package edu.projectuz.mCal.importers.url;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
-import edu.projectuz.mCal.importers.url.logic.UrlImporter;
+import edu.projectuz.mCal.importers.url.logic.URLImporter;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
@@ -14,12 +14,12 @@ import java.util.TimeZone;
 import static org.junit.Assert.assertEquals;
 
 /**
- * It's a test class for class {@link UrlImporter}.
+ * It's a test class for class {@link URLImporter}.
  */
-public class UrlImporterTest {
+public class URLImporterTest {
 
     /**
-     * This test method compare the data received after used main method from {@link UrlImporter},
+     * This test method compare the data received after used main method from {@link URLImporter},
      * the data to the file.
      * The result should be positive.
      * @throws Exception no found table to convert.
@@ -29,7 +29,7 @@ public class UrlImporterTest {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/url/filetest.html").getFile());
-        UrlImporter urlImporter = new UrlImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        URLImporter urlImporter = new URLImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
         String dateFormat = ("yyyy/MM/dd HH:mm");
 
         //Act

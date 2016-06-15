@@ -4,7 +4,7 @@ import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.helpers.DateHelper;
 import edu.projectuz.mCal.importers.base.BaseEventImporter;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
-import edu.projectuz.mCal.importers.csv.model.CsvSections;
+import edu.projectuz.mCal.importers.csv.model.CSVSections;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -16,14 +16,14 @@ import java.util.ArrayList;
 /**
  * This class is main class for importer all data from CSV file.
  */
-public class CsvImporter extends BaseEventImporter {
+public class CSVImporter extends BaseEventImporter {
 
     /**
      * @param sourcePath specifies the path of the file.
      * @param sourceType specifies the type of
      *                   resource {@link ImporterSourceType}.
      */
-    public CsvImporter(final String sourcePath,
+    public CSVImporter(final String sourcePath,
                        final ImporterSourceType sourceType) {
         super(sourcePath, sourceType);
     }
@@ -69,19 +69,19 @@ public class CsvImporter extends BaseEventImporter {
                                  final ArrayList<CalendarEvent> listOfEvents,
                                  final String dateFormat) {
         CalendarEvent eventObject = new CalendarEvent();
-        eventObject.setTitle(csvRecord.get(CsvSections.TITLE));
+        eventObject.setTitle(csvRecord.get(CSVSections.TITLE));
         eventObject.setStartDate(DateHelper.stringToDate(
-                csvRecord.get(CsvSections.DATE_START),
+                csvRecord.get(CSVSections.DATE_START),
                 dateFormat, DateHelper.stringToTimeZone(
-                        csvRecord.get(CsvSections.TIME_ZONE))));
+                        csvRecord.get(CSVSections.TIME_ZONE))));
         eventObject.setEndDate(DateHelper.stringToDate(
-                csvRecord.get(CsvSections.DATE_END),
+                csvRecord.get(CSVSections.DATE_END),
                 dateFormat, DateHelper.stringToTimeZone(
-                        csvRecord.get(CsvSections.TIME_ZONE))));
-        eventObject.setDescription(csvRecord.get(CsvSections.DESCRIPTION));
-        eventObject.setTag(csvRecord.get(CsvSections.TAG));
+                        csvRecord.get(CSVSections.TIME_ZONE))));
+        eventObject.setDescription(csvRecord.get(CSVSections.DESCRIPTION));
+        eventObject.setTag(csvRecord.get(CSVSections.TAG));
         eventObject.setTimeZone(DateHelper.stringToTimeZone(
-                csvRecord.get(CsvSections.TIME_ZONE)));
+                csvRecord.get(CSVSections.TIME_ZONE)));
         listOfEvents.add(eventObject);
     }
 

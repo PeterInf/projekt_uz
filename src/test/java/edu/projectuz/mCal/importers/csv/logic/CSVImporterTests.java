@@ -14,12 +14,12 @@ import java.util.TimeZone;
 import static org.junit.Assert.assertEquals;
 
 /**
- * It's a test class for class {@link CsvImporter}.
+ * It's a test class for class {@link CSVImporter}.
  */
-public class CsvImporterTests {
+public class CSVImporterTests {
 
     /**
-     * This test method compare the data received after used main method from {@link CsvImporter},
+     * This test method compare the data received after used main method from {@link CSVImporter},
      * the data from the file.
      * The result should be positive.
      * @throws Exception no found data to input.
@@ -29,7 +29,7 @@ public class CsvImporterTests {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/csv/filetest.csv").getFile());
-        CsvImporter csvImporter = new CsvImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        CSVImporter csvImporter = new CSVImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
         String dateFormat = ("yyyy/MM/dd HH:mm");
 
         //Act
@@ -55,7 +55,7 @@ public class CsvImporterTests {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/csv/filebad1.csv").getFile());
-        CsvImporter csvImporter = new CsvImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        CSVImporter csvImporter = new CSVImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
 
         //Assert
         csvImporter.convertCsvToObject().get(0);
@@ -71,7 +71,7 @@ public class CsvImporterTests {
         //Arrange
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getClass().getResource("/csv/filebad2.csv").getFile());
-        CsvImporter csvImporter = new CsvImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
+        CSVImporter csvImporter = new CSVImporter(file.getAbsolutePath(), ImporterSourceType.FILE);
 
         //Assert
         csvImporter.convertCsvToObject().get(0);
