@@ -1,7 +1,7 @@
 package edu.projectuz.mCal.web.controller;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
-import edu.projectuz.mCal.exporters.csv.ConverterToCsvString;
+import edu.projectuz.mCal.exporters.csv.CsvExporterToString;
 import edu.projectuz.mCal.exporters.ical.ICalExporter;
 import edu.projectuz.mCal.importers.planuz.logic.PlanUzImporter;
 import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
@@ -20,12 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public final class HomeController {
@@ -77,11 +76,11 @@ public final class HomeController {
     public void generateCsv(HttpServletResponse response) throws IOException {
         response.setHeader("Content-Disposition","attachment;filename=events.csv");
 
-        ConverterToCsvString converter = new ConverterToCsvString();
+        CsvExporterToString converter = new CsvExporterToString();
         ArrayList<CalendarEvent> calendarEvents = (ArrayList<CalendarEvent>) calendarService.findAllCalendarEvent();
 
         try (ServletOutputStream out = response.getOutputStream()) {
-            out.write(converter.convert(calendarEvents).getBytes("UTF-8"));
+            out.write(converter.generateCsvToString(calendarEvents).getBytes("UTF-8"));
         }
     }
 

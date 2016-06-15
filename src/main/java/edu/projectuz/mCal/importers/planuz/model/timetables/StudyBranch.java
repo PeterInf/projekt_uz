@@ -70,6 +70,7 @@ public class StudyBranch {
      *
      * @param aName - name of a {@link GroupTimetable} to find.
      * @return Returns found {@link GroupTimetable} object.
+     * @throws Exception not found timetable.
      */
     public final GroupTimetable getGroupTimetableByName(
             final String aName) throws Exception {

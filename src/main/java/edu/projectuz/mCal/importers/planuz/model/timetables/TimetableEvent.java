@@ -3,9 +3,8 @@ package edu.projectuz.mCal.importers.planuz.model.timetables;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 import javax.validation.constraints.Size;
-
+import edu.projectuz.mCal.importers.planuz.model.calendars.*;
 /**
  * This class represents a single entry in planUz timetable.
  * For example it could be a class, exam or anything else that can
@@ -32,7 +31,7 @@ public class TimetableEvent {
      * This variable can either contain few
      * days like "19-03-2016; 02-04-2016; 16-04-2016;"
      * or just a type of days from a planUz {@link Calendar}
-     * which is stored in ({@link DaysList}) object.
+     * which is stored in {@link DaysList} object.
      */
     private String days;
     private String dayName;
@@ -134,8 +133,7 @@ public class TimetableEvent {
 
     /**
      * Gets day name
-     *
-     * @return TimetableDay of the week
+     * @return Day of the week.
      */
     public final String getDayName() {
         return dayName;

@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 public class ICalImporterTests {
 
     /**
-     * This test method compare the data received after used main method from {@link ICallImporter},
+     * This test method compare the data received after used main method from ICallImporter,
      * the data from the file.
      * The result should be positive.
      */
@@ -34,7 +34,7 @@ public class ICalImporterTests {
         CalendarEvent calendarEvent = new CalendarEvent("Access-A-Ride Pickup",
                 new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2013/08/02 10:34")),
                 new DateTime(DateTimeFormat.forPattern(dateFormat).parseDateTime("2013/08/02 11:04")),
-                "Access-A-Ride to 900 Jay St., Brooklyn", "", TimeZone.getTimeZone("America/New_York"));
+                "Access-A-Ride to 900 Jay St., Brooklyn", "1000 Broadway Ave., Brooklyn", TimeZone.getTimeZone("America/New_York"));
         //Assert
         assertEquals(calendarEvent, iCalImporter.convertICalToObject().get(0));
     }

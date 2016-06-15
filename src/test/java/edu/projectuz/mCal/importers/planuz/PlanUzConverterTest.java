@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static junit.framework.Assert.assertNotNull;
 import static junit.framework.TestCase.assertEquals;
 
 @Ignore
@@ -33,5 +34,10 @@ public class PlanUzConverterTest {
     @Test
     public void whenConvertingTimetableEventsCountMatches() {
         assertEquals(6, planUzConverter.convertTimetable(groupTimetable).size());
+    }
+
+    @Test
+    public void planIsNotNull(){
+        assertNotNull(planUzConverter);
     }
 }

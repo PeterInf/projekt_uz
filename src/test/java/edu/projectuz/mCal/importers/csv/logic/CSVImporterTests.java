@@ -22,6 +22,7 @@ public class CSVImporterTests {
      * This test method compare the data received after used main method from {@link CSVImporter},
      * the data from the file.
      * The result should be positive.
+     * @throws Exception no found data to input.
      */
     @Test
     public void convertCsvToObject() throws Exception {
@@ -40,7 +41,6 @@ public class CSVImporterTests {
                 .withZone(DateTimeZone.forID("Europe/Warsaw")), "OPIS", "f", TimeZone.getTimeZone("Europe/Warsaw"));
 
         //Assert
-        System.err.println();
         assertEquals(calendarEvent, csvImporter.convertCsvToObject().get(0));
         assertEquals(calendarEvent1, csvImporter.convertCsvToObject().get(1));
     }
@@ -48,6 +48,7 @@ public class CSVImporterTests {
     /**
      * This test checks the data for a single event.
      * Expected IllegalArgumentException.
+     * @throws Exception illegal argument exception.
      */
     @Test(expected = IllegalArgumentException.class)
     public void badConvertCsv() throws Exception {
@@ -63,6 +64,7 @@ public class CSVImporterTests {
     /**
      * This test checks the data for a single event.
      * Expected IOException.
+     * @throws  Exception input-output exception.
      */
     @Test(expected = IOException.class)
     public void bad2ConvertCsvToObject() throws Exception {

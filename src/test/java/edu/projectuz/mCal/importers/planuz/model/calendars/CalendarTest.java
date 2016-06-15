@@ -100,4 +100,22 @@ public class CalendarTest {
         assertFalse(calendar.isContainingDayType("Type123"));
     }
 
+    @Test
+    public void gettersAndSettersTest(){
+        Calendar calendar = new Calendar();
+        int id = 2;
+        String description = "description";
+        String name = "Name";
+        ArrayList<DaysList> daysList = new ArrayList<>();
+        calendar.setId(id);
+        calendar.setDescription(description);
+        calendar.setName(name);
+        calendar.setDaysLists(daysList);
+        assertEquals(id, calendar.getId());
+        assertEquals(name, calendar.getName());
+        assertEquals(description, calendar.getDescription());
+        assertEquals(daysList, calendar.getDaysLists());
+
+
+    }
 }

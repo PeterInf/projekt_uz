@@ -50,6 +50,7 @@ public class PlanUzConverter {
     /**
      * This function will be changed to get calendars from
      * database instead of importer itself.
+     * @return calendars.
      */
 
     private void addEventsToList(
@@ -82,9 +83,12 @@ public class PlanUzConverter {
     }
 
     /**
+     *
      * Dates are separated with ';' char.
      * When there's a calendar name, not dates,
      * then there's no ';' char in name.
+     * @param days days.
+     * @return day type.
      */
     private DaysType getTypeOfDays(final String days) {
         final int INDEX_WHEN_CHAR_NOT_FOUND = -1;

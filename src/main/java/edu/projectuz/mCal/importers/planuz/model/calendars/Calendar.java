@@ -64,6 +64,7 @@ public class Calendar {
      *
      * @param type - type of {@link DaysList} object to find.
      * @return Returns found {@link DaysList} object.
+     * @throws Exception not found days list.
      */
     public final DaysList getDaysListByType(
             final String type) throws Exception {

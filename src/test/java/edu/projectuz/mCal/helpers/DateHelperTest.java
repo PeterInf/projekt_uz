@@ -10,10 +10,19 @@ import org.junit.runner.RunWith;
 import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
+/**
+ * It's a test class for class {@link DateHelper}.
+ */
 @RunWith(JUnitParamsRunner.class)
 public class DateHelperTest {
 
+    /**
+     * This test method compare the data received after used method from {@link DateHelper},
+     * the string to the date.
+     * The result should be positive.
+     */
     @Test
     public void convertStringToDate() throws Exception {
         //Arrange
@@ -31,5 +40,7 @@ public class DateHelperTest {
         //Assert
         assertEquals(expected.toString(), result.toString());
         assertEquals(expected2.toString(), result2.toString());
+
+        assertNotNull(new DateHelper());
     }
 }

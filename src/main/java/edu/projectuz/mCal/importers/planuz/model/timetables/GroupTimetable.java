@@ -77,8 +77,9 @@ public class GroupTimetable {
      * This function allows you to search for a timetableDay by it's name.
      * If nothing was found then throws an exception.
      *
-     * @param aName - name of {@link TimetableDay} to find.
-     * @return Returns found {@link TimetableDay} object.
+     * @param aName - name of {@link Day} to find.
+     * @return Returns found {@link Day} object.
+     * @throws Exception not found day.
      */
     public final TimetableDay getDayByName(final String aName) throws Exception {
         for (TimetableDay timetableDay : daysList) {
