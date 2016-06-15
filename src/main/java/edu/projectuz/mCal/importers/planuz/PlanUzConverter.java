@@ -2,13 +2,10 @@ package edu.projectuz.mCal.importers.planuz;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.helpers.DateHelper;
-import edu.projectuz.mCal.importers.planuz.logic.
-        calendars.CalendarsListImporter;
 import edu.projectuz.mCal.importers.planuz.model.calendars.Calendar;
-import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
 import edu.projectuz.mCal.importers.planuz.model.calendars.DaysList;
-import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableDay;
 import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
+import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableDay;
 import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableEvent;
 import org.joda.time.DateTime;
 
@@ -50,7 +47,6 @@ public class PlanUzConverter {
     /**
      * This function will be changed to get calendars from
      * database instead of importer itself.
-     * @return calendars.
      */
 
     private void addEventsToList(

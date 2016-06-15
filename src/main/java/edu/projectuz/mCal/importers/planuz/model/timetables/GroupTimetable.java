@@ -1,5 +1,6 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
+import edu.projectuz.mCal.importers.planuz.model.calendars.Day;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
