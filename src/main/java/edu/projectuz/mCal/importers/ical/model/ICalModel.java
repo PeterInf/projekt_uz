@@ -23,7 +23,9 @@ public class ICalModel {
         this.timeZones = aTimeZones;
         this.events = anEvents;
     }
-    public ICalModel(){}
+
+    public ICalModel() {
+    }
 
     //region ICalModels Getter and Setters
     public final String getVersion() {

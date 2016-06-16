@@ -15,7 +15,8 @@ import java.util.List;
 @Repository("planUzDao")
 public class PlanUzDaoImpl extends AbstractDao implements PlanUzDao  {
 
-    public void saveCalendarsList(CalendarsList calendarsList) {
+    public final void saveCalendarsList(
+            final CalendarsList calendarsList) {
         persist(calendarsList);
     }
 

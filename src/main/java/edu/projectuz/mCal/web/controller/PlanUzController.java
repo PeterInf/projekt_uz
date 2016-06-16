@@ -1,6 +1,5 @@
 package edu.projectuz.mCal.web.controller;
 
-import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.importers.planuz.PlanUzConverter;
 import edu.projectuz.mCal.importers.planuz.logic.PlanUzImporter;
 import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.ArrayList;
-
 @Controller
 public class PlanUzController {
 
@@ -26,7 +23,7 @@ public class PlanUzController {
     private CalendarEventService calendarService;
 
     @RequestMapping(value = "/updateDatabase")
-    public String updateDatabase() throws Exception {
+    public final String updateDatabase() throws Exception {
         PlanUzImporter importer = new PlanUzImporter();
         CalendarsList calendarsList = importer.getCalendarsList();
         DepartmentsList departmentsList = importer.getDepartmentsList();

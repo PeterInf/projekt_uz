@@ -23,10 +23,12 @@ public class ICalImporter extends BaseEventImporter {
 
     /**
      * @param sourcePath specifies the path of the file.
-     * @param sourceType specifies the type of resource {@link ImporterSourceType}.
+     * @param sourceType specifies the type of resource
+     *                   {@link ImporterSourceType}.
      */
 
-    public ICalImporter(String sourcePath, ImporterSourceType sourceType) {
+    public ICalImporter(final String sourcePath,
+                        final ImporterSourceType sourceType) {
         super(sourcePath, sourceType);
     }
 
@@ -36,7 +38,7 @@ public class ICalImporter extends BaseEventImporter {
      * This method return name importer.
      */
     @Override
-    public String getName() {
+    public final String getName() {
         return "ICalImporter";
     }
 
@@ -52,19 +54,29 @@ public class ICalImporter extends BaseEventImporter {
      * @return Returned list of events.
      * @throws Exception empty.
      */
-    public ArrayList<CalendarEvent> convertICalToObject() throws Exception {
+    public final ArrayList<CalendarEvent> convertICalToObject()
+            throws Exception {
         Calendar calendar = buildCalendar();
         ArrayList<VEvent> vevents = calendar.getComponents(Component.VEVENT);
         ArrayList<CalendarEvent> events = new ArrayList<>();
         for (VEvent ev : vevents) {
             CalendarEvent event = new CalendarEvent();
-            event.setStartDate(DateHelper.stringToDate(ICalHelper.getGroupFromDate(ev.getStartDate().toString(), ICalRegexSections.DATE) +
-                    ICalHelper.getGroupFromDate(ev.getStartDate().toString(), ICalRegexSections.TIME), dateFormat));
-            event.setEndDate(DateHelper.stringToDate(ICalHelper.getGroupFromDate(ev.getEndDate().toString(), ICalRegexSections.DATE) +
-                    ICalHelper.getGroupFromDate(ev.getEndDate().toString(), ICalRegexSections.TIME), dateFormat));
+            event.setStartDate(DateHelper.stringToDate(ICalHelper
+                    .getGroupFromDate(ev.getStartDate().toString(),
+                            ICalRegexSections.DATE)
+                    + ICalHelper.getGroupFromDate(ev.getStartDate().
+                            toString(), ICalRegexSections.TIME),
+                    dateFormat));
+            event.setEndDate(DateHelper.stringToDate(ICalHelper.
+                    getGroupFromDate(ev.getEndDate().toString(),
+                            ICalRegexSections.DATE)
+                    + ICalHelper.getGroupFromDate(ev.getEndDate().toString(),
+                            ICalRegexSections.TIME), dateFormat));
             event.setTitle(ev.getSummary().getValue());
             event.setDescription(ev.getDescription().getValue());
-            event.setTimeZone(DateHelper.stringToTimeZone(ICalHelper.getGroupFromDate(ev.getEndDate().toString(), ICalRegexSections.TIMEZONE)));
+            event.setTimeZone(DateHelper.stringToTimeZone(ICalHelper
+                    .getGroupFromDate(ev.getEndDate().toString(),
+                            ICalRegexSections.TIMEZONE)));
             event.setTag(ev.getLocation().getValue());
             events.add(event);
         }
@@ -78,7 +90,8 @@ public class ICalImporter extends BaseEventImporter {
      * @return Returned calendar.
      */
     private Calendar buildCalendar() {
-        InputStream is = new ByteArrayInputStream(getSourceContent().getBytes());
+        InputStream is =
+                new ByteArrayInputStream(getSourceContent().getBytes());
         CalendarBuilder builder = new CalendarBuilder();
         Calendar calendar = null;
         try {

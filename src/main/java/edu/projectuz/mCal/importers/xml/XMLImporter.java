@@ -20,13 +20,14 @@ import java.util.ArrayList;
 /**
  * This class import all data from XML file.
  */
-public class XMLImporter extends BaseEventImporter{
+public class XMLImporter extends BaseEventImporter {
 
     private final Logger logger = LogManager.getLogger(XMLImporter.class);
 
     /**
      * @param sourcePath specifies the path of the file.
-     * @param sourceType specifies the type of resource {@link ImporterSourceType}.
+     * @param sourceType specifies the type of resource
+     *  {@link ImporterSourceType}.
      */
     public XMLImporter(final String sourcePath,
                        final ImporterSourceType sourceType) {
@@ -59,7 +60,7 @@ public class XMLImporter extends BaseEventImporter{
         } catch (IllegalArgumentException e) {
             logger.debug(e.getMessage());
             throw new IllegalArgumentException();
-        } catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             logger.debug(e.getMessage());
             throw new IndexOutOfBoundsException();
         } catch (Exception e) {
@@ -91,14 +92,16 @@ public class XMLImporter extends BaseEventImporter{
             eventObject.setTitle(element.getElementsByTagName(
                     "summary").item(0).getTextContent().trim());
             eventObject.setStartDate(DateHelper.stringToDate(element.
-                    getElementsByTagName("dtstart").item(0).getTextContent().
-                    trim(),
+                            getElementsByTagName("dtstart")
+                    .item(0).getTextContent().
+                            trim(),
                     dateFormat, DateHelper.stringToTimeZone(
                             element.getElementsByTagName("tzid").item(0).
                                     getTextContent().trim())));
             eventObject.setEndDate(DateHelper.stringToDate(element.
-                    getElementsByTagName("dtend").item(0).getTextContent().
-                    trim(),
+                            getElementsByTagName("dtend")
+                    .item(0).getTextContent().
+                            trim(),
                     dateFormat, DateHelper.stringToTimeZone(element.
                             getElementsByTagName("tzid").item(0).
                             getTextContent().trim())));
@@ -118,21 +121,39 @@ public class XMLImporter extends BaseEventImporter{
     }
 
     /**
-     * This method gets xml elements by name and sets them into calendar event object.
+     * This method gets xml elements by name
+     * and sets them into calendar event object.
      *
-     * @param dateFormat   date format.
-     * @param eventObject  single calendar event object.
-     * @param element      single element of a node.
+     * @param dateFormat  date format.
+     * @param eventObject single calendar event object.
+     * @param element     single element of a node.
      */
-    private void mapElements(String dateFormat, CalendarEvent eventObject, Element element) {
-        eventObject.setTitle(element.getElementsByTagName("summary").item(0).getTextContent().trim());
-        eventObject.setStartDate(DateHelper.stringToDate(element.getElementsByTagName("dtstart").item(0).getTextContent().trim(),
-                dateFormat, DateHelper.stringToTimeZone(element.getElementsByTagName("tzid").item(0).getTextContent().trim())));
-        eventObject.setEndDate(DateHelper.stringToDate(element.getElementsByTagName("dtend").item(0).getTextContent().trim(),
-                dateFormat, DateHelper.stringToTimeZone(element.getElementsByTagName("tzid").item(0).getTextContent().trim())));
-        eventObject.setDescription(element.getElementsByTagName("description").item(0).getTextContent().trim());
-        eventObject.setTag(element.getElementsByTagName("tag").item(0).getTextContent().trim());
-        eventObject.setTimeZone(DateHelper.stringToTimeZone(element.getElementsByTagName("tzid").item(0).getTextContent().trim()));
+    private void mapElements(final String dateFormat,
+                             final CalendarEvent eventObject,
+                             final Element element) {
+        eventObject.setTitle(element.getElementsByTagName("summary")
+                .item(0).getTextContent().trim());
+        eventObject.setStartDate(DateHelper
+                .stringToDate(element.getElementsByTagName("dtstart")
+                        .item(0).getTextContent().trim(),
+                dateFormat, DateHelper.stringToTimeZone(element
+                                .getElementsByTagName("tzid")
+                                .item(0).getTextContent().trim())));
+        eventObject.setEndDate(DateHelper
+                .stringToDate(element.getElementsByTagName("dtend")
+                        .item(0).getTextContent().trim(),
+                dateFormat, DateHelper.stringToTimeZone(element
+                                .getElementsByTagName("tzid").item(0)
+                                .getTextContent().trim())));
+        eventObject.setDescription(element
+                .getElementsByTagName("description")
+                .item(0).getTextContent().trim());
+        eventObject.setTag(element
+                .getElementsByTagName("tag").item(0)
+                .getTextContent().trim());
+        eventObject.setTimeZone(DateHelper
+                .stringToTimeZone(element.getElementsByTagName("tzid")
+                        .item(0).getTextContent().trim()));
     }
 
     /**
@@ -147,4 +168,3 @@ public class XMLImporter extends BaseEventImporter{
     public void importData() {
     }
 }
-
