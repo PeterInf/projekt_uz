@@ -16,7 +16,8 @@ public class CsvExporterToString {
      * @param listOfEvents list of all events.
      * @return list of events in string.
      */
-    public String generateCsvToString(ArrayList<CalendarEvent> listOfEvents) {
+    public final String generateCsvToString(
+            final ArrayList<CalendarEvent> listOfEvents) {
         StringBuilder stringBuilder = new StringBuilder();
         String separator = ",";
         String dateFormat = ("MM/dd/yyyy");
@@ -46,13 +47,17 @@ public class CsvExporterToString {
         for (CalendarEvent calendarEvent : listOfEvents) {
             stringBuilder.append(calendarEvent.getTitle());
             stringBuilder.append(separator);
-            stringBuilder.append(calendarEvent.getStartDate().toString(formatterDate));
+            stringBuilder.append(calendarEvent
+                    .getStartDate().toString(formatterDate));
             stringBuilder.append(separator);
-            stringBuilder.append(calendarEvent.getStartDate().toString(formatterTime));
+            stringBuilder.append(calendarEvent
+                    .getStartDate().toString(formatterTime));
             stringBuilder.append(separator);
-            stringBuilder.append(calendarEvent.getEndDate().toString(formatterDate));
+            stringBuilder.append(calendarEvent
+                    .getEndDate().toString(formatterDate));
             stringBuilder.append(separator);
-            stringBuilder.append(calendarEvent.getEndDate().toString(formatterTime));
+            stringBuilder.append(calendarEvent
+                    .getEndDate().toString(formatterTime));
             stringBuilder.append(separator);
             stringBuilder.append(false);
             stringBuilder.append(separator);

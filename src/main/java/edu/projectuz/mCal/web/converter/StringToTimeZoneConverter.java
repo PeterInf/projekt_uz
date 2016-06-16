@@ -5,11 +5,11 @@ import org.springframework.core.convert.converter.Converter;
 
 import java.util.TimeZone;
 
-public class StringToTimeZoneConverter implements Converter<String, TimeZone>{
+public class StringToTimeZoneConverter implements Converter<String, TimeZone> {
 
     @Override
-    public TimeZone convert(String timeZone) {
-        if(timeZone == null || timeZone.isEmpty()) {
+    public final TimeZone convert(final String timeZone) {
+        if (timeZone == null || timeZone.isEmpty()) {
             return null;
         }
         return DateHelper.stringToTimeZone(timeZone);

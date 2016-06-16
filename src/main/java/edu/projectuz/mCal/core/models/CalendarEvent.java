@@ -21,24 +21,29 @@ public class CalendarEvent {
     @GeneratedValue
     private int id;
 
-    @NotNull @Size(min=1, max=100, message="Title should contain 1-100 characters")
+    @NotNull
+    @Size(min=1, max=100, message=
+            "Title should contain 1-100 characters")
     private String title;
 
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    @NotNull(message="Wrong date format")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @NotNull(message = "Wrong date format")
     private DateTime startDate;
 
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    @NotNull(message="Wrong date format")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    @NotNull(message = "Wrong date format")
     private DateTime endDate;
 
-    @NotNull @Size(min=1, max=50, message="Tag should contain 1-50 characters")
+    @NotNull
+    @Size(min = 1, max = 50, message = "Tag should contain 1-50 characters")
     private String tag;
 
     @NotNull
     private TimeZone timeZone;
 
-    @NotNull @Size(min=1, message="Description should contain at least 1 character")
+    @NotNull
+    @Size(min = 1, message =
+            "Description should contain at least 1 character")
     private String description;
 
     /**
@@ -50,22 +55,22 @@ public class CalendarEvent {
     /**
      * The constructor needed for the test class.
      *
-     * @param title       - event name.
-     * @param startDate   - start time of the events.
-     * @param endDate     - end date of the events.
-     * @param description - description of events.
-     * @param tag         - tag of events.
-     * @param timeZone    - time zone of events.
+     * @param aTitle       - event name.
+     * @param aStartDate   - start time of the events.
+     * @param anEndDate    - end date of the events.
+     * @param aDescription - description of events.
+     * @param aTag         - tag of events.
+     * @param aTimeZone    - time zone of events.
      */
-    public CalendarEvent(final String title, final DateTime startDate,
-                         final DateTime endDate, final String description,
-                         final String tag, final TimeZone timeZone) {
-        this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.description = description;
-        this.tag = tag;
-        this.timeZone = timeZone;
+    public CalendarEvent(final String aTitle, final DateTime aStartDate,
+                         final DateTime anEndDate, final String aDescription,
+                         final String aTag, final TimeZone aTimeZone) {
+        this.title = aTitle;
+        this.startDate = aStartDate;
+        this.endDate = anEndDate;
+        this.description = aDescription;
+        this.tag = aTag;
+        this.timeZone = aTimeZone;
     }
 
     public final DateTime getStartDate() {
@@ -76,22 +81,26 @@ public class CalendarEvent {
         this.startDate = aStartDate;
     }
 
-    public final void setStartDate(final String startDate) {
-        this.startDate = DateHelper.stringToDate(startDate, "dd-mm-yyyy HH:mm:ss",
+    public final void setStartDate(final String aStartDate) {
+        this.startDate = DateHelper.stringToDate(aStartDate,
+                "dd-mm-yyyy HH:mm:ss",
                 TimeZone.getTimeZone("America/Los_Angeles"));
     }
 
-    public final DateTime getEndDate() {return endDate;}
+    public final DateTime getEndDate() {
+        return endDate;
+    }
 
     public final void setEndDate(final DateTime anEndDate) {
         this.endDate = anEndDate;
     }
-    public void setEndDate(String endDate) {
-        this.endDate = DateHelper.stringToDate(endDate, "dd-mm-yyyy HH:mm:ss",
+
+    public final void setEndDate(final String anEndDate) {
+        this.endDate = DateHelper.stringToDate(anEndDate, "dd-mm-yyyy HH:mm:ss",
                 TimeZone.getTimeZone("America/Los_Angeles"));
     }
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
@@ -118,7 +127,10 @@ public class CalendarEvent {
     public final void setTimeZone(final TimeZone aTimeZone) {
         this.timeZone = aTimeZone;
     }
-    public String getIdTimeZone(){return timeZone.getID();}
+
+    public final String getIdTimeZone() {
+        return timeZone.getID();
+    }
 
     public final String getTitle() {
         return title;

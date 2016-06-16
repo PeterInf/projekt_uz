@@ -11,36 +11,40 @@ import java.util.List;
 
 @Service("calendarEventService")
 @Transactional
-public class CalendarEventServiceImpl implements CalendarEventService{
+public class CalendarEventServiceImpl implements CalendarEventService {
 
     @Autowired
     private CalendarEventDao dao;
 
-    public void saveCalendarEvent(CalendarEvent calendarEvent) {
+    public final void saveCalendarEvent(
+            final CalendarEvent calendarEvent) {
         dao.saveCalendarEvent(calendarEvent);
     }
 
-    public List<CalendarEvent> findAllCalendarEvent() {
+    public final List<CalendarEvent> findAllCalendarEvent() {
         return dao.findAllCalendarEvent();
     }
 
-    public void deleteCalendarEventById(int id) {
+    public final void deleteCalendarEventById(
+            final int id) {
         dao.deleteCalendarEventById(id);
     }
 
-    public CalendarEvent findById(int id) {
+    public final CalendarEvent findById(final int id) {
         return dao.findById(id);
     }
 
-    public void updateCalendarEvent(CalendarEvent calendarEvent){
+    public final void updateCalendarEvent(
+            final CalendarEvent calendarEvent) {
         dao.updateCalendarEvent(calendarEvent);
     }
 
-    public void deleteAll() {
+    public final void deleteAll() {
         dao.deleteAll();
     }
 
-    public void saveCalendarEventsList(ArrayList<CalendarEvent> events) {
+    public final void saveCalendarEventsList(
+            final ArrayList<CalendarEvent> events) {
         dao.saveCalendarEventsList(events);
     }
 }

@@ -9,15 +9,15 @@ public abstract class AbstractDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    protected Session getSession() {
+    protected final Session getSession() {
         return sessionFactory.getCurrentSession();
     }
 
-    public void persist(Object entity) {
+    public final void persist(final Object entity) {
         getSession().persist(entity);
     }
 
-    public void delete(Object entity) {
+    public final void delete(final Object entity) {
         getSession().delete(entity);
     }
 }

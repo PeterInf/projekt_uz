@@ -120,39 +120,41 @@ public class Day {
     }
 
     //region Getter/Setter/Constructor(No-Arg)
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public final void setId(final int anId) {
+        this.id = anId;
     }
 
-    public int getNumber() {
+    public final int getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public final void setNumber(final int aNumber) {
+        this.number = aNumber;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public final void setDate(final String aDate) {
+        this.date = aDate;
     }
 
-    public String getDayAccordingToTimetable() {
+    public final String getDayAccordingToTimetable() {
         return dayAccordingToTimetable;
     }
 
-    public void setDayAccordingToTimetable(String dayAccordingToTimetable) {
-        this.dayAccordingToTimetable = dayAccordingToTimetable;
+    public final void setDayAccordingToTimetable(
+            final String aDayAccordingToTimetable) {
+        this.dayAccordingToTimetable = aDayAccordingToTimetable;
     }
 
-    public void setDayAccordingToCalendar(String dayAccordingToCalendar) {
-        this.dayAccordingToCalendar = dayAccordingToCalendar;
+    public final void setDayAccordingToCalendar(
+            final String aDayAccordingToCalendar) {
+        this.dayAccordingToCalendar = aDayAccordingToCalendar;
     }
 
-    public int getMagicNumber() {
+    public final int getMagicNumber() {
         return magicNumber;
     }
 

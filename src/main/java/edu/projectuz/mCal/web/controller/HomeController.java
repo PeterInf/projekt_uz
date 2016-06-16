@@ -30,7 +30,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 public final class HomeController {
 
-    private HomeController() {}
+    private HomeController() {
+    }
 
     @Autowired
     private CalendarEventService calendarService;
@@ -39,7 +40,7 @@ public final class HomeController {
     private PlanUzService planUzService;
 
     @RequestMapping(value = "/", method = GET)
-    public String home(Model model) {
+    public String home(final Model model) {
         model.addAttribute("calendarEvent", new CalendarEvent());
         model.addAttribute("eventToRemoveInfo", new EventToRemoveInfo());
         model.addAttribute("calendarEvents", calendarService.findAllCalendarEvent());
@@ -48,11 +49,14 @@ public final class HomeController {
     }
 
     @RequestMapping(value = "/addEvent", method = POST)
-    public String addEventSubmit(@Valid @ModelAttribute("calendarEvent") CalendarEvent calendarEvent,
-                                 Errors errors, Model model) {
+    public String addEventSubmit(@Valid @ModelAttribute("calendarEvent")
+                                 final CalendarEvent calendarEvent,
+                                 final Errors errors,
+                                 final Model model) {
         model.addAttribute("eventToRemoveInfo", new EventToRemoveInfo());
         if (errors.hasErrors()) {
-            model.addAttribute("calendarEvents", calendarService.findAllCalendarEvent());
+            model.addAttribute("calendarEvents",
+                    calendarService.findAllCalendarEvent());
             return "home";
         } else {
             calendarService.saveCalendarEvent(calendarEvent);
@@ -78,10 +82,12 @@ public final class HomeController {
         response.setHeader("Content-Disposition","attachment;filename=events.csv");
 
         CsvExporterToString converter = new CsvExporterToString();
-        ArrayList<CalendarEvent> calendarEvents = (ArrayList<CalendarEvent>) calendarService.findAllCalendarEvent();
+        ArrayList<CalendarEvent> calendarEvents =
+                (ArrayList<CalendarEvent>) calendarService.findAllCalendarEvent();
 
         try (ServletOutputStream out = response.getOutputStream()) {
-            out.write(converter.generateCsvToString(calendarEvents).getBytes("UTF-8"));
+            out.write(converter.generateCsvToString(calendarEvents)
+                    .getBytes("UTF-8"));
         }
     }
 
@@ -90,7 +96,8 @@ public final class HomeController {
         response.setHeader("Content-Disposition","attachment;filename=events.ics");
 
         ICalExporter converter = new ICalExporter();
-        ArrayList<CalendarEvent> calendarEvents = (ArrayList<CalendarEvent>) calendarService.findAllCalendarEvent();
+        ArrayList<CalendarEvent> calendarEvents =
+                (ArrayList<CalendarEvent>) calendarService.findAllCalendarEvent();
 
         try (ServletOutputStream out = response.getOutputStream();) {
             out.write(converter.generateICal(calendarEvents).getBytes("UTF-8"));
@@ -105,5 +112,4 @@ public final class HomeController {
             model.addAttribute("departmentsList", planUzService.getAllTimetables().getDepartmentsList());
         }
     }
-
 }

@@ -40,7 +40,5 @@ public class DateHelperTest {
         //Assert
         assertEquals(expected.toString(), result.toString());
         assertEquals(expected2.toString(), result2.toString());
-
-        assertNotNull(new DateHelper());
     }
 }
