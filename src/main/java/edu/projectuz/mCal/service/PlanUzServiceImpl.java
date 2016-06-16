@@ -20,6 +20,7 @@ public class PlanUzServiceImpl implements PlanUzService {
     private PlanUzDao dao;
 
     public void saveCalendarsList(CalendarsList calendarsList) {
+
         dao.saveCalendarsList(calendarsList);
     }
 
