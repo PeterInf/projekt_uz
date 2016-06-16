@@ -27,7 +27,9 @@ public class HibernateConfiguration {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(new String[]{"edu.projectuz.mCal.core.models","edu.projectuz.mCal.importers.planuz.model"});
+        sessionFactory.setPackagesToScan(new String[]{
+                "edu.projectuz.mCal.core.models",
+                "edu.projectuz.mCal.importers.planuz.model"});
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }

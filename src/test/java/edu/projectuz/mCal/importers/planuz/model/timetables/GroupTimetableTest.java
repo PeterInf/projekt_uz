@@ -31,17 +31,17 @@ public class GroupTimetableTest {
     @Test
     public void whenAddDayThenNoEmpty() {
         assertTrue(groupTimetable.getDaysList().isEmpty());
-        groupTimetable.addDay(new Day("Wtorek"));
+        groupTimetable.addDay(new TimetableDay("Wtorek"));
         assertFalse(groupTimetable.getDaysList().isEmpty());
     }
 
     @Test
     public void whenSetDaysListThenNoEmpty() {
-        ArrayList<Day> days = new ArrayList<>();
-        days.add(new Day("Poniedziałek"));
+        ArrayList<TimetableDay> timetableDays = new ArrayList<>();
+        timetableDays.add(new TimetableDay("Poniedziałek"));
 
         assertTrue(groupTimetable.getDaysList().isEmpty());
-        groupTimetable.setDaysList(days);
+        groupTimetable.setDaysList(timetableDays);
         assertFalse(groupTimetable.getDaysList().isEmpty());
     }
 
@@ -49,7 +49,7 @@ public class GroupTimetableTest {
     public ExpectedException thrown = ExpectedException.none();
     @Test
     public void whenDayFoundThenItReturnsObject() throws Exception {
-        groupTimetable.addDay(new Day("Wtorek"));
+        groupTimetable.addDay(new TimetableDay("Wtorek"));
         assertNotNull(groupTimetable.getDayByName("Wtorek"));
     }
 

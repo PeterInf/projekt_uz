@@ -13,7 +13,17 @@ import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * It's a test class for class {@link URLImporter}.
+ */
 public class URLImporterTest {
+
+    /**
+     * This test method compare the data received after used main method from {@link URLImporter},
+     * the data to the file.
+     * The result should be positive.
+     * @throws Exception no found table to convert.
+     */
     @Test
     public void convertToObject() throws Exception {
         //Arrange

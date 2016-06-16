@@ -31,7 +31,7 @@ public class CalendarEventDaoImpl extends AbstractDao implements CalendarEventDa
 
     public CalendarEvent findById(int id){
         Criteria criteria = getSession().createCriteria(CalendarEvent.class);
-        criteria.add(Restrictions.eq("id",id));
+        criteria.add(Restrictions.eq("id", id));
         return (CalendarEvent) criteria.uniqueResult();
     }
 

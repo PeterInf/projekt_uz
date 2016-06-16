@@ -22,6 +22,7 @@ public class CSVImporterTests {
      * This test method compare the data received after used main method from {@link CSVImporter},
      * the data from the file.
      * The result should be positive.
+     * @throws Exception no found data to input.
      */
     @Test
     public void convertCsvToObject() throws Exception {
@@ -47,6 +48,7 @@ public class CSVImporterTests {
     /**
      * This test checks the data for a single event.
      * Expected IllegalArgumentException.
+     * @throws Exception illegal argument exception.
      */
     @Test(expected = IllegalArgumentException.class)
     public void badConvertCsv() throws Exception {
@@ -62,6 +64,7 @@ public class CSVImporterTests {
     /**
      * This test checks the data for a single event.
      * Expected IOException.
+     * @throws  Exception input-output exception.
      */
     @Test(expected = IOException.class)
     public void bad2ConvertCsvToObject() throws Exception {

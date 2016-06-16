@@ -1,7 +1,9 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
+import javax.persistence.*;
 import edu.projectuz.mCal.importers.planuz.logic.timetables.DepartmentsListImporter;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class is a root of timetables model hierarchy that is structured in
@@ -10,9 +12,15 @@ import java.util.ArrayList;
  * Instance of this class is returned by
  * {@link DepartmentsListImporter#importDepartments()}.
  */
+@Entity
+@Table(name = "Departments")
 public class DepartmentsList {
+    @Id
+    @GeneratedValue
+    private int id;
 
-    private ArrayList<Department> departmentsList = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Department> departmentsList = new ArrayList<>();
 
     /**
      * Adds single {@link Department} object to departments list.
@@ -30,7 +38,7 @@ public class DepartmentsList {
      * @param aDepartmentsList - {@link Department} objects list to set.
      */
     public final void setDepartmentsList(
-            final ArrayList<Department> aDepartmentsList) {
+            final List<Department> aDepartmentsList) {
         this.departmentsList = aDepartmentsList;
     }
 
@@ -57,7 +65,7 @@ public class DepartmentsList {
      *
      * @return Returns list of {@link Department} objects.
      */
-    public final ArrayList<Department> getDepartmentsList() {
+    public final List<Department> getDepartmentsList() {
         return departmentsList;
     }
 
@@ -79,4 +87,14 @@ public class DepartmentsList {
                 + departmentsList + '}';
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public DepartmentsList() {
+    }
 }

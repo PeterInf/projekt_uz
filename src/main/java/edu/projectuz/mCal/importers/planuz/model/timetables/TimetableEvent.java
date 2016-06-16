@@ -1,5 +1,9 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.Size;
 import edu.projectuz.mCal.importers.planuz.model.calendars.*;
 /**
  * This class represents a single entry in planUz timetable.
@@ -7,13 +11,19 @@ import edu.projectuz.mCal.importers.planuz.model.calendars.*;
  * be write to timetable.
  * Structure of this object is similar to this from planUz website.
  */
+@Entity
 public class TimetableEvent {
+    @Id
+    @GeneratedValue
+    private int id;
 
     private String subgroup;
     private String startTime;
     private String endTime;
     private String eventName;
     private String eventType;
+
+    @Size(max = 500)
     private String teacherName;
     private String room;
 
@@ -25,6 +35,8 @@ public class TimetableEvent {
      */
     private String days;
     private String dayName;
+
+    public TimetableEvent() {}
 
     /**
      * Class constructor that sets all the information about a event.
@@ -121,7 +133,6 @@ public class TimetableEvent {
 
     /**
      * Gets day name
-     *
      * @return Day of the week.
      */
     public final String getDayName() {
@@ -143,4 +154,46 @@ public class TimetableEvent {
                 + room + '\'' + ", days='" + days + '\'' + ", dayName='"
                 + dayName + '\'' + '}';
     }
+
+    //region getter and setter
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setSubgroup(String subgroup) {
+        this.subgroup = subgroup;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    public void setDays(String days) {
+        this.days = days;
+    }
+    //endregion
 }
