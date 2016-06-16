@@ -27,6 +27,8 @@ public class ImportFromFile {
 
     /**
      * Upload single file using Spring Controller
+     * @param file file.
+     * @return string.
      */
     @RequestMapping(value = "/importFromFile", method = RequestMethod.POST)
     public final String importFromFile(@RequestParam("file")

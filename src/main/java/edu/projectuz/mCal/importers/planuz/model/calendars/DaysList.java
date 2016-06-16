@@ -1,10 +1,10 @@
 package edu.projectuz.mCal.importers.planuz.model.calendars;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +23,9 @@ public class DaysList {
     private int id;
     private String type;
 
-    @OneToMany(cascade = {CascadeType.ALL})
-    private List<Day> days = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Day> days = new ArrayList<>() ;
 
     /**
      * Class constructor. Simply sets a value of type variable.
@@ -68,6 +69,7 @@ public class DaysList {
      *
      * @param date - Date of a {@link Day} to find.
      * @return Returns day that has been found.
+     * @throws Exception not found day.
      */
     public final Day getDayByDate(final String date) throws Exception {
         for (Day day : days) {

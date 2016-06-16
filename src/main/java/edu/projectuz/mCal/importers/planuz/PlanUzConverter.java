@@ -2,17 +2,15 @@ package edu.projectuz.mCal.importers.planuz;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
 import edu.projectuz.mCal.helpers.DateHelper;
-import edu.projectuz.mCal.importers.planuz.logic.
-        calendars.CalendarsListImporter;
 import edu.projectuz.mCal.importers.planuz.model.calendars.Calendar;
-import edu.projectuz.mCal.importers.planuz.model.calendars.CalendarsList;
 import edu.projectuz.mCal.importers.planuz.model.calendars.DaysList;
-import edu.projectuz.mCal.importers.planuz.model.timetables.Day;
 import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
+import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableDay;
 import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableEvent;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TimeZone;
 
 /**
@@ -22,14 +20,14 @@ import java.util.TimeZone;
  */
 public class PlanUzConverter {
 
-    private CalendarsList calendarsList;
+    private List<Calendar> calendarsList;
 
     /**
      * Class constructor that imports calendars which
      * will be used in converting process.
      */
-    public PlanUzConverter() {
-        calendarsList = getCalendars();
+    public PlanUzConverter(List<Calendar> calendarsList) {
+        this.calendarsList = calendarsList;
     }
 
     /**
@@ -50,16 +48,12 @@ public class PlanUzConverter {
      * This function will be changed to get calendars from
      * database instead of importer itself.
      */
-    private CalendarsList getCalendars() {
-        String calendarsUrl = "http://plan.uz.zgora.pl/kalendarze_lista.php";
-        return new CalendarsListImporter(calendarsUrl).importCalendars();
-    }
 
     private void addEventsToList(
             final GroupTimetable timetable,
             final ArrayList<CalendarEvent> calendarEvents) {
-        for (Day day : timetable.getDaysList()) {
-            for (TimetableEvent timetableEvent : day.getEventsList()) {
+        for (TimetableDay timetableDay : timetable.getDaysList()) {
+            for (TimetableEvent timetableEvent : timetableDay.getEventsList()) {
                 calendarEvents.addAll(
                         convertToCalendarEventsList(timetableEvent));
             }
@@ -85,9 +79,12 @@ public class PlanUzConverter {
     }
 
     /**
+     *
      * Dates are separated with ';' char.
      * When there's a calendar name, not dates,
      * then there's no ';' char in name.
+     * @param days days.
+     * @return day type.
      */
     private DaysType getTypeOfDays(final String days) {
         final int INDEX_WHEN_CHAR_NOT_FOUND = -1;
@@ -126,7 +123,7 @@ public class PlanUzConverter {
 
     private String getDescription(final TimetableEvent timetableEvent) {
         return String.format(
-                "Subgroup: %s, Type: %s, Teacher: %s, Room: %s, Day: %s",
+                "Subgroup: %s, Type: %s, Teacher: %s, Room: %s, TimetableDay: %s",
                 timetableEvent.getSubgroup(), timetableEvent.getEventType(),
                 timetableEvent.getTeacherName(), timetableEvent.getRoom(),
                 timetableEvent.getDayName());
@@ -158,7 +155,7 @@ public class PlanUzConverter {
     }
 
     private DaysList getDaysList(final String daysType) throws Exception {
-        for (Calendar calendar : calendarsList.getListOfCalendars()) {
+        for (Calendar calendar : calendarsList) {
             if (calendar.isContainingDayType(daysType)) {
                 return calendar.getDaysListByType(daysType);
             }

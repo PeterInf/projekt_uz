@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.
         config.annotation.ResourceHandlerRegistry;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 @Configuration
 @EnableWebMvc
@@ -62,5 +64,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 new CommonsMultipartResolver();
         multipartResolver.setMaxInMemorySize(0);
         return multipartResolver;
+    }
+
+    @Bean
+    public StringHttpMessageConverter stringHttpMessageConverter() {
+        return new StringHttpMessageConverter(Charset.forName("UTF-8"));
     }
 }

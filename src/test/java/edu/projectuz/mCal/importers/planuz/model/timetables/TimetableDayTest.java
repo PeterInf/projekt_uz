@@ -1,6 +1,5 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
-import org.hibernate.mapping.Array;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,23 +7,23 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class DayTest {
+public class TimetableDayTest {
 
-    private Day day;
+    private TimetableDay timetableDay;
 
     @Before
     public void setUp() {
-        day = new Day("Poniedziałek");
+        timetableDay = new TimetableDay("Poniedziałek");
     }
 
     @Test
     public void whenInitializedThenNotNull() {
-        assertTrue(day != null);
+        assertTrue(timetableDay != null);
     }
 
     @Test
     public void whenInitializedThenNameMatches() {
-        assertEquals("Poniedziałek", day.getName());
+        assertEquals("Poniedziałek", timetableDay.getName());
     }
 
     @Test
@@ -33,9 +32,9 @@ public class DayTest {
                 "Programowanie współbieżne i rozproszone", "L",
                 "dr inż. Tomasz Gratkowski", "207 A-2", "D/");
 
-        assertTrue(day.getEventsList().isEmpty());
-        day.addEvent(timetableEvent);
-        assertFalse(day.getEventsList().isEmpty());
+        assertTrue(timetableDay.getEventsList().isEmpty());
+        timetableDay.addEvent(timetableEvent);
+        assertFalse(timetableDay.getEventsList().isEmpty());
     }
 
     @Test
@@ -46,19 +45,19 @@ public class DayTest {
                 "dr inż. Tomasz Gratkowski", "207 A-2", "D/");
         timetableEvents.add(timetableEvent);
 
-        assertTrue(day.getEventsList().isEmpty());
-        day.setEventsList(timetableEvents);
-        assertFalse(day.getEventsList().isEmpty());
+        assertTrue(timetableDay.getEventsList().isEmpty());
+        timetableDay.setEventsList(timetableEvents);
+        assertFalse(timetableDay.getEventsList().isEmpty());
     }
 
     @Test
     public void whenConvertedToStringThenMatchPattern() {
         String dayConvertedToString =
-                "Day{" +
+                "TimetableDay{" +
                 "name='" + "Poniedziałek" + '\'' +
                 ", eventsList=" + "[]" +
                 '}';
 
-        assertEquals(dayConvertedToString, day.toString());
+        assertEquals(dayConvertedToString, timetableDay.toString());
     }
 }

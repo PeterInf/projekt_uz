@@ -1,7 +1,9 @@
 package edu.projectuz.mCal.importers.planuz.logic.timetables;
 
+import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
+import edu.projectuz.mCal.importers.planuz.model.calendars.DaysList;
 import edu.projectuz.mCal.importers.planuz.logic.HtmlComponentName;
-import edu.projectuz.mCal.importers.planuz.model.timetables.Day;
+import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableDay;
 import edu.projectuz.mCal.importers.planuz.model.timetables.TimetableEvent;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,13 +21,13 @@ class DaysImporter {
 
     private String url;
     private Document htmlContent;
-    private ArrayList<Day> daysList = new ArrayList<>();
+    private ArrayList<TimetableDay> daysList = new ArrayList<>();
 
     /**
      * Class constructor which simply sets a value of url variable.
      *
      * @param anUrl - stores information about url address of
-     *              HTML content with every {@link Day} of
+     *              HTML content with every {@link TimetableDay} of
      *              particular {@link GroupTimetable}.
      */
     DaysImporter(final String anUrl) {
@@ -35,10 +37,10 @@ class DaysImporter {
     /**
      * Main function of this class.
      *
-     * @return Returns a list of {@link Day}
+     * @return Returns a list of {@link TimetableDay}
      * objects from particular {@link GroupTimetable}.
      */
-    ArrayList<Day> importDays() {
+    ArrayList<TimetableDay> importDays() {
         importHtmlContent();
         importTable();
         return daysList;
@@ -69,19 +71,19 @@ class DaysImporter {
     }
 
     private void importDaysListFromRows(final Elements rows) {
-        Day day = null;
+        TimetableDay timetableDay = null;
         for (Element row : rows) {
             if (isRowWithDayName(row)) {
-                daysList.add(day);
+                daysList.add(timetableDay);
                 String dayName = row.text();
-                day = new Day(dayName);
+                timetableDay = new TimetableDay(dayName);
             } else {
-                assert day != null;
-                day.addEvent(convertRowIntoEvent(row));
+                assert timetableDay != null;
+                timetableDay.addEvent(convertRowIntoEvent(row));
             }
         }
 
-        daysList.add(day);
+        daysList.add(timetableDay);
         if (!daysList.isEmpty()) {
             daysList.remove(TimetableComponentIndex.NULL_ELEMENT);
         }
@@ -95,11 +97,11 @@ class DaysImporter {
         }
     }
 
-    private void addDayNamesToEvents(final ArrayList<Day> aDaysList) {
-        for (Day day : aDaysList) {
-            String name = day.getName();
+    private void addDayNamesToEvents(final ArrayList<TimetableDay> aDaysList) {
+        for (TimetableDay timetableDay : aDaysList) {
+            String name = timetableDay.getName();
 
-            for (TimetableEvent timetableEvent : day.getEventsList()) {
+            for (TimetableEvent timetableEvent : timetableDay.getEventsList()) {
                 timetableEvent.setDayName(name);
             }
         }
@@ -154,6 +156,7 @@ class DaysImporter {
      * Usually table with timetable is on the second position,
      * but when there's this additional table with text,
      * the table with timetable is moved on third position.
+     * @return true or false.
      */
     private boolean isTimetableEmpty() {
         final int NORMAL_TIMETABLE_POSITION = 2;

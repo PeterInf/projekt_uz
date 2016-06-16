@@ -18,11 +18,9 @@ public final class DateHelper {
 
     /**
      * Simple helper for convert String to Date.
-     *
      * @param dateText   provided date to convert
      * @param dateFormat date is formatted by specified parameter
-     * @param timezone   timezone to format date
-     * @return formatted date from String
+     * @return formatted date from String.
      */
 
     public static DateTime stringToDate(
@@ -33,7 +31,14 @@ public final class DateHelper {
         return dateTime;
     }
 
-    public static DateTime stringToDate(
+    /**
+     * Simple helper for convert String to Date.
+     * @param dateText   provided date to convert
+     * @param dateFormat date is formatted by specified parameter
+     * @param timezone   timezone to format date
+     * @return formatted date from String.
+     */
+   public static DateTime stringToDate(
             final String dateText, final String dateFormat,
             final TimeZone timezone) {
         DateTimeFormatter dateTimeFormatter =
@@ -44,6 +49,11 @@ public final class DateHelper {
         return dateTime;
     }
 
+    /**
+     * Simple helper for convert String to timezone.
+     * @param timeZoneInString timezone to format date
+     * @return formatted timezone from String.
+     */
     public static TimeZone stringToTimeZone(
             final String timeZoneInString) {
         return TimeZone.getTimeZone(timeZoneInString);

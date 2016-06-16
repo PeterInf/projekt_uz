@@ -1,6 +1,11 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents a single day of a planUz timetable.
@@ -8,16 +13,25 @@ import java.util.ArrayList;
  * exams or anything else that is written on a timetable.
  * Instances of this class are stored in {@link GroupTimetable} class.
  */
-public class Day {
+@Entity
+public class TimetableDay {
+    @Id
+    @GeneratedValue
+    private int id;
 
     private String name;
-    private ArrayList<TimetableEvent> eventsList = new ArrayList<>();
+
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<TimetableEvent> eventsList = new ArrayList<>();
+
+    public TimetableDay() {}
 
     /**
      * Class constructor that sets name of a day.
      * @param aName - name of a day to set.
      */
-    public Day(final String aName) {
+    public TimetableDay(final String aName) {
         this.name = aName;
     }
 
@@ -50,7 +64,7 @@ public class Day {
      * Gets list of all events.
      * @return Returns a list of {@link TimetableEvent} objects.
      */
-    public final ArrayList<TimetableEvent> getEventsList() {
+    public final List<TimetableEvent> getEventsList() {
         return eventsList;
     }
 
@@ -60,9 +74,20 @@ public class Day {
      */
     @Override
     public final String toString() {
-        return "Day{"
+        return "TimetableDay{"
                 + "name='" + name + '\''
                 + ", eventsList=" + eventsList + '}';
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -1,6 +1,11 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents a single branch of study from planUz.
@@ -8,11 +13,18 @@ import java.util.ArrayList;
  * The class itself stores all groups of particular branch of study
  * in a list of {@link GroupTimetable} objects.
  */
+@Entity
 public class StudyBranch {
+    @Id
+    @GeneratedValue
+    private int id;
 
     private String name;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<GroupTimetable> groupTimetablesList = new ArrayList<>();
 
-    private ArrayList<GroupTimetable> groupTimetablesList = new ArrayList<>();
+    public StudyBranch() {}
 
     /**
      * Class constructor. Sets branch of study name.
@@ -39,7 +51,7 @@ public class StudyBranch {
      *                             objects to set.
      */
     public final void setGroupTimetablesList(
-            final ArrayList<GroupTimetable> aGroupTimetablesList) {
+            final List<GroupTimetable> aGroupTimetablesList) {
         this.groupTimetablesList = aGroupTimetablesList;
     }
 
@@ -58,6 +70,7 @@ public class StudyBranch {
      *
      * @param aName - name of a {@link GroupTimetable} to find.
      * @return Returns found {@link GroupTimetable} object.
+     * @throws Exception not found timetable.
      */
     public final GroupTimetable getGroupTimetableByName(
             final String aName) throws Exception {
@@ -75,7 +88,7 @@ public class StudyBranch {
      *
      * @return Returns a list of {@link GroupTimetable} objects.
      */
-    public final ArrayList<GroupTimetable> getGroupTimetablesList() {
+    public final List<GroupTimetable> getGroupTimetablesList() {
         return groupTimetablesList;
     }
 
@@ -90,4 +103,17 @@ public class StudyBranch {
                 + ", groupTimetablesList="
                 + groupTimetablesList + '}';
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

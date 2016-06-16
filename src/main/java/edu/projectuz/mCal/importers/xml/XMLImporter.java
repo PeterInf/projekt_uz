@@ -1,23 +1,21 @@
 package edu.projectuz.mCal.importers.xml;
 
-import edu.projectuz.mCal.helpers.DateHelper;
 import edu.projectuz.mCal.core.models.CalendarEvent;
+import edu.projectuz.mCal.helpers.DateHelper;
 import edu.projectuz.mCal.importers.base.BaseEventImporter;
 import edu.projectuz.mCal.importers.base.ImporterSourceType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Node;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Element;
-
-import java.util.ArrayList;
 import java.io.StringReader;
+import java.util.ArrayList;
 
 /**
  * This class import all data from XML file.
@@ -39,10 +37,7 @@ public class XMLImporter extends BaseEventImporter {
     /**
      * This is a main function of this class.
      * It is used to import all data from .xml file.
-     *
-     * @return Returned list of events
-     * @throws IndexOutOfBoundsException
-     * @throws IllegalArgumentException
+     * @return list of events.
      */
     public final ArrayList<CalendarEvent> convertToObject() {
         String dateFormat = "yyyy/MM/dd HH:mm";

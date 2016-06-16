@@ -5,6 +5,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.OneToMany;
+import edu.projectuz.mCal.importers.planuz.logic.calendars.CalendarsListImporter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,15 +22,15 @@ public class CalendarsList {
     private int id;
 
     private String description;
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(fetch = FetchType.EAGER, cascade={CascadeType.ALL})
     private List<Calendar> calendars = new ArrayList<>();
 
     /**
      * Class constructor that simply sets a value of description variable.
      *
      * @param aDescription - simple description of all calendars.
-     *                     For example:
-     *                     Lista kalendarzy - semestr letni 2015/2016
+     * For example:
+     * Lista kalendarzy - semestr letni 2015/2016
      */
     public CalendarsList(final String aDescription) {
         this.description = aDescription;
@@ -68,6 +69,7 @@ public class CalendarsList {
      *
      * @param name - name of a {@link Calendar} to find.
      * @return Returns {@link Calendar} object that was found.
+     * @throws Exception not found calendar.
      */
     public final Calendar getCalendarByName(
             final String name) throws Exception {

@@ -5,6 +5,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +26,8 @@ public class Calendar {
     private String name;
     private String description;
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<DaysList> daysLists = new ArrayList<>();
 
     /**
@@ -64,6 +69,7 @@ public class Calendar {
      *
      * @param type - type of {@link DaysList} object to find.
      * @return Returns found {@link DaysList} object.
+     * @throws Exception not found days list.
      */
     public final DaysList getDaysListByType(
             final String type) throws Exception {

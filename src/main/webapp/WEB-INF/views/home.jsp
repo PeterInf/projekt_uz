@@ -1,5 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,9 +8,33 @@
     <title>iCal Generator</title>
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/error.css"/>" rel="stylesheet">
-    <meta charset="utf-8">
+
+    <style type="text/css">
+        .marginBottom-0 {margin-bottom:0;}
+        .dropdown-submenu{position:relative;}
+        .dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+        .dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+        .dropdown-submenu:hover>a:after{border-left-color:#555;}
+        .dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+    </style>
+
 </head>
 <body>
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script type='text/javascript'>
+        (function($){
+            $(document).ready(function(){
+                $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    $(this).parent().siblings().removeClass('open');
+                    $(this).parent().toggleClass('open');
+                });
+            });
+        })(jQuery);
+    </script>
+
     <div class="page-header text-center">
         <h1>iCal Generator</h1>
         <p>Import from XML, CSV, iCal and Plan UZ</p>
@@ -58,13 +83,34 @@
                     <input type="submit" value="Import">
                 </form:form><br><br><br>
 
-                <select title="planUz">
-                    <option selected="true" style="display:none;">Plan UZ</option>
-                    <option value="23">23 Inf-SP</option>
-                    <option value="24">24 Inf-SP</option>
-                </select>
-                <input onclick="location.href='updateDatabase'" title="updateDatabase" type="button" value="Update database"><br><br>
-                <input title="importFromPlanUz" type="button" value="Import">
+                <label>Import from Plan UZ:</label><br>
+
+                <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Select group <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <c:forEach items="${departmentsList}" var="department">
+                                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${department.name}</a>
+                                        <ul class="dropdown-menu">
+                                            <c:forEach items="${department.studyBranchList}" var="studyBranch">
+                                                <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${studyBranch.name}</a>
+                                                <ul class="dropdown-menu">
+                                                    <c:forEach items="${studyBranch.groupTimetablesList}" var="groupTimetable">
+                                                        <li><a href="importGroup/${groupTimetable.name}">${groupTimetable.name}</a></li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </c:forEach>
+                                        </ul>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <br><br>
+                <input onclick="location.href='updateDatabase'" title="updateDatabase" type="button" value="Update database">
+
             </div>
         </div>
 

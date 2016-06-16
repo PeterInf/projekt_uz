@@ -1,5 +1,4 @@
 package edu.projectuz.mCal.config;
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,9 +27,9 @@ public class HibernateConfiguration {
     public final LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(
-                new String[]{"edu.projectuz.mCal.core.models",
-                        "edu.projectuz.mCal.importers.planuz.model"});
+        sessionFactory.setPackagesToScan(new String[]{
+                "edu.projectuz.mCal.core.models",
+                "edu.projectuz.mCal.importers.planuz.model"});
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }

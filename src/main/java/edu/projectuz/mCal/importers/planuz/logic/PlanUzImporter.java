@@ -20,7 +20,6 @@ import org.jsoup.select.Elements;
  */
 public class PlanUzImporter extends BaseEventImporter {
 
-    private String name = "Plan UZ";
     private Elements allLinks;
 
     private CalendarsListImporter calendarsListImporter;
@@ -39,7 +38,7 @@ public class PlanUzImporter extends BaseEventImporter {
      */
     @Override
     public final String getName() {
-        return name;
+        return "Plan UZ";
     }
 
     /**
