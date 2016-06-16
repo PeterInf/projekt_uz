@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-@Ignore
 public class CalendarsListImporterTest {
 
     @Test
@@ -19,7 +18,7 @@ public class CalendarsListImporterTest {
         CalendarsList calendarsList = calendarsListImporter.importCalendars();
 
         //Assert
-        assertEquals(21, calendarsList.size());
+        assertEquals(25, calendarsList.size());
     }
 
 }

@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-@Ignore
 public class PlanUzImporterTest {
 
     private PlanUzImporter planUzImporter;
@@ -20,6 +19,4 @@ public class PlanUzImporterTest {
     public void whenInitializedThenNameMatches() {
         assertEquals("Plan UZ", planUzImporter.getName());
     }
-
-    //TODO: More tests
 }
