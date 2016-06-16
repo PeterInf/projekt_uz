@@ -5,6 +5,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
 import edu.projectuz.mCal.importers.planuz.logic.calendars.CalendarsListImporter;
 import java.util.ArrayList;
 import java.util.List;
