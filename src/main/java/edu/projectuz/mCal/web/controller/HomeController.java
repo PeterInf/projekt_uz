@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.ServletOutputStream;
@@ -70,19 +71,15 @@ public final class HomeController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/removeEvent", method = GET)
-    public String removeEvent(@ModelAttribute("eventToRemoveInfo")
-                                          final EventToRemoveInfo eventInfo) {
-        calendarService.deleteCalendarEventById(eventInfo.getId());
+    @RequestMapping(value = "/removeEvent/{id}", method = GET)
+    public String removeEvent(@PathVariable int id) {
+        calendarService.deleteCalendarEventById(id);
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/generateCsv", method = GET,
-            produces = "text/csv;charset=UTF-8")
-    public void generateCsv(final HttpServletResponse response)
-            throws IOException {
-        response.setHeader("Content-Disposition",
-                "attachment;filename=events.csv");
+    @RequestMapping(value = "/generate/csv", method = GET, produces = "text/csv;charset=UTF-8")
+    public void generateCsv(HttpServletResponse response) throws IOException {
+        response.setHeader("Content-Disposition","attachment;filename=events.csv");
 
         CsvExporterToString converter = new CsvExporterToString();
         ArrayList<CalendarEvent> calendarEvents =
@@ -94,7 +91,7 @@ public final class HomeController {
         }
     }
 
-    @RequestMapping(value = "/generateICal", method = GET, produces = "text/ics;charset=UTF-8")
+    @RequestMapping(value = "/generate/ics", method = GET, produces = "text/ics;charset=UTF-8")
     public void generateICal(HttpServletResponse response) throws IOException {
         response.setHeader("Content-Disposition","attachment;filename=events.ics");
 
