@@ -79,7 +79,7 @@
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
                 <li>
-                    <a onclick="location.href='updateDatabase'" title="updateDatabase">Aktualizacja planu</a>
+                    <a onclick="location.href='updateDatabase'" title="updateDatabase" data-toggle="modal" data-target="#update-database-modal">Aktualizacja planu</a>
                 </li>
                 <li>
                     <a href="#">Dokumentacja</a>
@@ -142,7 +142,7 @@
                     <form:errors path="timeZone" cssClass="alert alert-danger" role="alert" element="div"/>
                     <div class='input-group' >
                        <form:select path="timeZone" class="form-control" cssErrorClass="form-control error" value="">
-                           <c:forEach var="zone" items="<%=java.util.TimeZone.getAvailableIDs()%>">
+                           <c:forEach var="zone" items="<%=java.util.TimeZone.getAvailableIDs(3600000)%>">
                                <option value="${zone}">${zone}</option>
                            </c:forEach>
                        </form:select>
@@ -172,7 +172,7 @@
                     <label class>Importuj wydarzenia z pliku:</label>
                     <p>Możliwy import z formatu: iCal, XML, CSV</p>
                     <input type="file" name="file"><br>
-                    <button class="btn btn-primary" type="submit" >Import</button>
+                    <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#file-import-modal">Import</button>
                 </fieldset>
             </form:form>
 
@@ -185,6 +185,7 @@
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Select group <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <c:forEach items="${departmentsList}" var="department">
+                                a
                                 <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${department.name}</a>
                                     <ul class="dropdown-menu">
                                         <c:forEach items="${department.studyBranchList}" var="studyBranch">
@@ -209,15 +210,24 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title">Import pliku</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Trwa importowanie pliku. To może potrwać chwilę. Proszę czekać...</p>
+                            <p>Trwa importowanie pliku. To może potrwać chwilę. Proszę czekać...  <img src="<c:url value="/resources/img/gears.svg"/>"/></p>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+            <!-- Update database modal window -->
+            <div id="update-database-modal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Aktualizacja planu UZ</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Trwa aktualizowanie planu UZ. To może potrwać chwilę. Proszę czekać...  <img src="<c:url value="/resources/img/gears.svg"/>"/></p>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
