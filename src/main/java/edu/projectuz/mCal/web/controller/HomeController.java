@@ -25,13 +25,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Controller
 public final class HomeController {
 
-    private HomeController() {}
+    private HomeController() {
+    }
 
     @Autowired
     private CalendarEventService service;
 
     @RequestMapping(value = "/", method = GET)
-    public String home(Model model) {
+    public String home(final Model model) {
         model.addAttribute("calendarEvent", new CalendarEvent());
         model.addAttribute("eventToRemoveInfo", new EventToRemoveInfo());
         model.addAttribute("calendarEvents", service.findAllCalendarEvent());
@@ -39,11 +40,14 @@ public final class HomeController {
     }
 
     @RequestMapping(value = "/addEvent", method = POST)
-    public String addEventSubmit(@Valid @ModelAttribute("calendarEvent") CalendarEvent calendarEvent,
-                                 Errors errors, Model model) {
+    public String addEventSubmit(@Valid @ModelAttribute("calendarEvent")
+                                 final CalendarEvent calendarEvent,
+                                 final Errors errors,
+                                 final Model model) {
         model.addAttribute("eventToRemoveInfo", new EventToRemoveInfo());
         if (errors.hasErrors()) {
-            model.addAttribute("calendarEvents", service.findAllCalendarEvent());
+            model.addAttribute("calendarEvents",
+                    service.findAllCalendarEvent());
             return "home";
         } else {
             service.saveCalendarEvent(calendarEvent);
@@ -59,36 +63,42 @@ public final class HomeController {
     }
 
     @RequestMapping(value = "/removeEvent", method = GET)
-    public String removeEvent(@ModelAttribute("eventToRemoveInfo") EventToRemoveInfo eventInfo) {
+    public String removeEvent(@ModelAttribute("eventToRemoveInfo")
+                              final EventToRemoveInfo eventInfo) {
         service.deleteCalendarEventById(eventInfo.getId());
         return "redirect:/";
     }
 
     @RequestMapping(value = "/generateCsv", method = GET)
-    public void generateCsv(HttpServletResponse response) throws IOException {
+    public void generateCsv(final HttpServletResponse response)
+            throws IOException {
         response.setContentType("text/csv");
-        response.setHeader("Content-Disposition","attachment;filename=events.csv");
+        response.setHeader("Content-Disposition",
+                "attachment;filename=events.csv");
         ServletOutputStream out = response.getOutputStream();
 
         ConverterToCsvString converter = new ConverterToCsvString();
-        ArrayList<CalendarEvent> calendarEvents = (ArrayList<CalendarEvent>) service.findAllCalendarEvent();
+        ArrayList<CalendarEvent> calendarEvents =
+                (ArrayList<CalendarEvent>) service.findAllCalendarEvent();
         out.println(converter.convert(calendarEvents));
         out.flush();
         out.close();
     }
 
     @RequestMapping(value = "/generateICal", method = GET)
-    public void generateICal(HttpServletResponse response) throws IOException {
+    public void generateICal(final HttpServletResponse response)
+            throws IOException {
         response.setContentType("text/ics");
-        response.setHeader("Content-Disposition","attachment;filename=events.ics");
+        response.setHeader("Content-Disposition",
+                "attachment;filename=events.ics");
         ServletOutputStream out = response.getOutputStream();
 
         ICalExporter converter = new ICalExporter();
-        ArrayList<CalendarEvent> calendarEvents = (ArrayList<CalendarEvent>) service.findAllCalendarEvent();
+        ArrayList<CalendarEvent> calendarEvents =
+                (ArrayList<CalendarEvent>) service.findAllCalendarEvent();
 
         out.println(converter.generateICal(calendarEvents));
         out.flush();
         out.close();
     }
-
 }

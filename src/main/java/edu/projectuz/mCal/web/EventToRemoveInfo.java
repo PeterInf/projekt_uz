@@ -4,11 +4,11 @@ public class EventToRemoveInfo {
 
     private Integer id;
 
-    public Integer getId() {
+    public final Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public final void setId(final Integer anId) {
+        this.id = anId;
     }
 }

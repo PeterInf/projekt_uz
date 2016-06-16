@@ -4,7 +4,12 @@ package edu.projectuz.mCal.exporters.ical;
  * Represents a mapping from a column in a ICalExporter, for class ICalExporter.
  */
 
-public class ICalSections {
+public final class ICalSections {
+
+    private ICalSections() {
+
+    }
+
     public static final String TITLE = "TITLE",
             DATE_START = "DTSTART",
             DATE_END = "DTEND",
@@ -15,6 +20,6 @@ public class ICalSections {
             VCALENDAR = "VCALENDAR",
             SUMMARY = "SUMMARY:",
             VEVENT = "VEVENT",
-            COLONSEPARATOR =":",
-            TSEPARATOR="T";
+            COLONSEPARATOR = ":",
+            TSEPARATOR = "T";
 }

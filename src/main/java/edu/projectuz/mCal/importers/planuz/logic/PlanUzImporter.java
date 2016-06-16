@@ -54,11 +54,11 @@ public class PlanUzImporter extends BaseEventImporter {
         importTimetables();
     }
 
-    public CalendarsList getCalendarsList() {
+    public final CalendarsList getCalendarsList() {
         return calendarsList;
     }
 
-    public DepartmentsList getDepartmentsList() {
+    public final DepartmentsList getDepartmentsList() {
         return departmentsList;
     }
 

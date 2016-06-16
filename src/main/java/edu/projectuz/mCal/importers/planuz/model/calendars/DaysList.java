@@ -1,6 +1,10 @@
 package edu.projectuz.mCal.importers.planuz.model.calendars;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +23,8 @@ public class DaysList {
     private int id;
     private String type;
 
-    @OneToMany(cascade={CascadeType.ALL})
-    private List<Day> days = new ArrayList<>() ;
+    @OneToMany(cascade = {CascadeType.ALL})
+    private List<Day> days = new ArrayList<>();
 
     /**
      * Class constructor. Simply sets a value of type variable.
@@ -97,20 +101,20 @@ public class DaysList {
     public DaysList() {
     }
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public final void setId(final int anId) {
+        this.id = anId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public final void setType(final String aType) {
+        this.type = aType;
     }
 
-    public void setDays(List<Day> days) {
-        this.days = days;
+    public final void setDays(final List<Day> aDays) {
+        this.days = aDays;
     }
     //endregion
 }

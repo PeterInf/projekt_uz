@@ -1,7 +1,6 @@
 package edu.projectuz.mCal.exporters.csv;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
-import edu.projectuz.mCal.importers.csv.model.CSVSections;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -9,7 +8,8 @@ import java.util.ArrayList;
 
 public class ConverterToCsvString {
 
-    public String convert(ArrayList<CalendarEvent> listOfEvents) {
+    public final String convert(
+            final ArrayList<CalendarEvent> listOfEvents) {
         StringBuilder stringBuilder = new StringBuilder();
         String separator = ",";
         String dateFormat = ("MM/dd/yyyy");
@@ -39,13 +39,17 @@ public class ConverterToCsvString {
         for (CalendarEvent calendarEvent : listOfEvents) {
             stringBuilder.append(calendarEvent.getTitle());
             stringBuilder.append(separator);
-            stringBuilder.append(calendarEvent.getStartDate().toString(formatterDate));
+            stringBuilder.append(calendarEvent
+                    .getStartDate().toString(formatterDate));
             stringBuilder.append(separator);
-            stringBuilder.append(calendarEvent.getStartDate().toString(formatterTime));
+            stringBuilder.append(calendarEvent
+                    .getStartDate().toString(formatterTime));
             stringBuilder.append(separator);
-            stringBuilder.append(calendarEvent.getEndDate().toString(formatterDate));
+            stringBuilder.append(calendarEvent
+                    .getEndDate().toString(formatterDate));
             stringBuilder.append(separator);
-            stringBuilder.append(calendarEvent.getEndDate().toString(formatterTime));
+            stringBuilder.append(calendarEvent
+                    .getEndDate().toString(formatterTime));
             stringBuilder.append(separator);
             stringBuilder.append(false);
             stringBuilder.append(separator);

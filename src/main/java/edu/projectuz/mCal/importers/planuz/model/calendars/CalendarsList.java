@@ -1,6 +1,10 @@
 package edu.projectuz.mCal.importers.planuz.model.calendars;
 
-import javax.persistence.*;
+import javax.persistence.Id;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +21,7 @@ public class CalendarsList {
     private int id;
 
     private String description;
-    @OneToMany(cascade={CascadeType.ALL})
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Calendar> calendars = new ArrayList<>();
 
     /**
@@ -96,28 +100,28 @@ public class CalendarsList {
     }
 
     //region Getter/Setter/Constructor(No-Arg)
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public final void setId(final int anId) {
+        this.id = anId;
     }
 
-    public String getDescription() {
+    public final String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public final void setDescription(final String aDescription) {
+        this.description = aDescription;
     }
 
-    public List<Calendar> getCalendars() {
+    public final List<Calendar> getCalendars() {
         return calendars;
     }
 
-    public void setCalendars(List<Calendar> calendars) {
-        this.calendars = calendars;
+    public final void setCalendars(final List<Calendar> aCalendars) {
+        this.calendars = aCalendars;
     }
 
     public CalendarsList() {

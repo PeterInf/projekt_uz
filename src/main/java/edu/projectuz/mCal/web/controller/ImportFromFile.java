@@ -9,10 +9,11 @@ import edu.projectuz.mCal.service.CalendarEventService;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.activation.MimetypesFileTypeMap;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -28,7 +29,8 @@ public class ImportFromFile {
      * Upload single file using Spring Controller
      */
     @RequestMapping(value = "/importFromFile", method = RequestMethod.POST)
-    public String importFromFile(@RequestParam("file") MultipartFile file) {
+    public final String importFromFile(@RequestParam("file")
+                                           final MultipartFile file) {
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
@@ -36,9 +38,9 @@ public class ImportFromFile {
                 // Creating the directory to store file
                 String rootPath = System.getProperty("catalina.home");
                 File dir = new File(rootPath + File.separator + "tmpFiles");
-                if (!dir.exists())
+                if (!dir.exists()) {
                     dir.mkdirs();
-
+                }
                 // Create the file on server
                 File serverFile = new File(dir.getAbsolutePath()
                         + File.separator + file.getOriginalFilename());
@@ -55,22 +57,28 @@ public class ImportFromFile {
         return "redirect:/";
     }
 
-    private void importToDatabase(File serverFile) throws Exception {
+    private void importToDatabase(final File serverFile) throws Exception {
         ArrayList<CalendarEvent> events = new ArrayList<>();
-        String extension = FilenameUtils.getExtension(serverFile.getAbsolutePath());
+        String extension = FilenameUtils
+                .getExtension(serverFile.getAbsolutePath());
 
         switch (extension) {
             case "csv":
-                CSVImporter csvImporter = new CSVImporter(serverFile.getAbsolutePath(), ImporterSourceType.FILE);
+                CSVImporter csvImporter = new CSVImporter(
+                        serverFile.getAbsolutePath(), ImporterSourceType.FILE);
                 events = csvImporter.convertCsvToObject();
                 break;
             case "xml":
-                XMLImporter xmlImporter = new XMLImporter(serverFile.getAbsolutePath(), ImporterSourceType.FILE);
+                XMLImporter xmlImporter = new XMLImporter(
+                        serverFile.getAbsolutePath(), ImporterSourceType.FILE);
                 events = xmlImporter.convertToObject();
                 break;
             case "ics":
-                ICalImporter iCalImporter = new ICalImporter(serverFile.getAbsolutePath(), ImporterSourceType.FILE);
+                ICalImporter iCalImporter = new ICalImporter(
+                        serverFile.getAbsolutePath(), ImporterSourceType.FILE);
                 events = iCalImporter.convertICalToObject();
+                break;
+            default:
                 break;
         }
 

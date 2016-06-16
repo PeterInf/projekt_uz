@@ -12,43 +12,44 @@ public class ArrayListEventsRepository {
 
     private List<CalendarEvent> calendarEventList = new ArrayList<>();
 
-    public void create(CalendarEvent calendarEvent) {
+    public final void create(final CalendarEvent calendarEvent) {
         calendarEventList.add(calendarEvent);
     }
 
-    public CalendarEvent read(long id) {
+    public final CalendarEvent read(final long id) {
         return null;
     }
 
-    public CalendarEvent update(CalendarEvent calendarEvent) {
+    public final CalendarEvent update(final CalendarEvent calendarEvent) {
         return null;
     }
 
-    public void delete(long id) {
+    public void delete(final long id) {
 
     }
 
-    public List<CalendarEvent> getAll() {
+    public final List<CalendarEvent> getAll() {
         return calendarEventList;
     }
 
-    public void deleteAll() {
+    public final void deleteAll() {
         calendarEventList = new ArrayList<>();
     }
 
-    public CalendarEvent read(String title) {
-        for(CalendarEvent calendarEvent : calendarEventList) {
-            if(calendarEvent.getTitle().equals(title)) {
+    public final CalendarEvent read(final String title) {
+        for (CalendarEvent calendarEvent : calendarEventList) {
+            if (calendarEvent.getTitle().equals(title)) {
                 return calendarEvent;
             }
         }
-        throw new IllegalArgumentException(String.format("No calendar with title '%s' found", title));
+        throw new IllegalArgumentException(
+                String.format("No calendar with title '%s' found", title));
     }
 
-    public void delete(String title) {
+    public final void delete(final String title) {
         Iterator<CalendarEvent> iterator = calendarEventList.iterator();
-        while(iterator.hasNext()) {
-            if(iterator.next().getTitle().equals(title)) {
+        while (iterator.hasNext()) {
+            if (iterator.next().getTitle().equals(title)) {
                 iterator.remove();
             }
         }

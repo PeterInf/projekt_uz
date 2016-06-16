@@ -6,7 +6,9 @@ import java.io.IOException;
 
 public class CsvExporterToFile {
 
-    public File generateCsvFile(String text, String filePath) {
+    public final File generateCsvFile(
+            final String text,
+            final String filePath) {
         File file = new File(filePath);
         try {
             FileWriter fileWriter = new FileWriter(file);
