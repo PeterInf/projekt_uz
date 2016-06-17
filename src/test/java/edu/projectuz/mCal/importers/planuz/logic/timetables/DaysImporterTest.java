@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-@Ignore
 public class DaysImporterTest {
 
     private DaysImporter daysImporter;
@@ -22,7 +21,7 @@ public class DaysImporterTest {
      */
     @Test
     public void whenImportDaysThenSizeMatches() {
-        assertEquals(5, daysImporter.importDays().size());
+        assertEquals(3, daysImporter.importDays().size());
     }
 
 }
