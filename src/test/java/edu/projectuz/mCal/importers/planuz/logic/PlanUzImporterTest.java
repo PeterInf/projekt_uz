@@ -1,6 +1,7 @@
 package edu.projectuz.mCal.importers.planuz.logic;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -18,6 +19,4 @@ public class PlanUzImporterTest {
     public void whenInitializedThenNameMatches() {
         assertEquals("Plan UZ", planUzImporter.getName());
     }
-
-    //TODO: More tests
 }

@@ -1,18 +1,33 @@
 package edu.projectuz.mCal.importers.planuz.model.timetables;
 
+import edu.projectuz.mCal.importers.planuz.model.calendars.Day;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class stores a timetable for one group
  * of specific {@link StudyBranch} from planUz.
  * List of this class instances is stored in {@link Department} class.
- * The class itself stores every day of planUz timetable it is
- * represented by a list of {@link Day} objects.
+ * The class itself stores every timetableDay of planUz timetable it is
+ * represented by a list of {@link TimetableDay} objects.
  */
+@Entity
 public class GroupTimetable {
+    @Id
+    @GeneratedValue
+    private int id;
 
     private String name;
-    private ArrayList<Day> daysList = new ArrayList<>();
+
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<TimetableDay> daysList = new ArrayList<>();
+
+    public GroupTimetable() {}
 
     /**
      * Class constructor. Simply sets name of a group.
@@ -24,20 +39,20 @@ public class GroupTimetable {
     }
 
     /**
-     * Adds single day to a list.
+     * Adds single timetableDay to a list.
      *
-     * @param day - {@link Day} object to add.
+     * @param timetableDay - {@link TimetableDay} object to add.
      */
-    public final void addDay(final Day day) {
-        daysList.add(day);
+    public final void addDay(final TimetableDay timetableDay) {
+        daysList.add(timetableDay);
     }
 
     /**
      * Sets list of days for this passed by a parameter.
      *
-     * @param aDaysList - list of {@link Day} objects to set.
+     * @param aDaysList - list of {@link TimetableDay} objects to set.
      */
-    public final void setDaysList(final ArrayList<Day> aDaysList) {
+    public final void setDaysList(final ArrayList<TimetableDay> aDaysList) {
         this.daysList = aDaysList;
     }
 
@@ -51,28 +66,29 @@ public class GroupTimetable {
     }
 
     /**
-     * Gets every day in group.
+     * Gets every timetableDay in group.
      *
-     * @return Returns list of {@link Day} objects.
+     * @return Returns list of {@link TimetableDay} objects.
      */
-    public final ArrayList<Day> getDaysList() {
+    public final List<TimetableDay> getDaysList() {
         return daysList;
     }
 
     /**
-     * This function allows you to search for a day by it's name.
+     * This function allows you to search for a timetableDay by it's name.
      * If nothing was found then throws an exception.
      *
      * @param aName - name of {@link Day} to find.
      * @return Returns found {@link Day} object.
+     * @throws Exception not found day.
      */
-    public final Day getDayByName(final String aName) throws Exception {
-        for (Day day : daysList) {
-            if (day.getName().equals(aName)) {
-                return day;
+    public final TimetableDay getDayByName(final String aName) throws Exception {
+        for (TimetableDay timetableDay : daysList) {
+            if (timetableDay.getName().equals(aName)) {
+                return timetableDay;
             }
         }
-        throw new Exception("Day with name \'" + aName + "\' not found.");
+        throw new Exception("TimetableDay with name \'" + aName + "\' not found.");
     }
 
     /**
@@ -86,4 +102,15 @@ public class GroupTimetable {
                 + '\'' + ", daysList=" + daysList + '}';
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -1,6 +1,14 @@
 package edu.projectuz.mCal.importers.planuz.model.calendars;
 
+import javax.persistence.Id;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
+import edu.projectuz.mCal.importers.planuz.logic.calendars.CalendarsListImporter;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class stores all the information about every planUz calendar.
@@ -8,17 +16,22 @@ import java.util.ArrayList;
  * It keeps this information in a list of {@link Calendar} objects.
  * Instance of this class is returned by {@link CalendarsListImporter}.
  */
+@Entity
 public class CalendarsList {
+    @Id
+    @GeneratedValue
+    private int id;
 
     private String description;
-    private ArrayList<Calendar> calendars = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER, cascade={CascadeType.ALL})
+    private List<Calendar> calendars = new ArrayList<>();
 
     /**
      * Class constructor that simply sets a value of description variable.
      *
      * @param aDescription - simple description of all calendars.
-     *                     For example:
-     *                     Lista kalendarzy - semestr letni 2015/2016
+     * For example:
+     * Lista kalendarzy - semestr letni 2015/2016
      */
     public CalendarsList(final String aDescription) {
         this.description = aDescription;
@@ -47,7 +60,7 @@ public class CalendarsList {
      *
      * @return Calendars list.
      */
-    public final ArrayList<Calendar> getListOfCalendars() {
+    public final List<Calendar> getListOfCalendars() {
         return calendars;
     }
 
@@ -57,6 +70,7 @@ public class CalendarsList {
      *
      * @param name - name of a {@link Calendar} to find.
      * @return Returns {@link Calendar} object that was found.
+     * @throws Exception not found calendar.
      */
     public final Calendar getCalendarByName(
             final String name) throws Exception {
@@ -87,4 +101,33 @@ public class CalendarsList {
                 + ", calendars=" + calendars
                 + '}';
     }
+
+    //region Getter/Setter/Constructor(No-Arg)
+    public final int getId() {
+        return id;
+    }
+
+    public final void setId(final int anId) {
+        this.id = anId;
+    }
+
+    public final String getDescription() {
+        return description;
+    }
+
+    public final void setDescription(final String aDescription) {
+        this.description = aDescription;
+    }
+
+    public final List<Calendar> getCalendars() {
+        return calendars;
+    }
+
+    public final void setCalendars(final List<Calendar> aCalendars) {
+        this.calendars = aCalendars;
+    }
+
+    public CalendarsList() {
+    }
+    //endregion
 }

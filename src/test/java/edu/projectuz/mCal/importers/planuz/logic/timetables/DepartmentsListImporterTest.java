@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
-@Ignore
 public class DepartmentsListImporterTest {
 
     private DepartmentsListImporter departmentsListImporter;

@@ -1,5 +1,6 @@
 package edu.projectuz.mCal.importers.planuz.logic.timetables;
 
+import edu.projectuz.mCal.importers.planuz.model.timetables.StudyBranch;
 import edu.projectuz.mCal.importers.planuz.logic.HtmlComponentName;
 import edu.projectuz.mCal.importers.planuz.model.timetables.GroupTimetable;
 import org.jsoup.Jsoup;

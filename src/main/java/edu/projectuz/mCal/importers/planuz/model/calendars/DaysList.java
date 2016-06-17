@@ -1,6 +1,12 @@
 package edu.projectuz.mCal.importers.planuz.model.calendars;
 
+import javax.persistence.*;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class stores a list of {@link Day} objects of a particular type.
@@ -10,10 +16,16 @@ import java.util.ArrayList;
  * For example: planUz calendar called D - Studia stacjonarne has few day types
  * like D, DP, DN...
  */
+@Entity
 public class DaysList {
-
+    @Id
+    @GeneratedValue
+    private int id;
     private String type;
-    private ArrayList<Day> days = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Day> days = new ArrayList<>() ;
 
     /**
      * Class constructor. Simply sets a value of type variable.
@@ -47,7 +59,7 @@ public class DaysList {
      *
      * @return Returns list of days.
      */
-    public final ArrayList<Day> getDays() {
+    public final List<Day> getDays() {
         return days;
     }
 
@@ -57,6 +69,7 @@ public class DaysList {
      *
      * @param date - Date of a {@link Day} to find.
      * @return Returns day that has been found.
+     * @throws Exception not found day.
      */
     public final Day getDayByDate(final String date) throws Exception {
         for (Day day : days) {
@@ -86,4 +99,24 @@ public class DaysList {
                 + days + '}';
     }
 
+    //region Getter/Setter/Constructor(No-Arg)
+    public DaysList() {
+    }
+
+    public final int getId() {
+        return id;
+    }
+
+    public final void setId(final int anId) {
+        this.id = anId;
+    }
+
+    public final void setType(final String aType) {
+        this.type = aType;
+    }
+
+    public final void setDays(final List<Day> aDays) {
+        this.days = aDays;
+    }
+    //endregion
 }

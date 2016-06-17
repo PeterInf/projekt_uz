@@ -4,6 +4,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class DaysListTest {
@@ -48,5 +51,19 @@ public class DaysListTest {
                 '}';
 
         assertEquals(daysListConvertedToString, daysList.toString());
+    }
+
+    @Test
+    public void notNull(){
+        assertNotNull(new DaysList());
+    }
+
+    @Test
+    public void gettersAndSettersTests(){
+        daysList.setId(12);
+        assertEquals(12, daysList.getId());
+        assertEquals("D", daysList.getType());
+        daysList.setDays(new ArrayList<Day>());
+        daysList.setType("P");
     }
 }

@@ -41,6 +41,7 @@ public class CalendarsListImporter {
 
     /**
      * Class constructor that sets default url to planUz calendars.
+     * @param aCalendarsUrl url calendars.
      */
     public CalendarsListImporter(final String aCalendarsUrl) {
         this.calendarsUrl = aCalendarsUrl;

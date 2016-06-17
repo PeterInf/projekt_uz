@@ -20,7 +20,6 @@ import org.jsoup.select.Elements;
  */
 public class PlanUzImporter extends BaseEventImporter {
 
-    private String name = "Plan UZ";
     private Elements allLinks;
 
     private CalendarsListImporter calendarsListImporter;
@@ -31,6 +30,7 @@ public class PlanUzImporter extends BaseEventImporter {
 
     public PlanUzImporter() {
         super("http://plan.uz.zgora.pl/index.php", ImporterSourceType.WEB);
+        importData();
     }
 
     /**
@@ -38,7 +38,7 @@ public class PlanUzImporter extends BaseEventImporter {
      */
     @Override
     public final String getName() {
-        return name;
+        return "Plan UZ";
     }
 
     /**
@@ -51,6 +51,14 @@ public class PlanUzImporter extends BaseEventImporter {
 
         importCalendars();
         importTimetables();
+    }
+
+    public final CalendarsList getCalendarsList() {
+        return calendarsList;
+    }
+
+    public final DepartmentsList getDepartmentsList() {
+        return departmentsList;
     }
 
     private void importTimetables() {

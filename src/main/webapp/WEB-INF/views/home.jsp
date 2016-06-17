@@ -1,111 +1,113 @@
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>iCal Generator</title>
-    <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
-    <link href="<c:url value="/resources/css/error.css"/>" rel="stylesheet">
-    <meta charset="utf-8">
-</head>
-<body>
-    <div class="page-header text-center">
-        <h1>iCal Generator</h1>
-        <p>Import from XML, CSV, iCal and Plan UZ</p>
-    </div>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="header.jsp" %>
+<div class="container">
+    <!-- Row for errors -->
+    <!-- Example row of columns -->
     <div class="row">
-        <div class="col-sm-2">
-            <div class="container">
-                <form:form action="addEvent" method="post" modelAttribute="calendarEvent">
-                    <form:label path="title" cssErrorClass="error">Title:</form:label><br>
-                    <form:input path="title" type="text" cssErrorClass="error"/><br>
-                    <form:errors path="title" cssClass="errors" element="div"/>
+        <div class="col-md-3">
+            <h2>Dodaj wpis</h2>
+            <p>Aby dodać wpis skorzystaj z poniższego formularza:</p>
+            <form:form action="addEvent" method="post" modelAttribute="calendarEvent">
+                <fieldset class="form-group">
+                    <form:label path="title" cssErrorClass="error">Nazwa wydarzenia:</form:label>
+                    <form:errors path="title" cssClass="alert alert-danger" role="alert" element="div"/>
+                    <div class='input-group' >
+                        <form:input path="title" type="text" cssClass="form-control" cssErrorClass="form-control error"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-flag"></span>
+                    </span>
+                    </div>
+                    <form:label path="tag" cssErrorClass="error">Tagi:</form:label>
+                    <form:errors path="tag" cssClass="alert alert-danger" role="alert" element="div"/>
+                    <div class='input-group' >
+                        <form:input path="tag" type="text" cssClass="form-control" cssErrorClass="form-control error"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-tag"></span>
+                    </span>
+                    </div>
+                    <form:label path="startDate" cssErrorClass="error">Data rozpoczęcia:</form:label>
+                    <form:errors path="startDate" cssClass="alert alert-danger" role="alert" element="div"/>
+                    <div class='input-group date' >
+                        <form:input path="startDate" type="text" cssClass="form-control" cssErrorClass="form-control error"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    </div>
+                    <form:label path="endDate" cssErrorClass="error">Data zakończenia:</form:label>
+                    <form:errors path="startDate" cssClass="alert alert-danger" role="alert" element="div"/>
+                    <div class='input-group date' >
+                        <form:input path="endDate" type="text" cssClass="form-control" cssErrorClass="form-control error"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    </div>
+                    <form:label path="timeZone" cssErrorClass="form-control error">Strefa czasowa:</form:label>
+                    <form:errors path="timeZone" cssClass="alert alert-danger" role="alert" element="div"/>
+                    <div class='input-group' >
+                       <form:select path="timeZone" class="form-control" cssErrorClass="form-control error" value="">
+                           <c:forEach var="zone" items="<%=java.util.TimeZone.getAvailableIDs(3600000)%>">
+                               <option value="${zone}">${zone}</option>
+                           </c:forEach>
+                       </form:select>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                    </span>
+                    </div>
+                    <form:label path="description" cssErrorClass="error">Opis:</form:label>
+                    <form:errors path="description" cssClass="alert alert-danger" role="alert" element="div"/>
+                    <div class='input-group date' >
+                        <form:input path="description" cssClass="form-control" type="text" cssErrorClass="form-control error"/><br>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </span>
+                    </div>
+                </fieldset>
+                <fieldset class="form-group">
+                    <div class="form-group buttons">
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                        <button type="submit" class="btn btn-primary">Dodaj</button>
+                    </div>
+                </fieldset>
+            </form:form>
+            <h2>Importery</h2>
+            <form:form id="command" method="POST" action="importFromFile" enctype="multipart/form-data">
+                <fieldset class="form-group">
+                    <label class>Importuj wydarzenia z pliku:</label>
+                    <p>Dozwolone formaty: .ics, .xml, .csv</p>
+                    <input type="file" name="file"><br>
+                    <button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#file-import-modal">Import</button>
+                </fieldset>
+            </form:form>
 
-                    <form:label path="startDate" cssErrorClass="error">Start time:</form:label><br>
-                    <form:input path="startDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"
-                                cssErrorClass="error"/><br>
-                    <form:errors path="startDate" cssClass="errors" element="div"/>
-
-                    <form:label path="endDate" cssErrorClass="error">End time:</form:label><br>
-                    <form:input path="endDate" type="text" placeholder="dd-mm-yyyy hh:mm:ss"
-                                cssErrorClass="error"/><br>
-                    <form:errors path="endDate" cssClass="errors" element="div"/>
-
-                    <form:label path="tag" cssErrorClass="error">Tag:</form:label><br>
-                    <form:input path="tag" type="text" cssErrorClass="error"/><br>
-                    <form:errors path="tag" cssClass="errors" element="div"/>
-
-                    <form:label path="timeZone">Time zone:</form:label><br>
-                    <form:select path="timeZone">
-                        <option value="Europe/Warsaw">Europe/Warsaw</option>
-                        <option value="America/Mexico_City">America/Mexico_City</option>
-                    </form:select><br>
-
-                    <form:label path="description" cssErrorClass="error">Description:</form:label><br>
-                    <form:input path="description" type="text" cssErrorClass="error"/><br>
-                    <form:errors path="description" cssClass="errors" element="div"/><br>
-
-                    <input title="addEvent" type="submit" value="Add event">
-                    <input title="clear" type="reset" value="Clear">
-                </form:form>
-            </div>
+            <!-- Import modal window -->
+            <div id="file-import-modal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Import pliku</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Trwa importowanie pliku. To może potrwać chwilę. Proszę czekać...  <img src="<c:url value="/resources/img/gears.svg"/>"/></p>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </div>
-
-        <div class="col-sm-5">
-            <div class="container">
-                <table class="table table-hover">
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Start time</th>
-                        <th>End time</th>
-                        <th>Tag</th>
-                        <th>Time zone</th>
-                        <th>Description</th>
-                    </tr>
-                    <c:forEach items="${calendarEvents}" var="calendarEvent">
-                        <tr>
-                            <td>${calendarEvent.id}</td>
-                            <td>${calendarEvent.title}</td>
-                            <td>${calendarEvent.startDate.dayOfMonth}-${calendarEvent.startDate.monthOfYear}-${calendarEvent.startDate.year}
-                                ${calendarEvent.startDate.hourOfDay}:${calendarEvent.startDate.minuteOfHour}:${calendarEvent.startDate.secondOfMinute}</td>
-                            <td>${calendarEvent.endDate.dayOfMonth}-${calendarEvent.endDate.monthOfYear}-${calendarEvent.endDate.year}
-                                ${calendarEvent.endDate.hourOfDay}:${calendarEvent.endDate.minuteOfHour}:${calendarEvent.endDate.secondOfMinute}</td>
-                            <td>${calendarEvent.tag}</td>
-                            <td>${calendarEvent.timeZone.ID}</td>
-                            <td>${calendarEvent.description}</td>
-                        </tr>
-                    </c:forEach>
-                </table><br>
-
-                <form:form action="removeEvent" method="get" modelAttribute="eventToRemoveInfo">
-                    <form:input path="id" type="text" placeholder="ID"/>
-                    <input title="removeEvent" type="submit" value="Remove">
-                </form:form><br>
-                <input onclick="location.href='clearEvents'" title="clearEvents" type="button" value="Clear"><br><br>
+        <div class="col-md-9">
+            <div id="calendar"></div>
+            <div class="row">
+                <h3>Eksport do pliku</h3>
+                <form class="form-inline">
+                    <fieldset>
+                        <label>Wybierz format do eksportu:</label>
+                        <select id="export-select" class="form-control">
+                            <option value="csv">CSV</option>
+                            <option value="ics">ICS</option>
+                        </select>
+                        <a role="button" id="export-button" class="btn btn-primary">Eksportuj</a>
+                    </fieldset>
+                </form>
             </div>
         </div>
     </div>
-
-    <br><br><br><br><br>
-    <div class="container">
-        <select title="fileType">
-            <option selected="true" style="display:none;">From file...</option>
-            <option value="csv">*.csv</option>
-            <option value="xml">*.xml</option>
-        </select>
-        <input title="importFromFile" type="button" value="Import">
-
-        <select title="planUz">
-            <option selected="true" style="display:none;">Plan UZ</option>
-            <option value="23">23 Inf-SP</option>
-            <option value="24">24 Inf-SP</option>
-        </select>
-        <input title="importFromPlanUz" type="button" value="Import"><br><br>
-
-        <input title="generateICal" type="button" value="Generate iCal">
-        <input title="generateCsv" type="button" value="Generate CSV">
-    </div>
-</body>
-</html>
+    <%@include file="footer.jsp" %>

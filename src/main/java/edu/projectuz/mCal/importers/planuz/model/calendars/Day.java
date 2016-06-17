@@ -1,5 +1,9 @@
 package edu.projectuz.mCal.importers.planuz.model.calendars;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  * This class is the lowest in planUz calendars hierarchy.
  * Instance of this class represents single day of calendar.
@@ -10,7 +14,11 @@ package edu.projectuz.mCal.importers.planuz.model.calendars;
  * by a monday schedule.
  * It's a part of {@link DaysList} class.
  */
+@Entity
 public class Day {
+    @Id
+    @GeneratedValue
+    private int id;
 
     private int number;
     private String date;
@@ -111,4 +119,46 @@ public class Day {
                 : day.dayAccordingToCalendar == null;
     }
 
+    //region Getter/Setter/Constructor(No-Arg)
+    public final int getId() {
+        return id;
+    }
+
+    public final void setId(final int anId) {
+        this.id = anId;
+    }
+
+    public final int getNumber() {
+        return number;
+    }
+
+    public final void setNumber(final int aNumber) {
+        this.number = aNumber;
+    }
+
+    public final void setDate(final String aDate) {
+        this.date = aDate;
+    }
+
+    public final String getDayAccordingToTimetable() {
+        return dayAccordingToTimetable;
+    }
+
+    public final void setDayAccordingToTimetable(
+            final String aDayAccordingToTimetable) {
+        this.dayAccordingToTimetable = aDayAccordingToTimetable;
+    }
+
+    public final void setDayAccordingToCalendar(
+            final String aDayAccordingToCalendar) {
+        this.dayAccordingToCalendar = aDayAccordingToCalendar;
+    }
+
+    public final int getMagicNumber() {
+        return magicNumber;
+    }
+
+    public Day() {
+    }
+    //endregion
 }

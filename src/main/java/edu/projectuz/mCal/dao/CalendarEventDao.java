@@ -2,6 +2,7 @@ package edu.projectuz.mCal.dao;
 
 import edu.projectuz.mCal.core.models.CalendarEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface CalendarEventDao {
@@ -17,4 +18,6 @@ public interface CalendarEventDao {
     void updateCalendarEvent(CalendarEvent employee);
 
     void deleteAll();
+
+    void saveCalendarEventsList(ArrayList<CalendarEvent> events);
 }

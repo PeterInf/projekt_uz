@@ -1,6 +1,7 @@
 package edu.projectuz.mCal.importers.planuz.logic.timetables;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -20,7 +21,7 @@ public class DaysImporterTest {
      */
     @Test
     public void whenImportDaysThenSizeMatches() {
-        assertEquals(5, daysImporter.importDays().size());
+        assertEquals(3, daysImporter.importDays().size());
     }
 
 }

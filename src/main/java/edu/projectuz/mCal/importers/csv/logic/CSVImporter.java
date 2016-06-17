@@ -23,8 +23,8 @@ public class CSVImporter extends BaseEventImporter {
      * @param sourceType specifies the type of
      *                   resource {@link ImporterSourceType}.
      */
-    protected CSVImporter(final String sourcePath,
-                          final ImporterSourceType sourceType) {
+    public CSVImporter(final String sourcePath,
+                       final ImporterSourceType sourceType) {
         super(sourcePath, sourceType);
     }
 

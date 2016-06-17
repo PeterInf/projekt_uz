@@ -1,18 +1,34 @@
 package edu.projectuz.mCal.importers.planuz.model.calendars;
 
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class stores information about single planUz calendar.
  * It's a part of {@link CalendarsList}.
  * It keeps this information as a list of {@link DaysList} object.
  */
+@Entity
 public class Calendar {
+    @Id
+    @GeneratedValue
+    private int id;
 
     private String name;
     private String description;
 
-    private ArrayList<DaysList> daysLists = new ArrayList<>();
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<DaysList> daysLists = new ArrayList<>();
 
     /**
      * Class constructor that simply
@@ -53,6 +69,7 @@ public class Calendar {
      *
      * @param type - type of {@link DaysList} object to find.
      * @return Returns found {@link DaysList} object.
+     * @throws Exception not found days list.
      */
     public final DaysList getDaysListByType(
             final String type) throws Exception {
@@ -95,4 +112,37 @@ public class Calendar {
         }
         return false;
     }
+
+    //region Getter/Setter/Constructor(No-Arg)
+    public final int getId() {
+        return id;
+    }
+
+    public final void setId(final int anId) {
+        this.id = anId;
+    }
+
+    public final void setName(final String aName) {
+        this.name = aName;
+    }
+
+    public final String getDescription() {
+        return description;
+    }
+
+    public final void setDescription(final String aDescription) {
+        this.description = aDescription;
+    }
+
+    public final List<DaysList> getDaysLists() {
+        return daysLists;
+    }
+
+    public final void setDaysLists(final List<DaysList> aDaysLists) {
+        this.daysLists = aDaysLists;
+    }
+
+    public Calendar() {
+    }
+    //endregion
 }
