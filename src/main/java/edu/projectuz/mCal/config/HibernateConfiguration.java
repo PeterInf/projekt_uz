@@ -24,7 +24,7 @@ public class HibernateConfiguration {
     private Environment environment;
 
     @Bean
-    public final LocalSessionFactoryBean sessionFactory() {
+    public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan(new String[]{
@@ -35,7 +35,7 @@ public class HibernateConfiguration {
     }
 
     @Bean
-    public final DataSource dataSource() {
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(
                 environment.getRequiredProperty("jdbc.driverClassName"));
@@ -62,7 +62,7 @@ public class HibernateConfiguration {
 
     @Bean
     @Autowired
-    public final HibernateTransactionManager transactionManager(
+    public HibernateTransactionManager transactionManager(
             final SessionFactory s) {
         HibernateTransactionManager txManager =
                 new HibernateTransactionManager();

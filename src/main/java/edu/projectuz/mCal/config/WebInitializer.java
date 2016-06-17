@@ -9,23 +9,22 @@ import javax.servlet.Filter;
 public class WebInitializer extends
         AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
-    protected final Class<?>[] getRootConfigClasses() {
+    protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{RootConfig.class};
     }
 
     @Override
-    protected final Class<?>[] getServletConfigClasses() {
+    protected Class<?>[] getServletConfigClasses() {
         return new Class<?>[]{WebConfig.class};
     }
 
     @Override
-    protected final String[] getServletMappings() {
+    protected String[] getServletMappings() {
         return new String[]{"/"};
     }
 
     @Override
     protected Filter[] getServletFilters() {
-
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);

@@ -32,7 +32,7 @@ public class PlanUzConverterTest {
 
     @Test
     public void whenConvertingTimetableEventsCountMatches() {
-        assertEquals(6, planUzConverter.convertTimetable(groupTimetable).size());
+        assertEquals(2, planUzConverter.convertTimetable(groupTimetable).size());
     }
 
     @Test
