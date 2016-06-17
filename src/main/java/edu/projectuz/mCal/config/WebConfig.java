@@ -30,7 +30,7 @@ import java.nio.charset.Charset;
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
-    public final ViewResolver viewResolver() {
+    public ViewResolver viewResolver() {
         InternalResourceViewResolver resolver =
                 new InternalResourceViewResolver();
         resolver.setPrefix("/WEB-INF/views/");
@@ -40,26 +40,26 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Override
-    public final void configureDefaultServletHandling(
+    public void configureDefaultServletHandling(
             final DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
 
     @Override
-    public final void addFormatters(final FormatterRegistry registry) {
+    public void addFormatters(final FormatterRegistry registry) {
         registry.addConverter(new StringToDateConverter());
         registry.addConverter(new StringToTimeZoneConverter());
     }
 
     @Override
-    public final void addResourceHandlers(
+    public void addResourceHandlers(
             final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**")
                 .addResourceLocations("/resources/");
     }
 
     @Bean
-    public final MultipartResolver multipartResolver() throws IOException {
+    public MultipartResolver multipartResolver() throws IOException {
         CommonsMultipartResolver multipartResolver =
                 new CommonsMultipartResolver();
         multipartResolver.setMaxInMemorySize(0);
